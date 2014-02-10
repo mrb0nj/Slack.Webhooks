@@ -8,7 +8,7 @@ Usage
 
 Requirements:
 
-1. You must first enable the Webhooks integration for your Slack Account to get the Token. You can enable it here: https://imimobile.slack.com/services/new/incoming-webhook
+1. You must first enable the Webhooks integration for your Slack Account to get the Token. You can enable it here: https://slack.com/services/new/incoming-webhook
 2. Slack.Webhooks depends on RestSharp
 
 Then, create a SlackClient with your TeamName and Token
