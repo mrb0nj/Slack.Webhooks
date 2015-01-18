@@ -8,31 +8,27 @@ namespace Slack.Webhooks
 {
     public class SlackClient
     {
-        private const string Resource = "/services/hooks/incoming-webhook";
-        public string TeamName { get; set; }
-        public string Token { get; set; }
+        private readonly RestClient restClient;
 
-        public RestClient RestClient { get; set; }
-
-        public SlackClient(string teamName, string token, RestClient restClient = null)
+        public SlackClient(string webserviceUrl)
         {
             JsConfig.EmitLowercaseUnderscoreNames = true;
             JsConfig.IncludeNullValues = false;
-            JsConfig.PropertyConvention = PropertyConvention.Lenient;
+            JsConfig.PropertyConvention = JsonPropertyConvention.Lenient;
+           
+            if (!webserviceUrl.Contains("slack.com"))
+                throw new ArgumentException("Please enter a correct Slack webservice url hook");
 
-            TeamName = teamName;
-            Token = token;
-            RestClient = restClient ?? new RestClient(string.Format("https://{0}.slack.com", teamName));
+            restClient = new RestClient(webserviceUrl);
         }
 
         public bool Post(SlackMessage slackMessage)
         {
-            var request = new RestRequest(Resource, Method.POST);
+            var request = new RestRequest("/", Method.POST);
             request.AddParameter("payload", slackMessage.ToJson());
-            request.AddParameter("token", Token, ParameterType.QueryString);
             try
             {
-                var response = RestClient.Execute(request);
+                var response = restClient.Execute(request);
                 return response.StatusCode == HttpStatusCode.OK;
             }
             catch (Exception)
