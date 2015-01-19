@@ -12,7 +12,7 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void Client_returns_false_if_post_fails()
+        public void SlackClient_returns_false_if_post_fails()
         {
             //arrange
             const string webserviceurl = "[/]dodgy_url!@.slack.com";
