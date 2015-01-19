@@ -14,7 +14,7 @@ Requirements:
 Then, create a SlackClient with your TeamName and Token
 
 ```csharp
-var slackClient = new SlackClient("https://hooks.slack.com/services/[YOUR_WEBHOOK_URL]");
+var slackClient = new SlackClient("[YOUR_WEBHOOK_URL]");
 ```
 
 Create a  new SlackMessage
