@@ -8,14 +8,26 @@ namespace Slack.Webhooks.Tests
         [Fact]
         public void SlackClient_should_throw_exception_if_slack_url_not_given()
         {
-            Assert.Throws<ArgumentException>(() => new SlackClient("no slack url passed in"));
+            Assert.Throws<ArgumentException>(() => new SlackClient(string.Empty));
+        }
+
+        [Fact]
+        public void SlackClient_should_throw_exception_if_hostname_is_invalid()
+        {
+            Assert.Throws<ArgumentException>(() => new SlackClient("https://google.com"));
+        }
+
+        [Fact]
+        public void SlackClient_should_throw_exception_if_valid_url_not_given()
+        {
+            Assert.Throws<ArgumentException>(() => new SlackClient("[/]dodgy_url!@.slack.com"));
         }
 
         [Fact]
         public void SlackClient_returns_false_if_post_fails()
         {
             //arrange
-            const string webserviceurl = "[/]dodgy_url!@.slack.com";
+            const string webserviceurl = "https://hooks.slack.com/invalid";
             var client = new SlackClient(webserviceurl);
 
             //act
