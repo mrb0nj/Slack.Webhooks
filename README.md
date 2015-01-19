@@ -1,7 +1,7 @@
 Slack.Webhooks
 ==============
 
-Even simpler integration with Slack's Incoming and Outgoing webhooks
+Even simpler integration with Slack's Incoming webhook API for .net
 
 Usage
 -----
@@ -14,7 +14,7 @@ Requirements:
 Then, create a SlackClient with your TeamName and Token
 
 ```csharp
-var slackClient = new SlackClient("your_team_name", "your_token");
+var slackClient = new SlackClient("https://hooks.slack.com/services/[YOUR_WEBHOOK_URL]");
 ```
 
 Create a  new SlackMessage
@@ -32,14 +32,4 @@ And Post it to Slack
 
 ```csharp
 slackClient.Post(slackMessage);
-```
-
-Testing
--------
-
-SlackClient accepts an optional 3rd parameter to Fake the RestClient. Using FakeItEasy for example:
-
-```csharp
-var restClient = A.Fake<RestClient>();
-var client = new SlackClient(teamName, token, restClient);
 ```
