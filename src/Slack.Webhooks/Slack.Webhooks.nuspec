@@ -1,22 +1,23 @@
-<?xml version="1.0"?>
-<package >
-  <metadata>
-    <id>Slack.Webhooks</id>
-    <version>0.0.0</version>
-    <authors>Benn Lazell and contributors</authors>
-    <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
-    <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Even simpler integration with Slack's Incoming webhook API for .Net</description>
-    <summary>Even simpler integration with Slack's Incoming webhook API for .Net</summary>
-    <copyright>Benn Lazell and contributors</copyright>
-    <tags>Slack Webhooks</tags>
-    <dependencies>
-      <dependency id="RestSharp" version="104.4.0" />
-      <dependency id="ServiceStack.Text" version="3.9.71" />
-    </dependencies>
-  </metadata>
-  <files>
-    <file src="bin/Release/Slack.Webhooks.dll" target="lib\net40" />
-  </files>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Slack.Webhooks</id>
+        <version>0.1.0</version>
+        <authors>Benn Lazell and contributors</authors>
+        <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
+        <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Even simpler integration with Slack's Incoming webhook API for .Net</description>
+        <summary>Even simpler integration with Slack's Incoming webhook API for .Net</summary>
+        <copyright>Benn Lazell and contributors</copyright>
+        <language>en-GB</language>
+        <tags>Slack Webhooks</tags>
+        <dependencies>
+            <dependency id="RestSharp" version="104.4.0" />
+            <dependency id="ServiceStack.Text" version="3.9.71" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="bin\Release\Slack.Webhooks.dll" target="lib\net40\Slack.Webhooks.dll" />
+    </files>
 </package>
