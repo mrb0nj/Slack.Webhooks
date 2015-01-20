@@ -32,6 +32,26 @@ var slackMessage = new SlackMessage
 };
 ```
 
+You can now add attachments to messages:
+```csharp
+var slackAttachment = new SlackAttachment
+    {
+        Fallback = "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
+        Text = "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
+        Color = "#D00000",
+        Fields =
+            new List<SlackField>
+                {
+                    new SlackField
+                        {
+                            Title = "Notes",
+                            Value = "This is much easier than I thought it would be."
+                        }
+                }
+    };
+slackMessage.Attachments = new List<SlackAttachment> {slackAttachment};
+```
+
 And Post it to Slack
 
 ```csharp
