@@ -15,7 +15,7 @@ Download:
 
 [Nuget](https://www.nuget.org/packages/Slack.Webhooks/)
 
-Then, create a SlackClient with your TeamName and Token
+Then, create a SlackClient with your Webhook URL.
 
 ```csharp
 var slackClient = new SlackClient("[YOUR_WEBHOOK_URL]");
