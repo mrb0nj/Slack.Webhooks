@@ -38,6 +38,19 @@ namespace Slack.Webhooks
         /// </summary>
         public string AuthorIcon { get; set; }
         /// <summary>
+        /// Optional title, displayed in bold near the top of the message attachment.
+        /// </summary>
+        public string Title { get; set; }
+        /// <summary>
+        /// Optional link applied to the Title if present
+        /// </summary>
+        public string TitleLink { get; set; }
+        /// <summary>
+        /// A valid URL to an image file that will be displayed inside a message attachment.
+        /// Currently GIF, JPEG, PNG and BMP formats are supported
+        /// </summary>
+        public string ImageUrl { get; set; }
+        /// <summary>
         /// Fields are displayed in a table on the message
         /// </summary>
         public List<SlackField> Fields { get; set; }
