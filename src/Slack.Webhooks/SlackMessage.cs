@@ -7,6 +7,7 @@ namespace Slack.Webhooks
     /// </summary>
     public class SlackMessage
     {
+        private bool _markdown = true;
         /// <summary>
         /// This is the text that will be posted to the channel
         /// </summary>
@@ -23,6 +24,14 @@ namespace Slack.Webhooks
         /// Optional emoji displayed with the message
         /// </summary>
         public string IconEmoji { get; set; }
+        /// <summary>
+        /// Optional override markdown mode. Default: true
+        /// </summary>
+        public bool Mrkdwn
+        {
+            get { return _markdown; }
+            set { _markdown = value; }
+        }
         /// <summary>
         /// Optional attachment collection
         /// </summary>

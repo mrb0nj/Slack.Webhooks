@@ -13,7 +13,11 @@ Requirements:
 
 Download:
 
-[Nuget](https://www.nuget.org/packages/Slack.Webhooks/)
+Package is hosted on [Nuget](https://www.nuget.org/packages/Slack.Webhooks/) and can be installed from the package manager:
+
+```
+PM> Install-Package Slack.Webhooks
+```
 
 Then, create a SlackClient with your Webhook URL.
 
@@ -32,7 +36,15 @@ var slackMessage = new SlackMessage
 };
 ```
 
-You can now add attachments to messages:
+By default the text can contain Markdown but this default behaviour can be disabled:
+
+```csharp
+slackMessage.Mrkdwn = false;
+```
+
+More info on message formatting can be found in the [Docs](https://api.slack.com/docs/formatting)
+
+Attachments can be added to a message:
 ```csharp
 var slackAttachment = new SlackAttachment
     {
@@ -51,6 +63,8 @@ var slackAttachment = new SlackAttachment
     };
 slackMessage.Attachments = new List<SlackAttachment> {slackAttachment};
 ```
+
+Please see the [Docs](https://api.slack.com/docs/attachments) for further info on attachments.
 
 And Post it to Slack
 
