@@ -18,7 +18,7 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional text that should appear above the formatted data
         /// </summary>
-        public string PreText { get; set; }
+        public string Pretext { get; set; }
         /// <summary>
         /// Can either be one of 'good', 'warning', 'danger', or any hex color code
         /// </summary>
