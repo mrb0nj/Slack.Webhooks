@@ -24,6 +24,20 @@ namespace Slack.Webhooks
         /// </summary>
         public string Color { get; set; }
         /// <summary>
+        /// Small text used to display the author's name.
+        /// </summary>
+        public string AuthorName { get; set; }
+        /// <summary>
+        /// A valid URL that will hyperlink the AuthorName. 
+        /// Will only work if author_name is present.
+        /// </summary>
+        public string AuthorLink { get; set; }
+        /// <summary>
+        /// A valid URL that displays a small 16x16px image to the left of the AuthorName.
+        /// Will only work if AuthorName is present.
+        /// </summary>
+        public string AuthorIcon { get; set; }
+        /// <summary>
         /// Fields are displayed in a table on the message
         /// </summary>
         public List<SlackField> Fields { get; set; }
