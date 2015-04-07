@@ -1,10 +1,15 @@
 Slack.Webhooks [![Build status](https://ci.appveyor.com/api/projects/status/08qvvm46ouxwujmq/branch/master?svg=true)](https://ci.appveyor.com/project/nerdfury/slack/branch/master) [![Build status](https://ci.appveyor.com/api/projects/status/08qvvm46ouxwujmq?svg=true)](https://ci.appveyor.com/project/nerdfury/slack)
 ==============
 
-Even simpler integration with Slack's Incoming webhook API for .net
+Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
-Usage
------
+Outgoing Webhooks
+---
+
+http://nerdfury.redrabbits.co.uk/2015/04/07/slack-outgoing-webhooks/
+
+Incoming Webhooks
+---
 
 Requirements:
 
