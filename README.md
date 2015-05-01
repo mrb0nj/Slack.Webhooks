@@ -1,4 +1,4 @@
-Slack.Webhooks [![Build status](https://ci.appveyor.com/api/projects/status/08qvvm46ouxwujmq/branch/master?svg=true)](https://ci.appveyor.com/project/nerdfury/slack/branch/master) [![Build status](https://ci.appveyor.com/api/projects/status/08qvvm46ouxwujmq?svg=true)](https://ci.appveyor.com/project/nerdfury/slack)
+Slack.Webhooks [![Build status](https://ci.appveyor.com/api/projects/status/08qvvm46ouxwujmq/branch/master?svg=true)](https://ci.appveyor.com/project/nerdfury/slack/branch/master) [![NuGet Version](http://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Nancy/) [![NuGet Downloads](http://img.shields.io/nuget/dt/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Nancy/)
 ==============
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
