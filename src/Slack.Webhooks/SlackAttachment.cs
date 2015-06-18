@@ -63,5 +63,10 @@ namespace Slack.Webhooks
         /// Fields are displayed in a table on the message
         /// </summary>
         public List<SlackField> Fields { get; set; }
+        /// <summary>
+        /// Optional list of proporties where markdown syntax will be parsed
+        /// applicable to fields, title, and pretext
+        /// </summary>
+        public List<string> Mrkdwn_in { get; set; }
     }
 }
