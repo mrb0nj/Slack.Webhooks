@@ -67,6 +67,6 @@ namespace Slack.Webhooks
         /// Optional list of proporties where markdown syntax will be parsed
         /// applicable to fields, title, and pretext
         /// </summary>
-        public List<string> Mrkdwn_in { get; set; }
+        public List<string> MrkdwnIn { get; set; }
     }
 }
