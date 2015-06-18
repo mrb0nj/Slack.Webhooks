@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Slack.Webhooks</id>
-        <version>0.1.3</version>
+        <version>0.1.4</version>
         <authors>Benn Lazell and contributors</authors>
         <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
         <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
@@ -18,6 +18,7 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Release\Slack.Webhooks.dll" target="lib\net40\Slack.Webhooks.dll" />
+        <file src="bin\Release\net35\Slack.Webhooks.dll" target="lib\net35\Slack.Webhooks.dll" />
+        <file src="bin\Release\net40\Slack.Webhooks.dll" target="lib\net40\Slack.Webhooks.dll" />
     </files>
 </package>
