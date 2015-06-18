@@ -51,6 +51,15 @@ namespace Slack.Webhooks
         /// </summary>
         public string ImageUrl { get; set; }
         /// <summary>
+        /// A valid URL to an image file that will be displayed as a thumbnail on the right 
+        /// side of a message attachment. We currently support the following formats: 
+        /// GIF, JPEG, PNG, and BMP.
+        /// 
+        /// The thumbnail's longest dimension will be scaled down to 75px while maintaining 
+        /// the aspect ratio of the image. The filesize of the image must also be less than 500 KB.
+        /// </summary>
+        public string ThumbUrl { get; set; }
+        /// <summary>
         /// Fields are displayed in a table on the message
         /// </summary>
         public List<SlackField> Fields { get; set; }
