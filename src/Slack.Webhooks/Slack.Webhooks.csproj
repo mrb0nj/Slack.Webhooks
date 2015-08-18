@@ -13,7 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <TargetFrameworkVersionNumber>40</TargetFrameworkVersionNumber>
-	<Framework>net4</Framework>
+    <Framework>net4</Framework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,7 +41,7 @@
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkVersionNumber>35</TargetFrameworkVersionNumber>
-	<Framework>net35</Framework>
+    <Framework>net35</Framework>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RestSharp">

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net;
+using System.Reflection;
 using RestSharp;
 using ServiceStack.Text;
 
@@ -17,7 +18,7 @@ namespace Slack.Webhooks
         {
             JsConfig.EmitLowercaseUnderscoreNames = true;
             JsConfig.IncludeNullValues = false;
-            JsConfig.PropertyConvention = JsonPropertyConvention.Lenient;
+            SetPropertyConvention();
 
             if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
                 throw new ArgumentException("Please enter a valid Slack webhook url");
@@ -29,10 +30,25 @@ namespace Slack.Webhooks
             _restClient = new RestClient(baseUrl);
         }
 
+        private void SetPropertyConvention()
+        {
+            var assembly = Assembly.GetAssembly(typeof(JsConfig));
+            var jsConfig = assembly.GetType("ServiceStack.Text.JsConfig");
+            var conventionEnum = assembly.GetType("ServiceStack.Text.JsonPropertyConvention") ??
+                           assembly.GetType("ServiceStack.Text.PropertyConvention");
+            var propertyConvention = jsConfig.GetProperty("PropertyConvention");
+
+            var lenient = conventionEnum.GetField("Lenient");
+
+            var enumValue = Enum.ToObject(conventionEnum, (int) lenient.GetValue(conventionEnum));
+            propertyConvention.SetValue(jsConfig, enumValue, null);
+        }
+
         public bool Post(SlackMessage slackMessage)
         {
             var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
-            request.AddParameter("payload", slackMessage.ToJson());
+
+            request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
             try
             {
                 var response = _restClient.Execute(request);
