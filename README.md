@@ -54,7 +54,7 @@ Attachments can be added to a message:
 var slackAttachment = new SlackAttachment
     {
         Fallback = "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
-        Text = "New open task [Urgent]: <http://url_to_task|Test out Slack message attachments>",
+        Text = "New open task *[Urgent]*: <http://url_to_task|Test out Slack message attachments>",
         Color = "#D00000",
         Fields =
             new List<SlackField>
@@ -62,7 +62,7 @@ var slackAttachment = new SlackAttachment
                     new SlackField
                         {
                             Title = "Notes",
-                            Value = "This is much easier than I thought it would be."
+                            Value = "This is much *easier* than I thought it would be."
                         }
                 }
     };
