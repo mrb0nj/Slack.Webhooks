@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Slack.Webhooks
@@ -24,6 +25,10 @@ namespace Slack.Webhooks
         /// Optional emoji displayed with the message
         /// </summary>
         public string IconEmoji { get; set; }
+        /// <summary>
+        /// Optional url for icon displayed with the message
+        /// </summary>
+        public Uri IconUrl { get; set; }
         /// <summary>
         /// Optional override markdown mode. Default: true
         /// </summary>
