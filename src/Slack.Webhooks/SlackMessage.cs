@@ -24,6 +24,10 @@ namespace Slack.Webhooks
         /// Optional emoji displayed with the message
         /// </summary>
         public string IconEmoji { get; set; }
+		/// <summary>
+		/// Optional emoji url displayed with the message
+		/// </summary>
+		public string IconUrl { get; set; }
         /// <summary>
         /// Optional override markdown mode. Default: true
         /// </summary>
@@ -35,6 +39,6 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional attachment collection
         /// </summary>
-        public List<SlackAttachment> Attachments { get; set; }
+        public IList<SlackAttachment> Attachments { get; set; }
     }
 }
