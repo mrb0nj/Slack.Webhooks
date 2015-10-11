@@ -49,5 +49,18 @@ namespace Slack.Webhooks
         /// Optional attachment collection
         /// </summary>
         public List<SlackAttachment> Attachments { get; set; }
+
+		public SlackMessage Clone(string newChannel = null)
+		{
+			return new SlackMessage()
+			{
+				Attachments = Attachments,
+				Text = Text,
+				IconEmoji = IconEmoji,
+				IconUrl = IconUrl,
+				Username = Username,
+				Channel = newChannel ?? Channel
+			};
+		}
     }
 }
