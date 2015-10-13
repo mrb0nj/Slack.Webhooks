@@ -16,10 +16,6 @@ namespace Slack.Webhooks
 
         public SlackClient(string webhookUrl)
         {
-            JsConfig.EmitLowercaseUnderscoreNames = true;
-            JsConfig.IncludeNullValues = false;
-            SetPropertyConvention();
-
             if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
                 throw new ArgumentException("Please enter a valid Slack webhook url");
            
@@ -30,33 +26,40 @@ namespace Slack.Webhooks
             _restClient = new RestClient(baseUrl);
         }
 
-        private void SetPropertyConvention()
+        private void SetPropertyConvention(JsConfigScope scope)
         {
             var assembly = Assembly.GetAssembly(typeof(JsConfig));
             var jsConfig = assembly.GetType("ServiceStack.Text.JsConfig");
             var conventionEnum = assembly.GetType("ServiceStack.Text.JsonPropertyConvention") ??
                            assembly.GetType("ServiceStack.Text.PropertyConvention");
             var propertyConvention = jsConfig.GetProperty("PropertyConvention");
-
+            
             var lenient = conventionEnum.GetField("Lenient");
 
             var enumValue = Enum.ToObject(conventionEnum, (int) lenient.GetValue(conventionEnum));
-            propertyConvention.SetValue(jsConfig, enumValue, null);
+            propertyConvention.SetValue(scope, enumValue, null);
         }
 
         public virtual bool Post(SlackMessage slackMessage)
         {
             var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
+            using (var scope = JsConfig.BeginScope())
+            {
+                scope.EmitLowercaseUnderscoreNames = true;
+                scope.IncludeNullValues = false;
+                SetPropertyConvention(scope);
+                
+                request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
 
-            request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
-            try
-            {
-                var response = _restClient.Execute(request);
-                return response.StatusCode == HttpStatusCode.OK && response.Content == POST_SUCCESS;
-            }
-            catch (Exception)
-            {
-                return false;
+                try
+                {
+                    var response = _restClient.Execute(request);
+                    return response.StatusCode == HttpStatusCode.OK && response.Content == POST_SUCCESS;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
             }
         }
     }
