@@ -44,7 +44,7 @@ namespace Slack.Webhooks
             propertyConvention.SetValue(jsConfig, enumValue, null);
         }
 
-        public bool Post(SlackMessage slackMessage)
+        public virtual bool Post(SlackMessage slackMessage)
         {
             var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
 
