@@ -38,6 +38,14 @@ namespace Slack.Webhooks
             set { _markdown = value; }
         }
         /// <summary>
+        /// Enable linkification of channel and usernames
+        /// </summary>
+        public bool LinkNames { get; set; }
+        /// <summary>
+        /// Parse mode <see cref="ParseMode"/>
+        /// </summary>
+        public string Parse { get; set; }
+        /// <summary>
         /// Optional attachment collection
         /// </summary>
         public List<SlackAttachment> Attachments { get; set; }
