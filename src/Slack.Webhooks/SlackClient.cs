@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Reflection;
+using System.Threading.Tasks;
 using RestSharp;
+using RestSharp.Extensions;
 using ServiceStack.Text;
 
 namespace Slack.Webhooks
@@ -62,5 +66,45 @@ namespace Slack.Webhooks
                 }
             }
         }
+
+	    public Task<IRestResponse> PostAsync(SlackMessage slackMessage)
+	    {
+		    var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
+
+		    request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
+
+		    return ExecuteTaskAsync(request);
+	    }
+
+	    public void PostToChannels(SlackMessage message, IEnumerable<string> channels)
+		{
+			var tasks = channels.DefaultIfEmpty(message.Channel)
+				.Select(message.Clone)
+				.Select(PostAsync).ToArray();
+
+			Task.WaitAll(tasks);
+		}
+
+	    private Task<IRestResponse> ExecuteTaskAsync(IRestRequest request)
+		{
+			var taskCompletionSource = new TaskCompletionSource<IRestResponse>();
+			try
+			{
+				_restClient.ExecuteAsync(request, (response, _) =>
+				{
+					if (response.ErrorException != null)
+						taskCompletionSource.TrySetException(response.ErrorException);
+					else if (response.ResponseStatus != ResponseStatus.Completed)
+						taskCompletionSource.TrySetException(response.ResponseStatus.ToWebException());
+					else
+						taskCompletionSource.TrySetResult(response);
+				});
+			}
+			catch (Exception ex)
+			{
+				taskCompletionSource.TrySetException(ex);
+			}
+			return taskCompletionSource.Task;
+		}
     }
 }

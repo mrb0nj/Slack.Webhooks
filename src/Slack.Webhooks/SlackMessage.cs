@@ -25,6 +25,10 @@ namespace Slack.Webhooks
         /// Optional emoji displayed with the message
         /// </summary>
         public string IconEmoji { get; set; }
+		/// <summary>
+		/// Optional emoji url displayed with the message
+		/// </summary>
+		public string IconUrl { get; set; }
         /// <summary>
         /// Optional url for icon displayed with the message
         /// </summary>
@@ -48,6 +52,19 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional attachment collection
         /// </summary>
-        public List<SlackAttachment> Attachments { get; set; }
+        public IList<SlackAttachment> Attachments { get; set; }
+
+		public SlackMessage Clone(string newChannel = null)
+		{
+			return new SlackMessage()
+			{
+				Attachments = Attachments,
+				Text = Text,
+				IconEmoji = IconEmoji,
+				IconUrl = IconUrl,
+				Username = Username,
+				Channel = newChannel ?? Channel
+			};
+		}
     }
 }
