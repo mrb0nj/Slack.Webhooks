@@ -21,6 +21,11 @@ namespace Slack.Webhooks
         private const string VALID_HOST = "hooks.slack.com";
         private const string POST_SUCCESS = "ok";
 
+        /// <summary>
+        /// Returns the RestClient's current Timeout value.
+        /// </summary>
+        internal int TimeoutMs { get { return _restClient.Timeout; } }
+
         public SlackClient(string webhookUrl, int timeoutSeconds = 100)
         {
             if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
