@@ -44,5 +44,15 @@ namespace Slack.Webhooks.Tests
             Assert.False(result);
         }
 
+        [Fact]
+        public void SlackClient_should_remember_timeout()
+        {
+            const string webserviceurl = "https://hooks.slack.com/invalid";
+            var timeoutSeconds = 2;
+            var client = new SlackClient(webserviceurl, timeoutSeconds);
+
+            Assert.Equal(timeoutSeconds * 1000, client.TimeoutMs);
+        }
+
     }
 }
