@@ -21,7 +21,7 @@ namespace Slack.Webhooks
         private const string VALID_HOST = "hooks.slack.com";
         private const string POST_SUCCESS = "ok";
 
-        public SlackClient(string webhookUrl)
+        public SlackClient(string webhookUrl, int timeoutSeconds = 100)
         {
             if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
                 throw new ArgumentException("Please enter a valid Slack webhook url");
@@ -31,6 +31,7 @@ namespace Slack.Webhooks
 
             var baseUrl = _webhookUri.GetLeftPart(UriPartial.Authority);
             _restClient = new RestClient(baseUrl);
+            _restClient.Timeout = timeoutSeconds * 1000;
         }
 
         private void SetPropertyConvention(JsConfigScope scope)
