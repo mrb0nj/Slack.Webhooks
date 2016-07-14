@@ -4,7 +4,8 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 using RestSharp;
-using ServiceStack.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 #if NET40
 using System.Threading.Tasks;
@@ -33,44 +34,28 @@ namespace Slack.Webhooks
             _restClient = new RestClient(baseUrl);
         }
 
-        private void SetPropertyConvention(JsConfigScope scope)
-        {
-            var assembly = Assembly.GetAssembly(typeof(JsConfig));
-            var jsConfig = assembly.GetType("ServiceStack.Text.JsConfig");
-            var conventionEnum = assembly.GetType("ServiceStack.Text.JsonPropertyConvention") ??
-                           assembly.GetType("ServiceStack.Text.PropertyConvention");
-            var propertyConvention = jsConfig.GetProperty("PropertyConvention");
-            
-            var lenient = conventionEnum.GetField("Lenient");
-
-            var enumValue = Enum.ToObject(conventionEnum, (int) lenient.GetValue(conventionEnum));
-            propertyConvention.SetValue(scope, enumValue, null);
-        }
-
-        public virtual bool Post(SlackMessage slackMessage)
-        {
+        public virtual bool Post(SlackMessage slackMessage) {
             var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
-            using (var scope = JsConfig.BeginScope())
-            {
-                scope.EmitLowercaseUnderscoreNames = true;
-                scope.IncludeNullValues = false;
-                SetPropertyConvention(scope);
-                
-                request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
 
-                try
-                {
-                    var response = _restClient.Execute(request);
-                    return response.StatusCode == HttpStatusCode.OK && response.Content == POST_SUCCESS;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
+
+            request.AddParameter("payload", SerializePayload(slackMessage));
+
+            try {
+                var response = _restClient.Execute(request);
+                return response.StatusCode == HttpStatusCode.OK && response.Content == POST_SUCCESS;
+            } catch (Exception) {
+                return false;
+            }            
         }
 
-		public bool PostToChannels(SlackMessage message, IEnumerable<string> channels)
+        private string SerializePayload(SlackMessage slackMessage) {
+            return JsonConvert.SerializeObject(slackMessage, new JsonSerializerSettings() {
+                NullValueHandling = NullValueHandling.Ignore,
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            });
+        }
+
+        public bool PostToChannels(SlackMessage message, IEnumerable<string> channels)
 		{
 			return channels.DefaultIfEmpty(message.Channel)
 					.Select(message.Clone)
@@ -89,7 +74,7 @@ namespace Slack.Webhooks
         {
             var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
 
-            request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
+            request.AddParameter("payload", SerializePayload(slackMessage));
 
             return ExecuteTaskAsync(request);
         }

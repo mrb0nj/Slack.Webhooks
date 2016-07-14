@@ -14,7 +14,7 @@
         <tags>Slack Webhooks</tags>
         <dependencies>
             <dependency id="RestSharp" version="104.4.0" />
-            <dependency id="ServiceStack.Text" version="[3.9.71,)" />
+            <dependency id="Newtonsoft.Json" version="9.0.1" />
         </dependencies>
     </metadata>
     <files>
