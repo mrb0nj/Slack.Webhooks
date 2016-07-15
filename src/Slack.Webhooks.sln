@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.22823.1
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack.Webhooks", "Slack.Webhooks\Slack.Webhooks.csproj", "{53751B1B-A63E-4E4F-988C-BC783E68B15F}"
 EndProject
@@ -10,22 +10,22 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
 		Release 3.5|Any CPU = Release 3.5|Any CPU
+		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
+		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
 		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Release 3.5|Any CPU.ActiveCfg = Release 3.5|Any CPU
-		{53751B1B-A63E-4E4F-988C-BC783E68B15F}.Release 3.5|Any CPU.Build.0 = Release 3.5|Any CPU
 		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Release 3.5|Any CPU.ActiveCfg = Release|Any CPU
 		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Release 3.5|Any CPU.Build.0 = Release|Any CPU
+		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
