@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
-        <id>Survey.Slack.Webhooks</id>
+        <id>Slack.Webhooks</id>
         <version>0.2.0</version>
         <authors>Survey.com (sourced from Benn Lazell and contributors)</authors>
         <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
