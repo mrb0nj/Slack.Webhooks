@@ -18,6 +18,6 @@
         </dependencies>
     </metadata>
     <files>
-        <file src="bin\Release\net45\Slack.Webhooks.dll" target="lib\net45\Slack.Webhooks.dll" />
+        <file src="bin\Release\Slack.Webhooks.dll" target="lib\Slack.Webhooks.dll" />
     </files>
 </package>
