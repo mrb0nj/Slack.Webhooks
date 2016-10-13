@@ -25,7 +25,7 @@ namespace Slack.Webhooks
         {
             if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
                 throw new ArgumentException("Please enter a valid Slack webhook url");
-           
+
             if (_webhookUri.Host != VALID_HOST)
                 throw new ArgumentException("Please enter a valid Slack webhook url");
 
@@ -40,10 +40,10 @@ namespace Slack.Webhooks
             var conventionEnum = assembly.GetType("ServiceStack.Text.JsonPropertyConvention") ??
                            assembly.GetType("ServiceStack.Text.PropertyConvention");
             var propertyConvention = jsConfig.GetProperty("PropertyConvention");
-            
+
             var lenient = conventionEnum.GetField("Lenient");
 
-            var enumValue = Enum.ToObject(conventionEnum, (int) lenient.GetValue(conventionEnum));
+            var enumValue = Enum.ToObject(conventionEnum, (int)lenient.GetValue(conventionEnum));
             propertyConvention.SetValue(scope, enumValue, null);
         }
 
@@ -55,7 +55,7 @@ namespace Slack.Webhooks
                 scope.EmitLowercaseUnderscoreNames = true;
                 scope.IncludeNullValues = false;
                 SetPropertyConvention(scope);
-                
+
                 request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
 
                 try
@@ -70,12 +70,12 @@ namespace Slack.Webhooks
             }
         }
 
-		public bool PostToChannels(SlackMessage message, IEnumerable<string> channels)
-		{
-			return channels.DefaultIfEmpty(message.Channel)
-					.Select(message.Clone)
-					.Select(Post).All(r => r);
-		}
+        public bool PostToChannels(SlackMessage message, IEnumerable<string> channels)
+        {
+            return channels.DefaultIfEmpty(message.Channel)
+                    .Select(message.Clone)
+                    .Select(Post).All(r => r);
+        }
 
 #if NET40
         public IEnumerable<Task<IRestResponse>> PostToChannelsAsync(SlackMessage message, IEnumerable<string> channels)
@@ -88,8 +88,14 @@ namespace Slack.Webhooks
         public Task<IRestResponse> PostAsync(SlackMessage slackMessage)
         {
             var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
+            using (var scope = JsConfig.BeginScope())
+            {
+                scope.EmitLowercaseUnderscoreNames = true;
+                scope.IncludeNullValues = false;
+                SetPropertyConvention(scope);
 
-            request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
+                request.AddParameter("payload", JsonSerializer.SerializeToString(slackMessage));
+            }
 
             return ExecuteTaskAsync(request);
         }
