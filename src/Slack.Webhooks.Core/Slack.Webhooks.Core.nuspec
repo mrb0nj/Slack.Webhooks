@@ -18,8 +18,6 @@
       </dependencies>
     </metadata>
   <files>
-    <file src="bin\$configuration$\netstandard1.6\Slack.Webhooks.Core.dll" target="lib\netstandard1.6" />
-    <file src="bin\$configuration$\netstandard1.6\Slack.Webhooks.Core.pdb" target="lib\netstandard1.6" />
-    <file src="bin\$configuration$\netstandard1.6\Slack.Webhooks.Core.deps.json" target="lib\netstandard1.6" />
+    <file src="bin\$configuration$\netstandard1.6\Slack.Webhooks.Core.dll" target="lib\netstandard1.6\Slack.Webhooks.Core.dll" />
   </files>
 </package>
