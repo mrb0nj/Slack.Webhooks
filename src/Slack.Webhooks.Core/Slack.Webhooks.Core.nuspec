@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>Slack.Webhooks.Core</id>
+        <version>0.1.7</version>
+        <authors>Benn Lazell and contributors</authors>
+        <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
+        <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Even simpler integration with Slack's Incoming webhook API for .Net Core</description>
+        <summary>Even simpler integration with Slack's Incoming webhook API for .Net Core</summary>
+        <copyright>Benn Lazell and contributors</copyright>
+        <language>en-GB</language>
+        <tags>Slack Webhooks</tags>
+      <dependencies>
+        <dependency id="NETStandard.Library" version="1.6.1" />
+        <dependency id="Newtonsoft.Json" version="9.0.1" />
+      </dependencies>
+    </metadata>
+  <files>
+    <file src="bin\$configuration$\netstandard1.6\Slack.Webhooks.Core.dll" target="lib\netstandard1.6" />
+    <file src="bin\$configuration$\netstandard1.6\Slack.Webhooks.Core.pdb" target="lib\netstandard1.6" />
+    <file src="bin\$configuration$\netstandard1.6\Slack.Webhooks.Core.deps.json" target="lib\netstandard1.6" />
+  </files>
+</package>
