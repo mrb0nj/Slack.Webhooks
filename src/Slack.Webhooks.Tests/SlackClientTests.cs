@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Xunit;
+using Slack.Webhooks;
 
 namespace Slack.Webhooks.Tests
 {
@@ -24,7 +26,7 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void SlackClient_returns_false_if_post_fails()
+        public async Task SlackClient_returns_false_if_post_fails()
         {
             //arrange
             const string webserviceurl = "https://hooks.slack.com/invalid";
@@ -38,7 +40,7 @@ namespace Slack.Webhooks.Tests
                 Username = "testbot",
                 IconEmoji = Emoji.Ghost
             };
-            var result = client.Post(slackMessage);
+            var result = await client.PostToChannelAsync(slackMessage);
 
             //assert
             Assert.False(result);
@@ -53,6 +55,5 @@ namespace Slack.Webhooks.Tests
 
             Assert.Equal(timeoutSeconds * 1000, client.TimeoutMs);
         }
-
     }
 }

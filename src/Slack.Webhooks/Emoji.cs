@@ -1,6 +1,7 @@
-﻿namespace Slack.Webhooks
+﻿namespace Slack.Webhooks
+
 {
-    public static class Emoji
+    public static class Emoji
     {
         public static string PlusOne { get { return ":+1:"; } }
         public static string MinusOne { get { return ":-1:"; } }
