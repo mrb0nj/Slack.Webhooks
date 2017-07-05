@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Emoji.cs" />
+    <Compile Include="ISlackClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SlackAttachment.cs" />
     <Compile Include="SlackClient.cs" />

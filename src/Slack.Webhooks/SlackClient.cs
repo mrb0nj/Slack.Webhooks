@@ -13,7 +13,7 @@ using RestSharp.Extensions;
 
 namespace Slack.Webhooks
 {
-    public class SlackClient
+    public class SlackClient : ISlackClient
     {
         private readonly RestClient _restClient;
         private readonly Uri _webhookUri;
