@@ -14,6 +14,10 @@ namespace Slack.Webhooks
         /// </summary>
         public string Text { get; set; }
         /// <summary>
+        /// Set response to visible to all 'in_channel' or visible to the requester 'ephermeral'
+        /// </summary>
+        public string ResponseType { get; set; }
+        /// <summary>
         /// Optional override of destination channel
         /// </summary>
         public string Channel { get; set; }
