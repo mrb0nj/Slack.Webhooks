@@ -68,5 +68,22 @@ namespace Slack.Webhooks
         /// applicable to fields, title, and pretext
         /// </summary>
         public List<string> MrkdwnIn { get; set; }
+        /// <summary>
+        /// Add some brief text to help contextualize and identify an attachment. Limited to 300 characters, and may be truncated further when displayed to users in environments with limited screen real estate.
+        /// </summary>
+        public string Footer { get; set; }
+        /// <summary>
+        /// To render a small icon beside your footer text, provide a publicly accessible URL string in the footer_icon field. You must also provide a footer for the field to be recognized.
+        /// We'll render what you provide at 16px by 16px. It's best to use an image that is similarly sized.
+        /// Example: "https://platform.slack-edge.com/img/default_application_icon.png"
+        /// </summary>
+        public string FooterIcon { get; set; }
+        /// <summary>
+        /// Does your attachment relate to something happening at a specific time?
+        /// By providing the ts field with an integer value in "epoch time", the attachment will display an additional timestamp value as part of the attachment's footer.
+        /// Use ts when referencing articles or happenings. Your message will have its own timestamp when published.
+        /// Example: Providing 123456789 would result in a rendered timestamp of Nov 29th, 1973.
+        /// </summary>
+        public int Ts { get; set; }
     }
 }
