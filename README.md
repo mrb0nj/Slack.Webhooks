@@ -6,7 +6,7 @@ Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 Outgoing Webhooks
 ---
 
-https://nerdfury.github.io/2015/04/07/Slack-Outgoing-Webhooks/
+[Blog Post](http://nerdfury.me/2015/04/07/Slack-Outgoing-Webhooks/)
 
 Incoming Webhooks
 ---
