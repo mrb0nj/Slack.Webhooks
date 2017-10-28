@@ -7,12 +7,12 @@ namespace Slack.Webhooks.SlackAction
     /// </summary>
     public class Action
     {
-        private string _type = SlackActionType.Button;
+        private string _type = SlackAction.Type.Button;
         private string _style = SlackAction.Style.Default;
         private string _dataSource = SlackAction.DataSource.Static;
 
         /// <summary>
-        /// Provide a string to give this specific action a name. 
+        /// Provide a string to give this specific action a name.   
         /// The name will be returned to your Action URL along with 
         /// the message's callback_id when this action is invoked. 
         /// </summary>
@@ -22,7 +22,7 @@ namespace Slack.Webhooks.SlackAction
         /// Provide button when this action is a message button or 
         /// provide select when the action is a message menu.
         /// </summary>
-        /// <see cref="SlackActionType"/>
+        /// <see cref="SlackAction.Type"/>
         public string Type
         {
             get { return _type; }

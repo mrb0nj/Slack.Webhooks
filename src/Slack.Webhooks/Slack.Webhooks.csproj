@@ -69,7 +69,7 @@
     <Compile Include="SlackAction\Option.cs" />
     <Compile Include="SlackAction\OptionGroup.cs" />
     <Compile Include="SlackAction\Style.cs" />
-    <Compile Include="SlackAction\SlackActionType.cs" />
+    <Compile Include="SlackAction\Type.cs" />
     <Compile Include="SlackAttachment.cs" />
     <Compile Include="SlackClient.cs" />
     <Compile Include="SlackField.cs" />
