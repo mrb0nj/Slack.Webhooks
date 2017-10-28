@@ -1,6 +1,6 @@
-﻿namespace Slack.Webhooks
+namespace Slack.Webhooks.SlackAction
 {
-    public static class SlackActionStyle
+    public static class Style
     {
         public const string Default = "default";
         public const string Primary = "primary";

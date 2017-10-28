@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Slack.Webhooks
+namespace Slack.Webhooks.SlackAction
 {
-    public class SlackConfirmAction
+    public class Confirm
     {
         public string Title { get; set; }
         public string Text { get; set; }

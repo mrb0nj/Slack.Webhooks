@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace Slack.Webhooks
+namespace Slack.Webhooks.SlackAction
 {
     /// <summary>
     /// Slack attachment action. An attachment can have zero or more actions.
     /// </summary>
-    public class SlackAction
+    public class Action
     {
         private string _type = SlackActionType.Button;
-        private string _style = SlackActionStyle.Default;
-        private string _dataSource = SlackActionDataSource.Static;
+        private string _style = SlackAction.Style.Default;
+        private string _dataSource = SlackAction.DataSource.Static;
 
         /// <summary>
         /// Provide a string to give this specific action a name. 
@@ -22,7 +22,7 @@ namespace Slack.Webhooks
         /// Provide button when this action is a message button or 
         /// provide select when the action is a message menu.
         /// </summary>
-        /// <see cref="Slack.Webhooks.SlackActionType"/>
+        /// <see cref="SlackActionType"/>
         public string Type
         {
             get { return _type; }
@@ -50,7 +50,7 @@ namespace Slack.Webhooks
         /// when providing logical default action or highlighting a 
         /// destructive activity.
         /// </summary>
-        /// <see cref="Slack.Webhooks.SlackActionStyle"/>
+        /// <see cref="SlackAction.Style"/>
         public string Style
         {
             get { return _style; }
@@ -61,7 +61,7 @@ namespace Slack.Webhooks
         /// Our clever default behavior is default, which means the menu's 
         /// options are provided directly in the posted message under options.
         /// </summary>
-        /// <see cref="Slack.Webhooks.SlackActionDataSource"/>
+        /// <see cref="SlackAction.DataSource"/>
         public string DataSource
         {
             get { return _dataSource; }
@@ -73,18 +73,18 @@ namespace Slack.Webhooks
         /// data_source is static or otherwise unspecified. A maximum of 100 
         /// options can be provided in each menu.
         /// </summary>
-        public List<SlackActionOption> Options { get; set; }
+        public List<Option> Options { get; set; }
         /// <summary>
         /// Used only with message menus. An alternate, semi-hierarchal way to 
         /// list available options. Provide an array of option group definitions. 
         /// This replaces and supersedes the options array.
         /// </summary>
-        public List<SlackActionOptionGroup> OptionGroups { get; set; }
+        public List<OptionGroup> OptionGroups { get; set; }
         /// <summary>
         /// If provided, the first element of this array will be set as the 
         /// pre-selected option for this menu. Any additional elements will be ignored. 
         /// </summary>
-        public List<SlackActionOption> SelectedOptions { get; set; }
+        public List<Option> SelectedOptions { get; set; }
         /// <summary>
         /// Only applies when data_source is set to external. If present, Slack will 
         /// wait till the specified number of characters are entered before sending 
@@ -96,6 +96,6 @@ namespace Slack.Webhooks
         /// by asking them to confirm their button click one more time. 
         /// Use confirmation dialogs with care.
         /// </summary>
-        public SlackConfirmAction Confirm { get; set; }
+        public Confirm Confirm { get; set; }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Slack.Webhooks
+namespace Slack.Webhooks.SlackAction
 {
-    public static class SlackActionDataSource
+    public static class DataSource
     {
         public const string Static = "static";
         public const string Users = "users";
