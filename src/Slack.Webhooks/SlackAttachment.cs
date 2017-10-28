@@ -12,6 +12,12 @@ namespace Slack.Webhooks
         /// </summary>
         public string Fallback { get; set; }
         /// <summary>
+        /// The provided string will act as a unique identifier for the collection of buttons within the attachment. It will be sent 
+        /// back to your message button action URL with each invoked action. This field is required when the attachment contains 
+        /// message buttons. It is key to identifying the interaction you're working with.
+        /// </summary>
+        public string CallbackId { get; set; }
+        /// <summary>
         /// Optional text that should appear within the attachment
         /// </summary>
         public string Text { get; set; }
@@ -68,7 +74,9 @@ namespace Slack.Webhooks
         /// applicable to fields, title, and pretext
         /// </summary>
         public List<string> MrkdwnIn { get; set; }
-
+        /// <summary>
+        /// The actions you provide will be rendered as message buttons or menus to users.
+        /// </summary>
         public List<SlackAction> Actions { get; set; }
     }
 }
