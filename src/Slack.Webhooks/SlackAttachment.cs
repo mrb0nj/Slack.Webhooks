@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace Slack.Webhooks
 {
@@ -73,7 +74,8 @@ namespace Slack.Webhooks
         /// Optional list of proporties where markdown syntax will be parsed
         /// applicable to fields, title, and pretext
         /// </summary>
-        public List<string> MrkdwnIn { get; set; }
+        [JsonProperty(PropertyName = "mrkdwn_in")]
+        public List<string> MarkdownIn { get; set; }
         /// <summary>
         /// The actions you provide will be rendered as message buttons or menus to users.
         /// </summary>

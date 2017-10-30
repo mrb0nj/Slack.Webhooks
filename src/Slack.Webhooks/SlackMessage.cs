@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -36,7 +37,8 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional override markdown mode. Default: true
         /// </summary>
-        public bool Mrkdwn
+        [JsonProperty(PropertyName = "mrkdwn")]
+        public bool Markdown
         {
             get { return _markdown; }
             set { _markdown = value; }
