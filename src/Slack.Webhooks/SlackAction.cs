@@ -1,15 +1,16 @@
 using System.Collections.Generic;
+using Slack.Webhooks.Action;
 
-namespace Slack.Webhooks.Action
+namespace Slack.Webhooks
 {
     /// <summary>
     /// Slack attachment action. An attachment can have zero or more actions.
     /// </summary>
     public class SlackAction
     {
-        private string _type = Action.Type.Button;
-        private string _style = Action.Style.Default;
-        private string _dataSource = Action.DataSource.Static;
+        private SlackActionType _type = SlackActionType.Button;
+        private SlackActionStyle _style = SlackActionStyle.Default;
+        private SlackActionDataSource _dataSource = SlackActionDataSource.Static;
 
         /// <summary>
         /// Provide a string to give this specific action a name.   
@@ -22,8 +23,8 @@ namespace Slack.Webhooks.Action
         /// Provide button when this action is a message button or 
         /// provide select when the action is a message menu.
         /// </summary>
-        /// <see cref="SlackAction.Type"/>
-        public string Type
+        /// <see cref="SlackActionType"/>
+        public SlackActionType Type
         {
             get { return _type; }
             set { _type = value; }
@@ -50,8 +51,8 @@ namespace Slack.Webhooks.Action
         /// when providing logical default action or highlighting a 
         /// destructive activity.
         /// </summary>
-        /// <see cref="SlackAction.Style"/>
-        public string Style
+        /// <see cref="SlackActionStyle"/>
+        public SlackActionStyle Style
         {
             get { return _style; }
             set { _style = value; }
@@ -61,8 +62,8 @@ namespace Slack.Webhooks.Action
         /// Our clever default behavior is default, which means the menu's 
         /// options are provided directly in the posted message under options.
         /// </summary>
-        /// <see cref="SlackAction.DataSource"/>
-        public string DataSource
+        /// <see cref="SlackActionDataSource"/>
+        public SlackActionDataSource DataSource
         {
             get { return _dataSource; }
             set { _dataSource = value; }

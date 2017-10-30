@@ -77,6 +77,6 @@ namespace Slack.Webhooks
         /// <summary>
         /// The actions you provide will be rendered as message buttons or menus to users.
         /// </summary>
-        public List<Action.SlackAction> Actions { get; set; }
+        public List<SlackAction> Actions { get; set; }
     }
 }
