@@ -1,891 +1,1775 @@
-﻿namespace Slack.Webhooks
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.Runtime.Serialization;
+
+namespace Slack.Webhooks
 
 {
-    public static class Emoji
+    [JsonConverter(typeof(StringEnumConverter))]
+    public enum Emoji
 
     {
-        public static string PlusOne { get { return ":+1:"; } }
-        public static string MinusOne { get { return ":-1:"; } }
-        public static string OneHundred { get { return ":100:"; } }
-        public static string OneTwoThreeFour { get { return ":1234:"; } }
-        public static string EightBall { get { return ":8ball:"; } }
-        public static string A { get { return ":a:"; } }
-        public static string Ab { get { return ":ab:"; } }
-        public static string Abc { get { return ":abc:"; } }
-        public static string Abcd { get { return ":abcd:"; } }
-        public static string Accept { get { return ":accept:"; } }
-        public static string AerialTramway { get { return ":aerial_tramway:"; } }
-        public static string Airplane { get { return ":airplane:"; } }
-        public static string AlarmClock { get { return ":alarm_clock:"; } }
-        public static string Alien { get { return ":alien:"; } }
-        public static string Ambulance { get { return ":ambulance:"; } }
-        public static string Anchor { get { return ":anchor:"; } }
-        public static string Angel { get { return ":angel:"; } }
-        public static string Anger { get { return ":anger:"; } }
-        public static string Angry { get { return ":angry:"; } }
-        public static string Anguished { get { return ":anguished:"; } }
-        public static string Ant { get { return ":ant:"; } }
-        public static string Apple { get { return ":apple:"; } }
-        public static string Aquarius { get { return ":aquarius:"; } }
-        public static string Aries { get { return ":aries:"; } }
-        public static string ArrowBackward { get { return ":arrow_backward:"; } }
-        public static string ArrowDoubleDown { get { return ":arrow_double_down:"; } }
-        public static string ArrowDoubleUp { get { return ":arrow_double_up:"; } }
-        public static string ArrowDown { get { return ":arrow_down:"; } }
-        public static string ArrowDownSmall { get { return ":arrow_down_small:"; } }
-        public static string ArrowForward { get { return ":arrow_forward:"; } }
-        public static string ArrowHeadingDown { get { return ":arrow_heading_down:"; } }
-        public static string ArrowHeadingUp { get { return ":arrow_heading_up:"; } }
-        public static string ArrowLeft { get { return ":arrow_left:"; } }
-        public static string ArrowLowerLeft { get { return ":arrow_lower_left:"; } }
-        public static string ArrowLowerRight { get { return ":arrow_lower_right:"; } }
-        public static string ArrowRight { get { return ":arrow_right:"; } }
-        public static string ArrowRightHook { get { return ":arrow_right_hook:"; } }
-        public static string ArrowUp { get { return ":arrow_up:"; } }
-        public static string ArrowUpDown { get { return ":arrow_up_down:"; } }
-        public static string ArrowUpSmall { get { return ":arrow_up_small:"; } }
-        public static string ArrowUpperLeft { get { return ":arrow_upper_left:"; } }
-        public static string ArrowUpperRight { get { return ":arrow_upper_right:"; } }
-        public static string ArrowsClockwise { get { return ":arrows_clockwise:"; } }
-        public static string ArrowsCounterclockwise { get { return ":arrows_counterclockwise:"; } }
-        public static string Art { get { return ":art:"; } }
-        public static string ArticulatedLorry { get { return ":articulated_lorry:"; } }
-        public static string Astonished { get { return ":astonished:"; } }
-        public static string Atm { get { return ":atm:"; } }
-        public static string B { get { return ":b:"; } }
-        public static string Baby { get { return ":baby:"; } }
-        public static string BabyBottle { get { return ":baby_bottle:"; } }
-        public static string BabyChick { get { return ":baby_chick:"; } }
-        public static string BabySymbol { get { return ":baby_symbol:"; } }
-        public static string Back { get { return ":back:"; } }
-        public static string BaggageClaim { get { return ":baggage_claim:"; } }
-        public static string Balloon { get { return ":balloon:"; } }
-        public static string BallotBoxWithCheck { get { return ":ballot_box_with_check:"; } }
-        public static string Bamboo { get { return ":bamboo:"; } }
-        public static string Banana { get { return ":banana:"; } }
-        public static string Bangbang { get { return ":bangbang:"; } }
-        public static string Bank { get { return ":bank:"; } }
-        public static string BarChart { get { return ":bar_chart:"; } }
-        public static string Barber { get { return ":barber:"; } }
-        public static string Baseball { get { return ":baseball:"; } }
-        public static string Basketball { get { return ":basketball:"; } }
-        public static string Bath { get { return ":bath:"; } }
-        public static string Bathtub { get { return ":bathtub:"; } }
-        public static string Battery { get { return ":battery:"; } }
-        public static string Bear { get { return ":bear:"; } }
-        public static string Bee { get { return ":bee:"; } }
-        public static string Beer { get { return ":beer:"; } }
-        public static string Beers { get { return ":beers:"; } }
-        public static string Beetle { get { return ":beetle:"; } }
-        public static string Beginner { get { return ":beginner:"; } }
-        public static string Bell { get { return ":bell:"; } }
-        public static string Bento { get { return ":bento:"; } }
-        public static string Bicyclist { get { return ":bicyclist:"; } }
-        public static string Bike { get { return ":bike:"; } }
-        public static string Bikini { get { return ":bikini:"; } }
-        public static string Bird { get { return ":bird:"; } }
-        public static string Birthday { get { return ":birthday:"; } }
-        public static string BlackCircle { get { return ":black_circle:"; } }
-        public static string BlackJoker { get { return ":black_joker:"; } }
-        public static string BlackMediumSmallSquare { get { return ":black_medium_small_square:"; } }
-        public static string BlackMediumSquare { get { return ":black_medium_square:"; } }
-        public static string BlackNib { get { return ":black_nib:"; } }
-        public static string BlackSmallSquare { get { return ":black_small_square:"; } }
-        public static string BlackSquare { get { return ":black_square:"; } }
-        public static string BlackSquareButton { get { return ":black_square_button:"; } }
-        public static string Blossom { get { return ":blossom:"; } }
-        public static string Blowfish { get { return ":blowfish:"; } }
-        public static string BlueBook { get { return ":blue_book:"; } }
-        public static string BlueCar { get { return ":blue_car:"; } }
-        public static string BlueHeart { get { return ":blue_heart:"; } }
-        public static string Blush { get { return ":blush:"; } }
-        public static string Boar { get { return ":boar:"; } }
-        public static string Boat { get { return ":boat:"; } }
-        public static string Bomb { get { return ":bomb:"; } }
-        public static string Book { get { return ":book:"; } }
-        public static string Bookmark { get { return ":bookmark:"; } }
-        public static string BookmarkTabs { get { return ":bookmark_tabs:"; } }
-        public static string Books { get { return ":books:"; } }
-        public static string Boom { get { return ":boom:"; } }
-        public static string Boot { get { return ":boot:"; } }
-        public static string Bouquet { get { return ":bouquet:"; } }
-        public static string Bow { get { return ":bow:"; } }
-        public static string Bowling { get { return ":bowling:"; } }
-        public static string Bowtie { get { return ":bowtie:"; } }
-        public static string Boy { get { return ":boy:"; } }
-        public static string Bread { get { return ":bread:"; } }
-        public static string BrideWithVeil { get { return ":bride_with_veil:"; } }
-        public static string BridgeAtNight { get { return ":bridge_at_night:"; } }
-        public static string Briefcase { get { return ":briefcase:"; } }
-        public static string BrokenHeart { get { return ":broken_heart:"; } }
-        public static string Bug { get { return ":bug:"; } }
-        public static string Bulb { get { return ":bulb:"; } }
-        public static string BullettrainFront { get { return ":bullettrain_front:"; } }
-        public static string BullettrainSide { get { return ":bullettrain_side:"; } }
-        public static string Bus { get { return ":bus:"; } }
-        public static string Busstop { get { return ":busstop:"; } }
-        public static string BustInSilhouette { get { return ":bust_in_silhouette:"; } }
-        public static string BustsInSilhouette { get { return ":busts_in_silhouette:"; } }
-        public static string Cactus { get { return ":cactus:"; } }
-        public static string Cake { get { return ":cake:"; } }
-        public static string Calendar { get { return ":calendar:"; } }
-        public static string Calling { get { return ":calling:"; } }
-        public static string Camel { get { return ":camel:"; } }
-        public static string Camera { get { return ":camera:"; } }
-        public static string Cancer { get { return ":cancer:"; } }
-        public static string Candy { get { return ":candy:"; } }
-        public static string CapitalAbcd { get { return ":capital_abcd:"; } }
-        public static string Capricorn { get { return ":capricorn:"; } }
-        public static string Car { get { return ":car:"; } }
-        public static string CardIndex { get { return ":card_index:"; } }
-        public static string CarouselHorse { get { return ":carousel_horse:"; } }
-        public static string Cat { get { return ":cat:"; } }
-        public static string Cat2 { get { return ":cat2:"; } }
-        public static string Cd { get { return ":cd:"; } }
-        public static string Chart { get { return ":chart:"; } }
-        public static string ChartWithDownwardsTrend { get { return ":chart_with_downwards_trend:"; } }
-        public static string ChartWithUpwardsTrend { get { return ":chart_with_upwards_trend:"; } }
-        public static string CheckeredFlag { get { return ":checkered_flag:"; } }
-        public static string Cherries { get { return ":cherries:"; } }
-        public static string CherryBlossom { get { return ":cherry_blossom:"; } }
-        public static string Chestnut { get { return ":chestnut:"; } }
-        public static string Chicken { get { return ":chicken:"; } }
-        public static string ChildrenCrossing { get { return ":children_crossing:"; } }
-        public static string ChocolateBar { get { return ":chocolate_bar:"; } }
-        public static string ChristmasTree { get { return ":christmas_tree:"; } }
-        public static string Church { get { return ":church:"; } }
-        public static string Cinema { get { return ":cinema:"; } }
-        public static string CircusTent { get { return ":circus_tent:"; } }
-        public static string CitySunrise { get { return ":city_sunrise:"; } }
-        public static string CitySunset { get { return ":city_sunset:"; } }
-        public static string Cl { get { return ":cl:"; } }
-        public static string Clap { get { return ":clap:"; } }
-        public static string Clapper { get { return ":clapper:"; } }
-        public static string Clipboard { get { return ":clipboard:"; } }
-        public static string Clock1 { get { return ":clock1:"; } }
-        public static string Clock10 { get { return ":clock10:"; } }
-        public static string Clock1030 { get { return ":clock1030:"; } }
-        public static string Clock11 { get { return ":clock11:"; } }
-        public static string Clock1130 { get { return ":clock1130:"; } }
-        public static string Clock12 { get { return ":clock12:"; } }
-        public static string Clock1230 { get { return ":clock1230:"; } }
-        public static string Clock130 { get { return ":clock130:"; } }
-        public static string Clock2 { get { return ":clock2:"; } }
-        public static string Clock230 { get { return ":clock230:"; } }
-        public static string Clock3 { get { return ":clock3:"; } }
-        public static string Clock330 { get { return ":clock330:"; } }
-        public static string Clock4 { get { return ":clock4:"; } }
-        public static string Clock430 { get { return ":clock430:"; } }
-        public static string Clock5 { get { return ":clock5:"; } }
-        public static string Clock530 { get { return ":clock530:"; } }
-        public static string Clock6 { get { return ":clock6:"; } }
-        public static string Clock630 { get { return ":clock630:"; } }
-        public static string Clock7 { get { return ":clock7:"; } }
-        public static string Clock730 { get { return ":clock730:"; } }
-        public static string Clock8 { get { return ":clock8:"; } }
-        public static string Clock830 { get { return ":clock830:"; } }
-        public static string Clock9 { get { return ":clock9:"; } }
-        public static string Clock930 { get { return ":clock930:"; } }
-        public static string ClosedBook { get { return ":closed_book:"; } }
-        public static string ClosedLockWithKey { get { return ":closed_lock_with_key:"; } }
-        public static string ClosedUmbrella { get { return ":closed_umbrella:"; } }
-        public static string Cloud { get { return ":cloud:"; } }
-        public static string Clubs { get { return ":clubs:"; } }
-        public static string Cn { get { return ":cn:"; } }
-        public static string Cocktail { get { return ":cocktail:"; } }
-        public static string Coffee { get { return ":coffee:"; } }
-        public static string ColdSweat { get { return ":cold_sweat:"; } }
-        public static string Collision { get { return ":collision:"; } }
-        public static string Computer { get { return ":computer:"; } }
-        public static string ConfettiBall { get { return ":confetti_ball:"; } }
-        public static string Confounded { get { return ":confounded:"; } }
-        public static string Confused { get { return ":confused:"; } }
-        public static string Congratulations { get { return ":congratulations:"; } }
-        public static string Construction { get { return ":construction:"; } }
-        public static string ConstructionWorker { get { return ":construction_worker:"; } }
-        public static string ConvenienceStore { get { return ":convenience_store:"; } }
-        public static string Cookie { get { return ":cookie:"; } }
-        public static string Cool { get { return ":cool:"; } }
-        public static string Cop { get { return ":cop:"; } }
-        public static string Copyright { get { return ":copyright:"; } }
-        public static string Corn { get { return ":corn:"; } }
-        public static string Couple { get { return ":couple:"; } }
-        public static string CoupleWithHeart { get { return ":couple_with_heart:"; } }
-        public static string Couplekiss { get { return ":couplekiss:"; } }
-        public static string Cow { get { return ":cow:"; } }
-        public static string Cow2 { get { return ":cow2:"; } }
-        public static string CreditCard { get { return ":credit_card:"; } }
-        public static string Crocodile { get { return ":crocodile:"; } }
-        public static string CrossedFlags { get { return ":crossed_flags:"; } }
-        public static string Crown { get { return ":crown:"; } }
-        public static string Cry { get { return ":cry:"; } }
-        public static string CryingCatFace { get { return ":crying_cat_face:"; } }
-        public static string CrystalBall { get { return ":crystal_ball:"; } }
-        public static string Cupid { get { return ":cupid:"; } }
-        public static string CurlyLoop { get { return ":curly_loop:"; } }
-        public static string CurrencyExchange { get { return ":currency_exchange:"; } }
-        public static string Curry { get { return ":curry:"; } }
-        public static string Custard { get { return ":custard:"; } }
-        public static string Customs { get { return ":customs:"; } }
-        public static string Cyclone { get { return ":cyclone:"; } }
-        public static string Dancer { get { return ":dancer:"; } }
-        public static string Dancers { get { return ":dancers:"; } }
-        public static string Dango { get { return ":dango:"; } }
-        public static string Dart { get { return ":dart:"; } }
-        public static string Dash { get { return ":dash:"; } }
-        public static string Date { get { return ":date:"; } }
-        public static string De { get { return ":de:"; } }
-        public static string DeciduousTree { get { return ":deciduous_tree:"; } }
-        public static string DepartmentStore { get { return ":department_store:"; } }
-        public static string DiamondShapeWithADotInside { get { return ":diamond_shape_with_a_dot_inside:"; } }
-        public static string Diamonds { get { return ":diamonds:"; } }
-        public static string Disappointed { get { return ":disappointed:"; } }
-        public static string DisappointedRelieved { get { return ":disappointed_relieved:"; } }
-        public static string Dizzy { get { return ":dizzy:"; } }
-        public static string DizzyFace { get { return ":dizzy_face:"; } }
-        public static string DoNotLitter { get { return ":do_not_litter:"; } }
-        public static string Dog { get { return ":dog:"; } }
-        public static string Dog2 { get { return ":dog2:"; } }
-        public static string Dollar { get { return ":dollar:"; } }
-        public static string Dolls { get { return ":dolls:"; } }
-        public static string Dolphin { get { return ":dolphin:"; } }
-        public static string Donut { get { return ":donut:"; } }
-        public static string Door { get { return ":door:"; } }
-        public static string Doughnut { get { return ":doughnut:"; } }
-        public static string Dragon { get { return ":dragon:"; } }
-        public static string DragonFace { get { return ":dragon_face:"; } }
-        public static string Dress { get { return ":dress:"; } }
-        public static string DromedaryCamel { get { return ":dromedary_camel:"; } }
-        public static string Droplet { get { return ":droplet:"; } }
-        public static string Dvd { get { return ":dvd:"; } }
-        public static string EhyphenMail { get { return ":e-mail:"; } }
-        public static string Ear { get { return ":ear:"; } }
-        public static string EarOfRice { get { return ":ear_of_rice:"; } }
-        public static string EarthAfrica { get { return ":earth_africa:"; } }
-        public static string EarthAmericas { get { return ":earth_americas:"; } }
-        public static string EarthAsia { get { return ":earth_asia:"; } }
-        public static string Egg { get { return ":egg:"; } }
-        public static string Eggplant { get { return ":eggplant:"; } }
-        public static string Eight { get { return ":eight:"; } }
-        public static string EightPointedBlackStar { get { return ":eight_pointed_black_star:"; } }
-        public static string EightSpokedAsterisk { get { return ":eight_spoked_asterisk:"; } }
-        public static string ElectricPlug { get { return ":electric_plug:"; } }
-        public static string Elephant { get { return ":elephant:"; } }
-        public static string Email { get { return ":email:"; } }
-        public static string End { get { return ":end:"; } }
-        public static string Envelope { get { return ":envelope:"; } }
-        public static string Es { get { return ":es:"; } }
-        public static string Euro { get { return ":euro:"; } }
-        public static string EuropeanCastle { get { return ":european_castle:"; } }
-        public static string EuropeanPostOffice { get { return ":european_post_office:"; } }
-        public static string EvergreenTree { get { return ":evergreen_tree:"; } }
-        public static string Exclamation { get { return ":exclamation:"; } }
-        public static string Expressionless { get { return ":expressionless:"; } }
-        public static string Eyeglasses { get { return ":eyeglasses:"; } }
-        public static string Eyes { get { return ":eyes:"; } }
-        public static string Facepunch { get { return ":facepunch:"; } }
-        public static string Factory { get { return ":factory:"; } }
-        public static string FallenLeaf { get { return ":fallen_leaf:"; } }
-        public static string Family { get { return ":family:"; } }
-        public static string FastForward { get { return ":fast_forward:"; } }
-        public static string Fax { get { return ":fax:"; } }
-        public static string Fearful { get { return ":fearful:"; } }
-        public static string Feelsgood { get { return ":feelsgood:"; } }
-        public static string Feet { get { return ":feet:"; } }
-        public static string FerrisWheel { get { return ":ferris_wheel:"; } }
-        public static string FileFolder { get { return ":file_folder:"; } }
-        public static string Finnadie { get { return ":finnadie:"; } }
-        public static string Fire { get { return ":fire:"; } }
-        public static string FireEngine { get { return ":fire_engine:"; } }
-        public static string Fireworks { get { return ":fireworks:"; } }
-        public static string FirstQuarterMoon { get { return ":first_quarter_moon:"; } }
-        public static string FirstQuarterMoonWithFace { get { return ":first_quarter_moon_with_face:"; } }
-        public static string Fish { get { return ":fish:"; } }
-        public static string FishCake { get { return ":fish_cake:"; } }
-        public static string FishingPoleAndFish { get { return ":fishing_pole_and_fish:"; } }
-        public static string Fist { get { return ":fist:"; } }
-        public static string Five { get { return ":five:"; } }
-        public static string Flags { get { return ":flags:"; } }
-        public static string Flashlight { get { return ":flashlight:"; } }
-        public static string FloppyDisk { get { return ":floppy_disk:"; } }
-        public static string FlowerPlayingCards { get { return ":flower_playing_cards:"; } }
-        public static string Flushed { get { return ":flushed:"; } }
-        public static string Foggy { get { return ":foggy:"; } }
-        public static string Football { get { return ":football:"; } }
-        public static string ForkAndKnife { get { return ":fork_and_knife:"; } }
-        public static string Fountain { get { return ":fountain:"; } }
-        public static string Four { get { return ":four:"; } }
-        public static string FourLeafClover { get { return ":four_leaf_clover:"; } }
-        public static string Fr { get { return ":fr:"; } }
-        public static string Free { get { return ":free:"; } }
-        public static string FriedShrimp { get { return ":fried_shrimp:"; } }
-        public static string Fries { get { return ":fries:"; } }
-        public static string Frog { get { return ":frog:"; } }
-        public static string Frowning { get { return ":frowning:"; } }
-        public static string Fu { get { return ":fu:"; } }
-        public static string Fuelpump { get { return ":fuelpump:"; } }
-        public static string FullMoon { get { return ":full_moon:"; } }
-        public static string FullMoonWithFace { get { return ":full_moon_with_face:"; } }
-        public static string GameDie { get { return ":game_die:"; } }
-        public static string Gb { get { return ":gb:"; } }
-        public static string Gem { get { return ":gem:"; } }
-        public static string Gemini { get { return ":gemini:"; } }
-        public static string Ghost { get { return ":ghost:"; } }
-        public static string Gift { get { return ":gift:"; } }
-        public static string GiftHeart { get { return ":gift_heart:"; } }
-        public static string Girl { get { return ":girl:"; } }
-        public static string GlobeWithMeridians { get { return ":globe_with_meridians:"; } }
-        public static string Goat { get { return ":goat:"; } }
-        public static string Goberserk { get { return ":goberserk:"; } }
-        public static string Godmode { get { return ":godmode:"; } }
-        public static string Golf { get { return ":golf:"; } }
-        public static string Grapes { get { return ":grapes:"; } }
-        public static string GreenApple { get { return ":green_apple:"; } }
-        public static string GreenBook { get { return ":green_book:"; } }
-        public static string GreenHeart { get { return ":green_heart:"; } }
-        public static string GreyExclamation { get { return ":grey_exclamation:"; } }
-        public static string GreyQuestion { get { return ":grey_question:"; } }
-        public static string Grimacing { get { return ":grimacing:"; } }
-        public static string Grin { get { return ":grin:"; } }
-        public static string Grinning { get { return ":grinning:"; } }
-        public static string Guardsman { get { return ":guardsman:"; } }
-        public static string Guitar { get { return ":guitar:"; } }
-        public static string Gun { get { return ":gun:"; } }
-        public static string Haircut { get { return ":haircut:"; } }
-        public static string Hamburger { get { return ":hamburger:"; } }
-        public static string Hammer { get { return ":hammer:"; } }
-        public static string Hamster { get { return ":hamster:"; } }
-        public static string Hand { get { return ":hand:"; } }
-        public static string Handbag { get { return ":handbag:"; } }
-        public static string Hankey { get { return ":hankey:"; } }
-        public static string Hash { get { return ":hash:"; } }
-        public static string HatchedChick { get { return ":hatched_chick:"; } }
-        public static string HatchingChick { get { return ":hatching_chick:"; } }
-        public static string Headphones { get { return ":headphones:"; } }
-        public static string HearNoEvil { get { return ":hear_no_evil:"; } }
-        public static string Heart { get { return ":heart:"; } }
-        public static string HeartDecoration { get { return ":heart_decoration:"; } }
-        public static string HeartEyes { get { return ":heart_eyes:"; } }
-        public static string HeartEyesCat { get { return ":heart_eyes_cat:"; } }
-        public static string Heartbeat { get { return ":heartbeat:"; } }
-        public static string Heartpulse { get { return ":heartpulse:"; } }
-        public static string Hearts { get { return ":hearts:"; } }
-        public static string HeavyCheckMark { get { return ":heavy_check_mark:"; } }
-        public static string HeavyDivisionSign { get { return ":heavy_division_sign:"; } }
-        public static string HeavyDollarSign { get { return ":heavy_dollar_sign:"; } }
-        public static string HeavyExclamationMark { get { return ":heavy_exclamation_mark:"; } }
-        public static string HeavyMinusSign { get { return ":heavy_minus_sign:"; } }
-        public static string HeavyMultiplicationX { get { return ":heavy_multiplication_x:"; } }
-        public static string HeavyPlusSign { get { return ":heavy_plus_sign:"; } }
-        public static string Helicopter { get { return ":helicopter:"; } }
-        public static string Herb { get { return ":herb:"; } }
-        public static string Hibiscus { get { return ":hibiscus:"; } }
-        public static string HighBrightness { get { return ":high_brightness:"; } }
-        public static string HighHeel { get { return ":high_heel:"; } }
-        public static string Hocho { get { return ":hocho:"; } }
-        public static string HoneyPot { get { return ":honey_pot:"; } }
-        public static string Honeybee { get { return ":honeybee:"; } }
-        public static string Horse { get { return ":horse:"; } }
-        public static string HorseRacing { get { return ":horse_racing:"; } }
-        public static string Hospital { get { return ":hospital:"; } }
-        public static string Hotel { get { return ":hotel:"; } }
-        public static string Hotsprings { get { return ":hotsprings:"; } }
-        public static string Hourglass { get { return ":hourglass:"; } }
-        public static string HourglassFlowingSand { get { return ":hourglass_flowing_sand:"; } }
-        public static string House { get { return ":house:"; } }
-        public static string HouseWithGarden { get { return ":house_with_garden:"; } }
-        public static string Hurtrealbad { get { return ":hurtrealbad:"; } }
-        public static string Hushed { get { return ":hushed:"; } }
-        public static string IceCream { get { return ":ice_cream:"; } }
-        public static string Icecream { get { return ":icecream:"; } }
-        public static string Id { get { return ":id:"; } }
-        public static string IdeographAdvantage { get { return ":ideograph_advantage:"; } }
-        public static string Imp { get { return ":imp:"; } }
-        public static string InboxTray { get { return ":inbox_tray:"; } }
-        public static string IncomingEnvelope { get { return ":incoming_envelope:"; } }
-        public static string InformationDeskPerson { get { return ":information_desk_person:"; } }
-        public static string InformationSource { get { return ":information_source:"; } }
-        public static string Innocent { get { return ":innocent:"; } }
-        public static string Interrobang { get { return ":interrobang:"; } }
-        public static string Iphone { get { return ":iphone:"; } }
-        public static string It { get { return ":it:"; } }
-        public static string IzakayaLantern { get { return ":izakaya_lantern:"; } }
-        public static string JackOLantern { get { return ":jack_o_lantern:"; } }
-        public static string Japan { get { return ":japan:"; } }
-        public static string JapaneseCastle { get { return ":japanese_castle:"; } }
-        public static string JapaneseGoblin { get { return ":japanese_goblin:"; } }
-        public static string JapaneseOgre { get { return ":japanese_ogre:"; } }
-        public static string Jeans { get { return ":jeans:"; } }
-        public static string Joy { get { return ":joy:"; } }
-        public static string JoyCat { get { return ":joy_cat:"; } }
-        public static string Jp { get { return ":jp:"; } }
-        public static string Key { get { return ":key:"; } }
-        public static string KeycapTen { get { return ":keycap_ten:"; } }
-        public static string Kimono { get { return ":kimono:"; } }
-        public static string Kiss { get { return ":kiss:"; } }
-        public static string Kissing { get { return ":kissing:"; } }
-        public static string KissingCat { get { return ":kissing_cat:"; } }
-        public static string KissingClosedEyes { get { return ":kissing_closed_eyes:"; } }
-        public static string KissingFace { get { return ":kissing_face:"; } }
-        public static string KissingHeart { get { return ":kissing_heart:"; } }
-        public static string KissingSmilingEyes { get { return ":kissing_smiling_eyes:"; } }
-        public static string Koala { get { return ":koala:"; } }
-        public static string Koko { get { return ":koko:"; } }
-        public static string Kr { get { return ":kr:"; } }
-        public static string LargeBlueCircle { get { return ":large_blue_circle:"; } }
-        public static string LargeBlueDiamond { get { return ":large_blue_diamond:"; } }
-        public static string LargeOrangeDiamond { get { return ":large_orange_diamond:"; } }
-        public static string LastQuarterMoon { get { return ":last_quarter_moon:"; } }
-        public static string LastQuarterMoonWithFace { get { return ":last_quarter_moon_with_face:"; } }
-        public static string Laughing { get { return ":laughing:"; } }
-        public static string Leaves { get { return ":leaves:"; } }
-        public static string Ledger { get { return ":ledger:"; } }
-        public static string LeftLuggage { get { return ":left_luggage:"; } }
-        public static string LeftRightArrow { get { return ":left_right_arrow:"; } }
-        public static string LeftwardsArrowWithHook { get { return ":leftwards_arrow_with_hook:"; } }
-        public static string Lemon { get { return ":lemon:"; } }
-        public static string Leo { get { return ":leo:"; } }
-        public static string Leopard { get { return ":leopard:"; } }
-        public static string Libra { get { return ":libra:"; } }
-        public static string LightRail { get { return ":light_rail:"; } }
-        public static string Link { get { return ":link:"; } }
-        public static string Lips { get { return ":lips:"; } }
-        public static string Lipstick { get { return ":lipstick:"; } }
-        public static string Lock { get { return ":lock:"; } }
-        public static string LockWithInkPen { get { return ":lock_with_ink_pen:"; } }
-        public static string Lollipop { get { return ":lollipop:"; } }
-        public static string Loop { get { return ":loop:"; } }
-        public static string Loudspeaker { get { return ":loudspeaker:"; } }
-        public static string LoveHotel { get { return ":love_hotel:"; } }
-        public static string LoveLetter { get { return ":love_letter:"; } }
-        public static string LowBrightness { get { return ":low_brightness:"; } }
-        public static string M { get { return ":m:"; } }
-        public static string Mag { get { return ":mag:"; } }
-        public static string MagRight { get { return ":mag_right:"; } }
-        public static string Mahjong { get { return ":mahjong:"; } }
-        public static string Mailbox { get { return ":mailbox:"; } }
-        public static string MailboxClosed { get { return ":mailbox_closed:"; } }
-        public static string MailboxWithMail { get { return ":mailbox_with_mail:"; } }
-        public static string MailboxWithNoMail { get { return ":mailbox_with_no_mail:"; } }
-        public static string Man { get { return ":man:"; } }
-        public static string ManWithGuaPiMao { get { return ":man_with_gua_pi_mao:"; } }
-        public static string ManWithTurban { get { return ":man_with_turban:"; } }
-        public static string MansShoe { get { return ":mans_shoe:"; } }
-        public static string MapleLeaf { get { return ":maple_leaf:"; } }
-        public static string Mask { get { return ":mask:"; } }
-        public static string Massage { get { return ":massage:"; } }
-        public static string MeatOnBone { get { return ":meat_on_bone:"; } }
-        public static string Mega { get { return ":mega:"; } }
-        public static string Melon { get { return ":melon:"; } }
-        public static string Memo { get { return ":memo:"; } }
-        public static string Mens { get { return ":mens:"; } }
-        public static string Metal { get { return ":metal:"; } }
-        public static string Metro { get { return ":metro:"; } }
-        public static string Microphone { get { return ":microphone:"; } }
-        public static string Microscope { get { return ":microscope:"; } }
-        public static string MilkyWay { get { return ":milky_way:"; } }
-        public static string Minibus { get { return ":minibus:"; } }
-        public static string Minidisc { get { return ":minidisc:"; } }
-        public static string MobilePhoneOff { get { return ":mobile_phone_off:"; } }
-        public static string MoneyWithWings { get { return ":money_with_wings:"; } }
-        public static string Moneybag { get { return ":moneybag:"; } }
-        public static string Monkey { get { return ":monkey:"; } }
-        public static string MonkeyFace { get { return ":monkey_face:"; } }
-        public static string Monorail { get { return ":monorail:"; } }
-        public static string Moon { get { return ":moon:"; } }
-        public static string MortarBoard { get { return ":mortar_board:"; } }
-        public static string MountFuji { get { return ":mount_fuji:"; } }
-        public static string MountainBicyclist { get { return ":mountain_bicyclist:"; } }
-        public static string MountainCableway { get { return ":mountain_cableway:"; } }
-        public static string MountainRailway { get { return ":mountain_railway:"; } }
-        public static string Mouse { get { return ":mouse:"; } }
-        public static string Mouse2 { get { return ":mouse2:"; } }
-        public static string MovieCamera { get { return ":movie_camera:"; } }
-        public static string Moyai { get { return ":moyai:"; } }
-        public static string Muscle { get { return ":muscle:"; } }
-        public static string Mushroom { get { return ":mushroom:"; } }
-        public static string MusicalKeyboard { get { return ":musical_keyboard:"; } }
-        public static string MusicalNote { get { return ":musical_note:"; } }
-        public static string MusicalScore { get { return ":musical_score:"; } }
-        public static string Mute { get { return ":mute:"; } }
-        public static string NailCare { get { return ":nail_care:"; } }
-        public static string NameBadge { get { return ":name_badge:"; } }
-        public static string Neckbeard { get { return ":neckbeard:"; } }
-        public static string Necktie { get { return ":necktie:"; } }
-        public static string NegativeSquaredCrossMark { get { return ":negative_squared_cross_mark:"; } }
-        public static string NeutralFace { get { return ":neutral_face:"; } }
-        public static string New { get { return ":new:"; } }
-        public static string NewMoon { get { return ":new_moon:"; } }
-        public static string NewMoonWithFace { get { return ":new_moon_with_face:"; } }
-        public static string Newspaper { get { return ":newspaper:"; } }
-        public static string Ng { get { return ":ng:"; } }
-        public static string Nine { get { return ":nine:"; } }
-        public static string NoBell { get { return ":no_bell:"; } }
-        public static string NoBicycles { get { return ":no_bicycles:"; } }
-        public static string NoEntry { get { return ":no_entry:"; } }
-        public static string NoEntrySign { get { return ":no_entry_sign:"; } }
-        public static string NoGood { get { return ":no_good:"; } }
-        public static string NoMobilePhones { get { return ":no_mobile_phones:"; } }
-        public static string NoMouth { get { return ":no_mouth:"; } }
-        public static string NoPedestrians { get { return ":no_pedestrians:"; } }
-        public static string NoSmoking { get { return ":no_smoking:"; } }
-        public static string NonPotableWater { get { return ":non-potable_water:"; } }
-        public static string Nose { get { return ":nose:"; } }
-        public static string Notebook { get { return ":notebook:"; } }
-        public static string NotebookWithDecorativeCover { get { return ":notebook_with_decorative_cover:"; } }
-        public static string Notes { get { return ":notes:"; } }
-        public static string NutAndBolt { get { return ":nut_and_bolt:"; } }
-        public static string O { get { return ":o:"; } }
-        public static string O2 { get { return ":o2:"; } }
-        public static string Ocean { get { return ":ocean:"; } }
-        public static string Octocat { get { return ":octocat:"; } }
-        public static string Octopus { get { return ":octopus:"; } }
-        public static string Oden { get { return ":oden:"; } }
-        public static string Office { get { return ":office:"; } }
-        public static string Ok { get { return ":ok:"; } }
-        public static string OkHand { get { return ":ok_hand:"; } }
-        public static string OkWoman { get { return ":ok_woman:"; } }
-        public static string OlderMan { get { return ":older_man:"; } }
-        public static string OlderWoman { get { return ":older_woman:"; } }
-        public static string On { get { return ":on:"; } }
-        public static string OncomingAutomobile { get { return ":oncoming_automobile:"; } }
-        public static string OncomingBus { get { return ":oncoming_bus:"; } }
-        public static string OncomingPoliceCar { get { return ":oncoming_police_car:"; } }
-        public static string OncomingTaxi { get { return ":oncoming_taxi:"; } }
-        public static string One { get { return ":one:"; } }
-        public static string OpenFileFolder { get { return ":open_file_folder:"; } }
-        public static string OpenHands { get { return ":open_hands:"; } }
-        public static string OpenMouth { get { return ":open_mouth:"; } }
-        public static string Ophiuchus { get { return ":ophiuchus:"; } }
-        public static string OrangeBook { get { return ":orange_book:"; } }
-        public static string OutboxTray { get { return ":outbox_tray:"; } }
-        public static string Ox { get { return ":ox:"; } }
-        public static string Package { get { return ":package:"; } }
-        public static string PageFacingUp { get { return ":page_facing_up:"; } }
-        public static string PageWithCurl { get { return ":page_with_curl:"; } }
-        public static string Pager { get { return ":pager:"; } }
-        public static string PalmTree { get { return ":palm_tree:"; } }
-        public static string PandaFace { get { return ":panda_face:"; } }
-        public static string Paperclip { get { return ":paperclip:"; } }
-        public static string Parking { get { return ":parking:"; } }
-        public static string PartAlternationMark { get { return ":part_alternation_mark:"; } }
-        public static string PartlySunny { get { return ":partly_sunny:"; } }
-        public static string PassportControl { get { return ":passport_control:"; } }
-        public static string PawPrints { get { return ":paw_prints:"; } }
-        public static string Peach { get { return ":peach:"; } }
-        public static string Pear { get { return ":pear:"; } }
-        public static string Pencil { get { return ":pencil:"; } }
-        public static string Pencil2 { get { return ":pencil2:"; } }
-        public static string Penguin { get { return ":penguin:"; } }
-        public static string Pensive { get { return ":pensive:"; } }
-        public static string PerformingArts { get { return ":performing_arts:"; } }
-        public static string Persevere { get { return ":persevere:"; } }
-        public static string PersonFrowning { get { return ":person_frowning:"; } }
-        public static string PersonWithBlondHair { get { return ":person_with_blond_hair:"; } }
-        public static string PersonWithPoutingFace { get { return ":person_with_pouting_face:"; } }
-        public static string Phone { get { return ":phone:"; } }
-        public static string Pig { get { return ":pig:"; } }
-        public static string Pig2 { get { return ":pig2:"; } }
-        public static string PigNose { get { return ":pig_nose:"; } }
-        public static string Pill { get { return ":pill:"; } }
-        public static string Pineapple { get { return ":pineapple:"; } }
-        public static string Pisces { get { return ":pisces:"; } }
-        public static string Pizza { get { return ":pizza:"; } }
-        public static string Plus1 { get { return ":plus1:"; } }
-        public static string PointDown { get { return ":point_down:"; } }
-        public static string PointLeft { get { return ":point_left:"; } }
-        public static string PointRight { get { return ":point_right:"; } }
-        public static string PointUp { get { return ":point_up:"; } }
-        public static string PointUp2 { get { return ":point_up_2:"; } }
-        public static string PoliceCar { get { return ":police_car:"; } }
-        public static string Poodle { get { return ":poodle:"; } }
-        public static string Poop { get { return ":poop:"; } }
-        public static string PostOffice { get { return ":post_office:"; } }
-        public static string PostalHorn { get { return ":postal_horn:"; } }
-        public static string Postbox { get { return ":postbox:"; } }
-        public static string PotableWater { get { return ":potable_water:"; } }
-        public static string Pouch { get { return ":pouch:"; } }
-        public static string PoultryLeg { get { return ":poultry_leg:"; } }
-        public static string Pound { get { return ":pound:"; } }
-        public static string PoutingCat { get { return ":pouting_cat:"; } }
-        public static string Pray { get { return ":pray:"; } }
-        public static string Princess { get { return ":princess:"; } }
-        public static string Punch { get { return ":punch:"; } }
-        public static string PurpleHeart { get { return ":purple_heart:"; } }
-        public static string Purse { get { return ":purse:"; } }
-        public static string Pushpin { get { return ":pushpin:"; } }
-        public static string PutLitterInItsPlace { get { return ":put_litter_in_its_place:"; } }
-        public static string Question { get { return ":question:"; } }
-        public static string Rabbit { get { return ":rabbit:"; } }
-        public static string Rabbit2 { get { return ":rabbit2:"; } }
-        public static string Racehorse { get { return ":racehorse:"; } }
-        public static string Radio { get { return ":radio:"; } }
-        public static string RadioButton { get { return ":radio_button:"; } }
-        public static string Rage { get { return ":rage:"; } }
-        public static string Rage1 { get { return ":rage1:"; } }
-        public static string Rage2 { get { return ":rage2:"; } }
-        public static string Rage3 { get { return ":rage3:"; } }
-        public static string Rage4 { get { return ":rage4:"; } }
-        public static string RailwayCar { get { return ":railway_car:"; } }
-        public static string Rainbow { get { return ":rainbow:"; } }
-        public static string RaisedHand { get { return ":raised_hand:"; } }
-        public static string RaisedHands { get { return ":raised_hands:"; } }
-        public static string RaisingHand { get { return ":raising_hand:"; } }
-        public static string Ram { get { return ":ram:"; } }
-        public static string Ramen { get { return ":ramen:"; } }
-        public static string Rat { get { return ":rat:"; } }
-        public static string Recycle { get { return ":recycle:"; } }
-        public static string RedCar { get { return ":red_car:"; } }
-        public static string RedCircle { get { return ":red_circle:"; } }
-        public static string Registered { get { return ":registered:"; } }
-        public static string Relaxed { get { return ":relaxed:"; } }
-        public static string Relieved { get { return ":relieved:"; } }
-        public static string Repeat { get { return ":repeat:"; } }
-        public static string RepeatOne { get { return ":repeat_one:"; } }
-        public static string Restroom { get { return ":restroom:"; } }
-        public static string RevolvingHearts { get { return ":revolving_hearts:"; } }
-        public static string Rewind { get { return ":rewind:"; } }
-        public static string Ribbon { get { return ":ribbon:"; } }
-        public static string Rice { get { return ":rice:"; } }
-        public static string RiceBall { get { return ":rice_ball:"; } }
-        public static string RiceCracker { get { return ":rice_cracker:"; } }
-        public static string RiceScene { get { return ":rice_scene:"; } }
-        public static string Ring { get { return ":ring:"; } }
-        public static string Rocket { get { return ":rocket:"; } }
-        public static string RollerCoaster { get { return ":roller_coaster:"; } }
-        public static string Rooster { get { return ":rooster:"; } }
-        public static string Rose { get { return ":rose:"; } }
-        public static string RotatingLight { get { return ":rotating_light:"; } }
-        public static string RoundPushpin { get { return ":round_pushpin:"; } }
-        public static string Rowboat { get { return ":rowboat:"; } }
-        public static string Ru { get { return ":ru:"; } }
-        public static string RugbyFootball { get { return ":rugby_football:"; } }
-        public static string Runner { get { return ":runner:"; } }
-        public static string Running { get { return ":running:"; } }
-        public static string RunningShirtWithSash { get { return ":running_shirt_with_sash:"; } }
-        public static string Sa { get { return ":sa:"; } }
-        public static string Sagittarius { get { return ":sagittarius:"; } }
-        public static string Sailboat { get { return ":sailboat:"; } }
-        public static string Sake { get { return ":sake:"; } }
-        public static string Sandal { get { return ":sandal:"; } }
-        public static string Santa { get { return ":santa:"; } }
-        public static string Satellite { get { return ":satellite:"; } }
-        public static string Satisfied { get { return ":satisfied:"; } }
-        public static string Saxophone { get { return ":saxophone:"; } }
-        public static string School { get { return ":school:"; } }
-        public static string SchoolSatchel { get { return ":school_satchel:"; } }
-        public static string Scissors { get { return ":scissors:"; } }
-        public static string Scorpius { get { return ":scorpius:"; } }
-        public static string Scream { get { return ":scream:"; } }
-        public static string ScreamCat { get { return ":scream_cat:"; } }
-        public static string Scroll { get { return ":scroll:"; } }
-        public static string Seat { get { return ":seat:"; } }
-        public static string Secret { get { return ":secret:"; } }
-        public static string SeeNoEvil { get { return ":see_no_evil:"; } }
-        public static string Seedling { get { return ":seedling:"; } }
-        public static string Seven { get { return ":seven:"; } }
-        public static string ShavedIce { get { return ":shaved_ice:"; } }
-        public static string Sheep { get { return ":sheep:"; } }
-        public static string Shell { get { return ":shell:"; } }
-        public static string Ship { get { return ":ship:"; } }
-        public static string Shipit { get { return ":shipit:"; } }
-        public static string Shirt { get { return ":shirt:"; } }
-        public static string Shit { get { return ":shit:"; } }
-        public static string Shoe { get { return ":shoe:"; } }
-        public static string Shower { get { return ":shower:"; } }
-        public static string SignalStrength { get { return ":signal_strength:"; } }
-        public static string Six { get { return ":six:"; } }
-        public static string SixPointedStar { get { return ":six_pointed_star:"; } }
-        public static string Ski { get { return ":ski:"; } }
-        public static string Skull { get { return ":skull:"; } }
-        public static string Sleeping { get { return ":sleeping:"; } }
-        public static string Sleepy { get { return ":sleepy:"; } }
-        public static string SlotMachine { get { return ":slot_machine:"; } }
-        public static string SmallBlueDiamond { get { return ":small_blue_diamond:"; } }
-        public static string SmallOrangeDiamond { get { return ":small_orange_diamond:"; } }
-        public static string SmallRedTriangle { get { return ":small_red_triangle:"; } }
-        public static string SmallRedTriangleDown { get { return ":small_red_triangle_down:"; } }
-        public static string Smile { get { return ":smile:"; } }
-        public static string SmileCat { get { return ":smile_cat:"; } }
-        public static string Smiley { get { return ":smiley:"; } }
-        public static string SmileyCat { get { return ":smiley_cat:"; } }
-        public static string SmilingImp { get { return ":smiling_imp:"; } }
-        public static string Smirk { get { return ":smirk:"; } }
-        public static string SmirkCat { get { return ":smirk_cat:"; } }
-        public static string Smoking { get { return ":smoking:"; } }
-        public static string Snail { get { return ":snail:"; } }
-        public static string Snake { get { return ":snake:"; } }
-        public static string Snowboarder { get { return ":snowboarder:"; } }
-        public static string Snowflake { get { return ":snowflake:"; } }
-        public static string Snowman { get { return ":snowman:"; } }
-        public static string Sob { get { return ":sob:"; } }
-        public static string Soccer { get { return ":soccer:"; } }
-        public static string Soon { get { return ":soon:"; } }
-        public static string Sos { get { return ":sos:"; } }
-        public static string Sound { get { return ":sound:"; } }
-        public static string SpaceInvader { get { return ":space_invader:"; } }
-        public static string Spades { get { return ":spades:"; } }
-        public static string Spaghetti { get { return ":spaghetti:"; } }
-        public static string Sparkle { get { return ":sparkle:"; } }
-        public static string Sparkler { get { return ":sparkler:"; } }
-        public static string Sparkles { get { return ":sparkles:"; } }
-        public static string SparklingHeart { get { return ":sparkling_heart:"; } }
-        public static string SpeakNoEvil { get { return ":speak_no_evil:"; } }
-        public static string Speaker { get { return ":speaker:"; } }
-        public static string SpeechBalloon { get { return ":speech_balloon:"; } }
-        public static string Speedboat { get { return ":speedboat:"; } }
-        public static string Squirrel { get { return ":squirrel:"; } }
-        public static string Star { get { return ":star:"; } }
-        public static string Star2 { get { return ":star2:"; } }
-        public static string Stars { get { return ":stars:"; } }
-        public static string Station { get { return ":station:"; } }
-        public static string StatueOfLiberty { get { return ":statue_of_liberty:"; } }
-        public static string SteamLocomotive { get { return ":steam_locomotive:"; } }
-        public static string Stew { get { return ":stew:"; } }
-        public static string StraightRuler { get { return ":straight_ruler:"; } }
-        public static string Strawberry { get { return ":strawberry:"; } }
-        public static string StuckOutTongue { get { return ":stuck_out_tongue:"; } }
-        public static string StuckOutTongueClosedEyes { get { return ":stuck_out_tongue_closed_eyes:"; } }
-        public static string StuckOutTongueWinkingEye { get { return ":stuck_out_tongue_winking_eye:"; } }
-        public static string SunWithFace { get { return ":sun_with_face:"; } }
-        public static string Sunflower { get { return ":sunflower:"; } }
-        public static string Sunglasses { get { return ":sunglasses:"; } }
-        public static string Sunny { get { return ":sunny:"; } }
-        public static string Sunrise { get { return ":sunrise:"; } }
-        public static string SunriseOverMountains { get { return ":sunrise_over_mountains:"; } }
-        public static string Surfer { get { return ":surfer:"; } }
-        public static string Sushi { get { return ":sushi:"; } }
-        public static string Suspect { get { return ":suspect:"; } }
-        public static string SuspensionRailway { get { return ":suspension_railway:"; } }
-        public static string Sweat { get { return ":sweat:"; } }
-        public static string SweatDrops { get { return ":sweat_drops:"; } }
-        public static string SweatSmile { get { return ":sweat_smile:"; } }
-        public static string SweetPotato { get { return ":sweet_potato:"; } }
-        public static string Swimmer { get { return ":swimmer:"; } }
-        public static string Symbols { get { return ":symbols:"; } }
-        public static string Syringe { get { return ":syringe:"; } }
-        public static string Tada { get { return ":tada:"; } }
-        public static string TanabataTree { get { return ":tanabata_tree:"; } }
-        public static string Tangerine { get { return ":tangerine:"; } }
-        public static string Taurus { get { return ":taurus:"; } }
-        public static string Taxi { get { return ":taxi:"; } }
-        public static string Tea { get { return ":tea:"; } }
-        public static string Telephone { get { return ":telephone:"; } }
-        public static string TelephoneReceiver { get { return ":telephone_receiver:"; } }
-        public static string Telescope { get { return ":telescope:"; } }
-        public static string Tennis { get { return ":tennis:"; } }
-        public static string Tent { get { return ":tent:"; } }
-        public static string ThoughtBalloon { get { return ":thought_balloon:"; } }
-        public static string Three { get { return ":three:"; } }
-        public static string Thumbsdown { get { return ":thumbsdown:"; } }
-        public static string Thumbsup { get { return ":thumbsup:"; } }
-        public static string Ticket { get { return ":ticket:"; } }
-        public static string Tiger { get { return ":tiger:"; } }
-        public static string Tiger2 { get { return ":tiger2:"; } }
-        public static string TiredFace { get { return ":tired_face:"; } }
-        public static string Tm { get { return ":tm:"; } }
-        public static string Toilet { get { return ":toilet:"; } }
-        public static string TokyoTower { get { return ":tokyo_tower:"; } }
-        public static string Tomato { get { return ":tomato:"; } }
-        public static string Tongue { get { return ":tongue:"; } }
-        public static string Top { get { return ":top:"; } }
-        public static string Tophat { get { return ":tophat:"; } }
-        public static string Tractor { get { return ":tractor:"; } }
-        public static string TrafficLight { get { return ":traffic_light:"; } }
-        public static string Train { get { return ":train:"; } }
-        public static string Train2 { get { return ":train2:"; } }
-        public static string Tram { get { return ":tram:"; } }
-        public static string TriangularFlagOnPost { get { return ":triangular_flag_on_post:"; } }
-        public static string TriangularRuler { get { return ":triangular_ruler:"; } }
-        public static string Trident { get { return ":trident:"; } }
-        public static string Triumph { get { return ":triumph:"; } }
-        public static string Trolleybus { get { return ":trolleybus:"; } }
-        public static string Trollface { get { return ":trollface:"; } }
-        public static string Trophy { get { return ":trophy:"; } }
-        public static string TropicalDrink { get { return ":tropical_drink:"; } }
-        public static string TropicalFish { get { return ":tropical_fish:"; } }
-        public static string Truck { get { return ":truck:"; } }
-        public static string Trumpet { get { return ":trumpet:"; } }
-        public static string Tshirt { get { return ":tshirt:"; } }
-        public static string Tulip { get { return ":tulip:"; } }
-        public static string Turtle { get { return ":turtle:"; } }
-        public static string Tv { get { return ":tv:"; } }
-        public static string TwistedRightwardsArrows { get { return ":twisted_rightwards_arrows:"; } }
-        public static string Two { get { return ":two:"; } }
-        public static string TwoHearts { get { return ":two_hearts:"; } }
-        public static string TwoMenHoldingHands { get { return ":two_men_holding_hands:"; } }
-        public static string TwoWomenHoldingHands { get { return ":two_women_holding_hands:"; } }
-        public static string U5272 { get { return ":u5272:"; } }
-        public static string U5408 { get { return ":u5408:"; } }
-        public static string U55B6 { get { return ":u55b6:"; } }
-        public static string U6307 { get { return ":u6307:"; } }
-        public static string U6708 { get { return ":u6708:"; } }
-        public static string U6709 { get { return ":u6709:"; } }
-        public static string U6E80 { get { return ":u6e80:"; } }
-        public static string U7121 { get { return ":u7121:"; } }
-        public static string U7533 { get { return ":u7533:"; } }
-        public static string U7981 { get { return ":u7981:"; } }
-        public static string U7A7A { get { return ":u7a7a:"; } }
-        public static string Uk { get { return ":uk:"; } }
-        public static string Umbrella { get { return ":umbrella:"; } }
-        public static string Unamused { get { return ":unamused:"; } }
-        public static string Underage { get { return ":underage:"; } }
-        public static string Unlock { get { return ":unlock:"; } }
-        public static string Up { get { return ":up:"; } }
-        public static string Us { get { return ":us:"; } }
-        public static string V { get { return ":v:"; } }
-        public static string VerticalTrafficLight { get { return ":vertical_traffic_light:"; } }
-        public static string Vhs { get { return ":vhs:"; } }
-        public static string VibrationMode { get { return ":vibration_mode:"; } }
-        public static string VideoCamera { get { return ":video_camera:"; } }
-        public static string VideoGame { get { return ":video_game:"; } }
-        public static string Violin { get { return ":violin:"; } }
-        public static string Virgo { get { return ":virgo:"; } }
-        public static string Volcano { get { return ":volcano:"; } }
-        public static string Vs { get { return ":vs:"; } }
-        public static string Walking { get { return ":walking:"; } }
-        public static string WaningCrescentMoon { get { return ":waning_crescent_moon:"; } }
-        public static string WaningGibbousMoon { get { return ":waning_gibbous_moon:"; } }
-        public static string Warning { get { return ":warning:"; } }
-        public static string Watch { get { return ":watch:"; } }
-        public static string WaterBuffalo { get { return ":water_buffalo:"; } }
-        public static string Watermelon { get { return ":watermelon:"; } }
-        public static string Wave { get { return ":wave:"; } }
-        public static string WavyDash { get { return ":wavy_dash:"; } }
-        public static string WaxingCrescentMoon { get { return ":waxing_crescent_moon:"; } }
-        public static string WaxingGibbousMoon { get { return ":waxing_gibbous_moon:"; } }
-        public static string Wc { get { return ":wc:"; } }
-        public static string Weary { get { return ":weary:"; } }
-        public static string Wedding { get { return ":wedding:"; } }
-        public static string Whale { get { return ":whale:"; } }
-        public static string Whale2 { get { return ":whale2:"; } }
-        public static string Wheelchair { get { return ":wheelchair:"; } }
-        public static string WhiteCheckMark { get { return ":white_check_mark:"; } }
-        public static string WhiteCircle { get { return ":white_circle:"; } }
-        public static string WhiteFlower { get { return ":white_flower:"; } }
-        public static string WhiteLargeSquare { get { return ":white_large_square:"; } }
-        public static string WhiteMediumSmallSquare { get { return ":white_medium_small_square:"; } }
-        public static string WhiteMediumSquare { get { return ":white_medium_square:"; } }
-        public static string WhiteSmallSquare { get { return ":white_small_square:"; } }
-        public static string WhiteSquareButton { get { return ":white_square_button:"; } }
-        public static string WindChime { get { return ":wind_chime:"; } }
-        public static string WineGlass { get { return ":wine_glass:"; } }
-        public static string Wink { get { return ":wink:"; } }
-        public static string Wolf { get { return ":wolf:"; } }
-        public static string Woman { get { return ":woman:"; } }
-        public static string WomansClothes { get { return ":womans_clothes:"; } }
-        public static string WomansHat { get { return ":womans_hat:"; } }
-        public static string Womens { get { return ":womens:"; } }
-        public static string Worried { get { return ":worried:"; } }
-        public static string Wrench { get { return ":wrench:"; } }
-        public static string X { get { return ":x:"; } }
-        public static string YellowHeart { get { return ":yellow_heart:"; } }
-        public static string Yen { get { return ":yen:"; } }
-        public static string Yum { get { return ":yum:"; } }
-        public static string Zap { get { return ":zap:"; } }
-        public static string Zero { get { return ":zero:"; } }
-        public static string Zzz { get { return ":zzz:"; } }
-
-
+        [EnumMember(Value = ":+1:")]
+        PlusOne,
+        [EnumMember(Value = ":-1:")]
+        MinusOne,
+        [EnumMember(Value = ":100:")]
+        OneHundred,
+        [EnumMember(Value = ":1234:")]
+        OneTwoThreeFour,
+        [EnumMember(Value = ":8ball:")]
+        EightBall,
+        [EnumMember(Value = ":a:")]
+        A,
+        [EnumMember(Value = ":ab:")]
+        Ab,
+        [EnumMember(Value = ":abc:")]
+        Abc,
+        [EnumMember(Value = ":abcd:")]
+        Abcd,
+        [EnumMember(Value = ":accept:")]
+        Accept,
+        [EnumMember(Value = ":aerial_tramway:")]
+        AerialTramway,
+        [EnumMember(Value = ":airplane:")]
+        Airplane,
+        [EnumMember(Value = ":alarm_clock:")]
+        AlarmClock,
+        [EnumMember(Value = ":alien:")]
+        Alien,
+        [EnumMember(Value = ":ambulance:")]
+        Ambulance,
+        [EnumMember(Value = ":anchor:")]
+        Anchor,
+        [EnumMember(Value = ":angel:")]
+        Angel,
+        [EnumMember(Value = ":anger:")]
+        Anger,
+        [EnumMember(Value = ":angry:")]
+        Angry,
+        [EnumMember(Value = ":anguished:")]
+        Anguished,
+        [EnumMember(Value = ":ant:")]
+        Ant,
+        [EnumMember(Value = ":apple:")]
+        Apple,
+        [EnumMember(Value = ":aquarius:")]
+        Aquarius,
+        [EnumMember(Value = ":aries:")]
+        Aries,
+        [EnumMember(Value = ":arrow_backward:")]
+        ArrowBackward,
+        [EnumMember(Value = ":arrow_double_down:")]
+        ArrowDoubleDown,
+        [EnumMember(Value = ":arrow_double_up:")]
+        ArrowDoubleUp,
+        [EnumMember(Value = ":arrow_down:")]
+        ArrowDown,
+        [EnumMember(Value = ":arrow_down_small:")]
+        ArrowDownSmall,
+        [EnumMember(Value = ":arrow_forward:")]
+        ArrowForward,
+        [EnumMember(Value = ":arrow_heading_down:")]
+        ArrowHeadingDown,
+        [EnumMember(Value = ":arrow_heading_up:")]
+        ArrowHeadingUp,
+        [EnumMember(Value = ":arrow_left:")]
+        ArrowLeft,
+        [EnumMember(Value = ":arrow_lower_left:")]
+        ArrowLowerLeft,
+        [EnumMember(Value = ":arrow_lower_right:")]
+        ArrowLowerRight,
+        [EnumMember(Value = ":arrow_right:")]
+        ArrowRight,
+        [EnumMember(Value = ":arrow_right_hook:")]
+        ArrowRightHook,
+        [EnumMember(Value = ":arrow_up:")]
+        ArrowUp,
+        [EnumMember(Value = ":arrow_up_down:")]
+        ArrowUpDown,
+        [EnumMember(Value = ":arrow_up_small:")]
+        ArrowUpSmall,
+        [EnumMember(Value = ":arrow_upper_left:")]
+        ArrowUpperLeft,
+        [EnumMember(Value = ":arrow_upper_right:")]
+        ArrowUpperRight,
+        [EnumMember(Value = ":arrows_clockwise:")]
+        ArrowsClockwise,
+        [EnumMember(Value = ":arrows_counterclockwise:")]
+        ArrowsCounterclockwise,
+        [EnumMember(Value = ":art:")]
+        Art,
+        [EnumMember(Value = ":articulated_lorry:")]
+        ArticulatedLorry,
+        [EnumMember(Value = ":astonished:")]
+        Astonished,
+        [EnumMember(Value = ":atm:")]
+        Atm,
+        [EnumMember(Value = ":b:")]
+        B,
+        [EnumMember(Value = ":baby:")]
+        Baby,
+        [EnumMember(Value = ":baby_bottle:")]
+        BabyBottle,
+        [EnumMember(Value = ":baby_chick:")]
+        BabyChick,
+        [EnumMember(Value = ":baby_symbol:")]
+        BabySymbol,
+        [EnumMember(Value = ":back:")]
+        Back,
+        [EnumMember(Value = ":baggage_claim:")]
+        BaggageClaim,
+        [EnumMember(Value = ":balloon:")]
+        Balloon,
+        [EnumMember(Value = ":ballot_box_with_check:")]
+        BallotBoxWithCheck,
+        [EnumMember(Value = ":bamboo:")]
+        Bamboo,
+        [EnumMember(Value = ":banana:")]
+        Banana,
+        [EnumMember(Value = ":bangbang:")]
+        Bangbang,
+        [EnumMember(Value = ":bank:")]
+        Bank,
+        [EnumMember(Value = ":bar_chart:")]
+        BarChart,
+        [EnumMember(Value = ":barber:")]
+        Barber,
+        [EnumMember(Value = ":baseball:")]
+        Baseball,
+        [EnumMember(Value = ":basketball:")]
+        Basketball,
+        [EnumMember(Value = ":bath:")]
+        Bath,
+        [EnumMember(Value = ":bathtub:")]
+        Bathtub,
+        [EnumMember(Value = ":battery:")]
+        Battery,
+        [EnumMember(Value = ":bear:")]
+        Bear,
+        [EnumMember(Value = ":bee:")]
+        Bee,
+        [EnumMember(Value = ":beer:")]
+        Beer,
+        [EnumMember(Value = ":beers:")]
+        Beers,
+        [EnumMember(Value = ":beetle:")]
+        Beetle,
+        [EnumMember(Value = ":beginner:")]
+        Beginner,
+        [EnumMember(Value = ":bell:")]
+        Bell,
+        [EnumMember(Value = ":bento:")]
+        Bento,
+        [EnumMember(Value = ":bicyclist:")]
+        Bicyclist,
+        [EnumMember(Value = ":bike:")]
+        Bike,
+        [EnumMember(Value = ":bikini:")]
+        Bikini,
+        [EnumMember(Value = ":bird:")]
+        Bird,
+        [EnumMember(Value = ":birthday:")]
+        Birthday,
+        [EnumMember(Value = ":black_circle:")]
+        BlackCircle,
+        [EnumMember(Value = ":black_joker:")]
+        BlackJoker,
+        [EnumMember(Value = ":black_medium_small_square:")]
+        BlackMediumSmallSquare,
+        [EnumMember(Value = ":black_medium_square:")]
+        BlackMediumSquare,
+        [EnumMember(Value = ":black_nib:")]
+        BlackNib,
+        [EnumMember(Value = ":black_small_square:")]
+        BlackSmallSquare,
+        [EnumMember(Value = ":black_square:")]
+        BlackSquare,
+        [EnumMember(Value = ":black_square_button:")]
+        BlackSquareButton,
+        [EnumMember(Value = ":blossom:")]
+        Blossom,
+        [EnumMember(Value = ":blowfish:")]
+        Blowfish,
+        [EnumMember(Value = ":blue_book:")]
+        BlueBook,
+        [EnumMember(Value = ":blue_car:")]
+        BlueCar,
+        [EnumMember(Value = ":blue_heart:")]
+        BlueHeart,
+        [EnumMember(Value = ":blush:")]
+        Blush,
+        [EnumMember(Value = ":boar:")]
+        Boar,
+        [EnumMember(Value = ":boat:")]
+        Boat,
+        [EnumMember(Value = ":bomb:")]
+        Bomb,
+        [EnumMember(Value = ":book:")]
+        Book,
+        [EnumMember(Value = ":bookmark:")]
+        Bookmark,
+        [EnumMember(Value = ":bookmark_tabs:")]
+        BookmarkTabs,
+        [EnumMember(Value = ":books:")]
+        Books,
+        [EnumMember(Value = ":boom:")]
+        Boom,
+        [EnumMember(Value = ":boot:")]
+        Boot,
+        [EnumMember(Value = ":bouquet:")]
+        Bouquet,
+        [EnumMember(Value = ":bow:")]
+        Bow,
+        [EnumMember(Value = ":bowling:")]
+        Bowling,
+        [EnumMember(Value = ":bowtie:")]
+        Bowtie,
+        [EnumMember(Value = ":boy:")]
+        Boy,
+        [EnumMember(Value = ":bread:")]
+        Bread,
+        [EnumMember(Value = ":bride_with_veil:")]
+        BrideWithVeil,
+        [EnumMember(Value = ":bridge_at_night:")]
+        BridgeAtNight,
+        [EnumMember(Value = ":briefcase:")]
+        Briefcase,
+        [EnumMember(Value = ":broken_heart:")]
+        BrokenHeart,
+        [EnumMember(Value = ":bug:")]
+        Bug,
+        [EnumMember(Value = ":bulb:")]
+        Bulb,
+        [EnumMember(Value = ":bullettrain_front:")]
+        BullettrainFront,
+        [EnumMember(Value = ":bullettrain_side:")]
+        BullettrainSide,
+        [EnumMember(Value = ":bus:")]
+        Bus,
+        [EnumMember(Value = ":busstop:")]
+        Busstop,
+        [EnumMember(Value = ":bust_in_silhouette:")]
+        BustInSilhouette,
+        [EnumMember(Value = ":busts_in_silhouette:")]
+        BustsInSilhouette,
+        [EnumMember(Value = ":cactus:")]
+        Cactus,
+        [EnumMember(Value = ":cake:")]
+        Cake,
+        [EnumMember(Value = ":calendar:")]
+        Calendar,
+        [EnumMember(Value = ":calling:")]
+        Calling,
+        [EnumMember(Value = ":camel:")]
+        Camel,
+        [EnumMember(Value = ":camera:")]
+        Camera,
+        [EnumMember(Value = ":cancer:")]
+        Cancer,
+        [EnumMember(Value = ":candy:")]
+        Candy,
+        [EnumMember(Value = ":capital_abcd:")]
+        CapitalAbcd,
+        [EnumMember(Value = ":capricorn:")]
+        Capricorn,
+        [EnumMember(Value = ":car:")]
+        Car,
+        [EnumMember(Value = ":card_index:")]
+        CardIndex,
+        [EnumMember(Value = ":carousel_horse:")]
+        CarouselHorse,
+        [EnumMember(Value = ":cat:")]
+        Cat,
+        [EnumMember(Value = ":cat2:")]
+        Cat2,
+        [EnumMember(Value = ":cd:")]
+        Cd,
+        [EnumMember(Value = ":chart:")]
+        Chart,
+        [EnumMember(Value = ":chart_with_downwards_trend:")]
+        ChartWithDownwardsTrend,
+        [EnumMember(Value = ":chart_with_upwards_trend:")]
+        ChartWithUpwardsTrend,
+        [EnumMember(Value = ":checkered_flag:")]
+        CheckeredFlag,
+        [EnumMember(Value = ":cherries:")]
+        Cherries,
+        [EnumMember(Value = ":cherry_blossom:")]
+        CherryBlossom,
+        [EnumMember(Value = ":chestnut:")]
+        Chestnut,
+        [EnumMember(Value = ":chicken:")]
+        Chicken,
+        [EnumMember(Value = ":children_crossing:")]
+        ChildrenCrossing,
+        [EnumMember(Value = ":chocolate_bar:")]
+        ChocolateBar,
+        [EnumMember(Value = ":christmas_tree:")]
+        ChristmasTree,
+        [EnumMember(Value = ":church:")]
+        Church,
+        [EnumMember(Value = ":cinema:")]
+        Cinema,
+        [EnumMember(Value = ":circus_tent:")]
+        CircusTent,
+        [EnumMember(Value = ":city_sunrise:")]
+        CitySunrise,
+        [EnumMember(Value = ":city_sunset:")]
+        CitySunset,
+        [EnumMember(Value = ":cl:")]
+        Cl,
+        [EnumMember(Value = ":clap:")]
+        Clap,
+        [EnumMember(Value = ":clapper:")]
+        Clapper,
+        [EnumMember(Value = ":clipboard:")]
+        Clipboard,
+        [EnumMember(Value = ":clock1:")]
+        Clock1,
+        [EnumMember(Value = ":clock10:")]
+        Clock10,
+        [EnumMember(Value = ":clock1030:")]
+        Clock1030,
+        [EnumMember(Value = ":clock11:")]
+        Clock11,
+        [EnumMember(Value = ":clock1130:")]
+        Clock1130,
+        [EnumMember(Value = ":clock12:")]
+        Clock12,
+        [EnumMember(Value = ":clock1230:")]
+        Clock1230,
+        [EnumMember(Value = ":clock130:")]
+        Clock130,
+        [EnumMember(Value = ":clock2:")]
+        Clock2,
+        [EnumMember(Value = ":clock230:")]
+        Clock230,
+        [EnumMember(Value = ":clock3:")]
+        Clock3,
+        [EnumMember(Value = ":clock330:")]
+        Clock330,
+        [EnumMember(Value = ":clock4:")]
+        Clock4,
+        [EnumMember(Value = ":clock430:")]
+        Clock430,
+        [EnumMember(Value = ":clock5:")]
+        Clock5,
+        [EnumMember(Value = ":clock530:")]
+        Clock530,
+        [EnumMember(Value = ":clock6:")]
+        Clock6,
+        [EnumMember(Value = ":clock630:")]
+        Clock630,
+        [EnumMember(Value = ":clock7:")]
+        Clock7,
+        [EnumMember(Value = ":clock730:")]
+        Clock730,
+        [EnumMember(Value = ":clock8:")]
+        Clock8,
+        [EnumMember(Value = ":clock830:")]
+        Clock830,
+        [EnumMember(Value = ":clock9:")]
+        Clock9,
+        [EnumMember(Value = ":clock930:")]
+        Clock930,
+        [EnumMember(Value = ":closed_book:")]
+        ClosedBook,
+        [EnumMember(Value = ":closed_lock_with_key:")]
+        ClosedLockWithKey,
+        [EnumMember(Value = ":closed_umbrella:")]
+        ClosedUmbrella,
+        [EnumMember(Value = ":cloud:")]
+        Cloud,
+        [EnumMember(Value = ":clubs:")]
+        Clubs,
+        [EnumMember(Value = ":cn:")]
+        Cn,
+        [EnumMember(Value = ":cocktail:")]
+        Cocktail,
+        [EnumMember(Value = ":coffee:")]
+        Coffee,
+        [EnumMember(Value = ":cold_sweat:")]
+        ColdSweat,
+        [EnumMember(Value = ":collision:")]
+        Collision,
+        [EnumMember(Value = ":computer:")]
+        Computer,
+        [EnumMember(Value = ":confetti_ball:")]
+        ConfettiBall,
+        [EnumMember(Value = ":confounded:")]
+        Confounded,
+        [EnumMember(Value = ":confused:")]
+        Confused,
+        [EnumMember(Value = ":congratulations:")]
+        Congratulations,
+        [EnumMember(Value = ":construction:")]
+        Construction,
+        [EnumMember(Value = ":construction_worker:")]
+        ConstructionWorker,
+        [EnumMember(Value = ":convenience_store:")]
+        ConvenienceStore,
+        [EnumMember(Value = ":cookie:")]
+        Cookie,
+        [EnumMember(Value = ":cool:")]
+        Cool,
+        [EnumMember(Value = ":cop:")]
+        Cop,
+        [EnumMember(Value = ":copyright:")]
+        Copyright,
+        [EnumMember(Value = ":corn:")]
+        Corn,
+        [EnumMember(Value = ":couple:")]
+        Couple,
+        [EnumMember(Value = ":couple_with_heart:")]
+        CoupleWithHeart,
+        [EnumMember(Value = ":couplekiss:")]
+        Couplekiss,
+        [EnumMember(Value = ":cow:")]
+        Cow,
+        [EnumMember(Value = ":cow2:")]
+        Cow2,
+        [EnumMember(Value = ":credit_card:")]
+        CreditCard,
+        [EnumMember(Value = ":crocodile:")]
+        Crocodile,
+        [EnumMember(Value = ":crossed_flags:")]
+        CrossedFlags,
+        [EnumMember(Value = ":crown:")]
+        Crown,
+        [EnumMember(Value = ":cry:")]
+        Cry,
+        [EnumMember(Value = ":crying_cat_face:")]
+        CryingCatFace,
+        [EnumMember(Value = ":crystal_ball:")]
+        CrystalBall,
+        [EnumMember(Value = ":cupid:")]
+        Cupid,
+        [EnumMember(Value = ":curly_loop:")]
+        CurlyLoop,
+        [EnumMember(Value = ":currency_exchange:")]
+        CurrencyExchange,
+        [EnumMember(Value = ":curry:")]
+        Curry,
+        [EnumMember(Value = ":custard:")]
+        Custard,
+        [EnumMember(Value = ":customs:")]
+        Customs,
+        [EnumMember(Value = ":cyclone:")]
+        Cyclone,
+        [EnumMember(Value = ":dancer:")]
+        Dancer,
+        [EnumMember(Value = ":dancers:")]
+        Dancers,
+        [EnumMember(Value = ":dango:")]
+        Dango,
+        [EnumMember(Value = ":dart:")]
+        Dart,
+        [EnumMember(Value = ":dash:")]
+        Dash,
+        [EnumMember(Value = ":date:")]
+        Date,
+        [EnumMember(Value = ":de:")]
+        De,
+        [EnumMember(Value = ":deciduous_tree:")]
+        DeciduousTree,
+        [EnumMember(Value = ":department_store:")]
+        DepartmentStore,
+        [EnumMember(Value = ":diamond_shape_with_a_dot_inside:")]
+        DiamondShapeWithADotInside,
+        [EnumMember(Value = ":diamonds:")]
+        Diamonds,
+        [EnumMember(Value = ":disappointed:")]
+        Disappointed,
+        [EnumMember(Value = ":disappointed_relieved:")]
+        DisappointedRelieved,
+        [EnumMember(Value = ":dizzy:")]
+        Dizzy,
+        [EnumMember(Value = ":dizzy_face:")]
+        DizzyFace,
+        [EnumMember(Value = ":do_not_litter:")]
+        DoNotLitter,
+        [EnumMember(Value = ":dog:")]
+        Dog,
+        [EnumMember(Value = ":dog2:")]
+        Dog2,
+        [EnumMember(Value = ":dollar:")]
+        Dollar,
+        [EnumMember(Value = ":dolls:")]
+        Dolls,
+        [EnumMember(Value = ":dolphin:")]
+        Dolphin,
+        [EnumMember(Value = ":donut:")]
+        Donut,
+        [EnumMember(Value = ":door:")]
+        Door,
+        [EnumMember(Value = ":doughnut:")]
+        Doughnut,
+        [EnumMember(Value = ":dragon:")]
+        Dragon,
+        [EnumMember(Value = ":dragon_face:")]
+        DragonFace,
+        [EnumMember(Value = ":dress:")]
+        Dress,
+        [EnumMember(Value = ":dromedary_camel:")]
+        DromedaryCamel,
+        [EnumMember(Value = ":droplet:")]
+        Droplet,
+        [EnumMember(Value = ":dvd:")]
+        Dvd,
+        [EnumMember(Value = ":e-mail:")]
+        EhyphenMail,
+        [EnumMember(Value = ":ear:")]
+        Ear,
+        [EnumMember(Value = ":ear_of_rice:")]
+        EarOfRice,
+        [EnumMember(Value = ":earth_africa:")]
+        EarthAfrica,
+        [EnumMember(Value = ":earth_americas:")]
+        EarthAmericas,
+        [EnumMember(Value = ":earth_asia:")]
+        EarthAsia,
+        [EnumMember(Value = ":egg:")]
+        Egg,
+        [EnumMember(Value = ":eggplant:")]
+        Eggplant,
+        [EnumMember(Value = ":eight:")]
+        Eight,
+        [EnumMember(Value = ":eight_pointed_black_star:")]
+        EightPointedBlackStar,
+        [EnumMember(Value = ":eight_spoked_asterisk:")]
+        EightSpokedAsterisk,
+        [EnumMember(Value = ":electric_plug:")]
+        ElectricPlug,
+        [EnumMember(Value = ":elephant:")]
+        Elephant,
+        [EnumMember(Value = ":email:")]
+        Email,
+        [EnumMember(Value = ":end:")]
+        End,
+        [EnumMember(Value = ":envelope:")]
+        Envelope,
+        [EnumMember(Value = ":es:")]
+        Es,
+        [EnumMember(Value = ":euro:")]
+        Euro,
+        [EnumMember(Value = ":european_castle:")]
+        EuropeanCastle,
+        [EnumMember(Value = ":european_post_office:")]
+        EuropeanPostOffice,
+        [EnumMember(Value = ":evergreen_tree:")]
+        EvergreenTree,
+        [EnumMember(Value = ":exclamation:")]
+        Exclamation,
+        [EnumMember(Value = ":expressionless:")]
+        Expressionless,
+        [EnumMember(Value = ":eyeglasses:")]
+        Eyeglasses,
+        [EnumMember(Value = ":eyes:")]
+        Eyes,
+        [EnumMember(Value = ":facepunch:")]
+        Facepunch,
+        [EnumMember(Value = ":factory:")]
+        Factory,
+        [EnumMember(Value = ":fallen_leaf:")]
+        FallenLeaf,
+        [EnumMember(Value = ":family:")]
+        Family,
+        [EnumMember(Value = ":fast_forward:")]
+        FastForward,
+        [EnumMember(Value = ":fax:")]
+        Fax,
+        [EnumMember(Value = ":fearful:")]
+        Fearful,
+        [EnumMember(Value = ":feelsgood:")]
+        Feelsgood,
+        [EnumMember(Value = ":feet:")]
+        Feet,
+        [EnumMember(Value = ":ferris_wheel:")]
+        FerrisWheel,
+        [EnumMember(Value = ":file_folder:")]
+        FileFolder,
+        [EnumMember(Value = ":finnadie:")]
+        Finnadie,
+        [EnumMember(Value = ":fire:")]
+        Fire,
+        [EnumMember(Value = ":fire_engine:")]
+        FireEngine,
+        [EnumMember(Value = ":fireworks:")]
+        Fireworks,
+        [EnumMember(Value = ":first_quarter_moon:")]
+        FirstQuarterMoon,
+        [EnumMember(Value = ":first_quarter_moon_with_face:")]
+        FirstQuarterMoonWithFace,
+        [EnumMember(Value = ":fish:")]
+        Fish,
+        [EnumMember(Value = ":fish_cake:")]
+        FishCake,
+        [EnumMember(Value = ":fishing_pole_and_fish:")]
+        FishingPoleAndFish,
+        [EnumMember(Value = ":fist:")]
+        Fist,
+        [EnumMember(Value = ":five:")]
+        Five,
+        [EnumMember(Value = ":flags:")]
+        Flags,
+        [EnumMember(Value = ":flashlight:")]
+        Flashlight,
+        [EnumMember(Value = ":floppy_disk:")]
+        FloppyDisk,
+        [EnumMember(Value = ":flower_playing_cards:")]
+        FlowerPlayingCards,
+        [EnumMember(Value = ":flushed:")]
+        Flushed,
+        [EnumMember(Value = ":foggy:")]
+        Foggy,
+        [EnumMember(Value = ":football:")]
+        Football,
+        [EnumMember(Value = ":fork_and_knife:")]
+        ForkAndKnife,
+        [EnumMember(Value = ":fountain:")]
+        Fountain,
+        [EnumMember(Value = ":four:")]
+        Four,
+        [EnumMember(Value = ":four_leaf_clover:")]
+        FourLeafClover,
+        [EnumMember(Value = ":fr:")]
+        Fr,
+        [EnumMember(Value = ":free:")]
+        Free,
+        [EnumMember(Value = ":fried_shrimp:")]
+        FriedShrimp,
+        [EnumMember(Value = ":fries:")]
+        Fries,
+        [EnumMember(Value = ":frog:")]
+        Frog,
+        [EnumMember(Value = ":frowning:")]
+        Frowning,
+        [EnumMember(Value = ":fu:")]
+        Fu,
+        [EnumMember(Value = ":fuelpump:")]
+        Fuelpump,
+        [EnumMember(Value = ":full_moon:")]
+        FullMoon,
+        [EnumMember(Value = ":full_moon_with_face:")]
+        FullMoonWithFace,
+        [EnumMember(Value = ":game_die:")]
+        GameDie,
+        [EnumMember(Value = ":gb:")]
+        Gb,
+        [EnumMember(Value = ":gem:")]
+        Gem,
+        [EnumMember(Value = ":gemini:")]
+        Gemini,
+        [EnumMember(Value = ":ghost:")]
+        Ghost,
+        [EnumMember(Value = ":gift:")]
+        Gift,
+        [EnumMember(Value = ":gift_heart:")]
+        GiftHeart,
+        [EnumMember(Value = ":girl:")]
+        Girl,
+        [EnumMember(Value = ":globe_with_meridians:")]
+        GlobeWithMeridians,
+        [EnumMember(Value = ":goat:")]
+        Goat,
+        [EnumMember(Value = ":goberserk:")]
+        Goberserk,
+        [EnumMember(Value = ":godmode:")]
+        Godmode,
+        [EnumMember(Value = ":golf:")]
+        Golf,
+        [EnumMember(Value = ":grapes:")]
+        Grapes,
+        [EnumMember(Value = ":green_apple:")]
+        GreenApple,
+        [EnumMember(Value = ":green_book:")]
+        GreenBook,
+        [EnumMember(Value = ":green_heart:")]
+        GreenHeart,
+        [EnumMember(Value = ":grey_exclamation:")]
+        GreyExclamation,
+        [EnumMember(Value = ":grey_question:")]
+        GreyQuestion,
+        [EnumMember(Value = ":grimacing:")]
+        Grimacing,
+        [EnumMember(Value = ":grin:")]
+        Grin,
+        [EnumMember(Value = ":grinning:")]
+        Grinning,
+        [EnumMember(Value = ":guardsman:")]
+        Guardsman,
+        [EnumMember(Value = ":guitar:")]
+        Guitar,
+        [EnumMember(Value = ":gun:")]
+        Gun,
+        [EnumMember(Value = ":haircut:")]
+        Haircut,
+        [EnumMember(Value = ":hamburger:")]
+        Hamburger,
+        [EnumMember(Value = ":hammer:")]
+        Hammer,
+        [EnumMember(Value = ":hamster:")]
+        Hamster,
+        [EnumMember(Value = ":hand:")]
+        Hand,
+        [EnumMember(Value = ":handbag:")]
+        Handbag,
+        [EnumMember(Value = ":hankey:")]
+        Hankey,
+        [EnumMember(Value = ":hash:")]
+        Hash,
+        [EnumMember(Value = ":hatched_chick:")]
+        HatchedChick,
+        [EnumMember(Value = ":hatching_chick:")]
+        HatchingChick,
+        [EnumMember(Value = ":headphones:")]
+        Headphones,
+        [EnumMember(Value = ":hear_no_evil:")]
+        HearNoEvil,
+        [EnumMember(Value = ":heart:")]
+        Heart,
+        [EnumMember(Value = ":heart_decoration:")]
+        HeartDecoration,
+        [EnumMember(Value = ":heart_eyes:")]
+        HeartEyes,
+        [EnumMember(Value = ":heart_eyes_cat:")]
+        HeartEyesCat,
+        [EnumMember(Value = ":heartbeat:")]
+        Heartbeat,
+        [EnumMember(Value = ":heartpulse:")]
+        Heartpulse,
+        [EnumMember(Value = ":hearts:")]
+        Hearts,
+        [EnumMember(Value = ":heavy_check_mark:")]
+        HeavyCheckMark,
+        [EnumMember(Value = ":heavy_division_sign:")]
+        HeavyDivisionSign,
+        [EnumMember(Value = ":heavy_dollar_sign:")]
+        HeavyDollarSign,
+        [EnumMember(Value = ":heavy_exclamation_mark:")]
+        HeavyExclamationMark,
+        [EnumMember(Value = ":heavy_minus_sign:")]
+        HeavyMinusSign,
+        [EnumMember(Value = ":heavy_multiplication_x:")]
+        HeavyMultiplicationX,
+        [EnumMember(Value = ":heavy_plus_sign:")]
+        HeavyPlusSign,
+        [EnumMember(Value = ":helicopter:")]
+        Helicopter,
+        [EnumMember(Value = ":herb:")]
+        Herb,
+        [EnumMember(Value = ":hibiscus:")]
+        Hibiscus,
+        [EnumMember(Value = ":high_brightness:")]
+        HighBrightness,
+        [EnumMember(Value = ":high_heel:")]
+        HighHeel,
+        [EnumMember(Value = ":hocho:")]
+        Hocho,
+        [EnumMember(Value = ":honey_pot:")]
+        HoneyPot,
+        [EnumMember(Value = ":honeybee:")]
+        Honeybee,
+        [EnumMember(Value = ":horse:")]
+        Horse,
+        [EnumMember(Value = ":horse_racing:")]
+        HorseRacing,
+        [EnumMember(Value = ":hospital:")]
+        Hospital,
+        [EnumMember(Value = ":hotel:")]
+        Hotel,
+        [EnumMember(Value = ":hotsprings:")]
+        Hotsprings,
+        [EnumMember(Value = ":hourglass:")]
+        Hourglass,
+        [EnumMember(Value = ":hourglass_flowing_sand:")]
+        HourglassFlowingSand,
+        [EnumMember(Value = ":house:")]
+        House,
+        [EnumMember(Value = ":house_with_garden:")]
+        HouseWithGarden,
+        [EnumMember(Value = ":hurtrealbad:")]
+        Hurtrealbad,
+        [EnumMember(Value = ":hushed:")]
+        Hushed,
+        [EnumMember(Value = ":ice_cream:")]
+        IceCream,
+        [EnumMember(Value = ":icecream:")]
+        Icecream,
+        [EnumMember(Value = ":id:")]
+        Id,
+        [EnumMember(Value = ":ideograph_advantage:")]
+        IdeographAdvantage,
+        [EnumMember(Value = ":imp:")]
+        Imp,
+        [EnumMember(Value = ":inbox_tray:")]
+        InboxTray,
+        [EnumMember(Value = ":incoming_envelope:")]
+        IncomingEnvelope,
+        [EnumMember(Value = ":information_desk_person:")]
+        InformationDeskPerson,
+        [EnumMember(Value = ":information_source:")]
+        InformationSource,
+        [EnumMember(Value = ":innocent:")]
+        Innocent,
+        [EnumMember(Value = ":interrobang:")]
+        Interrobang,
+        [EnumMember(Value = ":iphone:")]
+        Iphone,
+        [EnumMember(Value = ":it:")]
+        It,
+        [EnumMember(Value = ":izakaya_lantern:")]
+        IzakayaLantern,
+        [EnumMember(Value = ":jack_o_lantern:")]
+        JackOLantern,
+        [EnumMember(Value = ":japan:")]
+        Japan,
+        [EnumMember(Value = ":japanese_castle:")]
+        JapaneseCastle,
+        [EnumMember(Value = ":japanese_goblin:")]
+        JapaneseGoblin,
+        [EnumMember(Value = ":japanese_ogre:")]
+        JapaneseOgre,
+        [EnumMember(Value = ":jeans:")]
+        Jeans,
+        [EnumMember(Value = ":joy:")]
+        Joy,
+        [EnumMember(Value = ":joy_cat:")]
+        JoyCat,
+        [EnumMember(Value = ":jp:")]
+        Jp,
+        [EnumMember(Value = ":key:")]
+        Key,
+        [EnumMember(Value = ":keycap_ten:")]
+        KeycapTen,
+        [EnumMember(Value = ":kimono:")]
+        Kimono,
+        [EnumMember(Value = ":kiss:")]
+        Kiss,
+        [EnumMember(Value = ":kissing:")]
+        Kissing,
+        [EnumMember(Value = ":kissing_cat:")]
+        KissingCat,
+        [EnumMember(Value = ":kissing_closed_eyes:")]
+        KissingClosedEyes,
+        [EnumMember(Value = ":kissing_face:")]
+        KissingFace,
+        [EnumMember(Value = ":kissing_heart:")]
+        KissingHeart,
+        [EnumMember(Value = ":kissing_smiling_eyes:")]
+        KissingSmilingEyes,
+        [EnumMember(Value = ":koala:")]
+        Koala,
+        [EnumMember(Value = ":koko:")]
+        Koko,
+        [EnumMember(Value = ":kr:")]
+        Kr,
+        [EnumMember(Value = ":large_blue_circle:")]
+        LargeBlueCircle,
+        [EnumMember(Value = ":large_blue_diamond:")]
+        LargeBlueDiamond,
+        [EnumMember(Value = ":large_orange_diamond:")]
+        LargeOrangeDiamond,
+        [EnumMember(Value = ":last_quarter_moon:")]
+        LastQuarterMoon,
+        [EnumMember(Value = ":last_quarter_moon_with_face:")]
+        LastQuarterMoonWithFace,
+        [EnumMember(Value = ":laughing:")]
+        Laughing,
+        [EnumMember(Value = ":leaves:")]
+        Leaves,
+        [EnumMember(Value = ":ledger:")]
+        Ledger,
+        [EnumMember(Value = ":left_luggage:")]
+        LeftLuggage,
+        [EnumMember(Value = ":left_right_arrow:")]
+        LeftRightArrow,
+        [EnumMember(Value = ":leftwards_arrow_with_hook:")]
+        LeftwardsArrowWithHook,
+        [EnumMember(Value = ":lemon:")]
+        Lemon,
+        [EnumMember(Value = ":leo:")]
+        Leo,
+        [EnumMember(Value = ":leopard:")]
+        Leopard,
+        [EnumMember(Value = ":libra:")]
+        Libra,
+        [EnumMember(Value = ":light_rail:")]
+        LightRail,
+        [EnumMember(Value = ":link:")]
+        Link,
+        [EnumMember(Value = ":lips:")]
+        Lips,
+        [EnumMember(Value = ":lipstick:")]
+        Lipstick,
+        [EnumMember(Value = ":lock:")]
+        Lock,
+        [EnumMember(Value = ":lock_with_ink_pen:")]
+        LockWithInkPen,
+        [EnumMember(Value = ":lollipop:")]
+        Lollipop,
+        [EnumMember(Value = ":loop:")]
+        Loop,
+        [EnumMember(Value = ":loudspeaker:")]
+        Loudspeaker,
+        [EnumMember(Value = ":love_hotel:")]
+        LoveHotel,
+        [EnumMember(Value = ":love_letter:")]
+        LoveLetter,
+        [EnumMember(Value = ":low_brightness:")]
+        LowBrightness,
+        [EnumMember(Value = ":m:")]
+        M,
+        [EnumMember(Value = ":mag:")]
+        Mag,
+        [EnumMember(Value = ":mag_right:")]
+        MagRight,
+        [EnumMember(Value = ":mahjong:")]
+        Mahjong,
+        [EnumMember(Value = ":mailbox:")]
+        Mailbox,
+        [EnumMember(Value = ":mailbox_closed:")]
+        MailboxClosed,
+        [EnumMember(Value = ":mailbox_with_mail:")]
+        MailboxWithMail,
+        [EnumMember(Value = ":mailbox_with_no_mail:")]
+        MailboxWithNoMail,
+        [EnumMember(Value = ":man:")]
+        Man,
+        [EnumMember(Value = ":man_with_gua_pi_mao:")]
+        ManWithGuaPiMao,
+        [EnumMember(Value = ":man_with_turban:")]
+        ManWithTurban,
+        [EnumMember(Value = ":mans_shoe:")]
+        MansShoe,
+        [EnumMember(Value = ":maple_leaf:")]
+        MapleLeaf,
+        [EnumMember(Value = ":mask:")]
+        Mask,
+        [EnumMember(Value = ":massage:")]
+        Massage,
+        [EnumMember(Value = ":meat_on_bone:")]
+        MeatOnBone,
+        [EnumMember(Value = ":mega:")]
+        Mega,
+        [EnumMember(Value = ":melon:")]
+        Melon,
+        [EnumMember(Value = ":memo:")]
+        Memo,
+        [EnumMember(Value = ":mens:")]
+        Mens,
+        [EnumMember(Value = ":metal:")]
+        Metal,
+        [EnumMember(Value = ":metro:")]
+        Metro,
+        [EnumMember(Value = ":microphone:")]
+        Microphone,
+        [EnumMember(Value = ":microscope:")]
+        Microscope,
+        [EnumMember(Value = ":milky_way:")]
+        MilkyWay,
+        [EnumMember(Value = ":minibus:")]
+        Minibus,
+        [EnumMember(Value = ":minidisc:")]
+        Minidisc,
+        [EnumMember(Value = ":mobile_phone_off:")]
+        MobilePhoneOff,
+        [EnumMember(Value = ":money_with_wings:")]
+        MoneyWithWings,
+        [EnumMember(Value = ":moneybag:")]
+        Moneybag,
+        [EnumMember(Value = ":monkey:")]
+        Monkey,
+        [EnumMember(Value = ":monkey_face:")]
+        MonkeyFace,
+        [EnumMember(Value = ":monorail:")]
+        Monorail,
+        [EnumMember(Value = ":moon:")]
+        Moon,
+        [EnumMember(Value = ":mortar_board:")]
+        MortarBoard,
+        [EnumMember(Value = ":mount_fuji:")]
+        MountFuji,
+        [EnumMember(Value = ":mountain_bicyclist:")]
+        MountainBicyclist,
+        [EnumMember(Value = ":mountain_cableway:")]
+        MountainCableway,
+        [EnumMember(Value = ":mountain_railway:")]
+        MountainRailway,
+        [EnumMember(Value = ":mouse:")]
+        Mouse,
+        [EnumMember(Value = ":mouse2:")]
+        Mouse2,
+        [EnumMember(Value = ":movie_camera:")]
+        MovieCamera,
+        [EnumMember(Value = ":moyai:")]
+        Moyai,
+        [EnumMember(Value = ":muscle:")]
+        Muscle,
+        [EnumMember(Value = ":mushroom:")]
+        Mushroom,
+        [EnumMember(Value = ":musical_keyboard:")]
+        MusicalKeyboard,
+        [EnumMember(Value = ":musical_note:")]
+        MusicalNote,
+        [EnumMember(Value = ":musical_score:")]
+        MusicalScore,
+        [EnumMember(Value = ":mute:")]
+        Mute,
+        [EnumMember(Value = ":nail_care:")]
+        NailCare,
+        [EnumMember(Value = ":name_badge:")]
+        NameBadge,
+        [EnumMember(Value = ":neckbeard:")]
+        Neckbeard,
+        [EnumMember(Value = ":necktie:")]
+        Necktie,
+        [EnumMember(Value = ":negative_squared_cross_mark:")]
+        NegativeSquaredCrossMark,
+        [EnumMember(Value = ":neutral_face:")]
+        NeutralFace,
+        [EnumMember(Value = ":new:")]
+        New,
+        [EnumMember(Value = ":new_moon:")]
+        NewMoon,
+        [EnumMember(Value = ":new_moon_with_face:")]
+        NewMoonWithFace,
+        [EnumMember(Value = ":newspaper:")]
+        Newspaper,
+        [EnumMember(Value = ":ng:")]
+        Ng,
+        [EnumMember(Value = ":nine:")]
+        Nine,
+        [EnumMember(Value = ":no_bell:")]
+        NoBell,
+        [EnumMember(Value = ":no_bicycles:")]
+        NoBicycles,
+        [EnumMember(Value = ":no_entry:")]
+        NoEntry,
+        [EnumMember(Value = ":no_entry_sign:")]
+        NoEntrySign,
+        [EnumMember(Value = ":no_good:")]
+        NoGood,
+        [EnumMember(Value = ":no_mobile_phones:")]
+        NoMobilePhones,
+        [EnumMember(Value = ":no_mouth:")]
+        NoMouth,
+        [EnumMember(Value = ":no_pedestrians:")]
+        NoPedestrians,
+        [EnumMember(Value = ":no_smoking:")]
+        NoSmoking,
+        [EnumMember(Value = ":non-potable_water:")]
+        NonPotableWater,
+        [EnumMember(Value = ":nose:")]
+        Nose,
+        [EnumMember(Value = ":notebook:")]
+        Notebook,
+        [EnumMember(Value = ":notebook_with_decorative_cover:")]
+        NotebookWithDecorativeCover,
+        [EnumMember(Value = ":notes:")]
+        Notes,
+        [EnumMember(Value = ":nut_and_bolt:")]
+        NutAndBolt,
+        [EnumMember(Value = ":o:")]
+        O,
+        [EnumMember(Value = ":o2:")]
+        O2,
+        [EnumMember(Value = ":ocean:")]
+        Ocean,
+        [EnumMember(Value = ":octocat:")]
+        Octocat,
+        [EnumMember(Value = ":octopus:")]
+        Octopus,
+        [EnumMember(Value = ":oden:")]
+        Oden,
+        [EnumMember(Value = ":office:")]
+        Office,
+        [EnumMember(Value = ":ok:")]
+        Ok,
+        [EnumMember(Value = ":ok_hand:")]
+        OkHand,
+        [EnumMember(Value = ":ok_woman:")]
+        OkWoman,
+        [EnumMember(Value = ":older_man:")]
+        OlderMan,
+        [EnumMember(Value = ":older_woman:")]
+        OlderWoman,
+        [EnumMember(Value = ":on:")]
+        On,
+        [EnumMember(Value = ":oncoming_automobile:")]
+        OncomingAutomobile,
+        [EnumMember(Value = ":oncoming_bus:")]
+        OncomingBus,
+        [EnumMember(Value = ":oncoming_police_car:")]
+        OncomingPoliceCar,
+        [EnumMember(Value = ":oncoming_taxi:")]
+        OncomingTaxi,
+        [EnumMember(Value = ":one:")]
+        One,
+        [EnumMember(Value = ":open_file_folder:")]
+        OpenFileFolder,
+        [EnumMember(Value = ":open_hands:")]
+        OpenHands,
+        [EnumMember(Value = ":open_mouth:")]
+        OpenMouth,
+        [EnumMember(Value = ":ophiuchus:")]
+        Ophiuchus,
+        [EnumMember(Value = ":orange_book:")]
+        OrangeBook,
+        [EnumMember(Value = ":outbox_tray:")]
+        OutboxTray,
+        [EnumMember(Value = ":ox:")]
+        Ox,
+        [EnumMember(Value = ":package:")]
+        Package,
+        [EnumMember(Value = ":page_facing_up:")]
+        PageFacingUp,
+        [EnumMember(Value = ":page_with_curl:")]
+        PageWithCurl,
+        [EnumMember(Value = ":pager:")]
+        Pager,
+        [EnumMember(Value = ":palm_tree:")]
+        PalmTree,
+        [EnumMember(Value = ":panda_face:")]
+        PandaFace,
+        [EnumMember(Value = ":paperclip:")]
+        Paperclip,
+        [EnumMember(Value = ":parking:")]
+        Parking,
+        [EnumMember(Value = ":part_alternation_mark:")]
+        PartAlternationMark,
+        [EnumMember(Value = ":partly_sunny:")]
+        PartlySunny,
+        [EnumMember(Value = ":passport_control:")]
+        PassportControl,
+        [EnumMember(Value = ":paw_prints:")]
+        PawPrints,
+        [EnumMember(Value = ":peach:")]
+        Peach,
+        [EnumMember(Value = ":pear:")]
+        Pear,
+        [EnumMember(Value = ":pencil:")]
+        Pencil,
+        [EnumMember(Value = ":pencil2:")]
+        Pencil2,
+        [EnumMember(Value = ":penguin:")]
+        Penguin,
+        [EnumMember(Value = ":pensive:")]
+        Pensive,
+        [EnumMember(Value = ":performing_arts:")]
+        PerformingArts,
+        [EnumMember(Value = ":persevere:")]
+        Persevere,
+        [EnumMember(Value = ":person_frowning:")]
+        PersonFrowning,
+        [EnumMember(Value = ":person_with_blond_hair:")]
+        PersonWithBlondHair,
+        [EnumMember(Value = ":person_with_pouting_face:")]
+        PersonWithPoutingFace,
+        [EnumMember(Value = ":phone:")]
+        Phone,
+        [EnumMember(Value = ":pig:")]
+        Pig,
+        [EnumMember(Value = ":pig2:")]
+        Pig2,
+        [EnumMember(Value = ":pig_nose:")]
+        PigNose,
+        [EnumMember(Value = ":pill:")]
+        Pill,
+        [EnumMember(Value = ":pineapple:")]
+        Pineapple,
+        [EnumMember(Value = ":pisces:")]
+        Pisces,
+        [EnumMember(Value = ":pizza:")]
+        Pizza,
+        [EnumMember(Value = ":plus1:")]
+        Plus1,
+        [EnumMember(Value = ":point_down:")]
+        PointDown,
+        [EnumMember(Value = ":point_left:")]
+        PointLeft,
+        [EnumMember(Value = ":point_right:")]
+        PointRight,
+        [EnumMember(Value = ":point_up:")]
+        PointUp,
+        [EnumMember(Value = ":point_up_2:")]
+        PointUp2,
+        [EnumMember(Value = ":police_car:")]
+        PoliceCar,
+        [EnumMember(Value = ":poodle:")]
+        Poodle,
+        [EnumMember(Value = ":poop:")]
+        Poop,
+        [EnumMember(Value = ":post_office:")]
+        PostOffice,
+        [EnumMember(Value = ":postal_horn:")]
+        PostalHorn,
+        [EnumMember(Value = ":postbox:")]
+        Postbox,
+        [EnumMember(Value = ":potable_water:")]
+        PotableWater,
+        [EnumMember(Value = ":pouch:")]
+        Pouch,
+        [EnumMember(Value = ":poultry_leg:")]
+        PoultryLeg,
+        [EnumMember(Value = ":pound:")]
+        Pound,
+        [EnumMember(Value = ":pouting_cat:")]
+        PoutingCat,
+        [EnumMember(Value = ":pray:")]
+        Pray,
+        [EnumMember(Value = ":princess:")]
+        Princess,
+        [EnumMember(Value = ":punch:")]
+        Punch,
+        [EnumMember(Value = ":purple_heart:")]
+        PurpleHeart,
+        [EnumMember(Value = ":purse:")]
+        Purse,
+        [EnumMember(Value = ":pushpin:")]
+        Pushpin,
+        [EnumMember(Value = ":put_litter_in_its_place:")]
+        PutLitterInItsPlace,
+        [EnumMember(Value = ":question:")]
+        Question,
+        [EnumMember(Value = ":rabbit:")]
+        Rabbit,
+        [EnumMember(Value = ":rabbit2:")]
+        Rabbit2,
+        [EnumMember(Value = ":racehorse:")]
+        Racehorse,
+        [EnumMember(Value = ":radio:")]
+        Radio,
+        [EnumMember(Value = ":radio_button:")]
+        RadioButton,
+        [EnumMember(Value = ":rage:")]
+        Rage,
+        [EnumMember(Value = ":rage1:")]
+        Rage1,
+        [EnumMember(Value = ":rage2:")]
+        Rage2,
+        [EnumMember(Value = ":rage3:")]
+        Rage3,
+        [EnumMember(Value = ":rage4:")]
+        Rage4,
+        [EnumMember(Value = ":railway_car:")]
+        RailwayCar,
+        [EnumMember(Value = ":rainbow:")]
+        Rainbow,
+        [EnumMember(Value = ":raised_hand:")]
+        RaisedHand,
+        [EnumMember(Value = ":raised_hands:")]
+        RaisedHands,
+        [EnumMember(Value = ":raising_hand:")]
+        RaisingHand,
+        [EnumMember(Value = ":ram:")]
+        Ram,
+        [EnumMember(Value = ":ramen:")]
+        Ramen,
+        [EnumMember(Value = ":rat:")]
+        Rat,
+        [EnumMember(Value = ":recycle:")]
+        Recycle,
+        [EnumMember(Value = ":red_car:")]
+        RedCar,
+        [EnumMember(Value = ":red_circle:")]
+        RedCircle,
+        [EnumMember(Value = ":registered:")]
+        Registered,
+        [EnumMember(Value = ":relaxed:")]
+        Relaxed,
+        [EnumMember(Value = ":relieved:")]
+        Relieved,
+        [EnumMember(Value = ":repeat:")]
+        Repeat,
+        [EnumMember(Value = ":repeat_one:")]
+        RepeatOne,
+        [EnumMember(Value = ":restroom:")]
+        Restroom,
+        [EnumMember(Value = ":revolving_hearts:")]
+        RevolvingHearts,
+        [EnumMember(Value = ":rewind:")]
+        Rewind,
+        [EnumMember(Value = ":ribbon:")]
+        Ribbon,
+        [EnumMember(Value = ":rice:")]
+        Rice,
+        [EnumMember(Value = ":rice_ball:")]
+        RiceBall,
+        [EnumMember(Value = ":rice_cracker:")]
+        RiceCracker,
+        [EnumMember(Value = ":rice_scene:")]
+        RiceScene,
+        [EnumMember(Value = ":ring:")]
+        Ring,
+        [EnumMember(Value = ":rocket:")]
+        Rocket,
+        [EnumMember(Value = ":roller_coaster:")]
+        RollerCoaster,
+        [EnumMember(Value = ":rooster:")]
+        Rooster,
+        [EnumMember(Value = ":rose:")]
+        Rose,
+        [EnumMember(Value = ":rotating_light:")]
+        RotatingLight,
+        [EnumMember(Value = ":round_pushpin:")]
+        RoundPushpin,
+        [EnumMember(Value = ":rowboat:")]
+        Rowboat,
+        [EnumMember(Value = ":ru:")]
+        Ru,
+        [EnumMember(Value = ":rugby_football:")]
+        RugbyFootball,
+        [EnumMember(Value = ":runner:")]
+        Runner,
+        [EnumMember(Value = ":running:")]
+        Running,
+        [EnumMember(Value = ":running_shirt_with_sash:")]
+        RunningShirtWithSash,
+        [EnumMember(Value = ":sa:")]
+        Sa,
+        [EnumMember(Value = ":sagittarius:")]
+        Sagittarius,
+        [EnumMember(Value = ":sailboat:")]
+        Sailboat,
+        [EnumMember(Value = ":sake:")]
+        Sake,
+        [EnumMember(Value = ":sandal:")]
+        Sandal,
+        [EnumMember(Value = ":santa:")]
+        Santa,
+        [EnumMember(Value = ":satellite:")]
+        Satellite,
+        [EnumMember(Value = ":satisfied:")]
+        Satisfied,
+        [EnumMember(Value = ":saxophone:")]
+        Saxophone,
+        [EnumMember(Value = ":school:")]
+        School,
+        [EnumMember(Value = ":school_satchel:")]
+        SchoolSatchel,
+        [EnumMember(Value = ":scissors:")]
+        Scissors,
+        [EnumMember(Value = ":scorpius:")]
+        Scorpius,
+        [EnumMember(Value = ":scream:")]
+        Scream,
+        [EnumMember(Value = ":scream_cat:")]
+        ScreamCat,
+        [EnumMember(Value = ":scroll:")]
+        Scroll,
+        [EnumMember(Value = ":seat:")]
+        Seat,
+        [EnumMember(Value = ":secret:")]
+        Secret,
+        [EnumMember(Value = ":see_no_evil:")]
+        SeeNoEvil,
+        [EnumMember(Value = ":seedling:")]
+        Seedling,
+        [EnumMember(Value = ":seven:")]
+        Seven,
+        [EnumMember(Value = ":shaved_ice:")]
+        ShavedIce,
+        [EnumMember(Value = ":sheep:")]
+        Sheep,
+        [EnumMember(Value = ":shell:")]
+        Shell,
+        [EnumMember(Value = ":ship:")]
+        Ship,
+        [EnumMember(Value = ":shipit:")]
+        Shipit,
+        [EnumMember(Value = ":shirt:")]
+        Shirt,
+        [EnumMember(Value = ":shit:")]
+        Shit,
+        [EnumMember(Value = ":shoe:")]
+        Shoe,
+        [EnumMember(Value = ":shower:")]
+        Shower,
+        [EnumMember(Value = ":signal_strength:")]
+        SignalStrength,
+        [EnumMember(Value = ":six:")]
+        Six,
+        [EnumMember(Value = ":six_pointed_star:")]
+        SixPointedStar,
+        [EnumMember(Value = ":ski:")]
+        Ski,
+        [EnumMember(Value = ":skull:")]
+        Skull,
+        [EnumMember(Value = ":sleeping:")]
+        Sleeping,
+        [EnumMember(Value = ":sleepy:")]
+        Sleepy,
+        [EnumMember(Value = ":slot_machine:")]
+        SlotMachine,
+        [EnumMember(Value = ":small_blue_diamond:")]
+        SmallBlueDiamond,
+        [EnumMember(Value = ":small_orange_diamond:")]
+        SmallOrangeDiamond,
+        [EnumMember(Value = ":small_red_triangle:")]
+        SmallRedTriangle,
+        [EnumMember(Value = ":small_red_triangle_down:")]
+        SmallRedTriangleDown,
+        [EnumMember(Value = ":smile:")]
+        Smile,
+        [EnumMember(Value = ":smile_cat:")]
+        SmileCat,
+        [EnumMember(Value = ":smiley:")]
+        Smiley,
+        [EnumMember(Value = ":smiley_cat:")]
+        SmileyCat,
+        [EnumMember(Value = ":smiling_imp:")]
+        SmilingImp,
+        [EnumMember(Value = ":smirk:")]
+        Smirk,
+        [EnumMember(Value = ":smirk_cat:")]
+        SmirkCat,
+        [EnumMember(Value = ":smoking:")]
+        Smoking,
+        [EnumMember(Value = ":snail:")]
+        Snail,
+        [EnumMember(Value = ":snake:")]
+        Snake,
+        [EnumMember(Value = ":snowboarder:")]
+        Snowboarder,
+        [EnumMember(Value = ":snowflake:")]
+        Snowflake,
+        [EnumMember(Value = ":snowman:")]
+        Snowman,
+        [EnumMember(Value = ":sob:")]
+        Sob,
+        [EnumMember(Value = ":soccer:")]
+        Soccer,
+        [EnumMember(Value = ":soon:")]
+        Soon,
+        [EnumMember(Value = ":sos:")]
+        Sos,
+        [EnumMember(Value = ":sound:")]
+        Sound,
+        [EnumMember(Value = ":space_invader:")]
+        SpaceInvader,
+        [EnumMember(Value = ":spades:")]
+        Spades,
+        [EnumMember(Value = ":spaghetti:")]
+        Spaghetti,
+        [EnumMember(Value = ":sparkle:")]
+        Sparkle,
+        [EnumMember(Value = ":sparkler:")]
+        Sparkler,
+        [EnumMember(Value = ":sparkles:")]
+        Sparkles,
+        [EnumMember(Value = ":sparkling_heart:")]
+        SparklingHeart,
+        [EnumMember(Value = ":speak_no_evil:")]
+        SpeakNoEvil,
+        [EnumMember(Value = ":speaker:")]
+        Speaker,
+        [EnumMember(Value = ":speech_balloon:")]
+        SpeechBalloon,
+        [EnumMember(Value = ":speedboat:")]
+        Speedboat,
+        [EnumMember(Value = ":squirrel:")]
+        Squirrel,
+        [EnumMember(Value = ":star:")]
+        Star,
+        [EnumMember(Value = ":star2:")]
+        Star2,
+        [EnumMember(Value = ":stars:")]
+        Stars,
+        [EnumMember(Value = ":station:")]
+        Station,
+        [EnumMember(Value = ":statue_of_liberty:")]
+        StatueOfLiberty,
+        [EnumMember(Value = ":steam_locomotive:")]
+        SteamLocomotive,
+        [EnumMember(Value = ":stew:")]
+        Stew,
+        [EnumMember(Value = ":straight_ruler:")]
+        StraightRuler,
+        [EnumMember(Value = ":strawberry:")]
+        Strawberry,
+        [EnumMember(Value = ":stuck_out_tongue:")]
+        StuckOutTongue,
+        [EnumMember(Value = ":stuck_out_tongue_closed_eyes:")]
+        StuckOutTongueClosedEyes,
+        [EnumMember(Value = ":stuck_out_tongue_winking_eye:")]
+        StuckOutTongueWinkingEye,
+        [EnumMember(Value = ":sun_with_face:")]
+        SunWithFace,
+        [EnumMember(Value = ":sunflower:")]
+        Sunflower,
+        [EnumMember(Value = ":sunglasses:")]
+        Sunglasses,
+        [EnumMember(Value = ":sunny:")]
+        Sunny,
+        [EnumMember(Value = ":sunrise:")]
+        Sunrise,
+        [EnumMember(Value = ":sunrise_over_mountains:")]
+        SunriseOverMountains,
+        [EnumMember(Value = ":surfer:")]
+        Surfer,
+        [EnumMember(Value = ":sushi:")]
+        Sushi,
+        [EnumMember(Value = ":suspect:")]
+        Suspect,
+        [EnumMember(Value = ":suspension_railway:")]
+        SuspensionRailway,
+        [EnumMember(Value = ":sweat:")]
+        Sweat,
+        [EnumMember(Value = ":sweat_drops:")]
+        SweatDrops,
+        [EnumMember(Value = ":sweat_smile:")]
+        SweatSmile,
+        [EnumMember(Value = ":sweet_potato:")]
+        SweetPotato,
+        [EnumMember(Value = ":swimmer:")]
+        Swimmer,
+        [EnumMember(Value = ":symbols:")]
+        Symbols,
+        [EnumMember(Value = ":syringe:")]
+        Syringe,
+        [EnumMember(Value = ":tada:")]
+        Tada,
+        [EnumMember(Value = ":tanabata_tree:")]
+        TanabataTree,
+        [EnumMember(Value = ":tangerine:")]
+        Tangerine,
+        [EnumMember(Value = ":taurus:")]
+        Taurus,
+        [EnumMember(Value = ":taxi:")]
+        Taxi,
+        [EnumMember(Value = ":tea:")]
+        Tea,
+        [EnumMember(Value = ":telephone:")]
+        Telephone,
+        [EnumMember(Value = ":telephone_receiver:")]
+        TelephoneReceiver,
+        [EnumMember(Value = ":telescope:")]
+        Telescope,
+        [EnumMember(Value = ":tennis:")]
+        Tennis,
+        [EnumMember(Value = ":tent:")]
+        Tent,
+        [EnumMember(Value = ":thought_balloon:")]
+        ThoughtBalloon,
+        [EnumMember(Value = ":three:")]
+        Three,
+        [EnumMember(Value = ":thumbsdown:")]
+        Thumbsdown,
+        [EnumMember(Value = ":thumbsup:")]
+        Thumbsup,
+        [EnumMember(Value = ":ticket:")]
+        Ticket,
+        [EnumMember(Value = ":tiger:")]
+        Tiger,
+        [EnumMember(Value = ":tiger2:")]
+        Tiger2,
+        [EnumMember(Value = ":tired_face:")]
+        TiredFace,
+        [EnumMember(Value = ":tm:")]
+        Tm,
+        [EnumMember(Value = ":toilet:")]
+        Toilet,
+        [EnumMember(Value = ":tokyo_tower:")]
+        TokyoTower,
+        [EnumMember(Value = ":tomato:")]
+        Tomato,
+        [EnumMember(Value = ":tongue:")]
+        Tongue,
+        [EnumMember(Value = ":top:")]
+        Top,
+        [EnumMember(Value = ":tophat:")]
+        Tophat,
+        [EnumMember(Value = ":tractor:")]
+        Tractor,
+        [EnumMember(Value = ":traffic_light:")]
+        TrafficLight,
+        [EnumMember(Value = ":train:")]
+        Train,
+        [EnumMember(Value = ":train2:")]
+        Train2,
+        [EnumMember(Value = ":tram:")]
+        Tram,
+        [EnumMember(Value = ":triangular_flag_on_post:")]
+        TriangularFlagOnPost,
+        [EnumMember(Value = ":triangular_ruler:")]
+        TriangularRuler,
+        [EnumMember(Value = ":trident:")]
+        Trident,
+        [EnumMember(Value = ":triumph:")]
+        Triumph,
+        [EnumMember(Value = ":trolleybus:")]
+        Trolleybus,
+        [EnumMember(Value = ":trollface:")]
+        Trollface,
+        [EnumMember(Value = ":trophy:")]
+        Trophy,
+        [EnumMember(Value = ":tropical_drink:")]
+        TropicalDrink,
+        [EnumMember(Value = ":tropical_fish:")]
+        TropicalFish,
+        [EnumMember(Value = ":truck:")]
+        Truck,
+        [EnumMember(Value = ":trumpet:")]
+        Trumpet,
+        [EnumMember(Value = ":tshirt:")]
+        Tshirt,
+        [EnumMember(Value = ":tulip:")]
+        Tulip,
+        [EnumMember(Value = ":turtle:")]
+        Turtle,
+        [EnumMember(Value = ":tv:")]
+        Tv,
+        [EnumMember(Value = ":twisted_rightwards_arrows:")]
+        TwistedRightwardsArrows,
+        [EnumMember(Value = ":two:")]
+        Two,
+        [EnumMember(Value = ":two_hearts:")]
+        TwoHearts,
+        [EnumMember(Value = ":two_men_holding_hands:")]
+        TwoMenHoldingHands,
+        [EnumMember(Value = ":two_women_holding_hands:")]
+        TwoWomenHoldingHands,
+        [EnumMember(Value = ":u5272:")]
+        U5272,
+        [EnumMember(Value = ":u5408:")]
+        U5408,
+        [EnumMember(Value = ":u55b6:")]
+        U55B6,
+        [EnumMember(Value = ":u6307:")]
+        U6307,
+        [EnumMember(Value = ":u6708:")]
+        U6708,
+        [EnumMember(Value = ":u6709:")]
+        U6709,
+        [EnumMember(Value = ":u6e80:")]
+        U6E80,
+        [EnumMember(Value = ":u7121:")]
+        U7121,
+        [EnumMember(Value = ":u7533:")]
+        U7533,
+        [EnumMember(Value = ":u7981:")]
+        U7981,
+        [EnumMember(Value = ":u7a7a:")]
+        U7A7A,
+        [EnumMember(Value = ":uk:")]
+        Uk,
+        [EnumMember(Value = ":umbrella:")]
+        Umbrella,
+        [EnumMember(Value = ":unamused:")]
+        Unamused,
+        [EnumMember(Value = ":underage:")]
+        Underage,
+        [EnumMember(Value = ":unlock:")]
+        Unlock,
+        [EnumMember(Value = ":up:")]
+        Up,
+        [EnumMember(Value = ":us:")]
+        Us,
+        [EnumMember(Value = ":v:")]
+        V,
+        [EnumMember(Value = ":vertical_traffic_light:")]
+        VerticalTrafficLight,
+        [EnumMember(Value = ":vhs:")]
+        Vhs,
+        [EnumMember(Value = ":vibration_mode:")]
+        VibrationMode,
+        [EnumMember(Value = ":video_camera:")]
+        VideoCamera,
+        [EnumMember(Value = ":video_game:")]
+        VideoGame,
+        [EnumMember(Value = ":violin:")]
+        Violin,
+        [EnumMember(Value = ":virgo:")]
+        Virgo,
+        [EnumMember(Value = ":volcano:")]
+        Volcano,
+        [EnumMember(Value = ":vs:")]
+        Vs,
+        [EnumMember(Value = ":walking:")]
+        Walking,
+        [EnumMember(Value = ":waning_crescent_moon:")]
+        WaningCrescentMoon,
+        [EnumMember(Value = ":waning_gibbous_moon:")]
+        WaningGibbousMoon,
+        [EnumMember(Value = ":warning:")]
+        Warning,
+        [EnumMember(Value = ":watch:")]
+        Watch,
+        [EnumMember(Value = ":water_buffalo:")]
+        WaterBuffalo,
+        [EnumMember(Value = ":watermelon:")]
+        Watermelon,
+        [EnumMember(Value = ":wave:")]
+        Wave,
+        [EnumMember(Value = ":wavy_dash:")]
+        WavyDash,
+        [EnumMember(Value = ":waxing_crescent_moon:")]
+        WaxingCrescentMoon,
+        [EnumMember(Value = ":waxing_gibbous_moon:")]
+        WaxingGibbousMoon,
+        [EnumMember(Value = ":wc:")]
+        Wc,
+        [EnumMember(Value = ":weary:")]
+        Weary,
+        [EnumMember(Value = ":wedding:")]
+        Wedding,
+        [EnumMember(Value = ":whale:")]
+        Whale,
+        [EnumMember(Value = ":whale2:")]
+        Whale2,
+        [EnumMember(Value = ":wheelchair:")]
+        Wheelchair,
+        [EnumMember(Value = ":white_check_mark:")]
+        WhiteCheckMark,
+        [EnumMember(Value = ":white_circle:")]
+        WhiteCircle,
+        [EnumMember(Value = ":white_flower:")]
+        WhiteFlower,
+        [EnumMember(Value = ":white_large_square:")]
+        WhiteLargeSquare,
+        [EnumMember(Value = ":white_medium_small_square:")]
+        WhiteMediumSmallSquare,
+        [EnumMember(Value = ":white_medium_square:")]
+        WhiteMediumSquare,
+        [EnumMember(Value = ":white_small_square:")]
+        WhiteSmallSquare,
+        [EnumMember(Value = ":white_square_button:")]
+        WhiteSquareButton,
+        [EnumMember(Value = ":wind_chime:")]
+        WindChime,
+        [EnumMember(Value = ":wine_glass:")]
+        WineGlass,
+        [EnumMember(Value = ":wink:")]
+        Wink,
+        [EnumMember(Value = ":wolf:")]
+        Wolf,
+        [EnumMember(Value = ":woman:")]
+        Woman,
+        [EnumMember(Value = ":womans_clothes:")]
+        WomansClothes,
+        [EnumMember(Value = ":womans_hat:")]
+        WomansHat,
+        [EnumMember(Value = ":womens:")]
+        Womens,
+        [EnumMember(Value = ":worried:")]
+        Worried,
+        [EnumMember(Value = ":wrench:")]
+        Wrench,
+        [EnumMember(Value = ":x:")]
+        X,
+        [EnumMember(Value = ":yellow_heart:")]
+        YellowHeart,
+        [EnumMember(Value = ":yen:")]
+        Yen,
+        [EnumMember(Value = ":yum:")]
+        Yum,
+        [EnumMember(Value = ":zap:")]
+        Zap,
+        [EnumMember(Value = ":zero:")]
+        Zero,
+        [EnumMember(Value = ":zzz:")]
+        Zzz
     }
 }
