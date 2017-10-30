@@ -48,7 +48,7 @@ namespace Slack.Webhooks
         /// <summary>
         /// Parse mode <see cref="ParseMode"/>
         /// </summary>
-        public string Parse { get; set; }
+        public ParseMode Parse { get; set; }
         /// <summary>
         /// Optional attachment collection
         /// </summary>

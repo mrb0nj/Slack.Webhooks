@@ -72,7 +72,6 @@
     <Compile Include="SlackClient.cs" />
     <Compile Include="SlackField.cs" />
     <Compile Include="SlackMessage.cs" />
-    <Compile Include="ParseMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

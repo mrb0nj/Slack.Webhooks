@@ -5,6 +5,15 @@ using System.Runtime.Serialization;
 namespace Slack.Webhooks
 {
     [JsonConverter(typeof(StringEnumConverter))]
+    public enum ParseMode
+    {
+        [EnumMember(Value = "none")]
+        None,
+        [EnumMember(Value = "full")]
+        Full
+    }
+
+    [JsonConverter(typeof(StringEnumConverter))]
     public enum SlackActionDataSource
     {
         [EnumMember(Value = "static")]
