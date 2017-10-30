@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 
-namespace Slack.Webhooks.SlackAction
+namespace Slack.Webhooks.Action
 {
     /// <summary>
     /// Slack attachment action. An attachment can have zero or more actions.
     /// </summary>
-    public class Action
+    public class SlackAction
     {
-        private string _type = SlackAction.Type.Button;
-        private string _style = SlackAction.Style.Default;
-        private string _dataSource = SlackAction.DataSource.Static;
+        private string _type = Action.Type.Button;
+        private string _style = Action.Style.Default;
+        private string _dataSource = Action.DataSource.Static;
 
         /// <summary>
         /// Provide a string to give this specific action a name.   

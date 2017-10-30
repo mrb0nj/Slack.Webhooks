@@ -1,4 +1,4 @@
-namespace Slack.Webhooks.SlackAction
+namespace Slack.Webhooks.Action
 {
     public class Confirm
     {

@@ -60,16 +60,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\Confirm.cs" />
+    <Compile Include="Action\DataSource.cs" />
+    <Compile Include="Action\Option.cs" />
+    <Compile Include="Action\OptionGroup.cs" />
+    <Compile Include="Action\SlackAction.cs" />
+    <Compile Include="Action\Style.cs" />
+    <Compile Include="Action\Type.cs" />
     <Compile Include="Emoji.cs" />
     <Compile Include="ISlackClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SlackAction\Action.cs" />
-    <Compile Include="SlackAction\Confirm.cs" />
-    <Compile Include="SlackAction\DataSource.cs" />
-    <Compile Include="SlackAction\Option.cs" />
-    <Compile Include="SlackAction\OptionGroup.cs" />
-    <Compile Include="SlackAction\Style.cs" />
-    <Compile Include="SlackAction\Type.cs" />
     <Compile Include="SlackAttachment.cs" />
     <Compile Include="SlackClient.cs" />
     <Compile Include="SlackField.cs" />
