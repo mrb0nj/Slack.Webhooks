@@ -13,7 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <TargetFrameworkVersionNumber>40</TargetFrameworkVersionNumber>
-    <Framework>net4</Framework>
+    <RestSharpFramework>net4</RestSharpFramework>
+    <JsonFramework>net40</JsonFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,14 +42,15 @@
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkVersionNumber>35</TargetFrameworkVersionNumber>
-    <Framework>net35</Framework>
+    <RestSharpFramework>net35</RestSharpFramework>
+    <JsonFramework>net35</JsonFramework>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\$(Framework)\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\$(JsonFramework)\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.104.4.0\lib\$(Framework)\RestSharp.dll</HintPath>
+      <HintPath>..\packages\RestSharp.104.4.0\lib\$(RestSharpFramework)\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '35' " />
