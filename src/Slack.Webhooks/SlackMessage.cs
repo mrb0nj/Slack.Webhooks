@@ -44,6 +44,16 @@ namespace Slack.Webhooks
             set { _markdown = value; }
         }
         /// <summary>
+        /// Optional override markdown mode. Default: true
+        /// </summary>
+        [Obsolete("Mrkdwn has been deprecated, please use 'Markdown' instead.")]
+        [JsonIgnore]
+        public bool Mrkdwn
+        {
+            get { return _markdown; }
+            set { _markdown = value; }
+        }
+        /// <summary>
         /// Enable linkification of channel and usernames
         /// </summary>
         public bool LinkNames { get; set; }

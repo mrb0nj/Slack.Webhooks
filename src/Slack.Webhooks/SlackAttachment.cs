@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 
 namespace Slack.Webhooks
@@ -8,6 +9,8 @@ namespace Slack.Webhooks
     /// </summary>
     public class SlackAttachment
     {
+        private List<string> _markdownIn;
+
         /// <summary>
         /// Required text summary of the attachment that is shown by clients that understand attachments but choose not to show them.
         /// </summary>
@@ -75,7 +78,22 @@ namespace Slack.Webhooks
         /// applicable to fields, title, and pretext
         /// </summary>
         [JsonProperty(PropertyName = "mrkdwn_in")]
-        public List<string> MarkdownIn { get; set; }
+        public List<string> MarkdownIn
+        {
+            get { return _markdownIn; }
+            set { _markdownIn = value; }
+        }
+        /// <summary>
+        /// Optional list of proporties where markdown syntax will be parsed
+        /// applicable to fields, title, and pretext
+        /// </summary>
+        [Obsolete("MrkdwnIn has been deprecated, please use 'MarkdownIn' instead.")]
+        [JsonIgnore]
+        public List<string> MrkdwnIn
+        {
+            get { return _markdownIn; }
+            set { _markdownIn = value; }
+        }
         /// <summary>
         /// The actions you provide will be rendered as message buttons or menus to users.
         /// </summary>
