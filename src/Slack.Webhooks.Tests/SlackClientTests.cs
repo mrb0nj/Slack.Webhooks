@@ -18,6 +18,12 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
+        public void SlackClient_should_not_throw_exception_if_validateHost_is_false()
+        {
+            Assert.DoesNotThrow(() => new SlackClient("https://org.ryver.com/application/webhook/abcdef123456", validateHost: false));
+        }
+
+        [Fact]
         public void SlackClient_should_throw_exception_if_valid_url_not_given()
         {
             Assert.Throws<ArgumentException>(() => new SlackClient("[/]dodgy_url!@.slack.com"));
