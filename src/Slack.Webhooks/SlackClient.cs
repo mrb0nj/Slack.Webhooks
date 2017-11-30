@@ -26,12 +26,12 @@ namespace Slack.Webhooks
         /// </summary>
         internal int TimeoutMs { get { return _restClient.Timeout; } }
 
-        public SlackClient(string webhookUrl, int timeoutSeconds = 100)
+        public SlackClient(string webhookUrl, int timeoutSeconds = 100, bool validateHost = true)
         {
             if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
                 throw new ArgumentException("Please enter a valid Slack webhook url");
 
-            if (_webhookUri.Host != VALID_HOST)
+            if (validateHost && _webhookUri.Host != VALID_HOST)
                 throw new ArgumentException("Please enter a valid Slack webhook url");
 
             var baseUrl = _webhookUri.GetLeftPart(UriPartial.Authority);
