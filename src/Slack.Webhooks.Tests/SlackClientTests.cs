@@ -12,12 +12,6 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void SlackClient_should_throw_exception_if_hostname_is_invalid()
-        {
-            Assert.Throws<ArgumentException>(() => new SlackClient("https://google.com"));
-        }
-
-        [Fact]
         public void SlackClient_should_throw_exception_if_valid_url_not_given()
         {
             Assert.Throws<ArgumentException>(() => new SlackClient("[/]dodgy_url!@.slack.com"));
