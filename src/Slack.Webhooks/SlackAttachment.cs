@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 
 namespace Slack.Webhooks
 {
@@ -7,10 +9,18 @@ namespace Slack.Webhooks
     /// </summary>
     public class SlackAttachment
     {
+        private List<string> _markdownIn;
+
         /// <summary>
         /// Required text summary of the attachment that is shown by clients that understand attachments but choose not to show them.
         /// </summary>
         public string Fallback { get; set; }
+        /// <summary>
+        /// The provided string will act as a unique identifier for the collection of buttons within the attachment. It will be sent 
+        /// back to your message button action URL with each invoked action. This field is required when the attachment contains 
+        /// message buttons. It is key to identifying the interaction you're working with.
+        /// </summary>
+        public string CallbackId { get; set; }
         /// <summary>
         /// Optional text that should appear within the attachment
         /// </summary>
@@ -67,23 +77,26 @@ namespace Slack.Webhooks
         /// Optional list of proporties where markdown syntax will be parsed
         /// applicable to fields, title, and pretext
         /// </summary>
-        public List<string> MrkdwnIn { get; set; }
+        [JsonProperty(PropertyName = "mrkdwn_in")]
+        public List<string> MarkdownIn
+        {
+            get { return _markdownIn; }
+            set { _markdownIn = value; }
+        }
         /// <summary>
-        /// Add some brief text to help contextualize and identify an attachment. Limited to 300 characters, and may be truncated further when displayed to users in environments with limited screen real estate.
+        /// Optional list of proporties where markdown syntax will be parsed
+        /// applicable to fields, title, and pretext
         /// </summary>
-        public string Footer { get; set; }
+        [Obsolete("MrkdwnIn has been deprecated, please use 'MarkdownIn' instead.")]
+        [JsonIgnore]
+        public List<string> MrkdwnIn
+        {
+            get { return _markdownIn; }
+            set { _markdownIn = value; }
+        }
         /// <summary>
-        /// To render a small icon beside your footer text, provide a publicly accessible URL string in the footer_icon field. You must also provide a footer for the field to be recognized.
-        /// We'll render what you provide at 16px by 16px. It's best to use an image that is similarly sized.
-        /// Example: "https://platform.slack-edge.com/img/default_application_icon.png"
+        /// The actions you provide will be rendered as message buttons or menus to users.
         /// </summary>
-        public string FooterIcon { get; set; }
-        /// <summary>
-        /// Does your attachment relate to something happening at a specific time?
-        /// By providing the ts field with an integer value in "epoch time", the attachment will display an additional timestamp value as part of the attachment's footer.
-        /// Use ts when referencing articles or happenings. Your message will have its own timestamp when published.
-        /// Example: Providing 123456789 would result in a rendered timestamp of Nov 29th, 1973.
-        /// </summary>
-        public int Ts { get; set; }
+        public List<SlackAction> Actions { get; set; }
     }
 }

@@ -13,7 +13,8 @@
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
     <TargetFrameworkVersionNumber>40</TargetFrameworkVersionNumber>
-    <Framework>net4</Framework>
+    <RestSharpFramework>net4</RestSharpFramework>
+    <JsonFramework>net40</JsonFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,18 +42,19 @@
     <WarningLevel>4</WarningLevel>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkVersionNumber>35</TargetFrameworkVersionNumber>
-    <Framework>net35</Framework>
+    <RestSharpFramework>net35</RestSharpFramework>
+    <JsonFramework>net35</JsonFramework>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="RestSharp">
-      <HintPath>..\packages\RestSharp.104.4.0\lib\$(Framework)\RestSharp.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\$(JsonFramework)\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\$(RestSharpFramework)\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '35' " />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" Condition=" '$(TargetFrameworkVersionNumber)' &gt;= '40' " />
@@ -60,14 +62,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action\Confirm.cs" />
+    <Compile Include="Action\Option.cs" />
+    <Compile Include="Action\OptionGroup.cs" />
     <Compile Include="Emoji.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="ISlackClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SlackAction.cs" />
     <Compile Include="SlackAttachment.cs" />
     <Compile Include="SlackClient.cs" />
     <Compile Include="SlackField.cs" />
     <Compile Include="SlackMessage.cs" />
-    <Compile Include="ParseMode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

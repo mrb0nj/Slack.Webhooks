@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 
@@ -28,7 +29,7 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional emoji displayed with the message
         /// </summary>
-        public string IconEmoji { get; set; }
+        public Emoji IconEmoji { get; set; }
         /// <summary>
         /// Optional url for icon displayed with the message
         /// </summary>
@@ -36,6 +37,17 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional override markdown mode. Default: true
         /// </summary>
+        [JsonProperty(PropertyName = "mrkdwn")]
+        public bool Markdown
+        {
+            get { return _markdown; }
+            set { _markdown = value; }
+        }
+        /// <summary>
+        /// Optional override markdown mode. Default: true
+        /// </summary>
+        [Obsolete("Mrkdwn has been deprecated, please use 'Markdown' instead.")]
+        [JsonIgnore]
         public bool Mrkdwn
         {
             get { return _markdown; }
@@ -48,7 +60,7 @@ namespace Slack.Webhooks
         /// <summary>
         /// Parse mode <see cref="ParseMode"/>
         /// </summary>
-        public string Parse { get; set; }
+        public ParseMode Parse { get; set; }
         /// <summary>
         /// Optional attachment collection
         /// </summary>

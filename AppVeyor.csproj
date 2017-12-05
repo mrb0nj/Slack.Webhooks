@@ -1,0 +1,12 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build" ToolsVersion="4.0">
+    <ItemGroup>
+        <ConfigList Condition=" '@(ConfigList)' == '' and $(Config) != '' " Include="$(Config.Split('+'))" /><!-- parse all requested configurations into a list -->
+        <ConfigList Condition=" '@(ConfigList)' == '' " Include="Debug" /><!-- if no configurations were specified, default to Debug -->
+    </ItemGroup>
+    <!--
+
+    Build the child project for each requested configuration. -->
+    <Target Name="Build">
+        <MSBuild Projects="$(MSBuildProjectDirectory)\src\Slack.Webhooks\Slack.Webhooks.csproj" Properties="Configuration=%(ConfigList.Identity);Platform=AnyCPU" Targets="Build" />
+    </Target>
+</Project>
