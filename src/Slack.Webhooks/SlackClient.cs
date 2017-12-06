@@ -62,7 +62,7 @@ namespace Slack.Webhooks
 
                 response.EnsureSuccessStatusCode();
                 string content = await response.Content.ReadAsStringAsync();
-                taskCompletionSource.TrySetResult(content.Equals(POST_SUCCESS, StringComparison.InvariantCultureIgnoreCase));
+                taskCompletionSource.TrySetResult(content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase));
             }
             catch (Exception ex)
             {
