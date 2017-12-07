@@ -49,29 +49,14 @@ namespace Slack.Webhooks
         public async Task<bool> PostAsync(SlackMessage slackMessage)
         {
             var payload = SerializePayload(slackMessage);
-            return await ExecuteTaskAsync(payload);
-        }
-
-        private async Task<bool> ExecuteTaskAsync(string payload)
-        {
-            var taskCompletionSource = new TaskCompletionSource<bool>();
-            try
+            using (var httpClient = new HttpClient { Timeout = new TimeSpan(0, 0, _timeout) })
+            using (var response = await httpClient.PostAsync(_webhookUri.OriginalString, new StringContent(payload)).ConfigureAwait(false))
             {
-                var httpClient = new HttpClient { Timeout = new TimeSpan(0, 0, _timeout) };
-                var response = await httpClient.PostAsync(_webhookUri.OriginalString, new StringContent(payload));
-
-                response.EnsureSuccessStatusCode();
-                string content = await response.Content.ReadAsStringAsync();
-                taskCompletionSource.TrySetResult(content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase));
+                var content = await response.Content.ReadAsStringAsync();
+                return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
             }
-            catch (Exception ex)
-            {
-                taskCompletionSource.TrySetException(ex);
-            }
-
-            return await taskCompletionSource.Task;
         }
-
+        
         private static string SerializePayload(SlackMessage slackMessage)
         {
             var resolver = new DefaultContractResolver

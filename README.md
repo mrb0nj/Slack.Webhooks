@@ -3,6 +3,15 @@ Slack.Webhooks [![Build status](https://ci.appveyor.com/api/projects/status/08qv
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
+*** v1.0.0 BREAKING CHANGES ***
+---
+
+We no longer use RestSharp in favour of HttpClient - this however means that
+.NET 4.0 and below are no longer supported.
+
+Also, the PostAsync method signature has changed. The return type is now ```Task<bool>```
+in place of ```Task<IRestResponse>``` which was tied directly to RestSharp.
+
 Outgoing Webhooks
 ---
 
