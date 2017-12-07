@@ -7,8 +7,8 @@
     <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
     <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Even simpler integration with Slack's Incoming webhook API for .Net</description>
-    <summary>Even simpler integration with Slack's Incoming webhook API for .Net</summary>
+    <description>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</description>
+    <summary>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</summary>
     <copyright>Benn Lazell and contributors</copyright>
     <language>en-GB</language>
     <tags>Slack Webhooks</tags>
