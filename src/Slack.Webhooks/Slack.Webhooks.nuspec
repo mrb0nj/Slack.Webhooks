@@ -1,24 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
-    <metadata>
-        <id>Slack.Webhooks</id>
-        <version>0.1.8</version>
-        <authors>Benn Lazell and contributors</authors>
-        <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
-        <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
-        <requireLicenseAcceptance>false</requireLicenseAcceptance>
-        <description>Even simpler integration with Slack's Incoming webhook API for .Net</description>
-        <summary>Even simpler integration with Slack's Incoming webhook API for .Net</summary>
-        <copyright>Benn Lazell and contributors</copyright>
-        <language>en-GB</language>
-        <tags>Slack Webhooks</tags>
-        <dependencies>
-            <dependency id="RestSharp" version="104.4.0" />
-            <dependency id="Newtonsoft.Json" version="10.0.3" />
-        </dependencies>
-    </metadata>
-    <files>
-        <file src="bin\Release\net35\Slack.Webhooks.dll" target="lib\net35\Slack.Webhooks.dll" />
-        <file src="bin\Release\net40\Slack.Webhooks.dll" target="lib\net40\Slack.Webhooks.dll" />
-    </files>
+  <metadata>
+    <id>Slack.Webhooks</id>
+    <version>1.0.0</version>
+    <authors>Benn Lazell and contributors</authors>
+    <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
+    <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</description>
+    <summary>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</summary>
+    <copyright>Benn Lazell and contributors</copyright>
+    <language>en-GB</language>
+    <tags>Slack Webhooks</tags>
+    <releaseNotes>
+      <![CDATA[
+      *** v1.0.0 BREAKING CHANGES ***
+      
+      We no longer use RestSharp in favour of HttpClient - this however means that
+      .NET 4.0 and below are no longer supported.
+      
+      Also, the PostAsync method signature has changed. The return type is now Task<bool>
+      in place of Task<IRestResponse> which was tied directly to RestSharp.
+      ]]>
+    </releaseNotes>
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="10.0.3" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="bin\Release\net45\Slack.Webhooks.dll" target="lib\net45\Slack.Webhooks.dll" />
+    <file src="bin\Release\netstandard1.3\Slack.Webhooks.dll" target="lib\netstandard1.3\Slack.Webhooks.dll" />
+  </files>
 </package>

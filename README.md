@@ -3,6 +3,15 @@ Slack.Webhooks [![Build status](https://ci.appveyor.com/api/projects/status/08qv
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
+*** v1.0.0 BREAKING CHANGES ***
+---
+
+We no longer use RestSharp in favour of HttpClient - this however means that
+.NET 4.0 and below are no longer supported.
+
+Also, the PostAsync method signature has changed. The return type is now ```Task<bool>```
+in place of ```Task<IRestResponse>``` which was tied directly to RestSharp.
+
 Outgoing Webhooks
 ---
 
@@ -14,7 +23,8 @@ Incoming Webhooks
 Requirements:
 
 1. You must first enable the Webhooks integration for your Slack Account to get the Token. You can enable it here: https://slack.com/services/new/incoming-webhook
-2. Slack.Webhooks depends on RestSharp
+2. Slack.Webhooks depends on JSON.net
+3. Compatible with .NET 4.5+ and .NET Core. If you need .NET 3.5/4 you can use an older release, but this may be out of date.
 
 Download:
 
@@ -22,6 +32,11 @@ Package is hosted on [Nuget](https://www.nuget.org/packages/Slack.Webhooks/) and
 
 ```
 PM> Install-Package Slack.Webhooks
+```
+
+For older .NET framework support:
+```
+PM> Install-Package Slack.Webhooks -Version 0.1.8
 ```
 
 Then, create a SlackClient with your Webhook URL.

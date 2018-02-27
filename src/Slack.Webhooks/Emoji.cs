@@ -794,9 +794,9 @@ namespace Slack.Webhooks
         [EnumMember(Value = ":hushed:")]
         Hushed,
         [EnumMember(Value = ":ice_cream:")]
-        IceCream,
+        Ice_Cream,
         [EnumMember(Value = ":icecream:")]
-        Icecream,
+        IceCream,
         [EnumMember(Value = ":id:")]
         Id,
         [EnumMember(Value = ":ideograph_advantage:")]

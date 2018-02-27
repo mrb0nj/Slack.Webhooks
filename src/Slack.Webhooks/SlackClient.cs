@@ -1,58 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
-
-#if NET40
+using System.Net.Http;
 using System.Threading.Tasks;
-using RestSharp.Extensions;
-#endif
 
 namespace Slack.Webhooks
 {
     public class SlackClient : ISlackClient
     {
-        private readonly RestClient _restClient;
         private readonly Uri _webhookUri;
-
         private const string POST_SUCCESS = "ok";
+        private int _timeout = 100;
 
         /// <summary>
-        /// Returns the RestClient's current Timeout value.
+        /// Returns the current Timeout value.
         /// </summary>
-        internal int TimeoutMs { get { return _restClient.Timeout; } }
+        internal int TimeoutMs { get { return _timeout * 1000; } }
 
-        public SlackClient(string webhookUrl, int timeoutSeconds = 100)
+        public SlackClient(string webhookUrl, int timeout = 100)
         {
             if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
-                throw new ArgumentException("Please enter a valid Slack webhook url");
-
-            var baseUrl = _webhookUri.GetLeftPart(UriPartial.Authority);
-            _restClient = new RestClient(baseUrl);
-            _restClient.Timeout = timeoutSeconds * 1000;
+                throw new ArgumentException("Please enter a valid webhook url");
+            _timeout = timeout;
         }
         
-
         public virtual bool Post(SlackMessage slackMessage)
         {
-            var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
-            request.AddParameter("payload", SerializePayload(slackMessage));
-
-            try
-            {
-                var response = _restClient.Execute(request);
-                return response.StatusCode == HttpStatusCode.OK && response.Content == POST_SUCCESS;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
+            var result = PostAsync(slackMessage);
+            return result.Result;
         }
-
-        
 
         public bool PostToChannels(SlackMessage message, IEnumerable<string> channels)
         {
@@ -60,46 +38,25 @@ namespace Slack.Webhooks
                     .Select(message.Clone)
                     .Select(Post).All(r => r);
         }
-
-#if NET40
-        public IEnumerable<Task<IRestResponse>> PostToChannelsAsync(SlackMessage message, IEnumerable<string> channels)
+        
+        public IEnumerable<Task<bool>> PostToChannelsAsync(SlackMessage message, IEnumerable<string> channels)
         {
             return channels.DefaultIfEmpty(message.Channel)
                                 .Select(message.Clone)
                                 .Select(PostAsync);
         }
 
-        public Task<IRestResponse> PostAsync(SlackMessage slackMessage)
+        public async Task<bool> PostAsync(SlackMessage slackMessage)
         {
-            var request = new RestRequest(_webhookUri.PathAndQuery, Method.POST);
-            request.AddParameter("payload", SerializePayload(slackMessage));
-
-            return ExecuteTaskAsync(request);
-        }
-
-        private Task<IRestResponse> ExecuteTaskAsync(IRestRequest request)
-        {
-            var taskCompletionSource = new TaskCompletionSource<IRestResponse>();
-            try
+            var payload = SerializePayload(slackMessage);
+            using (var httpClient = new HttpClient { Timeout = new TimeSpan(0, 0, _timeout) })
+            using (var response = await httpClient.PostAsync(_webhookUri.OriginalString, new StringContent(payload)).ConfigureAwait(false))
             {
-                _restClient.ExecuteAsync(request, (response, _) =>
-                {
-                    if (response.ErrorException != null)
-                        taskCompletionSource.TrySetException(response.ErrorException);
-                    else if (response.ResponseStatus != ResponseStatus.Completed)
-                        taskCompletionSource.TrySetException(response.ResponseStatus.ToWebException());
-                    else
-                        taskCompletionSource.TrySetResult(response);
-                });
+                var content = await response.Content.ReadAsStringAsync();
+                return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
             }
-            catch (Exception ex)
-            {
-                taskCompletionSource.TrySetException(ex);
-            }
-            return taskCompletionSource.Task;
         }
-#endif
-
+        
         private static string SerializePayload(SlackMessage slackMessage)
         {
             var resolver = new DefaultContractResolver
