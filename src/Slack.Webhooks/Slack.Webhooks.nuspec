@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>Slack.Webhooks</id>
-    <version>1.0.0-rc2</version>
+    <version>1.0.0</version>
     <authors>Benn Lazell and contributors</authors>
     <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
     <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
