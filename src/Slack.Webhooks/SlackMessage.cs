@@ -29,7 +29,7 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional emoji displayed with the message
         /// </summary>
-        public Emoji IconEmoji { get; set; }
+        public Emoji? IconEmoji { get; set; }
         /// <summary>
         /// Optional url for icon displayed with the message
         /// </summary>
