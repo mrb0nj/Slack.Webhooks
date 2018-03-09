@@ -66,17 +66,27 @@ namespace Slack.Webhooks
         /// </summary>
         public List<SlackAttachment> Attachments { get; set; }
 
-		public SlackMessage Clone(string newChannel = null)
-		{
-			return new SlackMessage()
-			{
-				Attachments = Attachments,
-				Text = Text,
-				IconEmoji = IconEmoji,
-				IconUrl = IconUrl,
-				Username = Username,
-				Channel = newChannel ?? Channel
-			};
-		}
+        public SlackMessage Clone(string newChannel = null)
+        {
+            return new SlackMessage()
+            {
+                Attachments = Attachments,
+                Text = Text,
+                IconEmoji = IconEmoji,
+                IconUrl = IconUrl,
+                Username = Username,
+                Channel = newChannel ?? Channel
+            };
+        }
+
+        /// <summary>
+        /// Conditional serialization of IconEmoji
+        /// Overidden by the presence of IconUrl
+        /// </summary>
+        /// <returns>false when IconUrl is present otherwise true.</returns>
+        public bool ShouldSerializeIconEmoji()
+        {
+            return IconUrl == null;
+        }
     }
 }
