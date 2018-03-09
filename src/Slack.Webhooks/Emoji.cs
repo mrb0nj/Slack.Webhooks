@@ -9,6 +9,8 @@ namespace Slack.Webhooks
     public enum Emoji
 
     {
+        [EnumMember(Value = null)]
+        None = 0,
         [EnumMember(Value = ":+1:")]
         PlusOne,
         [EnumMember(Value = ":-1:")]
