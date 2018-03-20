@@ -1305,6 +1305,8 @@ namespace Slack.Webhooks
         RiceScene,
         [EnumMember(Value = ":ring:")]
         Ring,
+        [EnumMember(Value = ":robot_face:")]
+        RobotFace,
         [EnumMember(Value = ":rocket:")]
         Rocket,
         [EnumMember(Value = ":roller_coaster:")]
