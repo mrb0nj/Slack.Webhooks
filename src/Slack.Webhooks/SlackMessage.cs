@@ -86,7 +86,7 @@ namespace Slack.Webhooks
         /// <returns>false when IconUrl is present otherwise true.</returns>
         public bool ShouldSerializeIconEmoji()
         {
-            return IconUrl == null;
+            return IconUrl == null && IconEmoji != Emoji.None;
         }
     }
 }
