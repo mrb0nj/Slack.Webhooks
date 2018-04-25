@@ -84,6 +84,16 @@ namespace Slack.Webhooks
             set { _markdownIn = value; }
         }
         /// <summary>
+        /// Add some brief text to help contextualize and identify an attachment. Limited to 300 characters, and may be truncated further when displayed to users in environments with limited screen real estate.
+        /// </summary>
+        public string Footer { get; set; }
+        /// <summary>
+        /// To render a small icon beside your footer text, provide a publicly accessible URL string in the footer_icon field. You must also provide a footer for the field to be recognized.
+        /// We'll render what you provide at 16px by 16px. It's best to use an image that is similarly sized.
+        /// Example: "https://platform.slack-edge.com/img/default_application_icon.png"
+        /// </summary>
+        public string FooterIcon { get; set; }
+        /// <summary>
         /// Optional list of proporties where markdown syntax will be parsed
         /// applicable to fields, title, and pretext
         /// </summary>
