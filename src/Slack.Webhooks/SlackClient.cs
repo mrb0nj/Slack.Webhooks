@@ -48,27 +48,13 @@ namespace Slack.Webhooks
 
         public async Task<bool> PostAsync(SlackMessage slackMessage)
         {
-            var payload = SerializePayload(slackMessage);
+            var payload = slackMessage.AsJson();
             using (var httpClient = new HttpClient { Timeout = new TimeSpan(0, 0, _timeout) })
             using (var response = await httpClient.PostAsync(_webhookUri.OriginalString, new StringContent(payload)).ConfigureAwait(false))
             {
                 var content = await response.Content.ReadAsStringAsync();
                 return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
             }
-        }
-        
-        private static string SerializePayload(SlackMessage slackMessage)
-        {
-            var resolver = new DefaultContractResolver
-            {
-                NamingStrategy = new SnakeCaseNamingStrategy()
-            };
-
-            return JsonConvert.SerializeObject(slackMessage, new JsonSerializerSettings
-            {
-                ContractResolver = resolver,
-                NullValueHandling = NullValueHandling.Ignore
-            });
         }
     }
 }

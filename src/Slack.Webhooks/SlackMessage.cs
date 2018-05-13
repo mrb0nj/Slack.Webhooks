@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -87,6 +88,24 @@ namespace Slack.Webhooks
         public bool ShouldSerializeIconEmoji()
         {
             return IconUrl == null && IconEmoji != Emoji.None;
+        }
+
+        /// <summary>
+        /// Serialize SlackMessage to a JSON string
+        /// </summary>
+        /// <returns>JSON formatted string</returns>
+        public string AsJson()
+        {
+            var resolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            };
+
+            return JsonConvert.SerializeObject(this, new JsonSerializerSettings
+            {
+                ContractResolver = resolver,
+                NullValueHandling = NullValueHandling.Ignore
+            });
         }
     }
 }
