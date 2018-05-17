@@ -46,6 +46,12 @@ namespace Slack.Webhooks
         /// </summary>
         public string Value { get; set; }
         /// <summary>
+        /// Provide a string identifying the URL for a link button. 
+        /// Unlike message buttons, link buttons don't dispatch actions 
+        /// to your interactive components request URL.
+        /// </summary>
+        public string Url { get; set; }
+        /// <summary>
         /// Used only with message buttons, this decorates buttons 
         /// with extra visual importance, which is especially useful 
         /// when providing logical default action or highlighting a 
