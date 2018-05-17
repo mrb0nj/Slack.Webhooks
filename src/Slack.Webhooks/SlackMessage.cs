@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 
@@ -18,6 +19,14 @@ namespace Slack.Webhooks
         /// Set response to visible to all 'in_channel' or visible to the requester 'ephermeral'
         /// </summary>
         public string ResponseType { get; set; }
+        /// <summary>
+        /// Used only when creating messages in response to a button action invocation. When set to true, the inciting message will be replaced by this message you're providing. When false, the message you're providing is considered a brand new message.
+        /// </summary>
+        public bool ReplaceOriginal { get; set; }
+        /// <summary>
+        /// Used only when creating messages in response to a button action invocation. When set to true, the inciting message will be deleted and if a message is provided, it will be posted as a brand new message.
+        /// </summary>
+        public bool DeleteOriginal { get; set; }
         /// <summary>
         /// Optional override of destination channel
         /// </summary>
@@ -66,17 +75,45 @@ namespace Slack.Webhooks
         /// </summary>
         public List<SlackAttachment> Attachments { get; set; }
 
-		public SlackMessage Clone(string newChannel = null)
-		{
-			return new SlackMessage()
-			{
-				Attachments = Attachments,
-				Text = Text,
-				IconEmoji = IconEmoji,
-				IconUrl = IconUrl,
-				Username = Username,
-				Channel = newChannel ?? Channel
-			};
-		}
+        public SlackMessage Clone(string newChannel = null)
+        {
+            return new SlackMessage()
+            {
+                Attachments = Attachments,
+                Text = Text,
+                IconEmoji = IconEmoji,
+                IconUrl = IconUrl,
+                Username = Username,
+                Channel = newChannel ?? Channel
+            };
+        }
+
+        /// <summary>
+        /// Conditional serialization of IconEmoji
+        /// Overidden by the presence of IconUrl
+        /// </summary>
+        /// <returns>false when IconUrl is present otherwise true.</returns>
+        public bool ShouldSerializeIconEmoji()
+        {
+            return IconUrl == null && IconEmoji != Emoji.None;
+        }
+
+        /// <summary>
+        /// Serialize SlackMessage to a JSON string
+        /// </summary>
+        /// <returns>JSON formatted string</returns>
+        public string AsJson()
+        {
+            var resolver = new DefaultContractResolver
+            {
+                NamingStrategy = new SnakeCaseNamingStrategy()
+            };
+
+            return JsonConvert.SerializeObject(this, new JsonSerializerSettings
+            {
+                ContractResolver = resolver,
+                NullValueHandling = NullValueHandling.Ignore
+            });
+        }
     }
 }
