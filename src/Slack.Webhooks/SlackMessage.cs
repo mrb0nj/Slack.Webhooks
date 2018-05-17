@@ -25,7 +25,7 @@ namespace Slack.Webhooks
         /// <summary>
         /// Used only when creating messages in response to a button action invocation. When set to true, the inciting message will be deleted and if a message is provided, it will be posted as a brand new message.
         /// </summary>
-        public string DeleteOriginal { get; set; }
+        public bool DeleteOriginal { get; set; }
         /// <summary>
         /// Optional override of destination channel
         /// </summary>
