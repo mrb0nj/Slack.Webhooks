@@ -20,6 +20,14 @@ namespace Slack.Webhooks
         /// </summary>
         public string ResponseType { get; set; }
         /// <summary>
+        /// Used only when creating messages in response to a button action invocation. When set to true, the inciting message will be replaced by this message you're providing. When false, the message you're providing is considered a brand new message.
+        /// </summary>
+        public bool ReplaceOriginal { get; set; }
+        /// <summary>
+        /// Used only when creating messages in response to a button action invocation. When set to true, the inciting message will be deleted and if a message is provided, it will be posted as a brand new message.
+        /// </summary>
+        public bool DeleteOriginal { get; set; }
+        /// <summary>
         /// Optional override of destination channel
         /// </summary>
         public string Channel { get; set; }
