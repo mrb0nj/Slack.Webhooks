@@ -659,6 +659,8 @@ namespace Slack.Webhooks
         GameDie,
         [EnumMember(Value = ":gb:")]
         Gb,
+        [EnumMember(Value = ":gear:")]
+        Gear,
         [EnumMember(Value = ":gem:")]
         Gem,
         [EnumMember(Value = ":gemini:")]
