@@ -94,6 +94,13 @@ namespace Slack.Webhooks
         /// </summary>
         public string FooterIcon { get; set; }
         /// <summary>
+        /// Does your attachment relate to something happening at a specific time?
+        /// By providing the ts field with an integer value in "epoch time", the attachment will display an additional timestamp value as part of the attachment's footer.
+        /// Use ts when referencing articles or happenings. Your message will have its own timestamp when published.
+        /// Example: Providing 123456789 would result in a rendered timestamp of Nov 29th, 1973.
+        /// </summary>
+        public int Ts { get; set; }
+        /// <summary>
         /// Optional list of proporties where markdown syntax will be parsed
         /// applicable to fields, title, and pretext
         /// </summary>
