@@ -99,7 +99,8 @@ namespace Slack.Webhooks
         /// Use ts when referencing articles or happenings. Your message will have its own timestamp when published.
         /// Example: Providing 123456789 would result in a rendered timestamp of Nov 29th, 1973.
         /// </summary>
-        public int Ts { get; set; }
+        [JsonProperty(PropertyName = "ts")]
+        public int Timestamp { get; set; }
         /// <summary>
         /// Optional list of proporties where markdown syntax will be parsed
         /// applicable to fields, title, and pretext
