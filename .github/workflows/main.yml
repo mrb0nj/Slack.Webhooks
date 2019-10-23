@@ -1,0 +1,54 @@
+name: Continuous Stuff
+on: 
+  push:
+    branches: 
+      - feature/*
+      - hotfix/*
+      - release/*
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Dotnet build
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup nuget
+        uses: warrenbuckley/Setup-Nuget@v1
+      - name: Branchy Branchy
+        run: |
+          git checkout master
+          echo "${{ github.ref }}" | sed "s/refs\/\(heads\|tags\)\///" | sed "s/refs\/pull\/\([0-9]*\)\/merge/refs\/remotes\/pull\/\1\/merge/" | xargs git checkout
+          git checkout ${{ github.sha }}
+      - name: Version
+        uses: mrb0nj/gitversion@master
+        with:
+          args: "${{ github.workspace }} /updateassemblyinfo"
+        id: git_version
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '2.2.103'
+      - name: Build
+        run: dotnet build src/Slack.Webhooks.sln --configuration Release
+      - name: Test
+        run: dotnet test src/Slack.Webhooks.sln
+      - name: Pack
+        run: dotnet pack src/Slack.Webhooks.sln --no-build -p:PackageVersion=${{ steps.git_version.outputs.nugetversion }} -o ${{ github.workspace }}\artifacts
+        
+      - name: Add artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: Slack.Webhooks.${{ steps.git_version.outputs.nugetversion }}
+          path: ${{ github.workspace }}\artifacts\Slack.Webhooks.${{ steps.git_version.outputs.nugetversion }}.nupkg
+      
+      - name: Deploy to GitHub Package Registry
+        run: |
+          nuget sources Add -Name "GPR" -Source "https://nuget.pkg.github.com/mrb0nj/index.json" -UserName mrb0nj -Password ${{ secrets.GITHUB_TOKEN }}
+          nuget push ${{ github.workspace }}\artifacts\Slack.Webhooks.${{ steps.git_version.outputs.nugetversion }}.nupkg -Source "GPR"
+      
+      - name: Deploy to NuGet
+        run: dotnet nuget push ${{ github.workspace }}\artifacts\Slack.Webhooks.${{ steps.git_version.outputs.nugetversion }}.nupkg -k ${{ secrets.NugetKey }} -s https://api.nuget.org/v3/index.json
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/') && github.event.base_ref == 'refs/heads/master'
