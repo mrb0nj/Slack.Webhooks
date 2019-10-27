@@ -1,0 +1,35 @@
+name: Continuous Stuff
+on:
+  push:
+    branches:
+      - feature/*
+      - hotfix/*
+      - release/*
+    tags:
+      - v*
+  pull_request:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Dotnet build
+    steps:
+      - uses: actions/checkout@master
+      - name: Branchy Branchy
+        run: |
+          git checkout master
+          echo "${{ github.ref }}" | sed "s/refs\/\(heads\|tags\)\///" | sed "s/refs\/pull\/\([0-9]*\)\/merge/refs\/remotes\/pull\/\1\/merge/" | xargs git checkout
+          git checkout ${{ github.sha }}
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "2.2.103"
+      - name: Build
+        run: .\build.ps1 -t Build
+        shell: pwsh
+        id: build
+      - name: Add artifacts
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ steps.build.outputs.nupkg_name }}
+          path: ${{ steps.build.outputs.nupkg }}
