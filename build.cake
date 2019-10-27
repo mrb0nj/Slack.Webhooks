@@ -44,7 +44,9 @@ Task("Clean")
 Task("Restore")
    .Does(() =>
 {
-   NuGetRestore("src/Slack.Webhooks.sln");
+   NuGetRestore("src/Slack.Webhooks.sln", new NuGetRestoreSettings {
+      Verbosity = NuGetVerbosity.Quiet
+   });
 });
 
 Task("Build")
