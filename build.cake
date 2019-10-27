@@ -67,7 +67,7 @@ Task("Pack")
       ArgumentCustomization = args => args.Append($"-p:PackageVersion={gitVersion.NuGetVersionV2}")
    });
 
-   if(IsGitHubAction)
+   if(isGitHubAction)
    {
       var packageName = $"Slack.Webhooks.{gitVersion.NuGetVersionV2}";
       Information($"##[set-output name=nupkg_name;]{packageName}");
@@ -87,8 +87,10 @@ Task("DeployGPR")
                                     IsSensitiveSource = true,
                                     Verbosity = NuGetVerbosity.Detailed
                               };
-      NugetAddSource("GPR", "https://nuget.pkg.github.com/mrb0nj/index.json", settings);
-      NugetPush($"artifacts/Slack.Webhooks.{gitVersion.NuGetVersionV2}.nupkg", "GPR");
+      NuGetAddSource("GPR", "https://nuget.pkg.github.com/mrb0nj/index.json", settings);
+      NuGetPush($"artifacts/Slack.Webhooks.{gitVersion.NuGetVersionV2}.nupkg", new NuGetPushSettings {
+         Source = "GPR"
+      });
    }
    else
    {
@@ -99,21 +101,21 @@ Task("DeployGPR")
 Task("DeployNuGet")
    .Does(() =>
 {
-   var eventName = EnvironmentVariable("GITHUB_EVENT_NAME");
-   var ref = EnvironmentVariable("GITHUB_REF");
-   var baseRef = EnvironmentVariable("GITHUB_BASE_REF");
-   var isTag = eventName == "push" && ref.StartsWith("refs/tags/v") && baseRef == "refs/heads/master";
-   Information($"EventName: {eventName}, Ref: {ref}, BaseRef: {baseRef}, IsTag: {isTag}");
+   var githubEventName = EnvironmentVariable("GITHUB_EVENT_NAME");
+   var githubRef = EnvironmentVariable("GITHUB_REF");
+   var githubBaseRef = EnvironmentVariable("GITHUB_BASE_REF");
+   var isTag = githubEventName == "push" && githubRef.StartsWith("refs/tags/v") && githubBaseRef == "refs/heads/master";
+   Information($"EventName: {githubEventName}, Ref: {githubRef}, BaseRef: {githubBaseRef}, IsTag: {isTag}");
 
 
    if(isGitHubAction)
    {
-      var settings = new NugetPushSettings
+      var settings = new NuGetPushSettings
       {
          Source = "https://api.nuget.org/v3/index.json",
          ApiKey = EnvironmentVariable("NUGET_APIKEY")
       };
-      NugetPush($"artifacts/Slack.Webhooks.{gitVersion.NuGetVersionV2}.nupkg", settings);
+      NuGetPush($"artifacts/Slack.Webhooks.{gitVersion.NuGetVersionV2}.nupkg", settings);
    }
    else
    {
