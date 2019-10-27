@@ -19,7 +19,10 @@ var configuration = Argument("configuration", "Release");
 
 var isGitHubAction = !string.IsNullOrWhiteSpace(EnvironmentVariable("GITHUB_ACTION"));
 GitVersion gitVersion = null;
-
+Task("Default")
+   .IsDependentOn("Build")
+   .IsDependentOn("Test")
+   .IsDependentOn("Deploy");
 
 Task("Version")
    .Does(() =>
@@ -75,7 +78,12 @@ Task("Pack")
    }
 });
 
+Task("Deploy")
+   .IsDependentOn("DeployGPR")
+   .IsDependentOn("DeployNuGet");
+
 Task("DeployGPR")
+   .IsDependentOn("Pack")
    .Does(() =>
 {
    if(isGitHubAction)
@@ -99,6 +107,7 @@ Task("DeployGPR")
 });
 
 Task("DeployNuGet")
+   .IsDependentOn("Pack")
    .Does(() =>
 {
    var githubEventName = EnvironmentVariable("GITHUB_EVENT_NAME");
