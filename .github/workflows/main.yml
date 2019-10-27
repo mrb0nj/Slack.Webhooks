@@ -20,6 +20,7 @@ jobs:
           git checkout master
           echo "${{ github.ref }}" | sed "s/refs\/\(heads\|tags\)\///" | sed "s/refs\/pull\/\([0-9]*\)\/merge/refs\/remotes\/pull\/\1\/merge/" | xargs git checkout
           git checkout ${{ github.sha }}
+        shell: cmd
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
