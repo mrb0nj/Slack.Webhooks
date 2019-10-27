@@ -119,12 +119,12 @@ Task("DeployNuGet")
    Information($"EventName: {githubEventName}, Ref: {githubRef}, BaseRef: {githubBaseRef}, IsTag: {isTag}");
 
 
-   if(isGitHubAction)
+   if(isGitHubAction && isTag)
    {
       var settings = new NuGetPushSettings
       {
          Source = "https://api.nuget.org/v3/index.json",
-         ApiKey = EnvironmentVariable("NUGET_APIKEY")
+         ApiKey = EnvironmentVariable("NUGET_TOKEN")
       };
       NuGetPush($"artifacts/Slack.Webhooks.{gitVersion.NuGetVersionV2}.nupkg", settings);
    }
