@@ -15,6 +15,7 @@ TestResults
 src/.vs
 tools/
 artifacts/
+coverage-results/
 
 # Build results
 [Dd]ebug/
