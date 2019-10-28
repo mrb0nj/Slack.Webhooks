@@ -11,6 +11,7 @@ var configuration = Argument("configuration", "Release");
 
 #tool "nuget:?package=xunit.runner.console&version=2.3.1"
 #tool "nuget:?package=GitVersion.CommandLine&version=5.0.1"
+#tool "nuget:?package=JetBrains.ReSharper.CommandLineTools&version=2019.2.3"
 #addin "nuget:?package=Cake.Incubator&version=5.1.0"
 #addin "nuget:?package=Cake.Coverlet&version=2.3.4"
 
@@ -157,8 +158,8 @@ Task("TestCore")
    var coverletSettings = new CoverletSettings {
         CollectCoverage = true,
         CoverletOutputFormat = CoverletOutputFormat.opencover,
-        CoverletOutputDirectory = Directory(@".\coverage-results\"),
-        CoverletOutputName = $"results-{DateTime.UtcNow:dd-MM-yyyy-HH-mm-ss}"
+        CoverletOutputDirectory = Directory(@".\artifacts\"),
+        CoverletOutputName = $"coverlet-output"
     };
    DotNetCoreTest("./src/Slack.Webhooks.Tests/Slack.Webhooks.Tests.csproj", new DotNetCoreTestSettings 
       { 
@@ -168,5 +169,17 @@ Task("TestCore")
       }, coverletSettings);
 });
 
+Task("ReSharper")
+  .Does(() =>
+{
+    DupFinder("src/Slack.Webhooks.sln", new DupFinderSettings {
+       OutputFile = "artifacts/dupfinder-output.xml"
+    });
+    InspectCode("src/Slack.Webhooks.sln", new InspectCodeSettings {
+      SolutionWideAnalysis = true,
+      OutputFile = "artifacts/inspectcode-output.xml",
+      ThrowExceptionOnFindingViolations = true
+   });
+});
 
 RunTarget(target);
