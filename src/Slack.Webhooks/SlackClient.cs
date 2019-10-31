@@ -14,6 +14,8 @@ namespace Slack.Webhooks
         private const string POST_SUCCESS = "ok";
         private int _timeout = 100;
 
+        public string LastResult { get; private set; }
+
         /// <summary>
         /// Returns the current Timeout value.
         /// </summary>
@@ -53,6 +55,7 @@ namespace Slack.Webhooks
             using (var response = await httpClient.PostAsync(_webhookUri.OriginalString, new StringContent(payload)).ConfigureAwait(false))
             {
                 var content = await response.Content.ReadAsStringAsync();
+                LastResult = content;
                 return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
             }
         }

@@ -36,6 +36,7 @@ namespace Slack.Webhooks.Tests
 
             //assert
             Assert.False(result);
+            Assert.Contains("<!DOCTYPE html>", client.LastResult);
         }
 
         [Fact]
