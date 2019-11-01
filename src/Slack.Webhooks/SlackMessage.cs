@@ -10,6 +10,13 @@ namespace Slack.Webhooks
     /// </summary>
     public class SlackMessage
     {
+        private static readonly DefaultContractResolver resolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() };
+        private static readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+        {
+            ContractResolver = resolver,
+            NullValueHandling = NullValueHandling.Ignore
+        };
+
         private bool _markdown = true;
         /// <summary>
         /// This is the text that will be posted to the channel
@@ -104,16 +111,17 @@ namespace Slack.Webhooks
         /// <returns>JSON formatted string</returns>
         public string AsJson()
         {
-            var resolver = new DefaultContractResolver
-            {
-                NamingStrategy = new SnakeCaseNamingStrategy()
-            };
+            return JsonConvert.SerializeObject(this, serializerSettings);
+        }
 
-            return JsonConvert.SerializeObject(this, new JsonSerializerSettings
-            {
-                ContractResolver = resolver,
-                NullValueHandling = NullValueHandling.Ignore
-            });
+        /// <summary>
+        /// Deserialize SlackMessage from a JSON string
+        /// </summary>
+        /// <param name="json">string containing serialized JSON</param>
+        /// <returns>SlackMessage</returns>
+        public static SlackMessage FromJson(string json)
+        {
+            return JsonConvert.DeserializeObject<SlackMessage>(json, serializerSettings);
         }
     }
 }
