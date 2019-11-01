@@ -8,22 +8,22 @@ using Xunit;
 
 namespace Slack.Webhooks.Tests
 {
-    public class SlackClientTests
+    public class SlackClientShould
     {
         [Fact]
-        public void SlackClient_should_throw_exception_if_slack_url_not_given()
+        public void ThrowExceptionWhenUrlIsEmpty()
         {
             Assert.Throws<ArgumentException>(() => new SlackClient(string.Empty));
         }
 
         [Fact]
-        public void SlackClient_should_throw_exception_if_valid_url_not_given()
+        public void ThrowExceptionIfUrlIsMalformed()
         {
             Assert.Throws<ArgumentException>(() => new SlackClient("[/]dodgy_url!@.slack.com"));
         }
 
         [Fact]
-        public void SlackClient_returns_false_if_post_fails()
+        public void ReturnFalseIfPostFails()
         {
             //arrange
             const string webserviceurl = "https://hooks.slack.com/invalid";
@@ -37,10 +37,8 @@ namespace Slack.Webhooks.Tests
             Assert.False(result);
         }
 
-        
-
         [Fact]
-        public void SlackClient_should_remember_timeout()
+        public void RememberTimeout()
         {
             const string webserviceurl = "https://hooks.slack.com/invalid";
             var timeoutSeconds = 2;
@@ -50,7 +48,7 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void SlackClient_should_reuse_httpclient()
+        public void ReuseHttpClient()
         {
             //arrange
             const string hookUrl = "https://hooks.slack.com/invalid";
