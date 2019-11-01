@@ -141,6 +141,8 @@ namespace Slack.Webhooks
         public const string Capricorn = ":capricorn:";
         public const string Car = ":car:";
         public const string CardIndex = ":card_index:";
+        public const string CardFileBox = ":card_file_box:";
+        public const string CardIndexDividers = ":card_index_dividers:";
         public const string CarouselHorse = ":carousel_horse:";
         public const string Cat = ":cat:";
         public const string Cat2 = ":cat2:";
@@ -491,6 +493,7 @@ namespace Slack.Webhooks
         public const string Minibus = ":minibus:";
         public const string Minidisc = ":minidisc:";
         public const string MobilePhoneOff = ":mobile_phone_off:";
+        public const string MoneyMouthFace = ":money_mouth_face:";
         public const string MoneyWithWings = ":money_with_wings:";
         public const string Moneybag = ":moneybag:";
         public const string Monkey = ":monkey:";
