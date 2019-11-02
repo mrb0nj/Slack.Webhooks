@@ -78,6 +78,11 @@ namespace Slack.Webhooks
         /// </summary>
         public ParseMode Parse { get; set; }
         /// <summary>
+        /// Parent message threadId (thread_ts)
+        /// </summary>
+        [JsonProperty("thread_ts")]
+        public string ThreadId { get; set; }
+        /// <summary>
         /// Optional attachment collection
         /// </summary>
         public List<SlackAttachment> Attachments { get; set; }
