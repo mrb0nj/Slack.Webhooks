@@ -10,13 +10,6 @@ namespace Slack.Webhooks
     /// </summary>
     public class SlackMessage
     {
-        private static readonly DefaultContractResolver resolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() };
-        private static readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings
-        {
-            ContractResolver = resolver,
-            NullValueHandling = NullValueHandling.Ignore
-        };
-
         private bool _markdown = true;
         /// <summary>
         /// This is the text that will be posted to the channel
@@ -43,11 +36,11 @@ namespace Slack.Webhooks
         /// </summary>
         public string Username { get; set; }
         /// <summary>
-        /// Optional emoji displayed with the message
+        /// Optional <see cref="Emoji"/> displayed with the message
         /// </summary>
         public string IconEmoji { get; set; }
         /// <summary>
-        /// Optional url for icon displayed with the message
+        /// Optional <see cref="Uri"/> for icon displayed with the message
         /// </summary>
         public Uri IconUrl { get; set; }
         /// <summary>
@@ -74,7 +67,7 @@ namespace Slack.Webhooks
         /// </summary>
         public bool LinkNames { get; set; }
         /// <summary>
-        /// Parse mode <see cref="ParseMode"/>
+        /// Set the message <see cref="ParseMode"/>
         /// </summary>
         public ParseMode Parse { get; set; }
         /// <summary>
@@ -87,6 +80,21 @@ namespace Slack.Webhooks
         /// </summary>
         public List<SlackAttachment> Attachments { get; set; }
 
+        /// <summary>
+        /// Optional collection of <see cref="Block"/>
+        /// </summary>
+        /// <seealso cref="Actions" />
+        /// <seealso cref="Context" />
+        /// <seealso cref="Divider" />
+        /// <seealso cref="File" />
+        /// <seealso cref="Image" />
+        /// <seealso cref="Input" />
+        /// <seealso cref="Section" />
+        public List<Block> Blocks { get; set; }
+
+        /// <summary>
+        /// Create a clone of this <see cref="SlackMessage"/> overriding the channel if provided
+        /// </summary>
         public SlackMessage Clone(string newChannel = null)
         {
             return new SlackMessage()
@@ -116,17 +124,7 @@ namespace Slack.Webhooks
         /// <returns>JSON formatted string</returns>
         public string AsJson()
         {
-            return JsonConvert.SerializeObject(this, serializerSettings);
-        }
-
-        /// <summary>
-        /// Deserialize SlackMessage from a JSON string
-        /// </summary>
-        /// <param name="json">string containing serialized JSON</param>
-        /// <returns>SlackMessage</returns>
-        public static SlackMessage FromJson(string json)
-        {
-            return JsonConvert.DeserializeObject<SlackMessage>(json, serializerSettings);
+            return SlackClient.SerializeObject(this);
         }
     }
 }

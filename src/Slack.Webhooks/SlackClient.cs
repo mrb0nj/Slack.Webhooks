@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Slack.Webhooks
 {
@@ -12,6 +14,13 @@ namespace Slack.Webhooks
         private readonly Uri _webhookUri;
         private const string POST_SUCCESS = "ok";
         private int _timeout = 100;
+
+        private static readonly DefaultContractResolver resolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() };
+        private static readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+        {
+            ContractResolver = resolver,
+            NullValueHandling = NullValueHandling.Ignore
+        };
 
         /// <summary>
         /// Returns the current Timeout value.
@@ -55,6 +64,26 @@ namespace Slack.Webhooks
                 var content = await response.Content.ReadAsStringAsync();
                 return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
             }
+        }
+
+        /// <summary>
+        /// Deserialize SlackMessage from a JSON string
+        /// </summary>
+        /// <param name="json">string containing serialized JSON</param>
+        /// <returns>SlackMessage</returns>
+        public static SlackMessage DeserializeObject(string json)
+        {
+            return JsonConvert.DeserializeObject<SlackMessage>(json, serializerSettings);
+        }
+
+        /// <summary>
+        /// Serialize SlackMessage to a JSON string
+        /// </summary>
+        /// <param name="json">An instance of SlackMessage</param>
+        /// <returns>string containing serialized JSON</returns>
+        public static string SerializeObject(object obj)
+        {
+            return JsonConvert.SerializeObject(obj, serializerSettings);
         }
 
         public void Dispose()
