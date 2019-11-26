@@ -170,7 +170,7 @@ namespace Slack.Webhooks.Tests
             string text = "Test Message", 
             string channel = "#test", 
             string username = "testbot", 
-            Emoji iconEmoji = Emoji.Ghost)
+            string iconEmoji = Emoji.Ghost)
         {
             return new SlackMessage
             {

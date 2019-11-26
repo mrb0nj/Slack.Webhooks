@@ -1,1781 +1,897 @@
 ﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using System.Runtime.Serialization;
+using System;
 
 namespace Slack.Webhooks
 
 {
-    [JsonConverter(typeof(StringEnumConverter))]
-    public enum Emoji
-
+    public class Emoji
     {
-        [EnumMember(Value = null)]
-        None = 0,
-        [EnumMember(Value = ":+1:")]
-        PlusOne,
-        [EnumMember(Value = ":-1:")]
-        MinusOne,
-        [EnumMember(Value = ":100:")]
-        OneHundred,
-        [EnumMember(Value = ":1234:")]
-        OneTwoThreeFour,
-        [EnumMember(Value = ":8ball:")]
-        EightBall,
-        [EnumMember(Value = ":a:")]
-        A,
-        [EnumMember(Value = ":ab:")]
-        Ab,
-        [EnumMember(Value = ":abc:")]
-        Abc,
-        [EnumMember(Value = ":abcd:")]
-        Abcd,
-        [EnumMember(Value = ":accept:")]
-        Accept,
-        [EnumMember(Value = ":aerial_tramway:")]
-        AerialTramway,
-        [EnumMember(Value = ":airplane:")]
-        Airplane,
-        [EnumMember(Value = ":alarm_clock:")]
-        AlarmClock,
-        [EnumMember(Value = ":alien:")]
-        Alien,
-        [EnumMember(Value = ":ambulance:")]
-        Ambulance,
-        [EnumMember(Value = ":anchor:")]
-        Anchor,
-        [EnumMember(Value = ":angel:")]
-        Angel,
-        [EnumMember(Value = ":anger:")]
-        Anger,
-        [EnumMember(Value = ":angry:")]
-        Angry,
-        [EnumMember(Value = ":anguished:")]
-        Anguished,
-        [EnumMember(Value = ":ant:")]
-        Ant,
-        [EnumMember(Value = ":apple:")]
-        Apple,
-        [EnumMember(Value = ":aquarius:")]
-        Aquarius,
-        [EnumMember(Value = ":aries:")]
-        Aries,
-        [EnumMember(Value = ":arrow_backward:")]
-        ArrowBackward,
-        [EnumMember(Value = ":arrow_double_down:")]
-        ArrowDoubleDown,
-        [EnumMember(Value = ":arrow_double_up:")]
-        ArrowDoubleUp,
-        [EnumMember(Value = ":arrow_down:")]
-        ArrowDown,
-        [EnumMember(Value = ":arrow_down_small:")]
-        ArrowDownSmall,
-        [EnumMember(Value = ":arrow_forward:")]
-        ArrowForward,
-        [EnumMember(Value = ":arrow_heading_down:")]
-        ArrowHeadingDown,
-        [EnumMember(Value = ":arrow_heading_up:")]
-        ArrowHeadingUp,
-        [EnumMember(Value = ":arrow_left:")]
-        ArrowLeft,
-        [EnumMember(Value = ":arrow_lower_left:")]
-        ArrowLowerLeft,
-        [EnumMember(Value = ":arrow_lower_right:")]
-        ArrowLowerRight,
-        [EnumMember(Value = ":arrow_right:")]
-        ArrowRight,
-        [EnumMember(Value = ":arrow_right_hook:")]
-        ArrowRightHook,
-        [EnumMember(Value = ":arrow_up:")]
-        ArrowUp,
-        [EnumMember(Value = ":arrow_up_down:")]
-        ArrowUpDown,
-        [EnumMember(Value = ":arrow_up_small:")]
-        ArrowUpSmall,
-        [EnumMember(Value = ":arrow_upper_left:")]
-        ArrowUpperLeft,
-        [EnumMember(Value = ":arrow_upper_right:")]
-        ArrowUpperRight,
-        [EnumMember(Value = ":arrows_clockwise:")]
-        ArrowsClockwise,
-        [EnumMember(Value = ":arrows_counterclockwise:")]
-        ArrowsCounterclockwise,
-        [EnumMember(Value = ":art:")]
-        Art,
-        [EnumMember(Value = ":articulated_lorry:")]
-        ArticulatedLorry,
-        [EnumMember(Value = ":astonished:")]
-        Astonished,
-        [EnumMember(Value = ":atm:")]
-        Atm,
-        [EnumMember(Value = ":b:")]
-        B,
-        [EnumMember(Value = ":baby:")]
-        Baby,
-        [EnumMember(Value = ":baby_bottle:")]
-        BabyBottle,
-        [EnumMember(Value = ":baby_chick:")]
-        BabyChick,
-        [EnumMember(Value = ":baby_symbol:")]
-        BabySymbol,
-        [EnumMember(Value = ":back:")]
-        Back,
-        [EnumMember(Value = ":baggage_claim:")]
-        BaggageClaim,
-        [EnumMember(Value = ":balloon:")]
-        Balloon,
-        [EnumMember(Value = ":ballot_box_with_check:")]
-        BallotBoxWithCheck,
-        [EnumMember(Value = ":bamboo:")]
-        Bamboo,
-        [EnumMember(Value = ":banana:")]
-        Banana,
-        [EnumMember(Value = ":bangbang:")]
-        Bangbang,
-        [EnumMember(Value = ":bank:")]
-        Bank,
-        [EnumMember(Value = ":bar_chart:")]
-        BarChart,
-        [EnumMember(Value = ":barber:")]
-        Barber,
-        [EnumMember(Value = ":baseball:")]
-        Baseball,
-        [EnumMember(Value = ":basketball:")]
-        Basketball,
-        [EnumMember(Value = ":bath:")]
-        Bath,
-        [EnumMember(Value = ":bathtub:")]
-        Bathtub,
-        [EnumMember(Value = ":battery:")]
-        Battery,
-        [EnumMember(Value = ":bear:")]
-        Bear,
-        [EnumMember(Value = ":bee:")]
-        Bee,
-        [EnumMember(Value = ":beer:")]
-        Beer,
-        [EnumMember(Value = ":beers:")]
-        Beers,
-        [EnumMember(Value = ":beetle:")]
-        Beetle,
-        [EnumMember(Value = ":beginner:")]
-        Beginner,
-        [EnumMember(Value = ":bell:")]
-        Bell,
-        [EnumMember(Value = ":bento:")]
-        Bento,
-        [EnumMember(Value = ":bicyclist:")]
-        Bicyclist,
-        [EnumMember(Value = ":bike:")]
-        Bike,
-        [EnumMember(Value = ":bikini:")]
-        Bikini,
-        [EnumMember(Value = ":bird:")]
-        Bird,
-        [EnumMember(Value = ":birthday:")]
-        Birthday,
-        [EnumMember(Value = ":black_circle:")]
-        BlackCircle,
-        [EnumMember(Value = ":black_joker:")]
-        BlackJoker,
-        [EnumMember(Value = ":black_medium_small_square:")]
-        BlackMediumSmallSquare,
-        [EnumMember(Value = ":black_medium_square:")]
-        BlackMediumSquare,
-        [EnumMember(Value = ":black_nib:")]
-        BlackNib,
-        [EnumMember(Value = ":black_small_square:")]
-        BlackSmallSquare,
-        [EnumMember(Value = ":black_square:")]
-        BlackSquare,
-        [EnumMember(Value = ":black_square_button:")]
-        BlackSquareButton,
-        [EnumMember(Value = ":blossom:")]
-        Blossom,
-        [EnumMember(Value = ":blowfish:")]
-        Blowfish,
-        [EnumMember(Value = ":blue_book:")]
-        BlueBook,
-        [EnumMember(Value = ":blue_car:")]
-        BlueCar,
-        [EnumMember(Value = ":blue_heart:")]
-        BlueHeart,
-        [EnumMember(Value = ":blush:")]
-        Blush,
-        [EnumMember(Value = ":boar:")]
-        Boar,
-        [EnumMember(Value = ":boat:")]
-        Boat,
-        [EnumMember(Value = ":bomb:")]
-        Bomb,
-        [EnumMember(Value = ":book:")]
-        Book,
-        [EnumMember(Value = ":bookmark:")]
-        Bookmark,
-        [EnumMember(Value = ":bookmark_tabs:")]
-        BookmarkTabs,
-        [EnumMember(Value = ":books:")]
-        Books,
-        [EnumMember(Value = ":boom:")]
-        Boom,
-        [EnumMember(Value = ":boot:")]
-        Boot,
-        [EnumMember(Value = ":bouquet:")]
-        Bouquet,
-        [EnumMember(Value = ":bow:")]
-        Bow,
-        [EnumMember(Value = ":bowling:")]
-        Bowling,
-        [EnumMember(Value = ":bowtie:")]
-        Bowtie,
-        [EnumMember(Value = ":boy:")]
-        Boy,
-        [EnumMember(Value = ":bread:")]
-        Bread,
-        [EnumMember(Value = ":bride_with_veil:")]
-        BrideWithVeil,
-        [EnumMember(Value = ":bridge_at_night:")]
-        BridgeAtNight,
-        [EnumMember(Value = ":briefcase:")]
-        Briefcase,
-        [EnumMember(Value = ":broken_heart:")]
-        BrokenHeart,
-        [EnumMember(Value = ":bug:")]
-        Bug,
-        [EnumMember(Value = ":bulb:")]
-        Bulb,
-        [EnumMember(Value = ":bullettrain_front:")]
-        BullettrainFront,
-        [EnumMember(Value = ":bullettrain_side:")]
-        BullettrainSide,
-        [EnumMember(Value = ":bus:")]
-        Bus,
-        [EnumMember(Value = ":busstop:")]
-        Busstop,
-        [EnumMember(Value = ":bust_in_silhouette:")]
-        BustInSilhouette,
-        [EnumMember(Value = ":busts_in_silhouette:")]
-        BustsInSilhouette,
-        [EnumMember(Value = ":cactus:")]
-        Cactus,
-        [EnumMember(Value = ":cake:")]
-        Cake,
-        [EnumMember(Value = ":calendar:")]
-        Calendar,
-        [EnumMember(Value = ":calling:")]
-        Calling,
-        [EnumMember(Value = ":camel:")]
-        Camel,
-        [EnumMember(Value = ":camera:")]
-        Camera,
-        [EnumMember(Value = ":cancer:")]
-        Cancer,
-        [EnumMember(Value = ":candy:")]
-        Candy,
-        [EnumMember(Value = ":capital_abcd:")]
-        CapitalAbcd,
-        [EnumMember(Value = ":capricorn:")]
-        Capricorn,
-        [EnumMember(Value = ":car:")]
-        Car,
-        [EnumMember(Value = ":card_index:")]
-        CardIndex,
-        [EnumMember(Value = ":carousel_horse:")]
-        CarouselHorse,
-        [EnumMember(Value = ":cat:")]
-        Cat,
-        [EnumMember(Value = ":cat2:")]
-        Cat2,
-        [EnumMember(Value = ":cd:")]
-        Cd,
-        [EnumMember(Value = ":chart:")]
-        Chart,
-        [EnumMember(Value = ":chart_with_downwards_trend:")]
-        ChartWithDownwardsTrend,
-        [EnumMember(Value = ":chart_with_upwards_trend:")]
-        ChartWithUpwardsTrend,
-        [EnumMember(Value = ":checkered_flag:")]
-        CheckeredFlag,
-        [EnumMember(Value = ":cherries:")]
-        Cherries,
-        [EnumMember(Value = ":cherry_blossom:")]
-        CherryBlossom,
-        [EnumMember(Value = ":chestnut:")]
-        Chestnut,
-        [EnumMember(Value = ":chicken:")]
-        Chicken,
-        [EnumMember(Value = ":children_crossing:")]
-        ChildrenCrossing,
-        [EnumMember(Value = ":chocolate_bar:")]
-        ChocolateBar,
-        [EnumMember(Value = ":christmas_tree:")]
-        ChristmasTree,
-        [EnumMember(Value = ":church:")]
-        Church,
-        [EnumMember(Value = ":cinema:")]
-        Cinema,
-        [EnumMember(Value = ":circus_tent:")]
-        CircusTent,
-        [EnumMember(Value = ":city_sunrise:")]
-        CitySunrise,
-        [EnumMember(Value = ":city_sunset:")]
-        CitySunset,
-        [EnumMember(Value = ":cl:")]
-        Cl,
-        [EnumMember(Value = ":clap:")]
-        Clap,
-        [EnumMember(Value = ":clapper:")]
-        Clapper,
-        [EnumMember(Value = ":clipboard:")]
-        Clipboard,
-        [EnumMember(Value = ":clock1:")]
-        Clock1,
-        [EnumMember(Value = ":clock10:")]
-        Clock10,
-        [EnumMember(Value = ":clock1030:")]
-        Clock1030,
-        [EnumMember(Value = ":clock11:")]
-        Clock11,
-        [EnumMember(Value = ":clock1130:")]
-        Clock1130,
-        [EnumMember(Value = ":clock12:")]
-        Clock12,
-        [EnumMember(Value = ":clock1230:")]
-        Clock1230,
-        [EnumMember(Value = ":clock130:")]
-        Clock130,
-        [EnumMember(Value = ":clock2:")]
-        Clock2,
-        [EnumMember(Value = ":clock230:")]
-        Clock230,
-        [EnumMember(Value = ":clock3:")]
-        Clock3,
-        [EnumMember(Value = ":clock330:")]
-        Clock330,
-        [EnumMember(Value = ":clock4:")]
-        Clock4,
-        [EnumMember(Value = ":clock430:")]
-        Clock430,
-        [EnumMember(Value = ":clock5:")]
-        Clock5,
-        [EnumMember(Value = ":clock530:")]
-        Clock530,
-        [EnumMember(Value = ":clock6:")]
-        Clock6,
-        [EnumMember(Value = ":clock630:")]
-        Clock630,
-        [EnumMember(Value = ":clock7:")]
-        Clock7,
-        [EnumMember(Value = ":clock730:")]
-        Clock730,
-        [EnumMember(Value = ":clock8:")]
-        Clock8,
-        [EnumMember(Value = ":clock830:")]
-        Clock830,
-        [EnumMember(Value = ":clock9:")]
-        Clock9,
-        [EnumMember(Value = ":clock930:")]
-        Clock930,
-        [EnumMember(Value = ":closed_book:")]
-        ClosedBook,
-        [EnumMember(Value = ":closed_lock_with_key:")]
-        ClosedLockWithKey,
-        [EnumMember(Value = ":closed_umbrella:")]
-        ClosedUmbrella,
-        [EnumMember(Value = ":cloud:")]
-        Cloud,
-        [EnumMember(Value = ":clubs:")]
-        Clubs,
-        [EnumMember(Value = ":cn:")]
-        Cn,
-        [EnumMember(Value = ":cocktail:")]
-        Cocktail,
-        [EnumMember(Value = ":coffee:")]
-        Coffee,
-        [EnumMember(Value = ":cold_sweat:")]
-        ColdSweat,
-        [EnumMember(Value = ":collision:")]
-        Collision,
-        [EnumMember(Value = ":computer:")]
-        Computer,
-        [EnumMember(Value = ":confetti_ball:")]
-        ConfettiBall,
-        [EnumMember(Value = ":confounded:")]
-        Confounded,
-        [EnumMember(Value = ":confused:")]
-        Confused,
-        [EnumMember(Value = ":congratulations:")]
-        Congratulations,
-        [EnumMember(Value = ":construction:")]
-        Construction,
-        [EnumMember(Value = ":construction_worker:")]
-        ConstructionWorker,
-        [EnumMember(Value = ":convenience_store:")]
-        ConvenienceStore,
-        [EnumMember(Value = ":cookie:")]
-        Cookie,
-        [EnumMember(Value = ":cool:")]
-        Cool,
-        [EnumMember(Value = ":cop:")]
-        Cop,
-        [EnumMember(Value = ":copyright:")]
-        Copyright,
-        [EnumMember(Value = ":corn:")]
-        Corn,
-        [EnumMember(Value = ":couple:")]
-        Couple,
-        [EnumMember(Value = ":couple_with_heart:")]
-        CoupleWithHeart,
-        [EnumMember(Value = ":couplekiss:")]
-        Couplekiss,
-        [EnumMember(Value = ":cow:")]
-        Cow,
-        [EnumMember(Value = ":cow2:")]
-        Cow2,
-        [EnumMember(Value = ":credit_card:")]
-        CreditCard,
-        [EnumMember(Value = ":crocodile:")]
-        Crocodile,
-        [EnumMember(Value = ":crossed_flags:")]
-        CrossedFlags,
-        [EnumMember(Value = ":crown:")]
-        Crown,
-        [EnumMember(Value = ":cry:")]
-        Cry,
-        [EnumMember(Value = ":crying_cat_face:")]
-        CryingCatFace,
-        [EnumMember(Value = ":crystal_ball:")]
-        CrystalBall,
-        [EnumMember(Value = ":cupid:")]
-        Cupid,
-        [EnumMember(Value = ":curly_loop:")]
-        CurlyLoop,
-        [EnumMember(Value = ":currency_exchange:")]
-        CurrencyExchange,
-        [EnumMember(Value = ":curry:")]
-        Curry,
-        [EnumMember(Value = ":custard:")]
-        Custard,
-        [EnumMember(Value = ":customs:")]
-        Customs,
-        [EnumMember(Value = ":cyclone:")]
-        Cyclone,
-        [EnumMember(Value = ":dancer:")]
-        Dancer,
-        [EnumMember(Value = ":dancers:")]
-        Dancers,
-        [EnumMember(Value = ":dango:")]
-        Dango,
-        [EnumMember(Value = ":dart:")]
-        Dart,
-        [EnumMember(Value = ":dash:")]
-        Dash,
-        [EnumMember(Value = ":date:")]
-        Date,
-        [EnumMember(Value = ":de:")]
-        De,
-        [EnumMember(Value = ":deciduous_tree:")]
-        DeciduousTree,
-        [EnumMember(Value = ":department_store:")]
-        DepartmentStore,
-        [EnumMember(Value = ":diamond_shape_with_a_dot_inside:")]
-        DiamondShapeWithADotInside,
-        [EnumMember(Value = ":diamonds:")]
-        Diamonds,
-        [EnumMember(Value = ":disappointed:")]
-        Disappointed,
-        [EnumMember(Value = ":disappointed_relieved:")]
-        DisappointedRelieved,
-        [EnumMember(Value = ":dizzy:")]
-        Dizzy,
-        [EnumMember(Value = ":dizzy_face:")]
-        DizzyFace,
-        [EnumMember(Value = ":do_not_litter:")]
-        DoNotLitter,
-        [EnumMember(Value = ":dog:")]
-        Dog,
-        [EnumMember(Value = ":dog2:")]
-        Dog2,
-        [EnumMember(Value = ":dollar:")]
-        Dollar,
-        [EnumMember(Value = ":dolls:")]
-        Dolls,
-        [EnumMember(Value = ":dolphin:")]
-        Dolphin,
-        [EnumMember(Value = ":donut:")]
-        Donut,
-        [EnumMember(Value = ":door:")]
-        Door,
-        [EnumMember(Value = ":doughnut:")]
-        Doughnut,
-        [EnumMember(Value = ":dragon:")]
-        Dragon,
-        [EnumMember(Value = ":dragon_face:")]
-        DragonFace,
-        [EnumMember(Value = ":dress:")]
-        Dress,
-        [EnumMember(Value = ":dromedary_camel:")]
-        DromedaryCamel,
-        [EnumMember(Value = ":droplet:")]
-        Droplet,
-        [EnumMember(Value = ":dvd:")]
-        Dvd,
-        [EnumMember(Value = ":e-mail:")]
-        EhyphenMail,
-        [EnumMember(Value = ":ear:")]
-        Ear,
-        [EnumMember(Value = ":ear_of_rice:")]
-        EarOfRice,
-        [EnumMember(Value = ":earth_africa:")]
-        EarthAfrica,
-        [EnumMember(Value = ":earth_americas:")]
-        EarthAmericas,
-        [EnumMember(Value = ":earth_asia:")]
-        EarthAsia,
-        [EnumMember(Value = ":egg:")]
-        Egg,
-        [EnumMember(Value = ":eggplant:")]
-        Eggplant,
-        [EnumMember(Value = ":eight:")]
-        Eight,
-        [EnumMember(Value = ":eight_pointed_black_star:")]
-        EightPointedBlackStar,
-        [EnumMember(Value = ":eight_spoked_asterisk:")]
-        EightSpokedAsterisk,
-        [EnumMember(Value = ":electric_plug:")]
-        ElectricPlug,
-        [EnumMember(Value = ":elephant:")]
-        Elephant,
-        [EnumMember(Value = ":email:")]
-        Email,
-        [EnumMember(Value = ":end:")]
-        End,
-        [EnumMember(Value = ":envelope:")]
-        Envelope,
-        [EnumMember(Value = ":es:")]
-        Es,
-        [EnumMember(Value = ":euro:")]
-        Euro,
-        [EnumMember(Value = ":european_castle:")]
-        EuropeanCastle,
-        [EnumMember(Value = ":european_post_office:")]
-        EuropeanPostOffice,
-        [EnumMember(Value = ":evergreen_tree:")]
-        EvergreenTree,
-        [EnumMember(Value = ":exclamation:")]
-        Exclamation,
-        [EnumMember(Value = ":expressionless:")]
-        Expressionless,
-        [EnumMember(Value = ":eyeglasses:")]
-        Eyeglasses,
-        [EnumMember(Value = ":eyes:")]
-        Eyes,
-        [EnumMember(Value = ":facepunch:")]
-        Facepunch,
-        [EnumMember(Value = ":factory:")]
-        Factory,
-        [EnumMember(Value = ":fallen_leaf:")]
-        FallenLeaf,
-        [EnumMember(Value = ":family:")]
-        Family,
-        [EnumMember(Value = ":fast_forward:")]
-        FastForward,
-        [EnumMember(Value = ":fax:")]
-        Fax,
-        [EnumMember(Value = ":fearful:")]
-        Fearful,
-        [EnumMember(Value = ":feelsgood:")]
-        Feelsgood,
-        [EnumMember(Value = ":feet:")]
-        Feet,
-        [EnumMember(Value = ":ferris_wheel:")]
-        FerrisWheel,
-        [EnumMember(Value = ":file_folder:")]
-        FileFolder,
-        [EnumMember(Value = ":finnadie:")]
-        Finnadie,
-        [EnumMember(Value = ":fire:")]
-        Fire,
-        [EnumMember(Value = ":fire_engine:")]
-        FireEngine,
-        [EnumMember(Value = ":fireworks:")]
-        Fireworks,
-        [EnumMember(Value = ":first_quarter_moon:")]
-        FirstQuarterMoon,
-        [EnumMember(Value = ":first_quarter_moon_with_face:")]
-        FirstQuarterMoonWithFace,
-        [EnumMember(Value = ":fish:")]
-        Fish,
-        [EnumMember(Value = ":fish_cake:")]
-        FishCake,
-        [EnumMember(Value = ":fishing_pole_and_fish:")]
-        FishingPoleAndFish,
-        [EnumMember(Value = ":fist:")]
-        Fist,
-        [EnumMember(Value = ":five:")]
-        Five,
-        [EnumMember(Value = ":flags:")]
-        Flags,
-        [EnumMember(Value = ":flashlight:")]
-        Flashlight,
-        [EnumMember(Value = ":floppy_disk:")]
-        FloppyDisk,
-        [EnumMember(Value = ":flower_playing_cards:")]
-        FlowerPlayingCards,
-        [EnumMember(Value = ":flushed:")]
-        Flushed,
-        [EnumMember(Value = ":foggy:")]
-        Foggy,
-        [EnumMember(Value = ":football:")]
-        Football,
-        [EnumMember(Value = ":fork_and_knife:")]
-        ForkAndKnife,
-        [EnumMember(Value = ":fountain:")]
-        Fountain,
-        [EnumMember(Value = ":four:")]
-        Four,
-        [EnumMember(Value = ":four_leaf_clover:")]
-        FourLeafClover,
-        [EnumMember(Value = ":fr:")]
-        Fr,
-        [EnumMember(Value = ":free:")]
-        Free,
-        [EnumMember(Value = ":fried_shrimp:")]
-        FriedShrimp,
-        [EnumMember(Value = ":fries:")]
-        Fries,
-        [EnumMember(Value = ":frog:")]
-        Frog,
-        [EnumMember(Value = ":frowning:")]
-        Frowning,
-        [EnumMember(Value = ":fu:")]
-        Fu,
-        [EnumMember(Value = ":fuelpump:")]
-        Fuelpump,
-        [EnumMember(Value = ":full_moon:")]
-        FullMoon,
-        [EnumMember(Value = ":full_moon_with_face:")]
-        FullMoonWithFace,
-        [EnumMember(Value = ":game_die:")]
-        GameDie,
-        [EnumMember(Value = ":gb:")]
-        Gb,
-        [EnumMember(Value = ":gear:")]
-        Gear,
-        [EnumMember(Value = ":gem:")]
-        Gem,
-        [EnumMember(Value = ":gemini:")]
-        Gemini,
-        [EnumMember(Value = ":ghost:")]
-        Ghost,
-        [EnumMember(Value = ":gift:")]
-        Gift,
-        [EnumMember(Value = ":gift_heart:")]
-        GiftHeart,
-        [EnumMember(Value = ":girl:")]
-        Girl,
-        [EnumMember(Value = ":globe_with_meridians:")]
-        GlobeWithMeridians,
-        [EnumMember(Value = ":goat:")]
-        Goat,
-        [EnumMember(Value = ":goberserk:")]
-        Goberserk,
-        [EnumMember(Value = ":godmode:")]
-        Godmode,
-        [EnumMember(Value = ":golf:")]
-        Golf,
-        [EnumMember(Value = ":grapes:")]
-        Grapes,
-        [EnumMember(Value = ":green_apple:")]
-        GreenApple,
-        [EnumMember(Value = ":green_book:")]
-        GreenBook,
-        [EnumMember(Value = ":green_heart:")]
-        GreenHeart,
-        [EnumMember(Value = ":grey_exclamation:")]
-        GreyExclamation,
-        [EnumMember(Value = ":grey_question:")]
-        GreyQuestion,
-        [EnumMember(Value = ":grimacing:")]
-        Grimacing,
-        [EnumMember(Value = ":grin:")]
-        Grin,
-        [EnumMember(Value = ":grinning:")]
-        Grinning,
-        [EnumMember(Value = ":guardsman:")]
-        Guardsman,
-        [EnumMember(Value = ":guitar:")]
-        Guitar,
-        [EnumMember(Value = ":gun:")]
-        Gun,
-        [EnumMember(Value = ":haircut:")]
-        Haircut,
-        [EnumMember(Value = ":hamburger:")]
-        Hamburger,
-        [EnumMember(Value = ":hammer:")]
-        Hammer,
-        [EnumMember(Value = ":hamster:")]
-        Hamster,
-        [EnumMember(Value = ":hand:")]
-        Hand,
-        [EnumMember(Value = ":handbag:")]
-        Handbag,
-        [EnumMember(Value = ":hankey:")]
-        Hankey,
-        [EnumMember(Value = ":hash:")]
-        Hash,
-        [EnumMember(Value = ":hatched_chick:")]
-        HatchedChick,
-        [EnumMember(Value = ":hatching_chick:")]
-        HatchingChick,
-        [EnumMember(Value = ":headphones:")]
-        Headphones,
-        [EnumMember(Value = ":hear_no_evil:")]
-        HearNoEvil,
-        [EnumMember(Value = ":heart:")]
-        Heart,
-        [EnumMember(Value = ":heart_decoration:")]
-        HeartDecoration,
-        [EnumMember(Value = ":heart_eyes:")]
-        HeartEyes,
-        [EnumMember(Value = ":heart_eyes_cat:")]
-        HeartEyesCat,
-        [EnumMember(Value = ":heartbeat:")]
-        Heartbeat,
-        [EnumMember(Value = ":heartpulse:")]
-        Heartpulse,
-        [EnumMember(Value = ":hearts:")]
-        Hearts,
-        [EnumMember(Value = ":heavy_check_mark:")]
-        HeavyCheckMark,
-        [EnumMember(Value = ":heavy_division_sign:")]
-        HeavyDivisionSign,
-        [EnumMember(Value = ":heavy_dollar_sign:")]
-        HeavyDollarSign,
-        [EnumMember(Value = ":heavy_exclamation_mark:")]
-        HeavyExclamationMark,
-        [EnumMember(Value = ":heavy_minus_sign:")]
-        HeavyMinusSign,
-        [EnumMember(Value = ":heavy_multiplication_x:")]
-        HeavyMultiplicationX,
-        [EnumMember(Value = ":heavy_plus_sign:")]
-        HeavyPlusSign,
-        [EnumMember(Value = ":helicopter:")]
-        Helicopter,
-        [EnumMember(Value = ":herb:")]
-        Herb,
-        [EnumMember(Value = ":hibiscus:")]
-        Hibiscus,
-        [EnumMember(Value = ":high_brightness:")]
-        HighBrightness,
-        [EnumMember(Value = ":high_heel:")]
-        HighHeel,
-        [EnumMember(Value = ":hocho:")]
-        Hocho,
-        [EnumMember(Value = ":honey_pot:")]
-        HoneyPot,
-        [EnumMember(Value = ":honeybee:")]
-        Honeybee,
-        [EnumMember(Value = ":horse:")]
-        Horse,
-        [EnumMember(Value = ":horse_racing:")]
-        HorseRacing,
-        [EnumMember(Value = ":hospital:")]
-        Hospital,
-        [EnumMember(Value = ":hotel:")]
-        Hotel,
-        [EnumMember(Value = ":hotsprings:")]
-        Hotsprings,
-        [EnumMember(Value = ":hourglass:")]
-        Hourglass,
-        [EnumMember(Value = ":hourglass_flowing_sand:")]
-        HourglassFlowingSand,
-        [EnumMember(Value = ":house:")]
-        House,
-        [EnumMember(Value = ":house_with_garden:")]
-        HouseWithGarden,
-        [EnumMember(Value = ":hurtrealbad:")]
-        Hurtrealbad,
-        [EnumMember(Value = ":hushed:")]
-        Hushed,
-        [EnumMember(Value = ":ice_cream:")]
-        Ice_Cream,
-        [EnumMember(Value = ":icecream:")]
-        IceCream,
-        [EnumMember(Value = ":id:")]
-        Id,
-        [EnumMember(Value = ":ideograph_advantage:")]
-        IdeographAdvantage,
-        [EnumMember(Value = ":imp:")]
-        Imp,
-        [EnumMember(Value = ":inbox_tray:")]
-        InboxTray,
-        [EnumMember(Value = ":incoming_envelope:")]
-        IncomingEnvelope,
-        [EnumMember(Value = ":information_desk_person:")]
-        InformationDeskPerson,
-        [EnumMember(Value = ":information_source:")]
-        InformationSource,
-        [EnumMember(Value = ":innocent:")]
-        Innocent,
-        [EnumMember(Value = ":interrobang:")]
-        Interrobang,
-        [EnumMember(Value = ":iphone:")]
-        Iphone,
-        [EnumMember(Value = ":it:")]
-        It,
-        [EnumMember(Value = ":izakaya_lantern:")]
-        IzakayaLantern,
-        [EnumMember(Value = ":jack_o_lantern:")]
-        JackOLantern,
-        [EnumMember(Value = ":japan:")]
-        Japan,
-        [EnumMember(Value = ":japanese_castle:")]
-        JapaneseCastle,
-        [EnumMember(Value = ":japanese_goblin:")]
-        JapaneseGoblin,
-        [EnumMember(Value = ":japanese_ogre:")]
-        JapaneseOgre,
-        [EnumMember(Value = ":jeans:")]
-        Jeans,
-        [EnumMember(Value = ":joy:")]
-        Joy,
-        [EnumMember(Value = ":joy_cat:")]
-        JoyCat,
-        [EnumMember(Value = ":jp:")]
-        Jp,
-        [EnumMember(Value = ":key:")]
-        Key,
-        [EnumMember(Value = ":keycap_ten:")]
-        KeycapTen,
-        [EnumMember(Value = ":kimono:")]
-        Kimono,
-        [EnumMember(Value = ":kiss:")]
-        Kiss,
-        [EnumMember(Value = ":kissing:")]
-        Kissing,
-        [EnumMember(Value = ":kissing_cat:")]
-        KissingCat,
-        [EnumMember(Value = ":kissing_closed_eyes:")]
-        KissingClosedEyes,
-        [EnumMember(Value = ":kissing_face:")]
-        KissingFace,
-        [EnumMember(Value = ":kissing_heart:")]
-        KissingHeart,
-        [EnumMember(Value = ":kissing_smiling_eyes:")]
-        KissingSmilingEyes,
-        [EnumMember(Value = ":koala:")]
-        Koala,
-        [EnumMember(Value = ":koko:")]
-        Koko,
-        [EnumMember(Value = ":kr:")]
-        Kr,
-        [EnumMember(Value = ":large_blue_circle:")]
-        LargeBlueCircle,
-        [EnumMember(Value = ":large_blue_diamond:")]
-        LargeBlueDiamond,
-        [EnumMember(Value = ":large_orange_diamond:")]
-        LargeOrangeDiamond,
-        [EnumMember(Value = ":last_quarter_moon:")]
-        LastQuarterMoon,
-        [EnumMember(Value = ":last_quarter_moon_with_face:")]
-        LastQuarterMoonWithFace,
-        [EnumMember(Value = ":laughing:")]
-        Laughing,
-        [EnumMember(Value = ":leaves:")]
-        Leaves,
-        [EnumMember(Value = ":ledger:")]
-        Ledger,
-        [EnumMember(Value = ":left_luggage:")]
-        LeftLuggage,
-        [EnumMember(Value = ":left_right_arrow:")]
-        LeftRightArrow,
-        [EnumMember(Value = ":leftwards_arrow_with_hook:")]
-        LeftwardsArrowWithHook,
-        [EnumMember(Value = ":lemon:")]
-        Lemon,
-        [EnumMember(Value = ":leo:")]
-        Leo,
-        [EnumMember(Value = ":leopard:")]
-        Leopard,
-        [EnumMember(Value = ":libra:")]
-        Libra,
-        [EnumMember(Value = ":light_rail:")]
-        LightRail,
-        [EnumMember(Value = ":link:")]
-        Link,
-        [EnumMember(Value = ":lips:")]
-        Lips,
-        [EnumMember(Value = ":lipstick:")]
-        Lipstick,
-        [EnumMember(Value = ":lock:")]
-        Lock,
-        [EnumMember(Value = ":lock_with_ink_pen:")]
-        LockWithInkPen,
-        [EnumMember(Value = ":lollipop:")]
-        Lollipop,
-        [EnumMember(Value = ":loop:")]
-        Loop,
-        [EnumMember(Value = ":loudspeaker:")]
-        Loudspeaker,
-        [EnumMember(Value = ":love_hotel:")]
-        LoveHotel,
-        [EnumMember(Value = ":love_letter:")]
-        LoveLetter,
-        [EnumMember(Value = ":low_brightness:")]
-        LowBrightness,
-        [EnumMember(Value = ":m:")]
-        M,
-        [EnumMember(Value = ":mag:")]
-        Mag,
-        [EnumMember(Value = ":mag_right:")]
-        MagRight,
-        [EnumMember(Value = ":mahjong:")]
-        Mahjong,
-        [EnumMember(Value = ":mailbox:")]
-        Mailbox,
-        [EnumMember(Value = ":mailbox_closed:")]
-        MailboxClosed,
-        [EnumMember(Value = ":mailbox_with_mail:")]
-        MailboxWithMail,
-        [EnumMember(Value = ":mailbox_with_no_mail:")]
-        MailboxWithNoMail,
-        [EnumMember(Value = ":man:")]
-        Man,
-        [EnumMember(Value = ":man_with_gua_pi_mao:")]
-        ManWithGuaPiMao,
-        [EnumMember(Value = ":man_with_turban:")]
-        ManWithTurban,
-        [EnumMember(Value = ":mans_shoe:")]
-        MansShoe,
-        [EnumMember(Value = ":maple_leaf:")]
-        MapleLeaf,
-        [EnumMember(Value = ":mask:")]
-        Mask,
-        [EnumMember(Value = ":massage:")]
-        Massage,
-        [EnumMember(Value = ":meat_on_bone:")]
-        MeatOnBone,
-        [EnumMember(Value = ":mega:")]
-        Mega,
-        [EnumMember(Value = ":melon:")]
-        Melon,
-        [EnumMember(Value = ":memo:")]
-        Memo,
-        [EnumMember(Value = ":mens:")]
-        Mens,
-        [EnumMember(Value = ":metal:")]
-        Metal,
-        [EnumMember(Value = ":metro:")]
-        Metro,
-        [EnumMember(Value = ":microphone:")]
-        Microphone,
-        [EnumMember(Value = ":microscope:")]
-        Microscope,
-        [EnumMember(Value = ":milky_way:")]
-        MilkyWay,
-        [EnumMember(Value = ":minibus:")]
-        Minibus,
-        [EnumMember(Value = ":minidisc:")]
-        Minidisc,
-        [EnumMember(Value = ":mobile_phone_off:")]
-        MobilePhoneOff,
-        [EnumMember(Value = ":money_with_wings:")]
-        MoneyWithWings,
-        [EnumMember(Value = ":moneybag:")]
-        Moneybag,
-        [EnumMember(Value = ":monkey:")]
-        Monkey,
-        [EnumMember(Value = ":monkey_face:")]
-        MonkeyFace,
-        [EnumMember(Value = ":monorail:")]
-        Monorail,
-        [EnumMember(Value = ":moon:")]
-        Moon,
-        [EnumMember(Value = ":mortar_board:")]
-        MortarBoard,
-        [EnumMember(Value = ":mount_fuji:")]
-        MountFuji,
-        [EnumMember(Value = ":mountain_bicyclist:")]
-        MountainBicyclist,
-        [EnumMember(Value = ":mountain_cableway:")]
-        MountainCableway,
-        [EnumMember(Value = ":mountain_railway:")]
-        MountainRailway,
-        [EnumMember(Value = ":mouse:")]
-        Mouse,
-        [EnumMember(Value = ":mouse2:")]
-        Mouse2,
-        [EnumMember(Value = ":movie_camera:")]
-        MovieCamera,
-        [EnumMember(Value = ":moyai:")]
-        Moyai,
-        [EnumMember(Value = ":muscle:")]
-        Muscle,
-        [EnumMember(Value = ":mushroom:")]
-        Mushroom,
-        [EnumMember(Value = ":musical_keyboard:")]
-        MusicalKeyboard,
-        [EnumMember(Value = ":musical_note:")]
-        MusicalNote,
-        [EnumMember(Value = ":musical_score:")]
-        MusicalScore,
-        [EnumMember(Value = ":mute:")]
-        Mute,
-        [EnumMember(Value = ":nail_care:")]
-        NailCare,
-        [EnumMember(Value = ":name_badge:")]
-        NameBadge,
-        [EnumMember(Value = ":neckbeard:")]
-        Neckbeard,
-        [EnumMember(Value = ":necktie:")]
-        Necktie,
-        [EnumMember(Value = ":negative_squared_cross_mark:")]
-        NegativeSquaredCrossMark,
-        [EnumMember(Value = ":neutral_face:")]
-        NeutralFace,
-        [EnumMember(Value = ":new:")]
-        New,
-        [EnumMember(Value = ":new_moon:")]
-        NewMoon,
-        [EnumMember(Value = ":new_moon_with_face:")]
-        NewMoonWithFace,
-        [EnumMember(Value = ":newspaper:")]
-        Newspaper,
-        [EnumMember(Value = ":ng:")]
-        Ng,
-        [EnumMember(Value = ":nine:")]
-        Nine,
-        [EnumMember(Value = ":no_bell:")]
-        NoBell,
-        [EnumMember(Value = ":no_bicycles:")]
-        NoBicycles,
-        [EnumMember(Value = ":no_entry:")]
-        NoEntry,
-        [EnumMember(Value = ":no_entry_sign:")]
-        NoEntrySign,
-        [EnumMember(Value = ":no_good:")]
-        NoGood,
-        [EnumMember(Value = ":no_mobile_phones:")]
-        NoMobilePhones,
-        [EnumMember(Value = ":no_mouth:")]
-        NoMouth,
-        [EnumMember(Value = ":no_pedestrians:")]
-        NoPedestrians,
-        [EnumMember(Value = ":no_smoking:")]
-        NoSmoking,
-        [EnumMember(Value = ":non-potable_water:")]
-        NonPotableWater,
-        [EnumMember(Value = ":nose:")]
-        Nose,
-        [EnumMember(Value = ":notebook:")]
-        Notebook,
-        [EnumMember(Value = ":notebook_with_decorative_cover:")]
-        NotebookWithDecorativeCover,
-        [EnumMember(Value = ":notes:")]
-        Notes,
-        [EnumMember(Value = ":nut_and_bolt:")]
-        NutAndBolt,
-        [EnumMember(Value = ":o:")]
-        O,
-        [EnumMember(Value = ":o2:")]
-        O2,
-        [EnumMember(Value = ":ocean:")]
-        Ocean,
-        [EnumMember(Value = ":octocat:")]
-        Octocat,
-        [EnumMember(Value = ":octopus:")]
-        Octopus,
-        [EnumMember(Value = ":oden:")]
-        Oden,
-        [EnumMember(Value = ":office:")]
-        Office,
-        [EnumMember(Value = ":ok:")]
-        Ok,
-        [EnumMember(Value = ":ok_hand:")]
-        OkHand,
-        [EnumMember(Value = ":ok_woman:")]
-        OkWoman,
-        [EnumMember(Value = ":older_man:")]
-        OlderMan,
-        [EnumMember(Value = ":older_woman:")]
-        OlderWoman,
-        [EnumMember(Value = ":on:")]
-        On,
-        [EnumMember(Value = ":oncoming_automobile:")]
-        OncomingAutomobile,
-        [EnumMember(Value = ":oncoming_bus:")]
-        OncomingBus,
-        [EnumMember(Value = ":oncoming_police_car:")]
-        OncomingPoliceCar,
-        [EnumMember(Value = ":oncoming_taxi:")]
-        OncomingTaxi,
-        [EnumMember(Value = ":one:")]
-        One,
-        [EnumMember(Value = ":open_file_folder:")]
-        OpenFileFolder,
-        [EnumMember(Value = ":open_hands:")]
-        OpenHands,
-        [EnumMember(Value = ":open_mouth:")]
-        OpenMouth,
-        [EnumMember(Value = ":ophiuchus:")]
-        Ophiuchus,
-        [EnumMember(Value = ":orange_book:")]
-        OrangeBook,
-        [EnumMember(Value = ":outbox_tray:")]
-        OutboxTray,
-        [EnumMember(Value = ":ox:")]
-        Ox,
-        [EnumMember(Value = ":package:")]
-        Package,
-        [EnumMember(Value = ":page_facing_up:")]
-        PageFacingUp,
-        [EnumMember(Value = ":page_with_curl:")]
-        PageWithCurl,
-        [EnumMember(Value = ":pager:")]
-        Pager,
-        [EnumMember(Value = ":palm_tree:")]
-        PalmTree,
-        [EnumMember(Value = ":panda_face:")]
-        PandaFace,
-        [EnumMember(Value = ":paperclip:")]
-        Paperclip,
-        [EnumMember(Value = ":parking:")]
-        Parking,
-        [EnumMember(Value = ":part_alternation_mark:")]
-        PartAlternationMark,
-        [EnumMember(Value = ":partly_sunny:")]
-        PartlySunny,
-        [EnumMember(Value = ":passport_control:")]
-        PassportControl,
-        [EnumMember(Value = ":paw_prints:")]
-        PawPrints,
-        [EnumMember(Value = ":peach:")]
-        Peach,
-        [EnumMember(Value = ":pear:")]
-        Pear,
-        [EnumMember(Value = ":pencil:")]
-        Pencil,
-        [EnumMember(Value = ":pencil2:")]
-        Pencil2,
-        [EnumMember(Value = ":penguin:")]
-        Penguin,
-        [EnumMember(Value = ":pensive:")]
-        Pensive,
-        [EnumMember(Value = ":performing_arts:")]
-        PerformingArts,
-        [EnumMember(Value = ":persevere:")]
-        Persevere,
-        [EnumMember(Value = ":person_frowning:")]
-        PersonFrowning,
-        [EnumMember(Value = ":person_with_blond_hair:")]
-        PersonWithBlondHair,
-        [EnumMember(Value = ":person_with_pouting_face:")]
-        PersonWithPoutingFace,
-        [EnumMember(Value = ":phone:")]
-        Phone,
-        [EnumMember(Value = ":pig:")]
-        Pig,
-        [EnumMember(Value = ":pig2:")]
-        Pig2,
-        [EnumMember(Value = ":pig_nose:")]
-        PigNose,
-        [EnumMember(Value = ":pill:")]
-        Pill,
-        [EnumMember(Value = ":pineapple:")]
-        Pineapple,
-        [EnumMember(Value = ":pisces:")]
-        Pisces,
-        [EnumMember(Value = ":pizza:")]
-        Pizza,
-        [EnumMember(Value = ":plus1:")]
-        Plus1,
-        [EnumMember(Value = ":point_down:")]
-        PointDown,
-        [EnumMember(Value = ":point_left:")]
-        PointLeft,
-        [EnumMember(Value = ":point_right:")]
-        PointRight,
-        [EnumMember(Value = ":point_up:")]
-        PointUp,
-        [EnumMember(Value = ":point_up_2:")]
-        PointUp2,
-        [EnumMember(Value = ":police_car:")]
-        PoliceCar,
-        [EnumMember(Value = ":poodle:")]
-        Poodle,
-        [EnumMember(Value = ":poop:")]
-        Poop,
-        [EnumMember(Value = ":post_office:")]
-        PostOffice,
-        [EnumMember(Value = ":postal_horn:")]
-        PostalHorn,
-        [EnumMember(Value = ":postbox:")]
-        Postbox,
-        [EnumMember(Value = ":potable_water:")]
-        PotableWater,
-        [EnumMember(Value = ":pouch:")]
-        Pouch,
-        [EnumMember(Value = ":poultry_leg:")]
-        PoultryLeg,
-        [EnumMember(Value = ":pound:")]
-        Pound,
-        [EnumMember(Value = ":pouting_cat:")]
-        PoutingCat,
-        [EnumMember(Value = ":pray:")]
-        Pray,
-        [EnumMember(Value = ":princess:")]
-        Princess,
-        [EnumMember(Value = ":punch:")]
-        Punch,
-        [EnumMember(Value = ":purple_heart:")]
-        PurpleHeart,
-        [EnumMember(Value = ":purse:")]
-        Purse,
-        [EnumMember(Value = ":pushpin:")]
-        Pushpin,
-        [EnumMember(Value = ":put_litter_in_its_place:")]
-        PutLitterInItsPlace,
-        [EnumMember(Value = ":question:")]
-        Question,
-        [EnumMember(Value = ":rabbit:")]
-        Rabbit,
-        [EnumMember(Value = ":rabbit2:")]
-        Rabbit2,
-        [EnumMember(Value = ":racehorse:")]
-        Racehorse,
-        [EnumMember(Value = ":radio:")]
-        Radio,
-        [EnumMember(Value = ":radio_button:")]
-        RadioButton,
-        [EnumMember(Value = ":rage:")]
-        Rage,
-        [EnumMember(Value = ":rage1:")]
-        Rage1,
-        [EnumMember(Value = ":rage2:")]
-        Rage2,
-        [EnumMember(Value = ":rage3:")]
-        Rage3,
-        [EnumMember(Value = ":rage4:")]
-        Rage4,
-        [EnumMember(Value = ":railway_car:")]
-        RailwayCar,
-        [EnumMember(Value = ":rainbow:")]
-        Rainbow,
-        [EnumMember(Value = ":raised_hand:")]
-        RaisedHand,
-        [EnumMember(Value = ":raised_hands:")]
-        RaisedHands,
-        [EnumMember(Value = ":raising_hand:")]
-        RaisingHand,
-        [EnumMember(Value = ":ram:")]
-        Ram,
-        [EnumMember(Value = ":ramen:")]
-        Ramen,
-        [EnumMember(Value = ":rat:")]
-        Rat,
-        [EnumMember(Value = ":recycle:")]
-        Recycle,
-        [EnumMember(Value = ":red_car:")]
-        RedCar,
-        [EnumMember(Value = ":red_circle:")]
-        RedCircle,
-        [EnumMember(Value = ":registered:")]
-        Registered,
-        [EnumMember(Value = ":relaxed:")]
-        Relaxed,
-        [EnumMember(Value = ":relieved:")]
-        Relieved,
-        [EnumMember(Value = ":repeat:")]
-        Repeat,
-        [EnumMember(Value = ":repeat_one:")]
-        RepeatOne,
-        [EnumMember(Value = ":restroom:")]
-        Restroom,
-        [EnumMember(Value = ":revolving_hearts:")]
-        RevolvingHearts,
-        [EnumMember(Value = ":rewind:")]
-        Rewind,
-        [EnumMember(Value = ":ribbon:")]
-        Ribbon,
-        [EnumMember(Value = ":rice:")]
-        Rice,
-        [EnumMember(Value = ":rice_ball:")]
-        RiceBall,
-        [EnumMember(Value = ":rice_cracker:")]
-        RiceCracker,
-        [EnumMember(Value = ":rice_scene:")]
-        RiceScene,
-        [EnumMember(Value = ":ring:")]
-        Ring,
-        [EnumMember(Value = ":robot_face:")]
-        RobotFace,
-        [EnumMember(Value = ":rocket:")]
-        Rocket,
-        [EnumMember(Value = ":roller_coaster:")]
-        RollerCoaster,
-        [EnumMember(Value = ":rooster:")]
-        Rooster,
-        [EnumMember(Value = ":rose:")]
-        Rose,
-        [EnumMember(Value = ":rotating_light:")]
-        RotatingLight,
-        [EnumMember(Value = ":round_pushpin:")]
-        RoundPushpin,
-        [EnumMember(Value = ":rowboat:")]
-        Rowboat,
-        [EnumMember(Value = ":ru:")]
-        Ru,
-        [EnumMember(Value = ":rugby_football:")]
-        RugbyFootball,
-        [EnumMember(Value = ":runner:")]
-        Runner,
-        [EnumMember(Value = ":running:")]
-        Running,
-        [EnumMember(Value = ":running_shirt_with_sash:")]
-        RunningShirtWithSash,
-        [EnumMember(Value = ":sa:")]
-        Sa,
-        [EnumMember(Value = ":sagittarius:")]
-        Sagittarius,
-        [EnumMember(Value = ":sailboat:")]
-        Sailboat,
-        [EnumMember(Value = ":sake:")]
-        Sake,
-        [EnumMember(Value = ":sandal:")]
-        Sandal,
-        [EnumMember(Value = ":santa:")]
-        Santa,
-        [EnumMember(Value = ":satellite:")]
-        Satellite,
-        [EnumMember(Value = ":satisfied:")]
-        Satisfied,
-        [EnumMember(Value = ":saxophone:")]
-        Saxophone,
-        [EnumMember(Value = ":school:")]
-        School,
-        [EnumMember(Value = ":school_satchel:")]
-        SchoolSatchel,
-        [EnumMember(Value = ":scissors:")]
-        Scissors,
-        [EnumMember(Value = ":scorpius:")]
-        Scorpius,
-        [EnumMember(Value = ":scream:")]
-        Scream,
-        [EnumMember(Value = ":scream_cat:")]
-        ScreamCat,
-        [EnumMember(Value = ":scroll:")]
-        Scroll,
-        [EnumMember(Value = ":seat:")]
-        Seat,
-        [EnumMember(Value = ":secret:")]
-        Secret,
-        [EnumMember(Value = ":see_no_evil:")]
-        SeeNoEvil,
-        [EnumMember(Value = ":seedling:")]
-        Seedling,
-        [EnumMember(Value = ":seven:")]
-        Seven,
-        [EnumMember(Value = ":shaved_ice:")]
-        ShavedIce,
-        [EnumMember(Value = ":sheep:")]
-        Sheep,
-        [EnumMember(Value = ":shell:")]
-        Shell,
-        [EnumMember(Value = ":ship:")]
-        Ship,
-        [EnumMember(Value = ":shipit:")]
-        Shipit,
-        [EnumMember(Value = ":shirt:")]
-        Shirt,
-        [EnumMember(Value = ":shit:")]
-        Shit,
-        [EnumMember(Value = ":shoe:")]
-        Shoe,
-        [EnumMember(Value = ":shower:")]
-        Shower,
-        [EnumMember(Value = ":signal_strength:")]
-        SignalStrength,
-        [EnumMember(Value = ":six:")]
-        Six,
-        [EnumMember(Value = ":six_pointed_star:")]
-        SixPointedStar,
-        [EnumMember(Value = ":ski:")]
-        Ski,
-        [EnumMember(Value = ":skull:")]
-        Skull,
-        [EnumMember(Value = ":sleeping:")]
-        Sleeping,
-        [EnumMember(Value = ":sleepy:")]
-        Sleepy,
-        [EnumMember(Value = ":slot_machine:")]
-        SlotMachine,
-        [EnumMember(Value = ":small_blue_diamond:")]
-        SmallBlueDiamond,
-        [EnumMember(Value = ":small_orange_diamond:")]
-        SmallOrangeDiamond,
-        [EnumMember(Value = ":small_red_triangle:")]
-        SmallRedTriangle,
-        [EnumMember(Value = ":small_red_triangle_down:")]
-        SmallRedTriangleDown,
-        [EnumMember(Value = ":smile:")]
-        Smile,
-        [EnumMember(Value = ":smile_cat:")]
-        SmileCat,
-        [EnumMember(Value = ":smiley:")]
-        Smiley,
-        [EnumMember(Value = ":smiley_cat:")]
-        SmileyCat,
-        [EnumMember(Value = ":smiling_imp:")]
-        SmilingImp,
-        [EnumMember(Value = ":smirk:")]
-        Smirk,
-        [EnumMember(Value = ":smirk_cat:")]
-        SmirkCat,
-        [EnumMember(Value = ":smoking:")]
-        Smoking,
-        [EnumMember(Value = ":snail:")]
-        Snail,
-        [EnumMember(Value = ":snake:")]
-        Snake,
-        [EnumMember(Value = ":snowboarder:")]
-        Snowboarder,
-        [EnumMember(Value = ":snowflake:")]
-        Snowflake,
-        [EnumMember(Value = ":snowman:")]
-        Snowman,
-        [EnumMember(Value = ":sob:")]
-        Sob,
-        [EnumMember(Value = ":soccer:")]
-        Soccer,
-        [EnumMember(Value = ":soon:")]
-        Soon,
-        [EnumMember(Value = ":sos:")]
-        Sos,
-        [EnumMember(Value = ":sound:")]
-        Sound,
-        [EnumMember(Value = ":space_invader:")]
-        SpaceInvader,
-        [EnumMember(Value = ":spades:")]
-        Spades,
-        [EnumMember(Value = ":spaghetti:")]
-        Spaghetti,
-        [EnumMember(Value = ":sparkle:")]
-        Sparkle,
-        [EnumMember(Value = ":sparkler:")]
-        Sparkler,
-        [EnumMember(Value = ":sparkles:")]
-        Sparkles,
-        [EnumMember(Value = ":sparkling_heart:")]
-        SparklingHeart,
-        [EnumMember(Value = ":speak_no_evil:")]
-        SpeakNoEvil,
-        [EnumMember(Value = ":speaker:")]
-        Speaker,
-        [EnumMember(Value = ":speech_balloon:")]
-        SpeechBalloon,
-        [EnumMember(Value = ":speedboat:")]
-        Speedboat,
-        [EnumMember(Value = ":squirrel:")]
-        Squirrel,
-        [EnumMember(Value = ":star:")]
-        Star,
-        [EnumMember(Value = ":star2:")]
-        Star2,
-        [EnumMember(Value = ":stars:")]
-        Stars,
-        [EnumMember(Value = ":station:")]
-        Station,
-        [EnumMember(Value = ":statue_of_liberty:")]
-        StatueOfLiberty,
-        [EnumMember(Value = ":steam_locomotive:")]
-        SteamLocomotive,
-        [EnumMember(Value = ":stew:")]
-        Stew,
-        [EnumMember(Value = ":straight_ruler:")]
-        StraightRuler,
-        [EnumMember(Value = ":strawberry:")]
-        Strawberry,
-        [EnumMember(Value = ":stuck_out_tongue:")]
-        StuckOutTongue,
-        [EnumMember(Value = ":stuck_out_tongue_closed_eyes:")]
-        StuckOutTongueClosedEyes,
-        [EnumMember(Value = ":stuck_out_tongue_winking_eye:")]
-        StuckOutTongueWinkingEye,
-        [EnumMember(Value = ":sun_with_face:")]
-        SunWithFace,
-        [EnumMember(Value = ":sunflower:")]
-        Sunflower,
-        [EnumMember(Value = ":sunglasses:")]
-        Sunglasses,
-        [EnumMember(Value = ":sunny:")]
-        Sunny,
-        [EnumMember(Value = ":sunrise:")]
-        Sunrise,
-        [EnumMember(Value = ":sunrise_over_mountains:")]
-        SunriseOverMountains,
-        [EnumMember(Value = ":surfer:")]
-        Surfer,
-        [EnumMember(Value = ":sushi:")]
-        Sushi,
-        [EnumMember(Value = ":suspect:")]
-        Suspect,
-        [EnumMember(Value = ":suspension_railway:")]
-        SuspensionRailway,
-        [EnumMember(Value = ":sweat:")]
-        Sweat,
-        [EnumMember(Value = ":sweat_drops:")]
-        SweatDrops,
-        [EnumMember(Value = ":sweat_smile:")]
-        SweatSmile,
-        [EnumMember(Value = ":sweet_potato:")]
-        SweetPotato,
-        [EnumMember(Value = ":swimmer:")]
-        Swimmer,
-        [EnumMember(Value = ":symbols:")]
-        Symbols,
-        [EnumMember(Value = ":syringe:")]
-        Syringe,
-        [EnumMember(Value = ":tada:")]
-        Tada,
-        [EnumMember(Value = ":tanabata_tree:")]
-        TanabataTree,
-        [EnumMember(Value = ":tangerine:")]
-        Tangerine,
-        [EnumMember(Value = ":taurus:")]
-        Taurus,
-        [EnumMember(Value = ":taxi:")]
-        Taxi,
-        [EnumMember(Value = ":tea:")]
-        Tea,
-        [EnumMember(Value = ":telephone:")]
-        Telephone,
-        [EnumMember(Value = ":telephone_receiver:")]
-        TelephoneReceiver,
-        [EnumMember(Value = ":telescope:")]
-        Telescope,
-        [EnumMember(Value = ":tennis:")]
-        Tennis,
-        [EnumMember(Value = ":tent:")]
-        Tent,
-        [EnumMember(Value = ":thought_balloon:")]
-        ThoughtBalloon,
-        [EnumMember(Value = ":three:")]
-        Three,
-        [EnumMember(Value = ":thumbsdown:")]
-        Thumbsdown,
-        [EnumMember(Value = ":thumbsup:")]
-        Thumbsup,
-        [EnumMember(Value = ":ticket:")]
-        Ticket,
-        [EnumMember(Value = ":tiger:")]
-        Tiger,
-        [EnumMember(Value = ":tiger2:")]
-        Tiger2,
-        [EnumMember(Value = ":tired_face:")]
-        TiredFace,
-        [EnumMember(Value = ":tm:")]
-        Tm,
-        [EnumMember(Value = ":toilet:")]
-        Toilet,
-        [EnumMember(Value = ":tokyo_tower:")]
-        TokyoTower,
-        [EnumMember(Value = ":tomato:")]
-        Tomato,
-        [EnumMember(Value = ":tongue:")]
-        Tongue,
-        [EnumMember(Value = ":top:")]
-        Top,
-        [EnumMember(Value = ":tophat:")]
-        Tophat,
-        [EnumMember(Value = ":tractor:")]
-        Tractor,
-        [EnumMember(Value = ":traffic_light:")]
-        TrafficLight,
-        [EnumMember(Value = ":train:")]
-        Train,
-        [EnumMember(Value = ":train2:")]
-        Train2,
-        [EnumMember(Value = ":tram:")]
-        Tram,
-        [EnumMember(Value = ":triangular_flag_on_post:")]
-        TriangularFlagOnPost,
-        [EnumMember(Value = ":triangular_ruler:")]
-        TriangularRuler,
-        [EnumMember(Value = ":trident:")]
-        Trident,
-        [EnumMember(Value = ":triumph:")]
-        Triumph,
-        [EnumMember(Value = ":trolleybus:")]
-        Trolleybus,
-        [EnumMember(Value = ":trollface:")]
-        Trollface,
-        [EnumMember(Value = ":trophy:")]
-        Trophy,
-        [EnumMember(Value = ":tropical_drink:")]
-        TropicalDrink,
-        [EnumMember(Value = ":tropical_fish:")]
-        TropicalFish,
-        [EnumMember(Value = ":truck:")]
-        Truck,
-        [EnumMember(Value = ":trumpet:")]
-        Trumpet,
-        [EnumMember(Value = ":tshirt:")]
-        Tshirt,
-        [EnumMember(Value = ":tulip:")]
-        Tulip,
-        [EnumMember(Value = ":turtle:")]
-        Turtle,
-        [EnumMember(Value = ":tv:")]
-        Tv,
-        [EnumMember(Value = ":twisted_rightwards_arrows:")]
-        TwistedRightwardsArrows,
-        [EnumMember(Value = ":two:")]
-        Two,
-        [EnumMember(Value = ":two_hearts:")]
-        TwoHearts,
-        [EnumMember(Value = ":two_men_holding_hands:")]
-        TwoMenHoldingHands,
-        [EnumMember(Value = ":two_women_holding_hands:")]
-        TwoWomenHoldingHands,
-        [EnumMember(Value = ":u5272:")]
-        U5272,
-        [EnumMember(Value = ":u5408:")]
-        U5408,
-        [EnumMember(Value = ":u55b6:")]
-        U55B6,
-        [EnumMember(Value = ":u6307:")]
-        U6307,
-        [EnumMember(Value = ":u6708:")]
-        U6708,
-        [EnumMember(Value = ":u6709:")]
-        U6709,
-        [EnumMember(Value = ":u6e80:")]
-        U6E80,
-        [EnumMember(Value = ":u7121:")]
-        U7121,
-        [EnumMember(Value = ":u7533:")]
-        U7533,
-        [EnumMember(Value = ":u7981:")]
-        U7981,
-        [EnumMember(Value = ":u7a7a:")]
-        U7A7A,
-        [EnumMember(Value = ":uk:")]
-        Uk,
-        [EnumMember(Value = ":umbrella:")]
-        Umbrella,
-        [EnumMember(Value = ":unamused:")]
-        Unamused,
-        [EnumMember(Value = ":underage:")]
-        Underage,
-        [EnumMember(Value = ":unlock:")]
-        Unlock,
-        [EnumMember(Value = ":up:")]
-        Up,
-        [EnumMember(Value = ":us:")]
-        Us,
-        [EnumMember(Value = ":v:")]
-        V,
-        [EnumMember(Value = ":vertical_traffic_light:")]
-        VerticalTrafficLight,
-        [EnumMember(Value = ":vhs:")]
-        Vhs,
-        [EnumMember(Value = ":vibration_mode:")]
-        VibrationMode,
-        [EnumMember(Value = ":video_camera:")]
-        VideoCamera,
-        [EnumMember(Value = ":video_game:")]
-        VideoGame,
-        [EnumMember(Value = ":violin:")]
-        Violin,
-        [EnumMember(Value = ":virgo:")]
-        Virgo,
-        [EnumMember(Value = ":volcano:")]
-        Volcano,
-        [EnumMember(Value = ":vs:")]
-        Vs,
-        [EnumMember(Value = ":walking:")]
-        Walking,
-        [EnumMember(Value = ":waning_crescent_moon:")]
-        WaningCrescentMoon,
-        [EnumMember(Value = ":waning_gibbous_moon:")]
-        WaningGibbousMoon,
-        [EnumMember(Value = ":warning:")]
-        Warning,
-        [EnumMember(Value = ":watch:")]
-        Watch,
-        [EnumMember(Value = ":water_buffalo:")]
-        WaterBuffalo,
-        [EnumMember(Value = ":watermelon:")]
-        Watermelon,
-        [EnumMember(Value = ":wave:")]
-        Wave,
-        [EnumMember(Value = ":wavy_dash:")]
-        WavyDash,
-        [EnumMember(Value = ":waxing_crescent_moon:")]
-        WaxingCrescentMoon,
-        [EnumMember(Value = ":waxing_gibbous_moon:")]
-        WaxingGibbousMoon,
-        [EnumMember(Value = ":wc:")]
-        Wc,
-        [EnumMember(Value = ":weary:")]
-        Weary,
-        [EnumMember(Value = ":wedding:")]
-        Wedding,
-        [EnumMember(Value = ":whale:")]
-        Whale,
-        [EnumMember(Value = ":whale2:")]
-        Whale2,
-        [EnumMember(Value = ":wheelchair:")]
-        Wheelchair,
-        [EnumMember(Value = ":white_check_mark:")]
-        WhiteCheckMark,
-        [EnumMember(Value = ":white_circle:")]
-        WhiteCircle,
-        [EnumMember(Value = ":white_flower:")]
-        WhiteFlower,
-        [EnumMember(Value = ":white_large_square:")]
-        WhiteLargeSquare,
-        [EnumMember(Value = ":white_medium_small_square:")]
-        WhiteMediumSmallSquare,
-        [EnumMember(Value = ":white_medium_square:")]
-        WhiteMediumSquare,
-        [EnumMember(Value = ":white_small_square:")]
-        WhiteSmallSquare,
-        [EnumMember(Value = ":white_square_button:")]
-        WhiteSquareButton,
-        [EnumMember(Value = ":wind_chime:")]
-        WindChime,
-        [EnumMember(Value = ":wine_glass:")]
-        WineGlass,
-        [EnumMember(Value = ":wink:")]
-        Wink,
-        [EnumMember(Value = ":wolf:")]
-        Wolf,
-        [EnumMember(Value = ":woman:")]
-        Woman,
-        [EnumMember(Value = ":womans_clothes:")]
-        WomansClothes,
-        [EnumMember(Value = ":womans_hat:")]
-        WomansHat,
-        [EnumMember(Value = ":womens:")]
-        Womens,
-        [EnumMember(Value = ":worried:")]
-        Worried,
-        [EnumMember(Value = ":wrench:")]
-        Wrench,
-        [EnumMember(Value = ":x:")]
-        X,
-        [EnumMember(Value = ":yellow_heart:")]
-        YellowHeart,
-        [EnumMember(Value = ":yen:")]
-        Yen,
-        [EnumMember(Value = ":yum:")]
-        Yum,
-        [EnumMember(Value = ":zap:")]
-        Zap,
-        [EnumMember(Value = ":zero:")]
-        Zero,
-        [EnumMember(Value = ":zzz:")]
-        Zzz
+        public const string None = null;
+        public const string PlusOne = ":+1:";
+        public const string MinusOne = ":-1:";
+        public const string OneHundred = ":100:";
+        public const string OneTwoThreeFour = ":1234:";
+        public const string EightBall = ":8ball:";
+        public const string A = ":a:";
+        public const string Ab = ":ab:";
+        public const string Abc = ":abc:";
+        public const string Abcd = ":abcd:";
+        public const string Accept = ":accept:";
+        public const string AerialTramway = ":aerial_tramway:";
+        public const string Airplane = ":airplane:";
+        public const string AlarmClock = ":alarm_clock:";
+        public const string Alien = ":alien:";
+        public const string Ambulance = ":ambulance:";
+        public const string Anchor = ":anchor:";
+        public const string Angel = ":angel:";
+        public const string Anger = ":anger:";
+        public const string Angry = ":angry:";
+        public const string Anguished = ":anguished:";
+        public const string Ant = ":ant:";
+        public const string Apple = ":apple:";
+        public const string Aquarius = ":aquarius:";
+        public const string Aries = ":aries:";
+        public const string ArrowBackward = ":arrow_backward:";
+        public const string ArrowDoubleDown = ":arrow_double_down:";
+        public const string ArrowDoubleUp = ":arrow_double_up:";
+        public const string ArrowDown = ":arrow_down:";
+        public const string ArrowDownSmall = ":arrow_down_small:";
+        public const string ArrowForward = ":arrow_forward:";
+        public const string ArrowHeadingDown = ":arrow_heading_down:";
+        public const string ArrowHeadingUp = ":arrow_heading_up:";
+        public const string ArrowLeft = ":arrow_left:";
+        public const string ArrowLowerLeft = ":arrow_lower_left:";
+        public const string ArrowLowerRight = ":arrow_lower_right:";
+        public const string ArrowRight = ":arrow_right:";
+        public const string ArrowRightHook = ":arrow_right_hook:";
+        public const string ArrowUp = ":arrow_up:";
+        public const string ArrowUpDown = ":arrow_up_down:";
+        public const string ArrowUpSmall = ":arrow_up_small:";
+        public const string ArrowUpperLeft = ":arrow_upper_left:";
+        public const string ArrowUpperRight = ":arrow_upper_right:";
+        public const string ArrowsClockwise = ":arrows_clockwise:";
+        public const string ArrowsCounterclockwise = ":arrows_counterclockwise:";
+        public const string Art = ":art:";
+        public const string ArticulatedLorry = ":articulated_lorry:";
+        public const string Astonished = ":astonished:";
+        public const string Atm = ":atm:";
+        public const string B = ":b:";
+        public const string Baby = ":baby:";
+        public const string BabyBottle = ":baby_bottle:";
+        public const string BabyChick = ":baby_chick:";
+        public const string BabySymbol = ":baby_symbol:";
+        public const string Back = ":back:";
+        public const string BaggageClaim = ":baggage_claim:";
+        public const string Balloon = ":balloon:";
+        public const string BallotBoxWithCheck = ":ballot_box_with_check:";
+        public const string Bamboo = ":bamboo:";
+        public const string Banana = ":banana:";
+        public const string Bangbang = ":bangbang:";
+        public const string Bank = ":bank:";
+        public const string BarChart = ":bar_chart:";
+        public const string Barber = ":barber:";
+        public const string Baseball = ":baseball:";
+        public const string Basketball = ":basketball:";
+        public const string Bath = ":bath:";
+        public const string Bathtub = ":bathtub:";
+        public const string Battery = ":battery:";
+        public const string Bear = ":bear:";
+        public const string Bee = ":bee:";
+        public const string Beer = ":beer:";
+        public const string Beers = ":beers:";
+        public const string Beetle = ":beetle:";
+        public const string Beginner = ":beginner:";
+        public const string Bell = ":bell:";
+        public const string Bento = ":bento:";
+        public const string Bicyclist = ":bicyclist:";
+        public const string Bike = ":bike:";
+        public const string Bikini = ":bikini:";
+        public const string Bird = ":bird:";
+        public const string Birthday = ":birthday:";
+        public const string BlackCircle = ":black_circle:";
+        public const string BlackJoker = ":black_joker:";
+        public const string BlackMediumSmallSquare = ":black_medium_small_square:";
+        public const string BlackMediumSquare = ":black_medium_square:";
+        public const string BlackNib = ":black_nib:";
+        public const string BlackSmallSquare = ":black_small_square:";
+        public const string BlackSquare = ":black_square:";
+        public const string BlackSquareButton = ":black_square_button:";
+        public const string Blossom = ":blossom:";
+        public const string Blowfish = ":blowfish:";
+        public const string BlueBook = ":blue_book:";
+        public const string BlueCar = ":blue_car:";
+        public const string BlueHeart = ":blue_heart:";
+        public const string Blush = ":blush:";
+        public const string Boar = ":boar:";
+        public const string Boat = ":boat:";
+        public const string Bomb = ":bomb:";
+        public const string Book = ":book:";
+        public const string Bookmark = ":bookmark:";
+        public const string BookmarkTabs = ":bookmark_tabs:";
+        public const string Books = ":books:";
+        public const string Boom = ":boom:";
+        public const string Boot = ":boot:";
+        public const string Bouquet = ":bouquet:";
+        public const string Bow = ":bow:";
+        public const string Bowling = ":bowling:";
+        public const string Bowtie = ":bowtie:";
+        public const string Boy = ":boy:";
+        public const string Bread = ":bread:";
+        public const string BrideWithVeil = ":bride_with_veil:";
+        public const string BridgeAtNight = ":bridge_at_night:";
+        public const string Briefcase = ":briefcase:";
+        public const string BrokenHeart = ":broken_heart:";
+        public const string Bug = ":bug:";
+        public const string Bulb = ":bulb:";
+        public const string BullettrainFront = ":bullettrain_front:";
+        public const string BullettrainSide = ":bullettrain_side:";
+        public const string Bus = ":bus:";
+        public const string Busstop = ":busstop:";
+        public const string BustInSilhouette = ":bust_in_silhouette:";
+        public const string BustsInSilhouette = ":busts_in_silhouette:";
+        public const string Cactus = ":cactus:";
+        public const string Cake = ":cake:";
+        public const string Calendar = ":calendar:";
+        public const string Calling = ":calling:";
+        public const string Camel = ":camel:";
+        public const string Camera = ":camera:";
+        public const string Cancer = ":cancer:";
+        public const string Candy = ":candy:";
+        public const string CapitalAbcd = ":capital_abcd:";
+        public const string Capricorn = ":capricorn:";
+        public const string Car = ":car:";
+        public const string CardIndex = ":card_index:";
+        public const string CardFileBox = ":card_file_box:";
+        public const string CardIndexDividers = ":card_index_dividers:";
+        public const string CarouselHorse = ":carousel_horse:";
+        public const string Cat = ":cat:";
+        public const string Cat2 = ":cat2:";
+        public const string Cd = ":cd:";
+        public const string Chart = ":chart:";
+        public const string ChartWithDownwardsTrend = ":chart_with_downwards_trend:";
+        public const string ChartWithUpwardsTrend = ":chart_with_upwards_trend:";
+        public const string CheckeredFlag = ":checkered_flag:";
+        public const string Cherries = ":cherries:";
+        public const string CherryBlossom = ":cherry_blossom:";
+        public const string Chestnut = ":chestnut:";
+        public const string Chicken = ":chicken:";
+        public const string ChildrenCrossing = ":children_crossing:";
+        public const string ChocolateBar = ":chocolate_bar:";
+        public const string ChristmasTree = ":christmas_tree:";
+        public const string Church = ":church:";
+        public const string Cinema = ":cinema:";
+        public const string CircusTent = ":circus_tent:";
+        public const string CitySunrise = ":city_sunrise:";
+        public const string CitySunset = ":city_sunset:";
+        public const string Cl = ":cl:";
+        public const string Clap = ":clap:";
+        public const string Clapper = ":clapper:";
+        public const string Clipboard = ":clipboard:";
+        public const string Clock1 = ":clock1:";
+        public const string Clock10 = ":clock10:";
+        public const string Clock1030 = ":clock1030:";
+        public const string Clock11 = ":clock11:";
+        public const string Clock1130 = ":clock1130:";
+        public const string Clock12 = ":clock12:";
+        public const string Clock1230 = ":clock1230:";
+        public const string Clock130 = ":clock130:";
+        public const string Clock2 = ":clock2:";
+        public const string Clock230 = ":clock230:";
+        public const string Clock3 = ":clock3:";
+        public const string Clock330 = ":clock330:";
+        public const string Clock4 = ":clock4:";
+        public const string Clock430 = ":clock430:";
+        public const string Clock5 = ":clock5:";
+        public const string Clock530 = ":clock530:";
+        public const string Clock6 = ":clock6:";
+        public const string Clock630 = ":clock630:";
+        public const string Clock7 = ":clock7:";
+        public const string Clock730 = ":clock730:";
+        public const string Clock8 = ":clock8:";
+        public const string Clock830 = ":clock830:";
+        public const string Clock9 = ":clock9:";
+        public const string Clock930 = ":clock930:";
+        public const string ClosedBook = ":closed_book:";
+        public const string ClosedLockWithKey = ":closed_lock_with_key:";
+        public const string ClosedUmbrella = ":closed_umbrella:";
+        public const string Cloud = ":cloud:";
+        public const string Clubs = ":clubs:";
+        public const string Cn = ":cn:";
+        public const string Cocktail = ":cocktail:";
+        public const string Coffee = ":coffee:";
+        public const string ColdSweat = ":cold_sweat:";
+        public const string Collision = ":collision:";
+        public const string Computer = ":computer:";
+        public const string ConfettiBall = ":confetti_ball:";
+        public const string Confounded = ":confounded:";
+        public const string Confused = ":confused:";
+        public const string Congratulations = ":congratulations:";
+        public const string Construction = ":construction:";
+        public const string ConstructionWorker = ":construction_worker:";
+        public const string ConvenienceStore = ":convenience_store:";
+        public const string Cookie = ":cookie:";
+        public const string Cool = ":cool:";
+        public const string Cop = ":cop:";
+        public const string Copyright = ":copyright:";
+        public const string Corn = ":corn:";
+        public const string Couple = ":couple:";
+        public const string CoupleWithHeart = ":couple_with_heart:";
+        public const string Couplekiss = ":couplekiss:";
+        public const string Cow = ":cow:";
+        public const string Cow2 = ":cow2:";
+        public const string CreditCard = ":credit_card:";
+        public const string Crocodile = ":crocodile:";
+        public const string CrossedFlags = ":crossed_flags:";
+        public const string Crown = ":crown:";
+        public const string Cry = ":cry:";
+        public const string CryingCatFace = ":crying_cat_face:";
+        public const string CrystalBall = ":crystal_ball:";
+        public const string Cupid = ":cupid:";
+        public const string CurlyLoop = ":curly_loop:";
+        public const string CurrencyExchange = ":currency_exchange:";
+        public const string Curry = ":curry:";
+        public const string Custard = ":custard:";
+        public const string Customs = ":customs:";
+        public const string Cyclone = ":cyclone:";
+        public const string Dancer = ":dancer:";
+        public const string Dancers = ":dancers:";
+        public const string Dango = ":dango:";
+        public const string Dart = ":dart:";
+        public const string Dash = ":dash:";
+        public const string Date = ":date:";
+        public const string De = ":de:";
+        public const string DeciduousTree = ":deciduous_tree:";
+        public const string DepartmentStore = ":department_store:";
+        public const string DiamondShapeWithADotInside = ":diamond_shape_with_a_dot_inside:";
+        public const string Diamonds = ":diamonds:";
+        public const string Disappointed = ":disappointed:";
+        public const string DisappointedRelieved = ":disappointed_relieved:";
+        public const string Dizzy = ":dizzy:";
+        public const string DizzyFace = ":dizzy_face:";
+        public const string DoNotLitter = ":do_not_litter:";
+        public const string Dog = ":dog:";
+        public const string Dog2 = ":dog2:";
+        public const string Dollar = ":dollar:";
+        public const string Dolls = ":dolls:";
+        public const string Dolphin = ":dolphin:";
+        public const string Donut = ":donut:";
+        public const string Door = ":door:";
+        public const string Doughnut = ":doughnut:";
+        public const string Dragon = ":dragon:";
+        public const string DragonFace = ":dragon_face:";
+        public const string Dress = ":dress:";
+        public const string DromedaryCamel = ":dromedary_camel:";
+        public const string Droplet = ":droplet:";
+        public const string Dvd = ":dvd:";
+        public const string EhyphenMail = ":e-mail:";
+        public const string Ear = ":ear:";
+        public const string EarOfRice = ":ear_of_rice:";
+        public const string EarthAfrica = ":earth_africa:";
+        public const string EarthAmericas = ":earth_americas:";
+        public const string EarthAsia = ":earth_asia:";
+        public const string Egg = ":egg:";
+        public const string Eggplant = ":eggplant:";
+        public const string Eight = ":eight:";
+        public const string EightPointedBlackStar = ":eight_pointed_black_star:";
+        public const string EightSpokedAsterisk = ":eight_spoked_asterisk:";
+        public const string ElectricPlug = ":electric_plug:";
+        public const string Elephant = ":elephant:";
+        public const string Email = ":email:";
+        public const string End = ":end:";
+        public const string Envelope = ":envelope:";
+        public const string Es = ":es:";
+        public const string Euro = ":euro:";
+        public const string EuropeanCastle = ":european_castle:";
+        public const string EuropeanPostOffice = ":european_post_office:";
+        public const string EvergreenTree = ":evergreen_tree:";
+        public const string Exclamation = ":exclamation:";
+        public const string Expressionless = ":expressionless:";
+        public const string Eyeglasses = ":eyeglasses:";
+        public const string Eyes = ":eyes:";
+        public const string Facepunch = ":facepunch:";
+        public const string Factory = ":factory:";
+        public const string FallenLeaf = ":fallen_leaf:";
+        public const string Family = ":family:";
+        public const string FastForward = ":fast_forward:";
+        public const string Fax = ":fax:";
+        public const string Fearful = ":fearful:";
+        public const string Feelsgood = ":feelsgood:";
+        public const string Feet = ":feet:";
+        public const string FerrisWheel = ":ferris_wheel:";
+        public const string FileFolder = ":file_folder:";
+        public const string Finnadie = ":finnadie:";
+        public const string Fire = ":fire:";
+        public const string FireEngine = ":fire_engine:";
+        public const string Fireworks = ":fireworks:";
+        public const string FirstQuarterMoon = ":first_quarter_moon:";
+        public const string FirstQuarterMoonWithFace = ":first_quarter_moon_with_face:";
+        public const string Fish = ":fish:";
+        public const string FishCake = ":fish_cake:";
+        public const string FishingPoleAndFish = ":fishing_pole_and_fish:";
+        public const string Fist = ":fist:";
+        public const string Five = ":five:";
+        public const string Flags = ":flags:";
+        public const string Flashlight = ":flashlight:";
+        public const string FloppyDisk = ":floppy_disk:";
+        public const string FlowerPlayingCards = ":flower_playing_cards:";
+        public const string Flushed = ":flushed:";
+        public const string Foggy = ":foggy:";
+        public const string Football = ":football:";
+        public const string ForkAndKnife = ":fork_and_knife:";
+        public const string Fountain = ":fountain:";
+        public const string Four = ":four:";
+        public const string FourLeafClover = ":four_leaf_clover:";
+        public const string Fr = ":fr:";
+        public const string Free = ":free:";
+        public const string FriedShrimp = ":fried_shrimp:";
+        public const string Fries = ":fries:";
+        public const string Frog = ":frog:";
+        public const string Frowning = ":frowning:";
+        public const string Fu = ":fu:";
+        public const string Fuelpump = ":fuelpump:";
+        public const string FullMoon = ":full_moon:";
+        public const string FullMoonWithFace = ":full_moon_with_face:";
+        public const string GameDie = ":game_die:";
+        public const string Gb = ":gb:";
+        public const string Gear = ":gear:";
+        public const string Gem = ":gem:";
+        public const string Gemini = ":gemini:";
+        public const string Ghost = ":ghost:";
+        public const string Gift = ":gift:";
+        public const string GiftHeart = ":gift_heart:";
+        public const string Girl = ":girl:";
+        public const string GlobeWithMeridians = ":globe_with_meridians:";
+        public const string Goat = ":goat:";
+        public const string Goberserk = ":goberserk:";
+        public const string Godmode = ":godmode:";
+        public const string Golf = ":golf:";
+        public const string Grapes = ":grapes:";
+        public const string GreenApple = ":green_apple:";
+        public const string GreenBook = ":green_book:";
+        public const string GreenHeart = ":green_heart:";
+        public const string GreyExclamation = ":grey_exclamation:";
+        public const string GreyQuestion = ":grey_question:";
+        public const string Grimacing = ":grimacing:";
+        public const string Grin = ":grin:";
+        public const string Grinning = ":grinning:";
+        public const string Guardsman = ":guardsman:";
+        public const string Guitar = ":guitar:";
+        public const string Gun = ":gun:";
+        public const string Haircut = ":haircut:";
+        public const string Hamburger = ":hamburger:";
+        public const string Hammer = ":hammer:";
+        public const string Hamster = ":hamster:";
+        public const string Hand = ":hand:";
+        public const string Handbag = ":handbag:";
+        public const string Hankey = ":hankey:";
+        public const string Hash = ":hash:";
+        public const string HatchedChick = ":hatched_chick:";
+        public const string HatchingChick = ":hatching_chick:";
+        public const string Headphones = ":headphones:";
+        public const string HearNoEvil = ":hear_no_evil:";
+        public const string Heart = ":heart:";
+        public const string HeartDecoration = ":heart_decoration:";
+        public const string HeartEyes = ":heart_eyes:";
+        public const string HeartEyesCat = ":heart_eyes_cat:";
+        public const string Heartbeat = ":heartbeat:";
+        public const string Heartpulse = ":heartpulse:";
+        public const string Hearts = ":hearts:";
+        public const string HeavyCheckMark = ":heavy_check_mark:";
+        public const string HeavyDivisionSign = ":heavy_division_sign:";
+        public const string HeavyDollarSign = ":heavy_dollar_sign:";
+        public const string HeavyExclamationMark = ":heavy_exclamation_mark:";
+        public const string HeavyMinusSign = ":heavy_minus_sign:";
+        public const string HeavyMultiplicationX = ":heavy_multiplication_x:";
+        public const string HeavyPlusSign = ":heavy_plus_sign:";
+        public const string Helicopter = ":helicopter:";
+        public const string Herb = ":herb:";
+        public const string Hibiscus = ":hibiscus:";
+        public const string HighBrightness = ":high_brightness:";
+        public const string HighHeel = ":high_heel:";
+        public const string Hocho = ":hocho:";
+        public const string HoneyPot = ":honey_pot:";
+        public const string Honeybee = ":honeybee:";
+        public const string Horse = ":horse:";
+        public const string HorseRacing = ":horse_racing:";
+        public const string Hospital = ":hospital:";
+        public const string Hotel = ":hotel:";
+        public const string Hotsprings = ":hotsprings:";
+        public const string Hourglass = ":hourglass:";
+        public const string HourglassFlowingSand = ":hourglass_flowing_sand:";
+        public const string House = ":house:";
+        public const string HouseWithGarden = ":house_with_garden:";
+        public const string Hurtrealbad = ":hurtrealbad:";
+        public const string Hushed = ":hushed:";
+        public const string Ice_Cream = ":ice_cream:";
+        public const string IceCream = ":icecream:";
+        public const string Id = ":id:";
+        public const string IdeographAdvantage = ":ideograph_advantage:";
+        public const string Imp = ":imp:";
+        public const string InboxTray = ":inbox_tray:";
+        public const string IncomingEnvelope = ":incoming_envelope:";
+        public const string InformationDeskPerson = ":information_desk_person:";
+        public const string InformationSource = ":information_source:";
+        public const string Innocent = ":innocent:";
+        public const string Interrobang = ":interrobang:";
+        public const string Iphone = ":iphone:";
+        public const string It = ":it:";
+        public const string IzakayaLantern = ":izakaya_lantern:";
+        public const string JackOLantern = ":jack_o_lantern:";
+        public const string Japan = ":japan:";
+        public const string JapaneseCastle = ":japanese_castle:";
+        public const string JapaneseGoblin = ":japanese_goblin:";
+        public const string JapaneseOgre = ":japanese_ogre:";
+        public const string Jeans = ":jeans:";
+        public const string Joy = ":joy:";
+        public const string JoyCat = ":joy_cat:";
+        public const string Jp = ":jp:";
+        public const string Key = ":key:";
+        public const string KeycapTen = ":keycap_ten:";
+        public const string Kimono = ":kimono:";
+        public const string Kiss = ":kiss:";
+        public const string Kissing = ":kissing:";
+        public const string KissingCat = ":kissing_cat:";
+        public const string KissingClosedEyes = ":kissing_closed_eyes:";
+        public const string KissingFace = ":kissing_face:";
+        public const string KissingHeart = ":kissing_heart:";
+        public const string KissingSmilingEyes = ":kissing_smiling_eyes:";
+        public const string Koala = ":koala:";
+        public const string Koko = ":koko:";
+        public const string Kr = ":kr:";
+        public const string LargeBlueCircle = ":large_blue_circle:";
+        public const string LargeBlueDiamond = ":large_blue_diamond:";
+        public const string LargeOrangeDiamond = ":large_orange_diamond:";
+        public const string LastQuarterMoon = ":last_quarter_moon:";
+        public const string LastQuarterMoonWithFace = ":last_quarter_moon_with_face:";
+        public const string Laughing = ":laughing:";
+        public const string Leaves = ":leaves:";
+        public const string Ledger = ":ledger:";
+        public const string LeftLuggage = ":left_luggage:";
+        public const string LeftRightArrow = ":left_right_arrow:";
+        public const string LeftwardsArrowWithHook = ":leftwards_arrow_with_hook:";
+        public const string Lemon = ":lemon:";
+        public const string Leo = ":leo:";
+        public const string Leopard = ":leopard:";
+        public const string Libra = ":libra:";
+        public const string LightRail = ":light_rail:";
+        public const string Link = ":link:";
+        public const string Lips = ":lips:";
+        public const string Lipstick = ":lipstick:";
+        public const string Lock = ":lock:";
+        public const string LockWithInkPen = ":lock_with_ink_pen:";
+        public const string Lollipop = ":lollipop:";
+        public const string Loop = ":loop:";
+        public const string Loudspeaker = ":loudspeaker:";
+        public const string LoveHotel = ":love_hotel:";
+        public const string LoveLetter = ":love_letter:";
+        public const string LowBrightness = ":low_brightness:";
+        public const string M = ":m:";
+        public const string Mag = ":mag:";
+        public const string MagRight = ":mag_right:";
+        public const string Mahjong = ":mahjong:";
+        public const string Mailbox = ":mailbox:";
+        public const string MailboxClosed = ":mailbox_closed:";
+        public const string MailboxWithMail = ":mailbox_with_mail:";
+        public const string MailboxWithNoMail = ":mailbox_with_no_mail:";
+        public const string Man = ":man:";
+        public const string ManWithGuaPiMao = ":man_with_gua_pi_mao:";
+        public const string ManWithTurban = ":man_with_turban:";
+        public const string MansShoe = ":mans_shoe:";
+        public const string MapleLeaf = ":maple_leaf:";
+        public const string Mask = ":mask:";
+        public const string Massage = ":massage:";
+        public const string MeatOnBone = ":meat_on_bone:";
+        public const string Mega = ":mega:";
+        public const string Melon = ":melon:";
+        public const string Memo = ":memo:";
+        public const string Mens = ":mens:";
+        public const string Metal = ":metal:";
+        public const string Metro = ":metro:";
+        public const string Microphone = ":microphone:";
+        public const string Microscope = ":microscope:";
+        public const string MilkyWay = ":milky_way:";
+        public const string Minibus = ":minibus:";
+        public const string Minidisc = ":minidisc:";
+        public const string MobilePhoneOff = ":mobile_phone_off:";
+        public const string MoneyMouthFace = ":money_mouth_face:";
+        public const string MoneyWithWings = ":money_with_wings:";
+        public const string Moneybag = ":moneybag:";
+        public const string Monkey = ":monkey:";
+        public const string MonkeyFace = ":monkey_face:";
+        public const string Monorail = ":monorail:";
+        public const string Moon = ":moon:";
+        public const string MortarBoard = ":mortar_board:";
+        public const string MountFuji = ":mount_fuji:";
+        public const string MountainBicyclist = ":mountain_bicyclist:";
+        public const string MountainCableway = ":mountain_cableway:";
+        public const string MountainRailway = ":mountain_railway:";
+        public const string Mouse = ":mouse:";
+        public const string Mouse2 = ":mouse2:";
+        public const string MovieCamera = ":movie_camera:";
+        public const string Moyai = ":moyai:";
+        public const string Muscle = ":muscle:";
+        public const string Mushroom = ":mushroom:";
+        public const string MusicalKeyboard = ":musical_keyboard:";
+        public const string MusicalNote = ":musical_note:";
+        public const string MusicalScore = ":musical_score:";
+        public const string Mute = ":mute:";
+        public const string NailCare = ":nail_care:";
+        public const string NameBadge = ":name_badge:";
+        public const string Neckbeard = ":neckbeard:";
+        public const string Necktie = ":necktie:";
+        public const string NegativeSquaredCrossMark = ":negative_squared_cross_mark:";
+        public const string NeutralFace = ":neutral_face:";
+        public const string New = ":new:";
+        public const string NewMoon = ":new_moon:";
+        public const string NewMoonWithFace = ":new_moon_with_face:";
+        public const string Newspaper = ":newspaper:";
+        public const string Ng = ":ng:";
+        public const string Nine = ":nine:";
+        public const string NoBell = ":no_bell:";
+        public const string NoBicycles = ":no_bicycles:";
+        public const string NoEntry = ":no_entry:";
+        public const string NoEntrySign = ":no_entry_sign:";
+        public const string NoGood = ":no_good:";
+        public const string NoMobilePhones = ":no_mobile_phones:";
+        public const string NoMouth = ":no_mouth:";
+        public const string NoPedestrians = ":no_pedestrians:";
+        public const string NoSmoking = ":no_smoking:";
+        public const string NonPotableWater = ":non-potable_water:";
+        public const string Nose = ":nose:";
+        public const string Notebook = ":notebook:";
+        public const string NotebookWithDecorativeCover = ":notebook_with_decorative_cover:";
+        public const string Notes = ":notes:";
+        public const string NutAndBolt = ":nut_and_bolt:";
+        public const string O = ":o:";
+        public const string O2 = ":o2:";
+        public const string Ocean = ":ocean:";
+        public const string Octocat = ":octocat:";
+        public const string Octopus = ":octopus:";
+        public const string Oden = ":oden:";
+        public const string Office = ":office:";
+        public const string Ok = ":ok:";
+        public const string OkHand = ":ok_hand:";
+        public const string OkWoman = ":ok_woman:";
+        public const string OlderMan = ":older_man:";
+        public const string OlderWoman = ":older_woman:";
+        public const string On = ":on:";
+        public const string OncomingAutomobile = ":oncoming_automobile:";
+        public const string OncomingBus = ":oncoming_bus:";
+        public const string OncomingPoliceCar = ":oncoming_police_car:";
+        public const string OncomingTaxi = ":oncoming_taxi:";
+        public const string One = ":one:";
+        public const string OpenFileFolder = ":open_file_folder:";
+        public const string OpenHands = ":open_hands:";
+        public const string OpenMouth = ":open_mouth:";
+        public const string Ophiuchus = ":ophiuchus:";
+        public const string OrangeBook = ":orange_book:";
+        public const string OutboxTray = ":outbox_tray:";
+        public const string Ox = ":ox:";
+        public const string Package = ":package:";
+        public const string PageFacingUp = ":page_facing_up:";
+        public const string PageWithCurl = ":page_with_curl:";
+        public const string Pager = ":pager:";
+        public const string PalmTree = ":palm_tree:";
+        public const string PandaFace = ":panda_face:";
+        public const string Paperclip = ":paperclip:";
+        public const string Parking = ":parking:";
+        public const string PartAlternationMark = ":part_alternation_mark:";
+        public const string PartlySunny = ":partly_sunny:";
+        public const string PassportControl = ":passport_control:";
+        public const string PawPrints = ":paw_prints:";
+        public const string Peach = ":peach:";
+        public const string Pear = ":pear:";
+        public const string Pencil = ":pencil:";
+        public const string Pencil2 = ":pencil2:";
+        public const string Penguin = ":penguin:";
+        public const string Pensive = ":pensive:";
+        public const string PerformingArts = ":performing_arts:";
+        public const string Persevere = ":persevere:";
+        public const string PersonFrowning = ":person_frowning:";
+        public const string PersonWithBlondHair = ":person_with_blond_hair:";
+        public const string PersonWithPoutingFace = ":person_with_pouting_face:";
+        public const string Phone = ":phone:";
+        public const string Pig = ":pig:";
+        public const string Pig2 = ":pig2:";
+        public const string PigNose = ":pig_nose:";
+        public const string Pill = ":pill:";
+        public const string Pineapple = ":pineapple:";
+        public const string Pisces = ":pisces:";
+        public const string Pizza = ":pizza:";
+        public const string Plus1 = ":plus1:";
+        public const string PointDown = ":point_down:";
+        public const string PointLeft = ":point_left:";
+        public const string PointRight = ":point_right:";
+        public const string PointUp = ":point_up:";
+        public const string PointUp2 = ":point_up_2:";
+        public const string PoliceCar = ":police_car:";
+        public const string Poodle = ":poodle:";
+        public const string Poop = ":poop:";
+        public const string PostOffice = ":post_office:";
+        public const string PostalHorn = ":postal_horn:";
+        public const string Postbox = ":postbox:";
+        public const string PotableWater = ":potable_water:";
+        public const string Pouch = ":pouch:";
+        public const string PoultryLeg = ":poultry_leg:";
+        public const string Pound = ":pound:";
+        public const string PoutingCat = ":pouting_cat:";
+        public const string Pray = ":pray:";
+        public const string Princess = ":princess:";
+        public const string Punch = ":punch:";
+        public const string PurpleHeart = ":purple_heart:";
+        public const string Purse = ":purse:";
+        public const string Pushpin = ":pushpin:";
+        public const string PutLitterInItsPlace = ":put_litter_in_its_place:";
+        public const string Question = ":question:";
+        public const string Rabbit = ":rabbit:";
+        public const string Rabbit2 = ":rabbit2:";
+        public const string Racehorse = ":racehorse:";
+        public const string Radio = ":radio:";
+        public const string RadioButton = ":radio_button:";
+        public const string Rage = ":rage:";
+        public const string Rage1 = ":rage1:";
+        public const string Rage2 = ":rage2:";
+        public const string Rage3 = ":rage3:";
+        public const string Rage4 = ":rage4:";
+        public const string RailwayCar = ":railway_car:";
+        public const string Rainbow = ":rainbow:";
+        public const string RaisedHand = ":raised_hand:";
+        public const string RaisedHands = ":raised_hands:";
+        public const string RaisingHand = ":raising_hand:";
+        public const string Ram = ":ram:";
+        public const string Ramen = ":ramen:";
+        public const string Rat = ":rat:";
+        public const string Recycle = ":recycle:";
+        public const string RedCar = ":red_car:";
+        public const string RedCircle = ":red_circle:";
+        public const string Registered = ":registered:";
+        public const string Relaxed = ":relaxed:";
+        public const string Relieved = ":relieved:";
+        public const string Repeat = ":repeat:";
+        public const string RepeatOne = ":repeat_one:";
+        public const string Restroom = ":restroom:";
+        public const string RevolvingHearts = ":revolving_hearts:";
+        public const string Rewind = ":rewind:";
+        public const string Ribbon = ":ribbon:";
+        public const string Rice = ":rice:";
+        public const string RiceBall = ":rice_ball:";
+        public const string RiceCracker = ":rice_cracker:";
+        public const string RiceScene = ":rice_scene:";
+        public const string Ring = ":ring:";
+        public const string RobotFace = ":robot_face:";
+        public const string Rocket = ":rocket:";
+        public const string RollerCoaster = ":roller_coaster:";
+        public const string Rooster = ":rooster:";
+        public const string Rose = ":rose:";
+        public const string RotatingLight = ":rotating_light:";
+        public const string RoundPushpin = ":round_pushpin:";
+        public const string Rowboat = ":rowboat:";
+        public const string Ru = ":ru:";
+        public const string RugbyFootball = ":rugby_football:";
+        public const string Runner = ":runner:";
+        public const string Running = ":running:";
+        public const string RunningShirtWithSash = ":running_shirt_with_sash:";
+        public const string Sa = ":sa:";
+        public const string Sagittarius = ":sagittarius:";
+        public const string Sailboat = ":sailboat:";
+        public const string Sake = ":sake:";
+        public const string Sandal = ":sandal:";
+        public const string Santa = ":santa:";
+        public const string Satellite = ":satellite:";
+        public const string Satisfied = ":satisfied:";
+        public const string Saxophone = ":saxophone:";
+        public const string School = ":school:";
+        public const string SchoolSatchel = ":school_satchel:";
+        public const string Scissors = ":scissors:";
+        public const string Scorpius = ":scorpius:";
+        public const string Scream = ":scream:";
+        public const string ScreamCat = ":scream_cat:";
+        public const string Scroll = ":scroll:";
+        public const string Seat = ":seat:";
+        public const string Secret = ":secret:";
+        public const string SeeNoEvil = ":see_no_evil:";
+        public const string Seedling = ":seedling:";
+        public const string Seven = ":seven:";
+        public const string ShavedIce = ":shaved_ice:";
+        public const string Sheep = ":sheep:";
+        public const string Shell = ":shell:";
+        public const string Ship = ":ship:";
+        public const string Shipit = ":shipit:";
+        public const string Shirt = ":shirt:";
+        public const string Shit = ":shit:";
+        public const string Shoe = ":shoe:";
+        public const string Shower = ":shower:";
+        public const string SignalStrength = ":signal_strength:";
+        public const string Six = ":six:";
+        public const string SixPointedStar = ":six_pointed_star:";
+        public const string Ski = ":ski:";
+        public const string Skull = ":skull:";
+        public const string Sleeping = ":sleeping:";
+        public const string Sleepy = ":sleepy:";
+        public const string SlotMachine = ":slot_machine:";
+        public const string SmallBlueDiamond = ":small_blue_diamond:";
+        public const string SmallOrangeDiamond = ":small_orange_diamond:";
+        public const string SmallRedTriangle = ":small_red_triangle:";
+        public const string SmallRedTriangleDown = ":small_red_triangle_down:";
+        public const string Smile = ":smile:";
+        public const string SmileCat = ":smile_cat:";
+        public const string Smiley = ":smiley:";
+        public const string SmileyCat = ":smiley_cat:";
+        public const string SmilingImp = ":smiling_imp:";
+        public const string Smirk = ":smirk:";
+        public const string SmirkCat = ":smirk_cat:";
+        public const string Smoking = ":smoking:";
+        public const string Snail = ":snail:";
+        public const string Snake = ":snake:";
+        public const string Snowboarder = ":snowboarder:";
+        public const string Snowflake = ":snowflake:";
+        public const string Snowman = ":snowman:";
+        public const string Sob = ":sob:";
+        public const string Soccer = ":soccer:";
+        public const string Soon = ":soon:";
+        public const string Sos = ":sos:";
+        public const string Sound = ":sound:";
+        public const string SpaceInvader = ":space_invader:";
+        public const string Spades = ":spades:";
+        public const string Spaghetti = ":spaghetti:";
+        public const string Sparkle = ":sparkle:";
+        public const string Sparkler = ":sparkler:";
+        public const string Sparkles = ":sparkles:";
+        public const string SparklingHeart = ":sparkling_heart:";
+        public const string SpeakNoEvil = ":speak_no_evil:";
+        public const string Speaker = ":speaker:";
+        public const string SpeechBalloon = ":speech_balloon:";
+        public const string Speedboat = ":speedboat:";
+        public const string Squirrel = ":squirrel:";
+        public const string Star = ":star:";
+        public const string Star2 = ":star2:";
+        public const string Stars = ":stars:";
+        public const string Station = ":station:";
+        public const string StatueOfLiberty = ":statue_of_liberty:";
+        public const string SteamLocomotive = ":steam_locomotive:";
+        public const string Stew = ":stew:";
+        public const string StraightRuler = ":straight_ruler:";
+        public const string Strawberry = ":strawberry:";
+        public const string StuckOutTongue = ":stuck_out_tongue:";
+        public const string StuckOutTongueClosedEyes = ":stuck_out_tongue_closed_eyes:";
+        public const string StuckOutTongueWinkingEye = ":stuck_out_tongue_winking_eye:";
+        public const string SunWithFace = ":sun_with_face:";
+        public const string Sunflower = ":sunflower:";
+        public const string Sunglasses = ":sunglasses:";
+        public const string Sunny = ":sunny:";
+        public const string Sunrise = ":sunrise:";
+        public const string SunriseOverMountains = ":sunrise_over_mountains:";
+        public const string Surfer = ":surfer:";
+        public const string Sushi = ":sushi:";
+        public const string Suspect = ":suspect:";
+        public const string SuspensionRailway = ":suspension_railway:";
+        public const string Sweat = ":sweat:";
+        public const string SweatDrops = ":sweat_drops:";
+        public const string SweatSmile = ":sweat_smile:";
+        public const string SweetPotato = ":sweet_potato:";
+        public const string Swimmer = ":swimmer:";
+        public const string Symbols = ":symbols:";
+        public const string Syringe = ":syringe:";
+        public const string Tada = ":tada:";
+        public const string TanabataTree = ":tanabata_tree:";
+        public const string Tangerine = ":tangerine:";
+        public const string Taurus = ":taurus:";
+        public const string Taxi = ":taxi:";
+        public const string Tea = ":tea:";
+        public const string Telephone = ":telephone:";
+        public const string TelephoneReceiver = ":telephone_receiver:";
+        public const string Telescope = ":telescope:";
+        public const string Tennis = ":tennis:";
+        public const string Tent = ":tent:";
+        public const string ThoughtBalloon = ":thought_balloon:";
+        public const string Three = ":three:";
+        public const string Thumbsdown = ":thumbsdown:";
+        public const string Thumbsup = ":thumbsup:";
+        public const string Ticket = ":ticket:";
+        public const string Tiger = ":tiger:";
+        public const string Tiger2 = ":tiger2:";
+        public const string TiredFace = ":tired_face:";
+        public const string Tm = ":tm:";
+        public const string Toilet = ":toilet:";
+        public const string TokyoTower = ":tokyo_tower:";
+        public const string Tomato = ":tomato:";
+        public const string Tongue = ":tongue:";
+        public const string Top = ":top:";
+        public const string Tophat = ":tophat:";
+        public const string Tractor = ":tractor:";
+        public const string TrafficLight = ":traffic_light:";
+        public const string Train = ":train:";
+        public const string Train2 = ":train2:";
+        public const string Tram = ":tram:";
+        public const string TriangularFlagOnPost = ":triangular_flag_on_post:";
+        public const string TriangularRuler = ":triangular_ruler:";
+        public const string Trident = ":trident:";
+        public const string Triumph = ":triumph:";
+        public const string Trolleybus = ":trolleybus:";
+        public const string Trollface = ":trollface:";
+        public const string Trophy = ":trophy:";
+        public const string TropicalDrink = ":tropical_drink:";
+        public const string TropicalFish = ":tropical_fish:";
+        public const string Truck = ":truck:";
+        public const string Trumpet = ":trumpet:";
+        public const string Tshirt = ":tshirt:";
+        public const string Tulip = ":tulip:";
+        public const string Turtle = ":turtle:";
+        public const string Tv = ":tv:";
+        public const string TwistedRightwardsArrows = ":twisted_rightwards_arrows:";
+        public const string Two = ":two:";
+        public const string TwoHearts = ":two_hearts:";
+        public const string TwoMenHoldingHands = ":two_men_holding_hands:";
+        public const string TwoWomenHoldingHands = ":two_women_holding_hands:";
+        public const string U5272 = ":u5272:";
+        public const string U5408 = ":u5408:";
+        public const string U55B6 = ":u55b6:";
+        public const string U6307 = ":u6307:";
+        public const string U6708 = ":u6708:";
+        public const string U6709 = ":u6709:";
+        public const string U6E80 = ":u6e80:";
+        public const string U7121 = ":u7121:";
+        public const string U7533 = ":u7533:";
+        public const string U7981 = ":u7981:";
+        public const string U7A7A = ":u7a7a:";
+        public const string Uk = ":uk:";
+        public const string Umbrella = ":umbrella:";
+        public const string Unamused = ":unamused:";
+        public const string Underage = ":underage:";
+        public const string Unlock = ":unlock:";
+        public const string Up = ":up:";
+        public const string Us = ":us:";
+        public const string V = ":v:";
+        public const string VerticalTrafficLight = ":vertical_traffic_light:";
+        public const string Vhs = ":vhs:";
+        public const string VibrationMode = ":vibration_mode:";
+        public const string VideoCamera = ":video_camera:";
+        public const string VideoGame = ":video_game:";
+        public const string Violin = ":violin:";
+        public const string Virgo = ":virgo:";
+        public const string Volcano = ":volcano:";
+        public const string Vs = ":vs:";
+        public const string Walking = ":walking:";
+        public const string WaningCrescentMoon = ":waning_crescent_moon:";
+        public const string WaningGibbousMoon = ":waning_gibbous_moon:";
+        public const string Warning = ":warning:";
+        public const string Watch = ":watch:";
+        public const string WaterBuffalo = ":water_buffalo:";
+        public const string Watermelon = ":watermelon:";
+        public const string Wave = ":wave:";
+        public const string WavyDash = ":wavy_dash:";
+        public const string WaxingCrescentMoon = ":waxing_crescent_moon:";
+        public const string WaxingGibbousMoon = ":waxing_gibbous_moon:";
+        public const string Wc = ":wc:";
+        public const string Weary = ":weary:";
+        public const string Wedding = ":wedding:";
+        public const string Whale = ":whale:";
+        public const string Whale2 = ":whale2:";
+        public const string Wheelchair = ":wheelchair:";
+        public const string WhiteCheckMark = ":white_check_mark:";
+        public const string WhiteCircle = ":white_circle:";
+        public const string WhiteFlower = ":white_flower:";
+        public const string WhiteLargeSquare = ":white_large_square:";
+        public const string WhiteMediumSmallSquare = ":white_medium_small_square:";
+        public const string WhiteMediumSquare = ":white_medium_square:";
+        public const string WhiteSmallSquare = ":white_small_square:";
+        public const string WhiteSquareButton = ":white_square_button:";
+        public const string WindChime = ":wind_chime:";
+        public const string WineGlass = ":wine_glass:";
+        public const string Wink = ":wink:";
+        public const string Wolf = ":wolf:";
+        public const string Woman = ":woman:";
+        public const string WomansClothes = ":womans_clothes:";
+        public const string WomansHat = ":womans_hat:";
+        public const string Womens = ":womens:";
+        public const string Worried = ":worried:";
+        public const string Wrench = ":wrench:";
+        public const string X = ":x:";
+        public const string YellowHeart = ":yellow_heart:";
+        public const string Yen = ":yen:";
+        public const string Yum = ":yum:";
+        public const string Zap = ":zap:";
+        public const string Zero = ":zero:";
+        public const string Zzz = ":zzz:";
     }
 }
