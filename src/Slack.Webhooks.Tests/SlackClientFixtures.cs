@@ -9,22 +9,22 @@ using Xunit;
 
 namespace Slack.Webhooks.Tests
 {
-    public class SlackClientShould
+    public class SlackClientFixtures
     {
         [Fact]
-        public void ThrowExceptionWhenUrlIsEmpty()
+        public void ShouldThrowExceptionWhenUrlIsEmpty()
         {
             Assert.Throws<ArgumentException>(() => new SlackClient(string.Empty));
         }
 
         [Fact]
-        public void ThrowExceptionIfUrlIsMalformed()
+        public void ShouldThrowExceptionIfUrlIsMalformed()
         {
             Assert.Throws<ArgumentException>(() => new SlackClient("[/]dodgy_url!@.slack.com"));
         }
 
         [Fact]
-        public void ReturnTrueIfPostSucceeds()
+        public void ShouldReturnTrueIfPostSucceeds()
         {
             //arrange
             const string hookUrl = "https://hooks.slack.com/mygreathook";
@@ -40,7 +40,7 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void ReturnFalseIfPostFails()
+        public void ShouldReturnFalseIfPostFails()
         {
             //arrange
             const string hookUrl = "https://hooks.slack.com/invalidhook";
@@ -56,7 +56,7 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void RememberTimeout()
+        public void ShouldRememberTimeout()
         {
             const string hookUrl = "https://hooks.slack.com/invalid";
             var timeoutSeconds = 2;
@@ -66,7 +66,7 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void ReuseHttpClient()
+        public void ShouldReuseHttpClient()
         {
             //arrange
             const string hookUrl = "https://hooks.slack.com/invalid";
@@ -93,7 +93,7 @@ namespace Slack.Webhooks.Tests
 
 
         [Fact]
-        public void ContainSerializedMessage()
+        public void ShouldContainSerializedMessage()
         {
             //arrange
             const string hookUrl = "https://hooks.slack.com/invalid";
@@ -101,7 +101,7 @@ namespace Slack.Webhooks.Tests
             var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
             {
                 var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                postedMessage = SlackMessage.FromJson(json);
+                postedMessage = SlackClient.DeserializeObject(json);
             });
 
             var httpClient = new HttpClient(httpMessageHandler.Object, false);
@@ -120,7 +120,7 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
-        public void PostToMultipleChannels()
+        public void ShouldPostToMultipleChannels()
         {
             //arrange
             const string hookUrl = "https://hooks.slack.com/invalid";
@@ -128,7 +128,7 @@ namespace Slack.Webhooks.Tests
             var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
             {
                 var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                var postedMessage = SlackMessage.FromJson(json);
+                var postedMessage = SlackClient.DeserializeObject(json);
                 channelsPostedTo.Add(postedMessage.Channel);
             });
 
