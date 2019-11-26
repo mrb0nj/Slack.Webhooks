@@ -14,13 +14,12 @@
     <tags>Slack Webhooks</tags>
     <releaseNotes>
       <![CDATA[
-      *** v1.0.0 BREAKING CHANGES ***
-      
-      We no longer use RestSharp in favour of HttpClient - this however means that
-      .NET 4.0 and below are no longer supported.
-      
-      Also, the PostAsync method signature has changed. The return type is now Task<bool>
-      in place of Task<IRestResponse> which was tied directly to RestSharp.
+      #### v1.1.0
+      - Support Slack's Block Kit with SlackMessage.Blocks property
+      - Support Thread replies with SlackMessage.ThreadId property
+      - Changed the whole Emoji setup. SlackMessage.Emoji is now a string and Emoji.\* are constants. This shouldn't cause problems in the most part!
+      - Allow HttpClient to be injected into SlackClient.
+      - SlackClient implements IDisposable to match the contained HttpClient instance even though this isn't the recommended usage. SlackClient, like HttpClient, there should only be a single instance of this class within the lifecycle of your application, for more information on why see: https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/
       ]]>
     </releaseNotes>
     <dependencies>
