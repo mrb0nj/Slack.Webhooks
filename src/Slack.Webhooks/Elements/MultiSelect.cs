@@ -97,7 +97,7 @@ namespace Slack.Webhooks.Elements
         /// </summary>
         public IList<string> InitialConversations { get; set; }
         
-        public MultiSelectConversations() : base(ElementType.MultiSelectUsers)
+        public MultiSelectConversations() : base(ElementType.MultiSelectConversations)
         {
         }
     }
@@ -114,7 +114,7 @@ namespace Slack.Webhooks.Elements
         /// </summary>
         public IList<string> InitialChannels { get; set; }
         
-        public MultiSelectChannels() : base(ElementType.MultiSelectUsers)
+        public MultiSelectChannels() : base(ElementType.MultiSelectChannels)
         {
         }
     }

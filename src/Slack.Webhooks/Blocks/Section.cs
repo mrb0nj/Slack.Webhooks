@@ -22,7 +22,7 @@ namespace Slack.Webhooks.Blocks
         /// <summary>
         /// One of the available <see cref="Element"/> objects.
         /// </summary>
-        public IList<Element> Accessory { get; set; }
+        public Element Accessory { get; set; }
 
         /// <summary>
         /// Create a new <see cref="Section"/> instance.

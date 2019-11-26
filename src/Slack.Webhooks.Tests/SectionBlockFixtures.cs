@@ -42,11 +42,11 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeAccessory()
         {
             // arrange
-            var accessoryList = new List<Element> { new Button() };
-            var section = new Section { Accessory = accessoryList };
+            var button = new Button();
+            var section = new Section { Accessory = button };
 
             // act
-            var accessoryPayload = SlackClient.SerializeObject(accessoryList);
+            var accessoryPayload = SlackClient.SerializeObject(button);
             var payload = SlackClient.SerializeObject(section);
 
             // assert

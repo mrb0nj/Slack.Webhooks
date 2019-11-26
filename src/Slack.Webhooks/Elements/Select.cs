@@ -120,7 +120,7 @@ namespace Slack.Webhooks.Elements
         /// </summary>
         public string InitialConversation { get; set; }
         
-        public SelectConversations() : base(ElementType.SelectUsers)
+        public SelectConversations() : base(ElementType.SelectConversations)
         {
         }
     }
@@ -137,7 +137,7 @@ namespace Slack.Webhooks.Elements
         /// </summary>
         public string InitialChannel { get; set; }
         
-        public SelectChannels() : base(ElementType.SelectUsers)
+        public SelectChannels() : base(ElementType.SelectChannels)
         {
         }
     }

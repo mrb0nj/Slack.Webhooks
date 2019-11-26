@@ -45,6 +45,21 @@ namespace Slack.Webhooks.Elements
         /// </summary>
         public bool Verbatim { get; set; }
 
+        /// <summary>
+        /// Create a new instance of <see cref="TextObject"/>.
+        /// </summary>
+        public TextObject()
+        {
+        }
+
+        /// <summary>
+        /// Create a new instance of <see cref="TextObject"/> with an initial Text.
+        /// </summary>
+        public TextObject(string text)
+        {
+            Text = text;
+        }
+
         public bool ShouldSerializeEmoji()
         {
             return Type == TextType.PlainText;
