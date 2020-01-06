@@ -1,4 +1,4 @@
-# Slack.Webhooks [![Build status](https://ci.appveyor.com/api/projects/status/08qvvm46ouxwujmq/branch/master?svg=true)](https://ci.appveyor.com/project/nerdfury/slack/branch/master) [![NuGet Version](http://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Slack.Webhooks/)
+# Slack.Webhooks [![Build status](https://github.com/mrb0nj/Slack.Webhooks/workflows/Continuous%20Stuff/badge.svg)](https://github.com/mrb0nj/Slack.Webhooks/actions?query=workflow%3A%22Continuous+Stuff%22) [![NuGet Version](http://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Slack.Webhooks/)
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
