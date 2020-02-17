@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -27,11 +28,20 @@ namespace Slack.Webhooks
         /// </summary>
         internal int TimeoutMs { get { return _timeout * 1000; } }
 
-        public SlackClient(string webhookUrl, int timeout = 100, HttpClient httpClient = null)
+        public SlackClient(string webhookUrl = null, int timeout = 100, HttpClient httpClient = null, string authorizationToken = null)
         {
             _httpClient = httpClient ?? new HttpClient();
-            if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
-                throw new ArgumentException("Please enter a valid webhook url");
+            if (!string.IsNullOrWhiteSpace(authorizationToken))
+            {
+                _webhookUri = new Uri("https://slack.com/api/chat.postMessage");
+                _httpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"Bearer {authorizationToken}");
+            }
+            else
+            {
+                if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
+                    throw new ArgumentException("Please enter a valid webhook url");
+            }
+
             _timeout = timeout;
         }
         
@@ -63,6 +73,17 @@ namespace Slack.Webhooks
                 var response = await _httpClient.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
                 return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
+            }
+        }
+        
+        public async Task<SlackResponse> PostAsAppAsync(SlackMessage slackMessage)
+        {
+            using (var request = new HttpRequestMessage(HttpMethod.Post, _webhookUri))
+            {
+                request.Content = new StringContent(slackMessage.AsJson(), System.Text.Encoding.UTF8, "application/json");
+                var response = await _httpClient.SendAsync(request);
+                var content = await response.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<SlackResponse>(content);
             }
         }
 
