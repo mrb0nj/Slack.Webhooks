@@ -14,9 +14,9 @@ jobs:
     runs-on: windows-latest
     name: Dotnet build
     steps:
-      - uses: actions/checkout@master
-        with:
-          fetch-depth: 0
+      - uses: actions/checkout@v2
+        - run: |
+            git fetch --prune --unshallow
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
