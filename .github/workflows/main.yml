@@ -4,7 +4,7 @@ on:
     branches:
       - feature/*
       - hotfix/*
-      - release/*
+      - master
     tags:
       - v*
   pull_request:
@@ -33,4 +33,3 @@ jobs:
         with:
           name: ${{ steps.build.outputs.nupkg_name }}
           path: ${{ steps.build.outputs.nupkg }}
-

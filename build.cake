@@ -23,7 +23,8 @@ var isGitHubAction = !string.IsNullOrWhiteSpace(EnvironmentVariable("GITHUB_ACTI
 var githubEventName = EnvironmentVariable("GITHUB_EVENT_NAME");
 var githubRef = EnvironmentVariable("GITHUB_REF");
 var githubBaseRef = EnvironmentVariable("GITHUB_BASE_REF");
-var isTag = githubEventName == "push" && githubRef.StartsWith("refs/tags/v") && githubBaseRef == "refs/heads/master";
+var isPullRequest = githubEventName == "pull_request";
+var isTag = githubEventName == "push" && githubRef.StartsWith("refs/tags/v");
 
 Information($"EventName: {githubEventName}, Ref: {githubRef}, BaseRef: {githubBaseRef}, IsTag: {isTag}, IsGithubAction: {isGitHubAction}");
 
@@ -97,9 +98,9 @@ Task("DeployGPR")
    .IsDependentOn("Pack")
    .Does(() =>
 {
-   var isMaster = githubBaseRef == "refs/heads/master";
-   if(isGitHubAction && isMaster)
+   if(isGitHubAction && !isPullRequest)
    {
+      Information($"DeployGPR. IsGitHubAction: {isGitHubAction}, IsPullRequest: {isPullRequest}");
       var settings = new NuGetSourcesSettings
                               {
                                     UserName = "mrb0nj",
@@ -114,7 +115,7 @@ Task("DeployGPR")
    }
    else
    {
-       Information($"Skipping DeployGPR. IsGitHubAction: {isGitHubAction}");
+       Information($"Skipping DeployGPR. IsGitHubAction: {isGitHubAction}, IsPullRequest: {isPullRequest}");
    }
 });
 
@@ -124,6 +125,7 @@ Task("DeployNuGet")
 {
    if(isGitHubAction && isTag)
    {
+      Information($"DeployNuget. IsGitHubAction: {isGitHubAction}, IsTag: {isTag}");
       var settings = new NuGetPushSettings
       {
          Source = "https://api.nuget.org/v3/index.json",
