@@ -20,6 +20,13 @@ var configuration = Argument("configuration", "Release");
 ///////////////////////////////////////////////////////////////////////////////
 
 var isGitHubAction = !string.IsNullOrWhiteSpace(EnvironmentVariable("GITHUB_ACTION"));
+var githubEventName = EnvironmentVariable("GITHUB_EVENT_NAME");
+var githubRef = EnvironmentVariable("GITHUB_REF");
+var githubBaseRef = EnvironmentVariable("GITHUB_BASE_REF");
+var isTag = githubEventName == "push" && githubRef.StartsWith("refs/tags/v") && githubBaseRef == "refs/heads/master";
+
+Information($"EventName: {githubEventName}, Ref: {githubRef}, BaseRef: {githubBaseRef}, IsTag: {isTag}, IsGithubAction: {isGitHubAction}");
+
 GitVersion gitVersion = null;
 Task("Default")
    .IsDependentOn("Build")
@@ -90,7 +97,8 @@ Task("DeployGPR")
    .IsDependentOn("Pack")
    .Does(() =>
 {
-   if(isGitHubAction)
+   var isMaster = githubBaseRef == "refs/heads/master";
+   if(isGitHubAction && isMaster)
    {
       var settings = new NuGetSourcesSettings
                               {
@@ -114,13 +122,6 @@ Task("DeployNuGet")
    .IsDependentOn("Pack")
    .Does(() =>
 {
-   var githubEventName = EnvironmentVariable("GITHUB_EVENT_NAME");
-   var githubRef = EnvironmentVariable("GITHUB_REF");
-   var githubBaseRef = EnvironmentVariable("GITHUB_BASE_REF");
-   var isTag = githubEventName == "push" && githubRef.StartsWith("refs/tags/v") && githubBaseRef == "refs/heads/master";
-   Information($"EventName: {githubEventName}, Ref: {githubRef}, BaseRef: {githubBaseRef}, IsTag: {isTag}");
-
-
    if(isGitHubAction && isTag)
    {
       var settings = new NuGetPushSettings
