@@ -101,6 +101,7 @@ namespace Slack.Webhooks.Tests
             var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
             {
                 var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+                Console.WriteLine(json);
                 postedMessage = SlackClient.DeserializeObject(json);
             });
 
@@ -167,9 +168,9 @@ namespace Slack.Webhooks.Tests
         }
 
         private static SlackMessage GetSlackMessage(
-            string text = "Test Message", 
-            string channel = "#test", 
-            string username = "testbot", 
+            string text = "Test Message",
+            string channel = "#test",
+            string username = "testbot",
             string iconEmoji = Emoji.Ghost)
         {
             return new SlackMessage

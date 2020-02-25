@@ -1,90 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
+using Slack.Webhooks.Api;
 
 namespace Slack.Webhooks
 {
     public class SlackClient : ISlackClient, IDisposable
     {
-        private readonly HttpClient _httpClient;
-        private readonly Uri _webhookUri;
-        private const string POST_SUCCESS = "ok";
-        private int _timeout = 100;
+        private readonly SlackConfiguration _configuration;
+        public int TimeoutMs { get { return (int)_configuration.HttpClient.Timeout.TotalMilliseconds; } }
 
-        private static readonly DefaultContractResolver resolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() };
-        private static readonly JsonSerializerSettings serializerSettings = new JsonSerializerSettings
+        #region Api
+        public Webhook Webhook { get; private set; }
+        public Chat Chat { get; private set; }
+        #endregion
+
+        public SlackClient(string webhookUrl = null, int timeout = 100, HttpClient httpClient = null)
         {
-            ContractResolver = resolver,
-            NullValueHandling = NullValueHandling.Ignore
-        };
+            Uri webhookUri;
+            if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out webhookUri))
+                throw new ArgumentException("Please enter a valid webhook url");
 
-        /// <summary>
-        /// Returns the current Timeout value.
-        /// </summary>
-        internal int TimeoutMs { get { return _timeout * 1000; } }
-
-        public SlackClient(string webhookUrl = null, int timeout = 100, HttpClient httpClient = null, string authorizationToken = null)
-        {
-            _httpClient = httpClient ?? new HttpClient();
-            if (!string.IsNullOrWhiteSpace(authorizationToken))
+            _configuration = new SlackConfiguration
             {
-                _webhookUri = new Uri("https://slack.com/api/chat.postMessage");
-                _httpClient.DefaultRequestHeaders.Authorization = AuthenticationHeaderValue.Parse($"Bearer {authorizationToken}");
-            }
-            else
-            {
-                if (!Uri.TryCreate(webhookUrl, UriKind.Absolute, out _webhookUri))
-                    throw new ArgumentException("Please enter a valid webhook url");
-            }
+                HttpClient = httpClient ?? new HttpClient { Timeout = TimeSpan.FromSeconds(timeout) },
+                WebhookUri = webhookUri
+            };
 
-            _timeout = timeout;
+            Webhook = new Webhook(_configuration);
+            Chat = new Chat(_configuration);
         }
-        
+
+        public SlackClient(SlackConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+        [Obsolete("Please use SlackClient.Webhook.Post(SlackMessage) instead.")]
         public virtual bool Post(SlackMessage slackMessage)
         {
-            var result = PostAsync(slackMessage).GetAwaiter().GetResult();
-            return result;
+            return Webhook.Post(slackMessage);
         }
 
+        [Obsolete("Please use SlackClient.Webhook.PostToChannels(SlackMessage, IEnumerable<string>) instead.")]
         public bool PostToChannels(SlackMessage message, IEnumerable<string> channels)
         {
-            return channels.DefaultIfEmpty(message.Channel)
-                    .Select(message.Clone)
-                    .Select(Post).All(r => r);
-        }
-        
-        public IEnumerable<Task<bool>> PostToChannelsAsync(SlackMessage message, IEnumerable<string> channels)
-        {
-            return channels.DefaultIfEmpty(message.Channel)
-                                .Select(message.Clone)
-                                .Select(PostAsync);
+            return Webhook.PostToChannels(message, channels);
         }
 
-        public async Task<bool> PostAsync(SlackMessage slackMessage)
+        [Obsolete("Please use SlackClient.Webhook.PostToChannelsAsync(SlackMessage, IEnumerable<string>) instead.")]
+        public IEnumerable<Task<bool>> PostToChannelsAsync(SlackMessage message, IEnumerable<string> channels)
         {
-            using (var request = new HttpRequestMessage(HttpMethod.Post, _webhookUri))
-            {
-                request.Content = new StringContent(slackMessage.AsJson(), System.Text.Encoding.UTF8, "application/json");
-                var response = await _httpClient.SendAsync(request);
-                var content = await response.Content.ReadAsStringAsync();
-                return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
-            }
-        }
-        
-        public async Task<SlackResponse> PostAsAppAsync(SlackMessage slackMessage)
-        {
-            using (var request = new HttpRequestMessage(HttpMethod.Post, _webhookUri))
-            {
-                request.Content = new StringContent(slackMessage.AsJson(), System.Text.Encoding.UTF8, "application/json");
-                var response = await _httpClient.SendAsync(request);
-                var content = await response.Content.ReadAsStringAsync();
-                return JsonConvert.DeserializeObject<SlackResponse>(content);
-            }
+            return Webhook.PostToChannelsAsync(message, channels);
         }
 
         /// <summary>
@@ -92,9 +62,10 @@ namespace Slack.Webhooks
         /// </summary>
         /// <param name="json">string containing serialized JSON</param>
         /// <returns>SlackMessage</returns>
+        [Obsolete("Please use ApiBase.DeserializeObject instead.")]
         public static SlackMessage DeserializeObject(string json)
         {
-            return JsonConvert.DeserializeObject<SlackMessage>(json, serializerSettings);
+            return ApiBase.DeserializeObject<SlackMessage>(json);
         }
 
         /// <summary>
@@ -102,14 +73,15 @@ namespace Slack.Webhooks
         /// </summary>
         /// <param name="json">An instance of SlackMessage</param>
         /// <returns>string containing serialized JSON</returns>
+        [Obsolete("Please use ApiBase.SerializeObject instead.")]
         public static string SerializeObject(object obj)
         {
-            return JsonConvert.SerializeObject(obj, serializerSettings);
+            return ApiBase.SerializeObject(obj);
         }
 
         public void Dispose()
         {
-            _httpClient.Dispose();
+            _configuration.HttpClient.Dispose();
         }
     }
 }
