@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Slack.Webhooks.Api;
 
 namespace Slack.Webhooks

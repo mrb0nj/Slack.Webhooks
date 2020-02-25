@@ -112,3 +112,4 @@ Backup*/
 UpgradeLog*.XML
 /src/.vs/Slack.Webhooks/v15/Server/sqlite3
 /.vs
+.idea
