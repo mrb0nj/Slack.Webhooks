@@ -4,23 +4,18 @@
     <id>Slack.Webhooks</id>
     <version>1.0.0</version>
     <authors>Benn Lazell and contributors</authors>
-    <licenseUrl>https://github.com/mrb0nj/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
-    <iconUrl>https://user-images.githubusercontent.com/944655/75330987-e4bb7900-5879-11ea-80dd-4d3641a62a07.png</iconUrl>
+    <license type="expression">MIT</license>
+    <icon>images\slack.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</description>
-    <summary>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</summary>
     <copyright>Benn Lazell and contributors</copyright>
     <language>en-GB</language>
     <tags>Slack Webhooks</tags>
     <repository type="git" url="https://github.com/mrb0nj/Slack.Webhooks.git" />
     <releaseNotes>
       <![CDATA[
-      #### v1.1.0
-      - Support Slack's Block Kit with SlackMessage.Blocks property
-      - Support Thread replies with SlackMessage.ThreadId property
-      - Changed the whole Emoji setup. SlackMessage.Emoji is now a string and Emoji.\* are constants. This shouldn't cause problems in the most part!
-      - Allow HttpClient to be injected into SlackClient.
-      - SlackClient implements IDisposable to match the contained HttpClient instance even though this isn't the recommended usage. SlackClient, like HttpClient, there should only be a single instance of this class within the lifecycle of your application, for more information on why see: https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/
+      #### v1.1.2
+      - Fix SlackMessage.Clone does not clone all properties
       ]]>
     </releaseNotes>
     <dependencies>
@@ -30,5 +25,6 @@
   <files>
     <file src="bin\Release\net45\Slack.Webhooks.dll" target="lib\net45\Slack.Webhooks.dll" />
     <file src="bin\Release\netstandard1.3\Slack.Webhooks.dll" target="lib\netstandard1.3\Slack.Webhooks.dll" />
+    <file src="..\..\slack.png" target="images\" />
   </files>
 </package>
