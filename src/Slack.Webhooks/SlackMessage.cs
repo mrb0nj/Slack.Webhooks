@@ -100,11 +100,18 @@ namespace Slack.Webhooks
             return new SlackMessage()
             {
                 Attachments = Attachments,
-                Text = Text,
+                Blocks = Blocks,
+                Channel = newChannel ?? Channel,
+                DeleteOriginal = DeleteOriginal,
                 IconEmoji = IconEmoji,
                 IconUrl = IconUrl,
-                Username = Username,
-                Channel = newChannel ?? Channel
+                LinkNames = LinkNames,
+                Markdown = Markdown,
+                Parse = Parse,
+                ReplaceOriginal = ReplaceOriginal,
+                ResponseType = ResponseType,
+                Text = Text,
+                Username = Username
             };
         }
 
