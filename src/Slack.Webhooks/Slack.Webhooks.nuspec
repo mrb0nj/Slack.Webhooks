@@ -12,6 +12,7 @@
     <copyright>Benn Lazell and contributors</copyright>
     <language>en-GB</language>
     <tags>Slack Webhooks</tags>
+    <repository type="git" url="https://github.com/mrb0nj/Slack.Webhooks.git" />
     <releaseNotes>
       <![CDATA[
       #### v1.1.0

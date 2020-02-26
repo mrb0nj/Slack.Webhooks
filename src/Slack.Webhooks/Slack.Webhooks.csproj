@@ -4,6 +4,7 @@
     <TargetFrameworks>net45;netstandard1.3</TargetFrameworks>
     <Deterministic>False</Deterministic>
     <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <RepositoryUrl>https://github.com/mrb0nj/Slack.Webhooks.git</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
