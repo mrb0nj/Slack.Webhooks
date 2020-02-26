@@ -1,6 +1,7 @@
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -11,8 +12,8 @@ namespace Slack.Webhooks.Api
     {
         protected readonly SlackConfiguration configuration;
 
-        private readonly static DefaultContractResolver _resolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() };
-        private readonly static JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
+        private static readonly DefaultContractResolver _resolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() };
+        private static readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
         {
             ContractResolver = _resolver,
             NullValueHandling = NullValueHandling.Ignore
@@ -31,7 +32,7 @@ namespace Slack.Webhooks.Api
                     request.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {configuration.AuthToken}");
 
                 var json = SerializeObject(payload);
-                request.Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
+                request.Content = new StringContent(json, Encoding.UTF8, "application/json");
                 var response = await configuration.HttpClient.SendAsync(request);
                 var content = await response.Content.ReadAsStringAsync();
 

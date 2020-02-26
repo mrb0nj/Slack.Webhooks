@@ -1,7 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
-
-namespace Slack.Webhooks
+﻿namespace Slack.Webhooks
 
 {
     public class Emoji

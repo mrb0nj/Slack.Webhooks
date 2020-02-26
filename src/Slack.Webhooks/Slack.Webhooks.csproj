@@ -1,26 +1,29 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFrameworks>net45;netstandard1.3</TargetFrameworks>
-    <Deterministic>False</Deterministic>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <RepositoryUrl>https://github.com/mrb0nj/Slack.Webhooks.git</RepositoryUrl>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFrameworks>netstandard2.0</TargetFrameworks>
+        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+        <Version>1.1.0</Version>
+        <Authors>Benn Lazell and contributors</Authors>
+        <Copyright>Benn Lazell and contributors</Copyright>
+        <PackageLicenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageIconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</PackageIconUrl>
+        <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
+        <Description>Even simpler integration with Slack's Incoming webhook API</Description>
+        <PackageTags>Slack Webhooks</PackageTags>
+        <PackageReleaseNotes>
+            <![CDATA[
+              #### v1.1.0
+              - Support Slack's Block Kit with SlackMessage.Blocks property
+              - Support Thread replies with SlackMessage.ThreadId property
+              - Changed the whole Emoji setup. SlackMessage.Emoji is now a string and Emoji.\* are constants. This shouldn't cause problems in the most part!
+              - Allow HttpClient to be injected into SlackClient.
+              - SlackClient implements IDisposable to match the contained HttpClient instance even though this isn't the recommended usage. SlackClient, like HttpClient, there should only be a single instance of this class within the lifecycle of your application, for more information on why see: https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/
+            ]]>
+        </PackageReleaseNotes>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-  </ItemGroup>
-
-  <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard1.3' ">
-    <Reference Include="System" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-
+    <ItemGroup>
+        <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+    </ItemGroup>
 </Project>
