@@ -5,6 +5,7 @@
     <version>1.0.0</version>
     <authors>Benn Lazell and contributors</authors>
     <license type="expression">MIT</license>
+    <licenseUrl>https://github.com/mrb0nj/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
     <icon>images\slack.png</icon>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</description>
