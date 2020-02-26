@@ -75,12 +75,12 @@ Task("Pack")
    .IsDependentOn("Build")
    .Does(() =>
 {
-   var nuGetPackSettings   = new NuGetPackSettings {
-      Version = gitVersion.NuGetVersionV2,
-      OutputDirectory = "./artifacts"
-   };
-
-   NuGetPack("src/Slack.Webhooks/Slack.Webhooks.nuspec", nuGetPackSettings);
+   DotNetCorePack("src/Slack.Webhooks.sln", new DotNetCorePackSettings {
+      Configuration = configuration,
+      NoBuild = true,
+      OutputDirectory = "./artifacts",
+      ArgumentCustomization = args => args.Append($"-p:PackageVersion={gitVersion.NuGetVersionV2}")
+   });
    
    if(isGitHubAction)
    {

@@ -6,11 +6,11 @@
         <Version>1.1.0</Version>
         <Authors>Benn Lazell and contributors</Authors>
         <Copyright>Benn Lazell and contributors</Copyright>
-        <PackageLicenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</PackageLicenseUrl>
-        <PackageIconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</PackageIconUrl>
+        <PackageIcon>slack.png</PackageIcon>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>False</PackageRequireLicenseAcceptance>
         <Description>Even simpler integration with Slack's Incoming webhook API</Description>
-        <PackageTags>Slack Webhooks</PackageTags>
+        <PackageTags>slack;webhooks;client;api;dotnetcore</PackageTags>
         <PackageReleaseNotes>
             <![CDATA[
               #### v1.1.0
@@ -21,7 +21,13 @@
               - SlackClient implements IDisposable to match the contained HttpClient instance even though this isn't the recommended usage. SlackClient, like HttpClient, there should only be a single instance of this class within the lifecycle of your application, for more information on why see: https://aspnetmonsters.com/2016/08/2016-08-27-httpclientwrong/
             ]]>
         </PackageReleaseNotes>
+        <RepositoryUrl>https://github.com/mrb0nj/Slack.Webhooks.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\slack.png" Pack="true" PackagePath="\" />
+    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
