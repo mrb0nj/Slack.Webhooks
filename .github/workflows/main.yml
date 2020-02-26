@@ -19,7 +19,7 @@ jobs:
           git fetch --prune --unshallow
       - run: |
           git branch master origin/master
-        if: github.event_name != 'push' || (github.event_name == 'push' && github.ref != 'master')
+        if: github.event_name != 'push' || (github.event_name == 'push' && github.ref != 'refs/heads/master')
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
