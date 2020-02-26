@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using Slack.Webhooks.Api;
 using System;
 using System.Collections.Generic;
 
@@ -130,7 +131,7 @@ namespace Slack.Webhooks
         /// <returns>JSON formatted string</returns>
         public string AsJson()
         {
-            return SlackClient.SerializeObject(this);
+            return ApiBase.SerializeObject(this);
         }
     }
 }

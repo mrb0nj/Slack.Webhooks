@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -14,13 +15,13 @@ namespace Slack.Webhooks.Tests
             var overflow = new Overflow();
 
             // act
-            var payload = SlackClient.SerializeObject(overflow);
+            var payload = ApiBase.SerializeObject(overflow);
 
             // assert
             payload.Should().Contain("\"type\":\"overflow\"");
         }
 
-        
+
         [Fact]
         public void ShouldSerializeActionId()
         {
@@ -28,13 +29,13 @@ namespace Slack.Webhooks.Tests
             var overflow = new Overflow { ActionId = "Action123" };
 
             // act
-            var payload = SlackClient.SerializeObject(overflow);
+            var payload = ApiBase.SerializeObject(overflow);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
         }
 
-        
+
         [Fact]
         public void ShouldSerializeConfirm()
         {
@@ -43,27 +44,27 @@ namespace Slack.Webhooks.Tests
             var overflow = new Overflow { Confirm = confirm };
 
             // act
-            var confirmPayload = SlackClient.SerializeObject(confirm);
-            var payload = SlackClient.SerializeObject(overflow);
+            var confirmPayload = ApiBase.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(overflow);
 
             // assert
             payload.Should().Contain($"\"confirm\":{confirmPayload}");
         }
-        
+
         [Fact]
         public void ShouldSerializeOptions()
         {
             // arrange
-            var options = new List<Option> { new Option { Value = "Value123" }};
+            var options = new List<Option> { new Option { Value = "Value123" } };
             var overflow = new Overflow { Options = options };
 
             // act
-            var optionsPayload = SlackClient.SerializeObject(options);
-            var payload = SlackClient.SerializeObject(overflow);
+            var optionsPayload = ApiBase.SerializeObject(options);
+            var payload = ApiBase.SerializeObject(overflow);
 
             // assert
             payload.Should().Contain($"\"options\":{optionsPayload}");
         }
-        
+
     }
 }

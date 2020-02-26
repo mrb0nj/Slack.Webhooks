@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Blocks;
 using Xunit;
 
@@ -10,10 +11,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldHaveExternalId()
         {
             // arrange
-            var file = new File { ExternalId = "AB_1234"};
+            var file = new File { ExternalId = "AB_1234" };
 
             // act
-            var payload = SlackClient.SerializeObject(file);
+            var payload = ApiBase.SerializeObject(file);
 
             // assert
             payload.Should().Contain("\"external_id\":\"AB_1234\"");
@@ -26,7 +27,7 @@ namespace Slack.Webhooks.Tests
             var file = new File();
 
             // act
-            var payload = SlackClient.SerializeObject(file);
+            var payload = ApiBase.SerializeObject(file);
 
             // assert
             file.Source.Should().Be("remote");

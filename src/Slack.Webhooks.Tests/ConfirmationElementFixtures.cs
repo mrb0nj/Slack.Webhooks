@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -10,10 +11,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeTitle()
         {
             // arrange
-            var confirm = new Confirmation { Title = new TextObject { Text = "Title Test"} };
+            var confirm = new Confirmation { Title = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = SlackClient.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(confirm);
 
             // assert
             payload.Should().Contain("\"title\":{");
@@ -24,10 +25,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeText()
         {
             // arrange
-            var confirm = new Confirmation { Text = new TextObject { Text = "Title Test"} };
+            var confirm = new Confirmation { Text = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = SlackClient.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(confirm);
 
             // assert
             payload.Should().Contain("\"text\":{");
@@ -38,10 +39,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeConfirm()
         {
             // arrange
-            var confirm = new Confirmation { Confirm = new TextObject { Text = "Title Test"} };
+            var confirm = new Confirmation { Confirm = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = SlackClient.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(confirm);
 
             // assert
             payload.Should().Contain("\"confirm\":{");
@@ -52,10 +53,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeDeny()
         {
             // arrange
-            var confirm = new Confirmation { Deny = new TextObject { Text = "Title Test"} };
+            var confirm = new Confirmation { Deny = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = SlackClient.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(confirm);
 
             // assert
             payload.Should().Contain("\"deny\":{");

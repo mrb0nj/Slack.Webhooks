@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -13,7 +14,7 @@ namespace Slack.Webhooks.Tests
             var button = new Button();
 
             // act
-            var payload = SlackClient.SerializeObject(button);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain("\"type\":\"button\"");
@@ -23,10 +24,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeText()
         {
             // arrange
-            var button = new Button { Text = new TextObject { Text = "Test Text" }};
+            var button = new Button { Text = new TextObject { Text = "Test Text" } };
 
             // act
-            var payload = SlackClient.SerializeObject(button);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain("\"text\":{\"type\":\"plain_text\"");
@@ -39,7 +40,7 @@ namespace Slack.Webhooks.Tests
             var button = new Button { ActionId = "Action123" };
 
             // act
-            var payload = SlackClient.SerializeObject(button);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
@@ -52,7 +53,7 @@ namespace Slack.Webhooks.Tests
             var button = new Button { Url = "http://someurl.com" };
 
             // act
-            var payload = SlackClient.SerializeObject(button);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain("\"url\":\"http://someurl.com\"");
@@ -65,7 +66,7 @@ namespace Slack.Webhooks.Tests
             var button = new Button { Value = "Value123" };
 
             // act
-            var payload = SlackClient.SerializeObject(button);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain("\"value\":\"Value123\"");
@@ -78,7 +79,7 @@ namespace Slack.Webhooks.Tests
             var button = new Button { Style = "Style123" };
 
             // act
-            var payload = SlackClient.SerializeObject(button);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain("\"style\":\"Style123\"");
@@ -92,8 +93,8 @@ namespace Slack.Webhooks.Tests
             var button = new Button { Confirm = confirm };
 
             // act
-            var confirmPayload = SlackClient.SerializeObject(confirm);
-            var payload = SlackClient.SerializeObject(button);
+            var confirmPayload = ApiBase.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain($"\"confirm\":{confirmPayload}");

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -14,13 +15,13 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons();
 
             // act
-            var payload = SlackClient.SerializeObject(radio);
+            var payload = ApiBase.SerializeObject(radio);
 
             // assert
             payload.Should().Contain("\"type\":\"radio_buttons\"");
         }
 
-        
+
         [Fact]
         public void ShouldSerializeActionId()
         {
@@ -28,13 +29,13 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons { ActionId = "Action123" };
 
             // act
-            var payload = SlackClient.SerializeObject(radio);
+            var payload = ApiBase.SerializeObject(radio);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
         }
 
-        
+
         [Fact]
         public void ShouldSerializeConfirm()
         {
@@ -43,23 +44,23 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons { Confirm = confirm };
 
             // act
-            var confirmPayload = SlackClient.SerializeObject(confirm);
-            var payload = SlackClient.SerializeObject(radio);
+            var confirmPayload = ApiBase.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(radio);
 
             // assert
             payload.Should().Contain($"\"confirm\":{confirmPayload}");
         }
-        
+
         [Fact]
         public void ShouldSerializeOptions()
         {
             // arrange
-            var options = new List<Option> { new Option { Value = "Value123" }};
+            var options = new List<Option> { new Option { Value = "Value123" } };
             var radio = new RadioButtons { Options = options };
 
             // act
-            var optionsPayload = SlackClient.SerializeObject(options);
-            var payload = SlackClient.SerializeObject(radio);
+            var optionsPayload = ApiBase.SerializeObject(options);
+            var payload = ApiBase.SerializeObject(radio);
 
             // assert
             payload.Should().Contain($"\"options\":{optionsPayload}");
@@ -73,12 +74,12 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons { InitialOption = option };
 
             // act
-            var optionsPayload = SlackClient.SerializeObject(option);
-            var payload = SlackClient.SerializeObject(radio);
+            var optionsPayload = ApiBase.SerializeObject(option);
+            var payload = ApiBase.SerializeObject(radio);
 
             // assert
             payload.Should().Contain($"\"initial_option\":{optionsPayload}");
         }
-        
+
     }
 }
