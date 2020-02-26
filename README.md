@@ -2,7 +2,21 @@
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
+### IMPORTANT
+
+On Feb 19th 2020 Slack will end support for TLS version 1.0 and 1.1. This means you may (depending on your .NET version) need to force the use of TLS1.2.
+
+If you receive an error stating that "The underlying connection was closed:" it's quite possibly a TLS issue. You can work around this by setting the default TLS version using the following:
+
+```csharp
+System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+```
+
 ### Change Log
+
+#### v1.1.2
+
+- Fix SlackMessage.Clone does not clone all properties
 
 #### v1.1.0
 
