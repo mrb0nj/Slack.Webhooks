@@ -4,14 +4,15 @@
     <id>Slack.Webhooks</id>
     <version>1.0.0</version>
     <authors>Benn Lazell and contributors</authors>
-    <licenseUrl>https://github.com/nerdfury/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
-    <iconUrl>http://files.fivedegrees.co.uk/Slack.Webhooks/webhook.png</iconUrl>
+    <licenseUrl>https://github.com/mrb0nj/Slack.Webhooks/blob/master/LICENSE</licenseUrl>
+    <iconUrl>https://user-images.githubusercontent.com/944655/75330987-e4bb7900-5879-11ea-80dd-4d3641a62a07.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</description>
     <summary>Even simpler integration with Slack's Incoming webhook API for .Net 4.5+ and .Net Core</summary>
     <copyright>Benn Lazell and contributors</copyright>
     <language>en-GB</language>
     <tags>Slack Webhooks</tags>
+    <repository type="git" url="https://github.com/mrb0nj/Slack.Webhooks.git" />
     <releaseNotes>
       <![CDATA[
       #### v1.1.0
