@@ -15,8 +15,9 @@ jobs:
     name: Dotnet build
     steps:
       - uses: actions/checkout@v2
-      - run: cd src
-      - run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
-      - run: dotnet build -c Release --nologo
-      - run: dotnet test -c Release --no-build --nologo
-      - run: dotnet nuget push "Slack.Webhooks/bin/Release/*.nupkg" --source "github"
+      - run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' src/.nuget.config > src/nuget.config
+      - run: dotnet build src/ -c Release --nologo
+      - run: dotnet test src/ -c Release --no-build --nologo
+      - run: |
+        cd src/
+        dotnet nuget push "Slack.Webhooks/bin/Release/*.nupkg" --source "github"
