@@ -19,5 +19,5 @@ jobs:
       - run: dotnet build src/ -c Release --nologo
       - run: dotnet test src/ -c Release --no-build --nologo
       - run: |
-        cd src/
-        dotnet nuget push "Slack.Webhooks/bin/Release/*.nupkg" --source "github"
+          cd src/
+          dotnet nuget push "Slack.Webhooks/bin/Release/*.nupkg" --source "github"
