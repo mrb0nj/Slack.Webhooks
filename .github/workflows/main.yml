@@ -14,10 +14,19 @@ jobs:
     runs-on: ubuntu-latest
     name: Dotnet build
     steps:
-      - uses: actions/checkout@v2
-      - run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' src/.nuget.config > src/nuget.config
-      - run: dotnet build src/ -c Release --nologo
-      - run: dotnet test src/ -c Release --no-build --nologo
-      - run: |
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Inject GITHUB_TOKEN
+        run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' src/.nuget.config > src/nuget.config
+      - name: Restore
+        run: dotnet restore src/ -s nuget
+      - name: Build
+        run: dotnet build src/ -c Release --nologo
+      - name: Test
+        run: dotnet test src/ -c Release --no-build --nologo
+      - name: Push
+        run: |
           cd src/
           dotnet nuget push "Slack.Webhooks/bin/Release/*.nupkg" --source "github"
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
