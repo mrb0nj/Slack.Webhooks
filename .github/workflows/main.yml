@@ -19,7 +19,7 @@ jobs:
       - name: Inject GITHUB_TOKEN
         run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
       - name: Restore
-        run: dotnet restore -s nuget
+        run: dotnet restore -v q
       - name: Build
         run: dotnet build -c Release --nologo
       - name: Test
