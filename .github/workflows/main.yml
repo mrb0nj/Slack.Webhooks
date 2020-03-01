@@ -18,7 +18,7 @@ jobs:
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: "2.2.103"
+          dotnet-version: "3.1.100"
       - run: dotnet build -c Release --nologo
       - run: dotnet test -c Release --no-build --nologo
       - run: dotnet nuget push "Slack.Webhooks\bin\Release\*.nupkg" --source "github"
