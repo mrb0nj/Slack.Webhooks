@@ -24,6 +24,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <MinVerTagPrefix>v</MinVerTagPrefix>
         <MinVerSkip Condition="'$(Configuration)' == 'Debug'">true</MinVerSkip>
+        <MinVerVerbosity>detailed</MinVerVerbosity>
     </PropertyGroup>
 
     <ItemGroup>

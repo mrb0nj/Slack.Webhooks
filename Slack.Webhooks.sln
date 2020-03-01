@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack.Webhooks", "Slack.Webhooks\Slack.Webhooks.csproj", "{53751B1B-A63E-4E4F-988C-BC783E68B15F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack.Webhooks", "src\Slack.Webhooks\Slack.Webhooks.csproj", "{53751B1B-A63E-4E4F-988C-BC783E68B15F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack.Webhooks.Tests", "Slack.Webhooks.Tests\Slack.Webhooks.Tests.csproj", "{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Slack.Webhooks.Tests", "src\Slack.Webhooks.Tests\Slack.Webhooks.Tests.csproj", "{5ABDDE87-A87C-495C-A5CE-01C23C9E2F62}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
