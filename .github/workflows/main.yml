@@ -16,16 +16,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
-      - name: Inject GITHUB_TOKEN
-        run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
-      - name: Restore
-        run: dotnet restore -v q
       - name: Build
-        run: dotnet build -c Release --nologo --no-restore
+        run: dotnet build -c Release --nologo
       - name: Test
         run: dotnet test -c Release --no-build --nologo
       - name: Push
         run: |
+          sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
           dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "github"
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
