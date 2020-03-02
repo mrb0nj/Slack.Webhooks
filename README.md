@@ -1,4 +1,4 @@
-# Slack.Webhooks ![Continuous Stuff](https://github.com/mrb0nj/Slack.Webhooks/workflows/Continuous%20Stuff/badge.svg?branch=master) [![NuGet Version](http://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Slack.Webhooks/)
+# Slack.Webhooks ![Continuous Stuff](https://github.com/mrb0nj/Slack.Webhooks/workflows/Continuous%20Stuff/badge.svg?branch=master) [![NuGet Version](http://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Slack.Webhooks/) [![feedz.io](https://img.shields.io/badge/endpoint.svg?url=https%3A%2F%2Ff.feedz.io%2Fmrb0nj%2Fslack-webhooks%2Fshield%2FSlack.Webhooks%2Flatest&label=Slack.Webhooks)](https://f.feedz.io/mrb0nj/slack-webhooks/packages/Slack.Webhooks/latest/download)
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
