@@ -1,9 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>netstandard2.0</TargetFrameworks>
-        <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-        <Version>1.1.0</Version>
+        <TargetFramework>netstandard2.0</TargetFramework>
         <Authors>Benn Lazell and contributors</Authors>
         <Copyright>Benn Lazell and contributors</Copyright>
         <PackageIcon>slack.png</PackageIcon>
@@ -23,6 +21,10 @@
         </PackageReleaseNotes>
         <RepositoryUrl>https://github.com/mrb0nj/Slack.Webhooks.git</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <MinVerTagPrefix>v</MinVerTagPrefix>
+        <MinVerSkip Condition="'$(Configuration)' == 'Debug'">true</MinVerSkip>
+        <MinVerMinimumMajorMinor>2.0</MinVerMinimumMajorMinor>
     </PropertyGroup>
 
     <ItemGroup>
@@ -30,6 +32,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="MinVer" Version="2.1.0">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
         <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     </ItemGroup>
 </Project>

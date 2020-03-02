@@ -11,28 +11,16 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Dotnet build
     steps:
-      - uses: actions/checkout@v2
-      - run: |
-          git fetch --prune --unshallow
-      - run: |
-          git branch master origin/master
-        if: github.event_name != 'push' || (github.event_name == 'push' && github.ref != 'refs/heads/master')
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: "2.2.103"
+      - name: Checkout
+        uses: actions/checkout@v1
       - name: Build
-        run: .\build.ps1
-        shell: pwsh
-        id: build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          NUGET_TOKEN: ${{ secrets.NugetKey }}
-      - name: Add artifacts
-        uses: actions/upload-artifact@v1
-        with:
-          name: ${{ steps.build.outputs.nupkg_name }}
-          path: ${{ steps.build.outputs.nupkg }}
+        run: dotnet build -c Release --nologo
+      - name: Run Unit Tests
+        run: dotnet test -c Release --no-build --nologo
+      - name: Push to Feedz.io
+        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "https://f.feedz.io/mrb0nj/slack-webhooks/nuget/index.json" -k ${{ secrets.FEEDZIO_TOKEN }} -n true
+env:
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
