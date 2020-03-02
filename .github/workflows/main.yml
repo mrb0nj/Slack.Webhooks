@@ -20,9 +20,12 @@ jobs:
         run: dotnet build -c Release --nologo
       - name: Test
         run: dotnet test -c Release --no-build --nologo
-      - name: Push
-        run: |
-          sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
-          dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "github"
+      - name: Inject GITHUB_TOKEN
+        run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
+      - name: Push GitHub
+        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "github"
+      - name: Push NuGet
+        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "nuget" -k ${{ secrets.NugetKey }}
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
