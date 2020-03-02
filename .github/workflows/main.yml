@@ -21,6 +21,6 @@ jobs:
       - name: Run Unit Tests
         run: dotnet test -c Release --no-build --nologo
       - name: Push to Feedz.io
-        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "https://f.feedz.io/redrabbits/slack-webhooks/nuget/index.json" -k ${{ secrets.FEEDZIO_TOKEN }}
+        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "https://f.feedz.io/mrb0nj/slack-webhooks/nuget/index.json" -k ${{ secrets.FEEDZIO_TOKEN }}
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
