@@ -15,13 +15,13 @@ jobs:
     name: Dotnet build
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v1
       - name: Inject GITHUB_TOKEN
         run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
       - name: Restore
         run: dotnet restore -v q
       - name: Build
-        run: dotnet build -c Release --nologo
+        run: dotnet build -c Release --nologo --no-restore
       - name: Test
         run: dotnet test -c Release --no-build --nologo
       - name: Push
