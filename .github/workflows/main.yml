@@ -18,14 +18,9 @@ jobs:
         uses: actions/checkout@v1
       - name: Build
         run: dotnet build -c Release --nologo
-      - name: Test
+      - name: Run Unit Tests
         run: dotnet test -c Release --no-build --nologo
-      - name: Inject GITHUB_TOKEN
-        run: sed 's/GITHUB_TOKEN/${{ secrets.GITHUB_TOKEN }}/g' .nuget.config > nuget.config
-      - name: Push GitHub
-        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "github"
-      - name: Push NuGet
-        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "nuget" -k ${{ secrets.NugetKey }}
-        if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
+      - name: Push to Feedz.io
+        run: dotnet nuget push "src/Slack.Webhooks/bin/Release/*.nupkg" --source "https://f.feedz.io/redrabbits/slack-webhooks/nuget/index.json" -k ${{ secrets.FEEDZIO_TOKEN }}
 env:
   DOTNET_CLI_TELEMETRY_OPTOUT: 1
