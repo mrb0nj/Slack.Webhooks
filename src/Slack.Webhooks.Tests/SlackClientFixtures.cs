@@ -1,5 +1,6 @@
 ﻿using Moq;
 using Moq.Protected;
+using Slack.Webhooks.Api;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -33,7 +34,7 @@ namespace Slack.Webhooks.Tests
             var slackMessage = GetSlackMessage();
 
             //act
-            var result = client.Post(slackMessage);
+            var result = client.Webhook.Post(slackMessage);
 
             //assert
             Assert.True(result);
@@ -49,7 +50,7 @@ namespace Slack.Webhooks.Tests
             var slackMessage = GetSlackMessage();
 
             //act
-            var result = client.Post(slackMessage);
+            var result = client.Webhook.Post(slackMessage);
 
             //assert
             Assert.False(result);
@@ -76,8 +77,8 @@ namespace Slack.Webhooks.Tests
             var slackMessage = GetSlackMessage();
 
             //act
-            client.Post(slackMessage);
-            client.Post(slackMessage);
+            client.Webhook.Post(slackMessage);
+            client.Webhook.Post(slackMessage);
 
             //assert
             httpMessageHandler.Protected().Verify(
@@ -101,7 +102,8 @@ namespace Slack.Webhooks.Tests
             var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
             {
                 var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                postedMessage = SlackClient.DeserializeObject(json);
+                Console.WriteLine(json);
+                postedMessage = ApiBase.DeserializeObject<SlackMessage>(json);
             });
 
             var httpClient = new HttpClient(httpMessageHandler.Object, false);
@@ -109,7 +111,7 @@ namespace Slack.Webhooks.Tests
             var slackMessage = GetSlackMessage();
 
             //act
-            client.Post(slackMessage);
+            client.Webhook.Post(slackMessage);
 
             //assert
             Assert.NotNull(postedMessage);
@@ -128,7 +130,7 @@ namespace Slack.Webhooks.Tests
             var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
             {
                 var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                var postedMessage = SlackClient.DeserializeObject(json);
+                var postedMessage = ApiBase.DeserializeObject<SlackMessage>(json);
                 channelsPostedTo.Add(postedMessage.Channel);
             });
 
@@ -138,7 +140,7 @@ namespace Slack.Webhooks.Tests
             var channelsToPostTo = new List<string> { "#test1", "#test2", "test3" };
 
             //act
-            client.PostToChannels(slackMessage, channelsToPostTo);
+            client.Webhook.PostToChannels(slackMessage, channelsToPostTo);
 
             //assert
             Assert.Equal(channelsToPostTo.Count, channelsPostedTo.Count);
@@ -167,9 +169,9 @@ namespace Slack.Webhooks.Tests
         }
 
         private static SlackMessage GetSlackMessage(
-            string text = "Test Message", 
-            string channel = "#test", 
-            string username = "testbot", 
+            string text = "Test Message",
+            string channel = "#test",
+            string username = "testbot",
             string iconEmoji = Emoji.Ghost)
         {
             return new SlackMessage

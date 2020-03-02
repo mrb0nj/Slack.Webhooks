@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -13,7 +14,7 @@ namespace Slack.Webhooks.Tests
             var image = new Image();
 
             // act
-            var payload = SlackClient.SerializeObject(image);
+            var payload = ApiBase.SerializeObject(image);
 
             // assert
             payload.Should().Contain("\"type\":\"image\"");
@@ -26,7 +27,7 @@ namespace Slack.Webhooks.Tests
             var image = new Image { ImageUrl = "http://someurl.com" };
 
             // act
-            var payload = SlackClient.SerializeObject(image);
+            var payload = ApiBase.SerializeObject(image);
 
             // assert
             payload.Should().Contain("\"image_url\":\"http://someurl.com\"");
@@ -39,7 +40,7 @@ namespace Slack.Webhooks.Tests
             var image = new Image { AltText = "Alternate Text" };
 
             // act
-            var payload = SlackClient.SerializeObject(image);
+            var payload = ApiBase.SerializeObject(image);
 
             // assert
             payload.Should().Contain("\"alt_text\":\"Alternate Text\"");

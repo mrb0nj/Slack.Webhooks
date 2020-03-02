@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -13,7 +14,7 @@ namespace Slack.Webhooks.Tests
             var input = new PlainTextInput();
 
             // act
-            var payload = SlackClient.SerializeObject(input);
+            var payload = ApiBase.SerializeObject(input);
 
             // assert
             payload.Should().Contain("\"type\":\"plain_text_input\"");
@@ -26,12 +27,12 @@ namespace Slack.Webhooks.Tests
             var input = new PlainTextInput { ActionId = "Action123" };
 
             // act
-            var payload = SlackClient.SerializeObject(input);
+            var payload = ApiBase.SerializeObject(input);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
         }
-        
+
         [Fact]
         public void ShouldSerializePlaceholder()
         {
@@ -40,8 +41,8 @@ namespace Slack.Webhooks.Tests
             var input = new PlainTextInput { Placeholder = text };
 
             // act
-            var textPayload = SlackClient.SerializeObject(text);
-            var payload = SlackClient.SerializeObject(input);
+            var textPayload = ApiBase.SerializeObject(text);
+            var payload = ApiBase.SerializeObject(input);
 
             // assert
             payload.Should().Contain($"\"placeholder\":{textPayload}");
@@ -54,7 +55,7 @@ namespace Slack.Webhooks.Tests
             var input = new PlainTextInput { InitialValue = "Value123" };
 
             // act
-            var payload = SlackClient.SerializeObject(input);
+            var payload = ApiBase.SerializeObject(input);
 
             // assert
             payload.Should().Contain("\"initial_value\":\"Value123\"");
@@ -67,7 +68,7 @@ namespace Slack.Webhooks.Tests
             var input = new PlainTextInput { MultiLine = true };
 
             // act
-            var payload = SlackClient.SerializeObject(input);
+            var payload = ApiBase.SerializeObject(input);
 
             // assert
             payload.Should().Contain("\"multi_line\":true");
@@ -80,7 +81,7 @@ namespace Slack.Webhooks.Tests
             var input = new PlainTextInput { MinLength = 10 };
 
             // act
-            var payload = SlackClient.SerializeObject(input);
+            var payload = ApiBase.SerializeObject(input);
 
             // assert
             payload.Should().Contain("\"min_length\":10");
@@ -93,7 +94,7 @@ namespace Slack.Webhooks.Tests
             var input = new PlainTextInput { MaxLength = 10 };
 
             // act
-            var payload = SlackClient.SerializeObject(input);
+            var payload = ApiBase.SerializeObject(input);
 
             // assert
             payload.Should().Contain("\"max_length\":10");

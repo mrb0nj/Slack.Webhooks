@@ -1,4 +1,5 @@
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -23,7 +24,7 @@ namespace Slack.Webhooks.Tests
             var select = new Select(elementType);
 
             // act
-            var payload = SlackClient.SerializeObject(select);
+            var payload = ApiBase.SerializeObject(select);
 
             // assert
             payload.Should().Contain($"\"type\":\"{expected}\"");
@@ -36,7 +37,7 @@ namespace Slack.Webhooks.Tests
             var button = new Select(ElementType.MultiSelectStatic) { ActionId = "Action123" };
 
             // act
-            var payload = SlackClient.SerializeObject(button);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
@@ -50,8 +51,8 @@ namespace Slack.Webhooks.Tests
             var button = new Select(ElementType.MultiSelectStatic) { Placeholder = text };
 
             // act
-            var textPayload = SlackClient.SerializeObject(text);
-            var payload = SlackClient.SerializeObject(button);
+            var textPayload = ApiBase.SerializeObject(text);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain($"\"placeholder\":{textPayload}");
@@ -65,8 +66,8 @@ namespace Slack.Webhooks.Tests
             var button = new Select(ElementType.MultiSelectStatic) { Confirm = confirm };
 
             // act
-            var confirmPayload = SlackClient.SerializeObject(confirm);
-            var payload = SlackClient.SerializeObject(button);
+            var confirmPayload = ApiBase.SerializeObject(confirm);
+            var payload = ApiBase.SerializeObject(button);
 
             // assert
             payload.Should().Contain($"\"confirm\":{confirmPayload}");

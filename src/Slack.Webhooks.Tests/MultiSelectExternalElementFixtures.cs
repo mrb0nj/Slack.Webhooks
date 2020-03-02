@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Elements;
 using Xunit;
 
@@ -14,7 +15,7 @@ namespace Slack.Webhooks.Tests
             var select = new MultiSelectExternal { MinQueryLength = 5 };
 
             // act
-            var payload = SlackClient.SerializeObject(select);
+            var payload = ApiBase.SerializeObject(select);
 
             // assert
             payload.Should().Contain($"\"min_query_length\":5");
@@ -24,12 +25,12 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeInitialOptions()
         {
             // arrange
-            var options = new List<Option> { new Option { Value = "Value123" }};
+            var options = new List<Option> { new Option { Value = "Value123" } };
             var select = new MultiSelectExternal { InitialOptions = options };
 
             // act
-            var optionsPayload = SlackClient.SerializeObject(options);
-            var payload = SlackClient.SerializeObject(select);
+            var optionsPayload = ApiBase.SerializeObject(options);
+            var payload = ApiBase.SerializeObject(select);
 
             // assert
             payload.Should().Contain($"\"initial_options\":{optionsPayload}");

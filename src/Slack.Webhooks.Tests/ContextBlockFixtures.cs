@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using FluentAssertions;
+using Slack.Webhooks.Api;
 using Slack.Webhooks.Blocks;
 using Slack.Webhooks.Elements;
 using Slack.Webhooks.Interfaces;
@@ -19,7 +20,7 @@ namespace Slack.Webhooks.Tests
             };
 
             // act
-            var payload = SlackClient.SerializeObject(context);
+            var payload = ApiBase.SerializeObject(context);
 
             // assert
             payload.Should().Contain("\"elements\":["); // bleeugh
@@ -29,13 +30,13 @@ namespace Slack.Webhooks.Tests
         public void ShouldBeAbleToContainTextElements()
         {
             // arrange
-            var context = new Context 
+            var context = new Context
             {
                 Elements = new List<IContextElement>() { new TextObject() }
             };
 
             // act
-            var payload = SlackClient.SerializeObject(context);
+            var payload = ApiBase.SerializeObject(context);
 
             // assert
             payload.Should().Contain("\"elements\":["); // bleeugh
