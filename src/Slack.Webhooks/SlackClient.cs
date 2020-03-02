@@ -34,11 +34,10 @@ namespace Slack.Webhooks
                 throw new ArgumentException("Please enter a valid webhook url");
             _timeout = timeout;
         }
-        
+
         public virtual bool Post(SlackMessage slackMessage)
         {
-            var result = PostAsync(slackMessage).GetAwaiter().GetResult();
-            return result;
+            return PostAsync(slackMessage, false).Result;
         }
 
         public bool PostToChannels(SlackMessage message, IEnumerable<string> channels)
@@ -47,7 +46,7 @@ namespace Slack.Webhooks
                     .Select(message.Clone)
                     .Select(Post).All(r => r);
         }
-        
+
         public IEnumerable<Task<bool>> PostToChannelsAsync(SlackMessage message, IEnumerable<string> channels)
         {
             return channels.DefaultIfEmpty(message.Channel)
@@ -57,10 +56,15 @@ namespace Slack.Webhooks
 
         public async Task<bool> PostAsync(SlackMessage slackMessage)
         {
+            return await PostAsync(slackMessage, true);
+        }
+
+        public async Task<bool> PostAsync(SlackMessage slackMessage, bool configureAwait = true)
+        {
             using (var request = new HttpRequestMessage(HttpMethod.Post, _webhookUri))
             {
                 request.Content = new StringContent(slackMessage.AsJson(), System.Text.Encoding.UTF8, "application/json");
-                var response = await _httpClient.SendAsync(request);
+                var response = await _httpClient.SendAsync(request).ConfigureAwait(configureAwait);
                 var content = await response.Content.ReadAsStringAsync();
                 return content.Equals(POST_SUCCESS, StringComparison.OrdinalIgnoreCase);
             }
