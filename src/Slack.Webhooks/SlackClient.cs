@@ -28,13 +28,20 @@ namespace Slack.Webhooks
                 WebhookUri = webhookUri
             };
 
-            Webhook = new Webhook(_configuration);
-            Chat = new Chat(_configuration);
+            Configure();
         }
 
         public SlackClient(SlackConfiguration configuration)
         {
             _configuration = configuration;
+
+            Configure();
+        }
+
+        private void Configure()
+        {
+            Webhook = new Webhook(_configuration);
+            Chat = new Chat(_configuration);
         }
 
         [Obsolete("Please use SlackClient.Webhook.Post(SlackMessage) instead.")]
