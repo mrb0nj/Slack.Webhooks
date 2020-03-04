@@ -17,8 +17,13 @@ namespace Slack.Webhooks.Webhook
 
         public virtual bool Post(WebhookMessage message)
         {
-            var result = PostWebhook(message).GetAwaiter().GetResult();
+            var result = PostWebhook(message, false).Result;
             return result;
+        }
+
+        public async Task<bool> PostAsync(WebhookMessage webhookMessage)
+        {
+            return await PostWebhook(webhookMessage);
         }
 
         public bool PostToChannels(WebhookMessage message, IEnumerable<string> channels)
@@ -28,16 +33,23 @@ namespace Slack.Webhooks.Webhook
                     .Select(Post).All(r => r);
         }
 
-        public IEnumerable<Task<bool>> PostToChannelsAsync(WebhookMessage message, IEnumerable<string> channels)
+        public async Task<bool> PostToChannelsAsync(WebhookMessage message, IEnumerable<string> channels)
         {
-            return channels.DefaultIfEmpty(message.Channel)
+            var tasks = channels.DefaultIfEmpty(message.Channel)
                                 .Select(message.Clone)
                                 .Select(PostWebhook);
+            var results = await Task.WhenAll(tasks);
+            return results.ToList().All(r => r);
         }
 
-        public async Task<bool> PostWebhook(WebhookMessage message)
+        private async Task<bool> PostWebhook(WebhookMessage message)
         {
-            var response = await PostAsync<string>(Configuration.WebhookUri, message, false);
+            return await PostWebhook(message, true);
+        }
+
+        private async Task<bool> PostWebhook(WebhookMessage message, bool configureAwait)
+        {
+            var response = await PostAsync<string>(Configuration.WebhookUri, message, false, configureAwait);
             return response.Equals(PostSuccess, StringComparison.OrdinalIgnoreCase);
         }
     }
