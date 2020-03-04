@@ -10,7 +10,7 @@ namespace Slack.Webhooks.Interfaces
         Task<DeleteResponse> DeleteAsync(DeleteRequest request);
         
         
-        PostMessageResponse PostMessage(ChatMessage message);
-        Task<PostMessageResponse> PostMessageAsync(ChatMessage message);
+        PostMessageResponse PostMessage(PostMessage message);
+        Task<PostMessageResponse> PostMessageAsync(PostMessage message);
     }
 }

@@ -23,13 +23,13 @@ namespace Slack.Webhooks.Chat
             return PostAsync<DeleteResponse>(uri, request);
         }
 
-        public PostMessageResponse PostMessage(ChatMessage message)
+        public PostMessageResponse PostMessage(PostMessage message)
         {
             var uri = new Uri("https://slack.com/api/chat.postMessage");
             return PostAsync<PostMessageResponse>(uri, message, configureAwait: false).Result;
         }
 
-        public async Task<PostMessageResponse> PostMessageAsync(ChatMessage message)
+        public async Task<PostMessageResponse> PostMessageAsync(PostMessage message)
         {
             var uri = new Uri("https://slack.com/api/chat.postMessage");
             return await PostAsync<PostMessageResponse>(uri, message);

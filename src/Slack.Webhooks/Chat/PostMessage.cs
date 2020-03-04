@@ -2,7 +2,7 @@
 
 namespace Slack.Webhooks.Chat
 {
-    public class ChatMessage : MessageBase
+    public class PostMessage : MessageBase
     {
         public bool AsUser { get; set; }
         public bool UnfurlLinks { get; set; }
