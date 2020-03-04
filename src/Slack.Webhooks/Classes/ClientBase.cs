@@ -31,5 +31,22 @@ namespace Slack.Webhooks.Classes
                 return typeof(T) == typeof(string) ? (T)Convert.ChangeType(content, typeof(T)) : SerializationHelper.Deserialize<T>(content);
             }
         }
+
+        protected async Task<T> GetAsync<T>(Uri uri, object payload, bool requireAuthToken = true,
+            bool configureAwait = true) where T : class
+        {
+            using (var request = new HttpRequestMessage(HttpMethod.Get, uri))
+            {
+                if (requireAuthToken)
+                    request.Headers.Authorization = AuthenticationHeaderValue.Parse($"Bearer {Configuration.AuthToken}");
+
+                var dictionary = SerializationHelper.ToDictionary(payload);
+                request.Content = new FormUrlEncodedContent(dictionary);
+                var response = await Configuration.HttpClient.SendAsync(request).ConfigureAwait(configureAwait);
+                var content = await response.Content.ReadAsStringAsync().ConfigureAwait(configureAwait);
+
+                return typeof(T) == typeof(string) ? (T)Convert.ChangeType(content, typeof(T)) : SerializationHelper.Deserialize<T>(content);
+            }
+        }
     }
 }

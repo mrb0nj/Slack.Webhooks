@@ -8,8 +8,9 @@ namespace Slack.Webhooks.Interfaces
     {
         DeleteResponse Delete(DeleteRequest request);
         Task<DeleteResponse> DeleteAsync(DeleteRequest request);
-        
-        
+
+        PermalinkResponse Permalink(PermalinkRequest request);
+        Task<PermalinkResponse> PermalinkAsync(PermalinkRequest request);
         PostMessageResponse PostMessage(PostMessage message);
         Task<PostMessageResponse> PostMessageAsync(PostMessage message);
     }

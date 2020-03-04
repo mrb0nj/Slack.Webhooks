@@ -23,6 +23,18 @@ namespace Slack.Webhooks.Chat
             return PostAsync<DeleteResponse>(uri, request);
         }
 
+        public PermalinkResponse Permalink(PermalinkRequest request)
+        {
+            var uri = new Uri("https://slack.com/api/chat.getPermalink");
+            return GetAsync<PermalinkResponse>(uri, request, configureAwait: false).Result;
+        }
+
+        public Task<PermalinkResponse> PermalinkAsync(PermalinkRequest request)
+        {
+            var uri = new Uri("https://slack.com/api/chat.getPermalink");
+            return GetAsync<PermalinkResponse>(uri, request);
+        }
+
         public PostMessageResponse PostMessage(PostMessage message)
         {
             var uri = new Uri("https://slack.com/api/chat.postMessage");
