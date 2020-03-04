@@ -1,3 +1,6 @@
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Message;
+
 namespace Slack.Webhooks.Elements
 {
     public class Element

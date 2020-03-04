@@ -1,10 +1,13 @@
 using System.Collections.Generic;
+using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Elements
 {
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/> and <see cref="Blocks.Actions"/> blocks.
+    /// Works with <see cref="SectionBlock"/> and <see cref="ActionsBlock"/> blocks.
     /// 
     /// This is like a cross between a button and a select menu - when a user clicks on this overflow button, they will be presented with a list of options to choose from. Unlike the select menu, there is no typeahead field, and the button always appears with an ellipsis ("…") rather than customisable text.
     /// 

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
 using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Slack.Webhooks.Interfaces;
 using Xunit;
 
@@ -15,11 +16,11 @@ namespace Slack.Webhooks.Tests
         {
             // arrange
             var textObject = new TextObject { Text = "Test label" };
-            var input = new Input { Label = textObject };
+            var input = new InputBlock { Label = textObject };
 
             // act
-            var textPayload = ApiBase.SerializeObject(textObject);
-            var payload = ApiBase.SerializeObject(input);
+            var textPayload = SerializationHelper.Serialize(textObject);
+            var payload = SerializationHelper.Serialize(input);
 
             // assert
             payload.Should().Contain($"\"label\":{textPayload}");
@@ -30,11 +31,11 @@ namespace Slack.Webhooks.Tests
         {
             // arrange
             var textObject = new TextObject { Text = "Test hint" };
-            var input = new Input { Hint = textObject };
+            var input = new InputBlock { Hint = textObject };
 
             // act
-            var textPayload = ApiBase.SerializeObject(textObject);
-            var payload = ApiBase.SerializeObject(input);
+            var textPayload = SerializationHelper.Serialize(textObject);
+            var payload = SerializationHelper.Serialize(input);
 
             // assert
             payload.Should().Contain($"\"hint\":{textPayload}");
@@ -44,10 +45,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeOptional()
         {
             // arrange
-            var input = new Input { Optional = true };
+            var input = new InputBlock { Optional = true };
 
             // act
-            var payload = ApiBase.SerializeObject(input);
+            var payload = SerializationHelper.Serialize(input);
 
             // assert
             payload.Should().Contain("\"optional\":true");
@@ -58,11 +59,11 @@ namespace Slack.Webhooks.Tests
         public void ShouldSerializeInputElementTypes(object element)
         {
             // arrange
-            var input = new Input { Element = (IInputElement)element };
+            var input = new InputBlock { Element = (IInputElement)element };
 
             // act
-            var elementPayload = ApiBase.SerializeObject(element);
-            var payload = ApiBase.SerializeObject(input);
+            var elementPayload = SerializationHelper.Serialize(element);
+            var payload = SerializationHelper.Serialize(input);
 
             // arrange
             payload.Should().Contain($"\"element\":{elementPayload}");

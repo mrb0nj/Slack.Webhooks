@@ -1,9 +1,12 @@
+using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Elements
 {
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// An element which lets users easily select a date from a calendar style UI.
     /// 

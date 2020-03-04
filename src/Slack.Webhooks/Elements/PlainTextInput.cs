@@ -1,9 +1,12 @@
+using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Elements
 {
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// A plain-text input, similar to the HTML &lt;input&gt; tag, creates a field where a user can enter freeform data. It can appear as a single-line field or a larger textarea using the <see cref="MultiLine"/>> flag.
     /// 

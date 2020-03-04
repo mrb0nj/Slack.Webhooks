@@ -1,4 +1,4 @@
-﻿namespace Slack.Webhooks
+﻿namespace Slack.Webhooks.Message
 
 {
     public class Emoji

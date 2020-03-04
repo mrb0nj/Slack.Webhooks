@@ -1,14 +1,17 @@
-using Newtonsoft.Json;
-using Slack.Webhooks.Api;
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Helpers;
+using Slack.Webhooks.Message;
+using BlockBase = Slack.Webhooks.Blocks.BlockBase;
 
-namespace Slack.Webhooks
+namespace Slack.Webhooks.Messages
 {
     /// <summary>
     /// Slack Message
     /// </summary>
-    public class SlackMessage
+    public class MessageBase
     {
         private bool _markdown = true;
         /// <summary>
@@ -78,10 +81,10 @@ namespace Slack.Webhooks
         /// <summary>
         /// Optional attachment collection
         /// </summary>
-        public List<SlackAttachment> Attachments { get; set; }
+        public List<Attachment> Attachments { get; set; }
 
         /// <summary>
-        /// Optional collection of <see cref="Block"/>
+        /// Optional collection of <see cref="Webhooks.Blocks.BlockBase"/>
         /// </summary>
         /// <seealso cref="Actions" />
         /// <seealso cref="Context" />
@@ -90,30 +93,7 @@ namespace Slack.Webhooks
         /// <seealso cref="Image" />
         /// <seealso cref="Input" />
         /// <seealso cref="Section" />
-        public List<Block> Blocks { get; set; }
-
-        /// <summary>
-        /// Create a clone of this <see cref="SlackMessage"/> overriding the channel if provided
-        /// </summary>
-        public SlackMessage Clone(string newChannel = null)
-        {
-            return new SlackMessage()
-            {
-                Attachments = Attachments,
-                Blocks = Blocks,
-                Channel = newChannel ?? Channel,
-                DeleteOriginal = DeleteOriginal,
-                IconEmoji = IconEmoji,
-                IconUrl = IconUrl,
-                LinkNames = LinkNames,
-                Markdown = Markdown,
-                Parse = Parse,
-                ReplaceOriginal = ReplaceOriginal,
-                ResponseType = ResponseType,
-                Text = Text,
-                Username = Username
-            };
-        }
+        public List<BlockBase> Blocks { get; set; }
 
         /// <summary>
         /// Conditional serialization of IconEmoji
@@ -131,7 +111,7 @@ namespace Slack.Webhooks
         /// <returns>JSON formatted string</returns>
         public string AsJson()
         {
-            return ApiBase.SerializeObject(this);
+            return SerializationHelper.Serialize(this);
         }
     }
 }

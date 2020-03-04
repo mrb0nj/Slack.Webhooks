@@ -1,6 +1,7 @@
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -16,7 +17,7 @@ namespace Slack.Webhooks.Tests
             var text = new TextObject { Type = textType };
 
             // act
-            var payload = ApiBase.SerializeObject(text);
+            var payload = SerializationHelper.Serialize(text);
 
             // assert
             payload.Should().Contain($"\"type\":\"{expected}\"");
@@ -30,7 +31,7 @@ namespace Slack.Webhooks.Tests
             var text = new TextObject { Type = TextObject.TextType.Markdown };
 
             // act
-            var payload = ApiBase.SerializeObject(text);
+            var payload = SerializationHelper.Serialize(text);
 
             // assert
             payload.Should().NotContain("\"emoji\":");
@@ -43,7 +44,7 @@ namespace Slack.Webhooks.Tests
             var text = new TextObject { Type = TextObject.TextType.PlainText };
 
             // act
-            var payload = ApiBase.SerializeObject(text);
+            var payload = SerializationHelper.Serialize(text);
 
             // assert
             payload.Should().NotContain("\"verbatim\":");

@@ -1,12 +1,14 @@
-﻿using Slack.Webhooks.Elements;
+﻿using Slack.Webhooks.Classes;
+using Slack.Webhooks.Elements;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Blocks
 {
     /// <summary>
     /// A simple image block, designed to make those cat photos really pop.
     /// </summary>
-    public class Image : Block, IContextElement
+    public class ImageBlock : BlockBase, IContextElement
     {
         /// <summary>
         /// The URL of the image to be displayed. Maximum length for this field is 3000 characters.
@@ -23,9 +25,9 @@ namespace Slack.Webhooks.Blocks
         public TextObject Title { get; set; }
 
         /// <summary>
-        /// Create a new <see cref="Image" instance.
+        /// Create a new <see cref="ImageBlock" instance.
         /// </summary>
-        public Image() : base(BlockType.Image)
+        public ImageBlock() : base(BlockType.Image)
         {
 
         }

@@ -1,5 +1,7 @@
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Blocks
 {
@@ -23,10 +25,10 @@ namespace Slack.Webhooks.Blocks
     /// <seealso cref="Elements.MultiSelectStatic"/>
     /// <seealso cref="Elements.MultiSelectExternal"/>
     /// <seealso cref="Elements.DatePicker"/>
-    public class Input : Block
+    public class InputBlock : BlockBase
     {
         /// <summary>
-        /// A label that appears above an <see cref="Input"/> element in the form of a <see cref="TextObject"/> that can only be of <see cref="TextObject.TextType.PlainText"/>. 
+        /// A label that appears above an <see cref="InputBlock"/> element in the form of a <see cref="TextObject"/> that can only be of <see cref="TextObject.TextType.PlainText"/>. 
         /// Maximum length for the text in this field is 2000 characters.
         /// </summary>
         public TextObject Label { get; set; }
@@ -45,9 +47,9 @@ namespace Slack.Webhooks.Blocks
         public IInputElement Element { get; set; }
 
         /// <summary>
-        /// Create a new <see cref="Input"/> instance.
+        /// Create a new <see cref="InputBlock"/> instance.
         /// </summary>
-        public Input() : base(BlockType.Input)
+        public InputBlock() : base(BlockType.Input)
         {
             
         }

@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Message;
+using Slack.Webhooks.Messages;
+using Slack.Webhooks.Webhook;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -31,24 +35,24 @@ namespace Slack.Webhooks.Tests
             Assert.Equal(message.Blocks, clonedMessage.Blocks);
         }
 
-        private static SlackMessage GetSlackMessage()
+        private static WebhookMessage GetSlackMessage()
         {
-            return new SlackMessage
+            return new WebhookMessage
             {
-                Text = $"Test {nameof(SlackMessage.Text)}",
-                ResponseType = $"Test {nameof(SlackMessage.ResponseType)}",
+                Text = $"Test {nameof(MessageBase.Text)}",
+                ResponseType = $"Test {nameof(MessageBase.ResponseType)}",
                 ReplaceOriginal = true,
                 DeleteOriginal = true,
-                Channel = $"Test {nameof(SlackMessage.Channel)}",
-                Username = $"Test {nameof(SlackMessage.Username)}",
+                Channel = $"Test {nameof(MessageBase.Channel)}",
+                Username = $"Test {nameof(MessageBase.Username)}",
                 IconEmoji = Emoji.Cactus,
                 IconUrl = new Uri("http://test.com/icon.jpg"),
                 Markdown = true,
                 LinkNames = true,
                 Parse = ParseMode.Full,
-                ThreadId = $"Test {nameof(SlackMessage.ThreadId)}",
-                Attachments = new List<SlackAttachment>{ new SlackAttachment() },
-                Blocks = new List<Block>{ new Context() }
+                ThreadId = $"Test {nameof(MessageBase.ThreadId)}",
+                Attachments = new List<Attachment>{ new Attachment() },
+                Blocks = new List<BlockBase>{ new ContextBlock() }
             };
         }
     }

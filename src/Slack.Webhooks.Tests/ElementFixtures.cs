@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -12,7 +13,7 @@ namespace Slack.Webhooks.Tests
         public void ShouldHaveBlockTypeAndBlockId(Elements.Element element, string expectedType)
         {
             // arrange/act
-            var payload = ApiBase.SerializeObject(element);
+            var payload = SerializationHelper.Serialize(element);
 
             // assert
             payload.Should().Contain($"\"type\":\"{expectedType}\"");

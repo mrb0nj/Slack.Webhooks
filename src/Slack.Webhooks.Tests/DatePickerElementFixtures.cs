@@ -1,6 +1,7 @@
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -14,7 +15,7 @@ namespace Slack.Webhooks.Tests
             var button = new DatePicker();
 
             // act
-            var payload = ApiBase.SerializeObject(button);
+            var payload = SerializationHelper.Serialize(button);
 
             // assert
             payload.Should().Contain("\"type\":\"datepicker\"");
@@ -27,7 +28,7 @@ namespace Slack.Webhooks.Tests
             var button = new DatePicker { ActionId = "Action123" };
 
             // act
-            var payload = ApiBase.SerializeObject(button);
+            var payload = SerializationHelper.Serialize(button);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
@@ -40,7 +41,7 @@ namespace Slack.Webhooks.Tests
             var button = new DatePicker { InitialDate = "2019-11-01" };
 
             // act
-            var payload = ApiBase.SerializeObject(button);
+            var payload = SerializationHelper.Serialize(button);
 
             // assert
             payload.Should().Contain("\"initial_date\":\"2019-11-01\"");
@@ -54,8 +55,8 @@ namespace Slack.Webhooks.Tests
             var button = new DatePicker { Placeholder = text };
 
             // act
-            var textPayload = ApiBase.SerializeObject(text);
-            var payload = ApiBase.SerializeObject(button);
+            var textPayload = SerializationHelper.Serialize(text);
+            var payload = SerializationHelper.Serialize(button);
 
             // assert
             payload.Should().Contain($"\"placeholder\":{textPayload}");
@@ -69,8 +70,8 @@ namespace Slack.Webhooks.Tests
             var button = new DatePicker { Confirm = confirm };
 
             // act
-            var confirmPayload = ApiBase.SerializeObject(confirm);
-            var payload = ApiBase.SerializeObject(button);
+            var confirmPayload = SerializationHelper.Serialize(confirm);
+            var payload = SerializationHelper.Serialize(button);
 
             // assert
             payload.Should().Contain($"\"confirm\":{confirmPayload}");

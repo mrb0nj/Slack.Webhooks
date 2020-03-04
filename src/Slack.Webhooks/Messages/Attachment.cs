@@ -1,13 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Slack.Webhooks.Classes;
 
-namespace Slack.Webhooks
+namespace Slack.Webhooks.Message
 {
     /// <summary>
     /// Slack message attachment. A message can have zero or more attachments.
     /// </summary>
-    public class SlackAttachment
+    public class Attachment
     {
         private List<string> _markdownIn;
 
@@ -72,7 +73,7 @@ namespace Slack.Webhooks
         /// <summary>
         /// Fields are displayed in a table on the message
         /// </summary>
-        public List<SlackField> Fields { get; set; }
+        public List<Field> Fields { get; set; }
         /// <summary>
         /// Optional list of proporties where markdown syntax will be parsed
         /// applicable to fields, title, and pretext
@@ -115,6 +116,6 @@ namespace Slack.Webhooks
         /// <summary>
         /// The actions you provide will be rendered as message buttons or menus to users.
         /// </summary>
-        public List<SlackAction> Actions { get; set; }
+        public List<Actions.Action> Actions { get; set; }
     }
 }

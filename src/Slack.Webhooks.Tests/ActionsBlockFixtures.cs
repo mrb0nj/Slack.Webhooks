@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
 using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Slack.Webhooks.Interfaces;
 using Xunit;
 
@@ -25,11 +26,11 @@ namespace Slack.Webhooks.Tests
                 new Overflow(),
                 new DatePicker()
             };
-            var actions = new Actions { Elements = elementList };
+            var actions = new ActionsBlock { Elements = elementList };
 
             // act
-            var elementListPayload = ApiBase.SerializeObject(elementList);
-            var payload = ApiBase.SerializeObject(actions);
+            var elementListPayload = SerializationHelper.Serialize(elementList);
+            var payload = SerializationHelper.Serialize(actions);
 
             // assert
             payload.Should().Contain($"\"elements\":{elementListPayload}");

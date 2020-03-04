@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -16,8 +17,8 @@ namespace Slack.Webhooks.Tests
             var select = new MultiSelectUsers { InitialUsers = options };
 
             // act
-            var optionsPayload = ApiBase.SerializeObject(options);
-            var payload = ApiBase.SerializeObject(select);
+            var optionsPayload = SerializationHelper.Serialize(options);
+            var payload = SerializationHelper.Serialize(select);
 
             // assert
             payload.Should().Contain($"\"initial_users\":{optionsPayload}");
@@ -34,8 +35,8 @@ namespace Slack.Webhooks.Tests
             var select = new MultiSelectConversations { InitialConversations = options };
 
             // act
-            var optionsPayload = ApiBase.SerializeObject(options);
-            var payload = ApiBase.SerializeObject(select);
+            var optionsPayload = SerializationHelper.Serialize(options);
+            var payload = SerializationHelper.Serialize(select);
 
             // assert
             payload.Should().Contain($"\"initial_conversations\":{optionsPayload}");
@@ -52,8 +53,8 @@ namespace Slack.Webhooks.Tests
             var select = new MultiSelectChannels { InitialChannels = options };
 
             // act
-            var optionsPayload = ApiBase.SerializeObject(options);
-            var payload = ApiBase.SerializeObject(select);
+            var optionsPayload = SerializationHelper.Serialize(options);
+            var payload = SerializationHelper.Serialize(select);
 
             // assert
             payload.Should().Contain($"\"initial_channels\":{optionsPayload}");

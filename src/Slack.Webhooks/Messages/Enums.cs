@@ -1,8 +1,8 @@
+using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
-using System.Runtime.Serialization;
 
-namespace Slack.Webhooks
+namespace Slack.Webhooks.Message
 {
     [JsonConverter(typeof(StringEnumConverter))]
     public enum ParseMode
@@ -14,7 +14,7 @@ namespace Slack.Webhooks
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum SlackActionDataSource
+    public enum ActionDataSource
     {
         [EnumMember(Value = "static")]
         Static,
@@ -29,7 +29,7 @@ namespace Slack.Webhooks
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum SlackActionStyle
+    public enum ActionStyle
     {
         [EnumMember(Value = "default")]
         Default,
@@ -40,7 +40,7 @@ namespace Slack.Webhooks
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
-    public enum SlackActionType
+    public enum ActionType
     {
         [EnumMember(Value = "button")]
         Button,

@@ -1,9 +1,12 @@
+using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Elements
 {
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/> and <see cref="Blocks.Actions"/> blocks.
+    /// Works with <see cref="Blocks.Section"/> and <see cref="ActionsBlock"/> blocks.
     /// 
     /// An interactive component that inserts a button. The button can be a trigger for anything from opening a simple link to starting a complex workflow.
     /// 

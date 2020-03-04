@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Elements
 {
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// A radio button group that allows a user to choose one item from a list of possible options.
     /// 

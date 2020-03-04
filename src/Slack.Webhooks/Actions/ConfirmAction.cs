@@ -1,6 +1,6 @@
 namespace Slack.Webhooks.Action
 {
-    public class Confirm
+    public class ConfirmAction
     {
         public string Title { get; set; }
         public string Text { get; set; }

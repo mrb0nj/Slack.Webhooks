@@ -1,9 +1,9 @@
 using System;
 using System.Net.Http;
 
-namespace Slack.Webhooks
+namespace Slack.Webhooks.Classes
 {
-    public class SlackConfiguration
+    public class ClientConfiguration
     {
         public Uri WebhookUri { get; set; }
         public string AuthToken { get; set; }

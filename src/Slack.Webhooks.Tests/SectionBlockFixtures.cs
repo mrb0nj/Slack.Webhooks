@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
 using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -14,11 +15,11 @@ namespace Slack.Webhooks.Tests
         {
             // arrange
             var textObject = new TextObject { Text = "This is text" };
-            var section = new Section { Text = textObject };
+            var section = new SectionBlock { Text = textObject };
 
             // act
-            var textPayload = ApiBase.SerializeObject(textObject);
-            var payload = ApiBase.SerializeObject(section);
+            var textPayload = SerializationHelper.Serialize(textObject);
+            var payload = SerializationHelper.Serialize(section);
 
             // assert
             payload.Should().Contain($"\"text\":{textPayload}");
@@ -29,11 +30,11 @@ namespace Slack.Webhooks.Tests
         {
             // arrange
             var fieldsList = new List<TextObject> { new TextObject { Text = "This is text" } };
-            var section = new Section { Fields = fieldsList };
+            var section = new SectionBlock { Fields = fieldsList };
 
             // act
-            var fieldsPayload = ApiBase.SerializeObject(fieldsList);
-            var payload = ApiBase.SerializeObject(section);
+            var fieldsPayload = SerializationHelper.Serialize(fieldsList);
+            var payload = SerializationHelper.Serialize(section);
 
             // assert
             payload.Should().Contain($"\"fields\":{fieldsPayload}");
@@ -44,11 +45,11 @@ namespace Slack.Webhooks.Tests
         {
             // arrange
             var button = new Button();
-            var section = new Section { Accessory = button };
+            var section = new SectionBlock { Accessory = button };
 
             // act
-            var accessoryPayload = ApiBase.SerializeObject(button);
-            var payload = ApiBase.SerializeObject(section);
+            var accessoryPayload = SerializationHelper.Serialize(button);
+            var payload = SerializationHelper.Serialize(section);
 
             // assert
             payload.Should().Contain($"\"accessory\":{accessoryPayload}");

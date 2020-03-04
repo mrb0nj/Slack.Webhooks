@@ -1,6 +1,7 @@
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -14,7 +15,7 @@ namespace Slack.Webhooks.Tests
             var confirm = new Confirmation { Title = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = ApiBase.SerializeObject(confirm);
+            var payload = SerializationHelper.Serialize(confirm);
 
             // assert
             payload.Should().Contain("\"title\":{");
@@ -28,7 +29,7 @@ namespace Slack.Webhooks.Tests
             var confirm = new Confirmation { Text = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = ApiBase.SerializeObject(confirm);
+            var payload = SerializationHelper.Serialize(confirm);
 
             // assert
             payload.Should().Contain("\"text\":{");
@@ -42,7 +43,7 @@ namespace Slack.Webhooks.Tests
             var confirm = new Confirmation { Confirm = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = ApiBase.SerializeObject(confirm);
+            var payload = SerializationHelper.Serialize(confirm);
 
             // assert
             payload.Should().Contain("\"confirm\":{");
@@ -56,7 +57,7 @@ namespace Slack.Webhooks.Tests
             var confirm = new Confirmation { Deny = new TextObject { Text = "Title Test" } };
 
             // act
-            var payload = ApiBase.SerializeObject(confirm);
+            var payload = SerializationHelper.Serialize(confirm);
 
             // assert
             payload.Should().Contain("\"deny\":{");

@@ -1,12 +1,14 @@
 using System.Collections.Generic;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Blocks
 {
     /// <summary>
     /// A block that is used to hold interactive <see cref="Interfaces.IActionElement"/>s.
     /// </summary>
-    public class Actions : Block
+    public class ActionsBlock : BlockBase
     {
         /// <summary>
         /// An array of interactive element objects - <see cref="Elements.Button"/>, <see cref="Elements.Select"/> menus, <see cref="Elements.Overflow"/> menus, or <see cref="Elements.DatePicker"/>. 
@@ -24,9 +26,9 @@ namespace Slack.Webhooks.Blocks
         public IList<IActionElement> Elements { get; set; }
 
         /// <summary>
-        /// Create a new <see cref="Actions"/> instance.
+        /// Create a new <see cref="ActionsBlock"/> instance.
         /// </summary>
-        public Actions() : base(BlockType.Actions)
+        public ActionsBlock() : base(BlockType.Actions)
         {
         }
     }

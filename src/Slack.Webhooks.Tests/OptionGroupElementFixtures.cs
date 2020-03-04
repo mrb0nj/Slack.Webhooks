@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -16,8 +17,8 @@ namespace Slack.Webhooks.Tests
             var option = new OptionGroup { Label = text };
 
             // act
-            var textPayload = ApiBase.SerializeObject(text);
-            var payload = ApiBase.SerializeObject(option);
+            var textPayload = SerializationHelper.Serialize(text);
+            var payload = SerializationHelper.Serialize(option);
 
             // assert
             payload.Should().Contain($"\"label\":{textPayload}");
@@ -31,8 +32,8 @@ namespace Slack.Webhooks.Tests
             var group = new OptionGroup { Options = options };
 
             // act
-            var optionsPayload = ApiBase.SerializeObject(options);
-            var payload = ApiBase.SerializeObject(group);
+            var optionsPayload = SerializationHelper.Serialize(options);
+            var payload = SerializationHelper.Serialize(group);
 
             // assert
             payload.Should().Contain($"\"options\":{optionsPayload}");

@@ -1,6 +1,7 @@
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -15,8 +16,8 @@ namespace Slack.Webhooks.Tests
             var option = new Option { Text = text };
 
             // act
-            var textPayload = ApiBase.SerializeObject(text);
-            var payload = ApiBase.SerializeObject(option);
+            var textPayload = SerializationHelper.Serialize(text);
+            var payload = SerializationHelper.Serialize(option);
 
             // assert
             payload.Should().Contain($"\"text\":{textPayload}");
@@ -29,7 +30,7 @@ namespace Slack.Webhooks.Tests
             var option = new Option { Value = "Value123" };
 
             // act
-            var payload = ApiBase.SerializeObject(option);
+            var payload = SerializationHelper.Serialize(option);
 
             // assert
             payload.Should().Contain("\"value\":\"Value123\"");
@@ -42,7 +43,7 @@ namespace Slack.Webhooks.Tests
             var option = new Option { Url = "http://someurl.com" };
 
             // act
-            var payload = ApiBase.SerializeObject(option);
+            var payload = SerializationHelper.Serialize(option);
 
             // assert
             payload.Should().Contain("\"url\":\"http://someurl.com\"");

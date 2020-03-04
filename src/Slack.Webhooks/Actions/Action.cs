@@ -1,16 +1,18 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Slack.Webhooks.Action;
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Message;
 
-namespace Slack.Webhooks
+namespace Slack.Webhooks.Actions
 {
     /// <summary>
     /// Slack attachment action. An attachment can have zero or more actions.
     /// </summary>
-    public class SlackAction
+    public class Action
     {
-        private SlackActionType _type = SlackActionType.Button;
-        private SlackActionStyle _style = SlackActionStyle.Default;
-        private SlackActionDataSource _dataSource = SlackActionDataSource.Static;
+        private ActionType _type = ActionType.Button;
+        private ActionStyle _style = ActionStyle.Default;
+        private ActionDataSource _dataSource = ActionDataSource.Static;
 
         /// <summary>
         /// Provide a string to give this specific action a name.   
@@ -23,8 +25,8 @@ namespace Slack.Webhooks
         /// Provide button when this action is a message button or 
         /// provide select when the action is a message menu.
         /// </summary>
-        /// <see cref="SlackActionType"/>
-        public SlackActionType Type
+        /// <see cref="ActionType"/>
+        public ActionType Type
         {
             get { return _type; }
             set { _type = value; }
@@ -57,8 +59,8 @@ namespace Slack.Webhooks
         /// when providing logical default action or highlighting a 
         /// destructive activity.
         /// </summary>
-        /// <see cref="SlackActionStyle"/>
-        public SlackActionStyle Style
+        /// <see cref="ActionStyle"/>
+        public ActionStyle Style
         {
             get { return _style; }
             set { _style = value; }
@@ -68,8 +70,8 @@ namespace Slack.Webhooks
         /// Our clever default behavior is default, which means the menu's 
         /// options are provided directly in the posted message under options.
         /// </summary>
-        /// <see cref="SlackActionDataSource"/>
-        public SlackActionDataSource DataSource
+        /// <see cref="ActionDataSource"/>
+        public ActionDataSource DataSource
         {
             get { return _dataSource; }
             set { _dataSource = value; }
@@ -103,6 +105,6 @@ namespace Slack.Webhooks
         /// by asking them to confirm their button click one more time. 
         /// Use confirmation dialogs with care.
         /// </summary>
-        public Confirm Confirm { get; set; }
+        public ConfirmAction ConfirmAction { get; set; }
     }
 }

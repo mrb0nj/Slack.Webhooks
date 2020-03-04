@@ -1,9 +1,9 @@
-﻿namespace Slack.Webhooks
+﻿namespace Slack.Webhooks.Message
 {
     /// <summary>
     /// Slack Field. Fields are displayed in a table on the message
     /// </summary>
-    public class SlackField
+    public class Field
     {
         /// <summary>
         /// Required Field Title

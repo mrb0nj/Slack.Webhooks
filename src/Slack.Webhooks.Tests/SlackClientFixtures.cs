@@ -1,11 +1,15 @@
 ﻿using Moq;
 using Moq.Protected;
-using Slack.Webhooks.Api;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Helpers;
+using Slack.Webhooks.Message;
+using Slack.Webhooks.Messages;
+using Slack.Webhooks.Webhook;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -98,12 +102,11 @@ namespace Slack.Webhooks.Tests
         {
             //arrange
             const string hookUrl = "https://hooks.slack.com/invalid";
-            SlackMessage postedMessage = null;
+            MessageBase postedMessage = null;
             var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
             {
                 var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                Console.WriteLine(json);
-                postedMessage = ApiBase.DeserializeObject<SlackMessage>(json);
+                postedMessage = SerializationHelper.Deserialize<MessageBase>(json);
             });
 
             var httpClient = new HttpClient(httpMessageHandler.Object, false);
@@ -130,7 +133,7 @@ namespace Slack.Webhooks.Tests
             var httpMessageHandler = GetMockHttpMessageHandler(callback: (req, token) =>
             {
                 var json = req.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-                var postedMessage = ApiBase.DeserializeObject<SlackMessage>(json);
+                var postedMessage = SerializationHelper.Deserialize<MessageBase>(json);
                 channelsPostedTo.Add(postedMessage.Channel);
             });
 
@@ -168,13 +171,13 @@ namespace Slack.Webhooks.Tests
             return httpMessageHandler;
         }
 
-        private static SlackMessage GetSlackMessage(
+        private static WebhookMessage GetSlackMessage(
             string text = "Test Message",
             string channel = "#test",
             string username = "testbot",
             string iconEmoji = Emoji.Ghost)
         {
-            return new SlackMessage
+            return new WebhookMessage
             {
                 Text = text,
                 Channel = channel,

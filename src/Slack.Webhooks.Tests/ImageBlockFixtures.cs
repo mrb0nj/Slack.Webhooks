@@ -1,7 +1,8 @@
 using FluentAssertions;
-using Slack.Webhooks.Api;
 using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -12,10 +13,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldContainImageUrl()
         {
             // arrange
-            var image = new Blocks.Image { ImageUrl = "http://someimage" };
+            var image = new Blocks.ImageBlock { ImageUrl = "http://someimage" };
 
             // act
-            var payload = ApiBase.SerializeObject(image);
+            var payload = SerializationHelper.Serialize(image);
 
             // assert
             payload.Should().Contain("\"image_url\":\"http://someimage\"");
@@ -25,10 +26,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldContainAltText()
         {
             // arrange
-            var image = new Blocks.Image { AltText = "The Text" };
+            var image = new Blocks.ImageBlock { AltText = "The Text" };
 
             // act
-            var payload = ApiBase.SerializeObject(image);
+            var payload = SerializationHelper.Serialize(image);
 
             // assert
             payload.Should().Contain("\"alt_text\":\"The Text\"");
@@ -38,10 +39,10 @@ namespace Slack.Webhooks.Tests
         public void ShouldContainTitle()
         {
             // arrange
-            var image = new Blocks.Image { Title = new TextObject { Text = "The Title" } };
+            var image = new Blocks.ImageBlock { Title = new TextObject { Text = "The Title" } };
 
             // act
-            var payload = ApiBase.SerializeObject(image);
+            var payload = SerializationHelper.Serialize(image);
 
             // assert
             payload.Should().Contain("\"text\":\"The Title\"");

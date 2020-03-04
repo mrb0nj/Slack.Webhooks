@@ -1,23 +1,8 @@
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Slack.Webhooks
+namespace Slack.Webhooks.Chat
 {
-    public class SlackResponse
-    {
-        [JsonProperty(PropertyName = "ok")]
-        public bool Ok { get; set; }
-        
-        [JsonProperty(PropertyName = "channel")]
-        public string Channel { get; set; }
-        
-        [JsonProperty(PropertyName = "ts")]
-        public string ThreadId { get; set; }
-        
-        [JsonProperty(PropertyName = "message")]
-        public Message Message { get; set; }
-    }
-
-    public class Message
+    public class MessageResponse
     {
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }

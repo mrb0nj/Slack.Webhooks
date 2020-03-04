@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
 using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Slack.Webhooks.Interfaces;
 using Xunit;
 
@@ -14,13 +15,13 @@ namespace Slack.Webhooks.Tests
         public void ShouldBeAbleToContainImageElements()
         {
             // arrange
-            var context = new Context
+            var context = new ContextBlock
             {
-                Elements = new List<IContextElement>() { new Blocks.Image() }
+                Elements = new List<IContextElement>() { new Blocks.ImageBlock() }
             };
 
             // act
-            var payload = ApiBase.SerializeObject(context);
+            var payload = SerializationHelper.Serialize(context);
 
             // assert
             payload.Should().Contain("\"elements\":["); // bleeugh
@@ -30,13 +31,13 @@ namespace Slack.Webhooks.Tests
         public void ShouldBeAbleToContainTextElements()
         {
             // arrange
-            var context = new Context
+            var context = new ContextBlock
             {
                 Elements = new List<IContextElement>() { new TextObject() }
             };
 
             // act
-            var payload = ApiBase.SerializeObject(context);
+            var payload = SerializationHelper.Serialize(context);
 
             // assert
             payload.Should().Contain("\"elements\":["); // bleeugh

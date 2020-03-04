@@ -1,9 +1,12 @@
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Message;
+
 namespace Slack.Webhooks.Blocks
 {
     /// <summary>
     /// Displays a remote file.
     /// </summary>
-    public class File : Block
+    public class FileBlock : BlockBase
     {
         /// <summary>
         /// The external unique ID for this file.
@@ -15,9 +18,9 @@ namespace Slack.Webhooks.Blocks
         public string Source { get; set; } = "remote";
 
         /// <summary>
-        /// Create a new <see cref="File"/> instance.
+        /// Create a new <see cref="FileBlock"/> instance.
         /// </summary>
-        public File() : base(BlockType.File)
+        public FileBlock() : base(BlockType.File)
         {
         }
     }

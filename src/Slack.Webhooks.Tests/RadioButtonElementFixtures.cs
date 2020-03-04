@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -15,7 +16,7 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons();
 
             // act
-            var payload = ApiBase.SerializeObject(radio);
+            var payload = SerializationHelper.Serialize(radio);
 
             // assert
             payload.Should().Contain("\"type\":\"radio_buttons\"");
@@ -29,7 +30,7 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons { ActionId = "Action123" };
 
             // act
-            var payload = ApiBase.SerializeObject(radio);
+            var payload = SerializationHelper.Serialize(radio);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
@@ -44,8 +45,8 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons { Confirm = confirm };
 
             // act
-            var confirmPayload = ApiBase.SerializeObject(confirm);
-            var payload = ApiBase.SerializeObject(radio);
+            var confirmPayload = SerializationHelper.Serialize(confirm);
+            var payload = SerializationHelper.Serialize(radio);
 
             // assert
             payload.Should().Contain($"\"confirm\":{confirmPayload}");
@@ -59,8 +60,8 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons { Options = options };
 
             // act
-            var optionsPayload = ApiBase.SerializeObject(options);
-            var payload = ApiBase.SerializeObject(radio);
+            var optionsPayload = SerializationHelper.Serialize(options);
+            var payload = SerializationHelper.Serialize(radio);
 
             // assert
             payload.Should().Contain($"\"options\":{optionsPayload}");
@@ -74,8 +75,8 @@ namespace Slack.Webhooks.Tests
             var radio = new RadioButtons { InitialOption = option };
 
             // act
-            var optionsPayload = ApiBase.SerializeObject(option);
-            var payload = ApiBase.SerializeObject(radio);
+            var optionsPayload = SerializationHelper.Serialize(option);
+            var payload = SerializationHelper.Serialize(radio);
 
             // assert
             payload.Should().Contain($"\"initial_option\":{optionsPayload}");

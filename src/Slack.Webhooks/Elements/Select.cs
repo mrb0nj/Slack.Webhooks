@@ -1,5 +1,8 @@
 using System.Collections.Generic;
+using Slack.Webhooks.Blocks;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Interfaces;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Elements
 {
@@ -27,7 +30,7 @@ namespace Slack.Webhooks.Elements
     }
 
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// This is the simplest form of select menu, with a static list of options passed in when defining the element.
     /// </summary>
@@ -58,7 +61,7 @@ namespace Slack.Webhooks.Elements
     }
 
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// This menu will load its options from an external data source, allowing for a dynamic list of options.
     /// 
@@ -92,7 +95,7 @@ namespace Slack.Webhooks.Elements
     }
     
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// This select menu will populate its options with a list of Slack users visible to the current user in the active workspace.
     /// </summary>
@@ -109,7 +112,7 @@ namespace Slack.Webhooks.Elements
     }
 
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// This select menu will populate its options with a list of public and private channels, DMs, and MPIMs visible to the current user in the active workspace.
     /// </summary>
@@ -126,7 +129,7 @@ namespace Slack.Webhooks.Elements
     }
 
     /// <summary>
-    /// Works with <see cref="Blocks.Section"/>, <see cref="Blocks.Actions"/> and <see cref="Blocks.Input"/> blocks.
+    /// Works with <see cref="SectionBlock"/>, <see cref="ActionsBlock"/> and <see cref="InputBlock"/> blocks.
     /// 
     /// This select menu will populate its options with a list of public channels visible to the current user in the active workspace.
     /// </summary>

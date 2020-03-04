@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using FluentAssertions;
-using Slack.Webhooks.Api;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Helpers;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
@@ -15,7 +16,7 @@ namespace Slack.Webhooks.Tests
             var overflow = new Overflow();
 
             // act
-            var payload = ApiBase.SerializeObject(overflow);
+            var payload = SerializationHelper.Serialize(overflow);
 
             // assert
             payload.Should().Contain("\"type\":\"overflow\"");
@@ -29,7 +30,7 @@ namespace Slack.Webhooks.Tests
             var overflow = new Overflow { ActionId = "Action123" };
 
             // act
-            var payload = ApiBase.SerializeObject(overflow);
+            var payload = SerializationHelper.Serialize(overflow);
 
             // assert
             payload.Should().Contain("\"action_id\":\"Action123\"");
@@ -44,8 +45,8 @@ namespace Slack.Webhooks.Tests
             var overflow = new Overflow { Confirm = confirm };
 
             // act
-            var confirmPayload = ApiBase.SerializeObject(confirm);
-            var payload = ApiBase.SerializeObject(overflow);
+            var confirmPayload = SerializationHelper.Serialize(confirm);
+            var payload = SerializationHelper.Serialize(overflow);
 
             // assert
             payload.Should().Contain($"\"confirm\":{confirmPayload}");
@@ -59,8 +60,8 @@ namespace Slack.Webhooks.Tests
             var overflow = new Overflow { Options = options };
 
             // act
-            var optionsPayload = ApiBase.SerializeObject(options);
-            var payload = ApiBase.SerializeObject(overflow);
+            var optionsPayload = SerializationHelper.Serialize(options);
+            var payload = SerializationHelper.Serialize(overflow);
 
             // assert
             payload.Should().Contain($"\"options\":{optionsPayload}");

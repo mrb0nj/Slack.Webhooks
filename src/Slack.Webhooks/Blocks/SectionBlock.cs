@@ -1,13 +1,15 @@
 ﻿using System.Collections.Generic;
+using Slack.Webhooks.Classes;
 using Slack.Webhooks.Elements;
+using Slack.Webhooks.Message;
 
 namespace Slack.Webhooks.Blocks
 {
     /// <summary>
-    /// A <see cref="Section"/> is one of the most flexible blocks available - it can be used as a simple text block, 
+    /// A <see cref="SectionBlock"/> is one of the most flexible blocks available - it can be used as a simple text block, 
     /// in combination with text fields, or side-by-side with any of the available block elements.
     /// </summary>
-    public class Section : Block
+    public class SectionBlock : BlockBase
     {
         /// <summary>
         /// The <see cref="Text"/> for the block, in the form of a <see cref="TextObject"/>. Maximum length for the text in this field is 3000 characters.
@@ -25,9 +27,9 @@ namespace Slack.Webhooks.Blocks
         public Element Accessory { get; set; }
 
         /// <summary>
-        /// Create a new <see cref="Section"/> instance.
+        /// Create a new <see cref="SectionBlock"/> instance.
         /// </summary>
-        public Section() : base(BlockType.Section)
+        public SectionBlock() : base(BlockType.Section)
         {
             
         }

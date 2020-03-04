@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Slack.Webhooks.Classes;
+using Slack.Webhooks.Message;
 using Xunit;
 
 namespace Slack.Webhooks.Tests
