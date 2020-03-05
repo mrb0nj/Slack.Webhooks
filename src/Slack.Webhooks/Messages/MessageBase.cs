@@ -13,7 +13,6 @@ namespace Slack.Webhooks.Messages
     /// </summary>
     public class MessageBase
     {
-        private bool _markdown = true;
         /// <summary>
         /// This is the text that will be posted to the channel
         /// </summary>
@@ -50,21 +49,7 @@ namespace Slack.Webhooks.Messages
         /// Optional override markdown mode. Default: true
         /// </summary>
         [JsonProperty(PropertyName = "mrkdwn")]
-        public bool Markdown
-        {
-            get { return _markdown; }
-            set { _markdown = value; }
-        }
-        /// <summary>
-        /// Optional override markdown mode. Default: true
-        /// </summary>
-        [Obsolete("Mrkdwn has been deprecated, please use 'Markdown' instead.")]
-        [JsonIgnore]
-        public bool Mrkdwn
-        {
-            get { return _markdown; }
-            set { _markdown = value; }
-        }
+        public bool Markdown { get; set; } = true;
         /// <summary>
         /// Enable linkification of channel and usernames
         /// </summary>
@@ -84,15 +69,15 @@ namespace Slack.Webhooks.Messages
         public List<Attachment> Attachments { get; set; }
 
         /// <summary>
-        /// Optional collection of <see cref="Webhooks.Blocks.BlockBase"/>
+        /// Optional collection of <see cref="Slack.Webhooks.Blocks.BlockBase"/>
         /// </summary>
-        /// <seealso cref="Actions" />
-        /// <seealso cref="Context" />
-        /// <seealso cref="Divider" />
-        /// <seealso cref="File" />
-        /// <seealso cref="Image" />
-        /// <seealso cref="Input" />
-        /// <seealso cref="Section" />
+        /// <seealso cref="Slack.Webhooks.Blocks.ActionsBlock" />
+        /// <seealso cref="Slack.Webhooks.Blocks.ContextBlock" />
+        /// <seealso cref="Slack.Webhooks.Blocks.DividerBlock" />
+        /// <seealso cref="Slack.Webhooks.Blocks.FileBlock" />
+        /// <seealso cref="Slack.Webhooks.Blocks.ImageBlock" />
+        /// <seealso cref="Slack.Webhooks.Blocks.InputBlock" />
+        /// <seealso cref="Slack.Webhooks.Blocks.SectionBlock" />
         public List<BlockBase> Blocks { get; set; }
 
         /// <summary>

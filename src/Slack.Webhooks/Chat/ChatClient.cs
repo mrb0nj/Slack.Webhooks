@@ -17,10 +17,10 @@ namespace Slack.Webhooks.Chat
             return PostAsync<DeleteResponse>(uri, request, configureAwait: false).Result;
         }
 
-        public Task<DeleteResponse> DeleteAsync(DeleteRequest request)
+        public async Task<DeleteResponse> DeleteAsync(DeleteRequest request)
         {
             var uri = new Uri("https://slack.com/api/chat.delete");
-            return PostAsync<DeleteResponse>(uri, request);
+            return await PostAsync<DeleteResponse>(uri, request);
         }
 
         public PermalinkResponse GetPermalink(PermalinkRequest request)
@@ -29,10 +29,22 @@ namespace Slack.Webhooks.Chat
             return GetAsync<PermalinkResponse>(uri, request, configureAwait: false).Result;
         }
 
-        public Task<PermalinkResponse> GetPermalinkAsync(PermalinkRequest request)
+        public async Task<PermalinkResponse> GetPermalinkAsync(PermalinkRequest request)
         {
             var uri = new Uri("https://slack.com/api/chat.getPermalink");
-            return GetAsync<PermalinkResponse>(uri, request);
+            return await GetAsync<PermalinkResponse>(uri, request);
+        }
+
+        public PostEphemeralResponse PostEphemeral(PostEphemeralMessage message)
+        {
+            var uri = new Uri("https://slack.com/api/chat.postEphemeral");
+            return PostAsync<PostEphemeralResponse>(uri, message, configureAwait: false).Result;
+        }
+
+        public async Task<PostEphemeralResponse> PostEphemeralAsync(PostEphemeralMessage message)
+        {
+            var uri = new Uri("https://slack.com/api/chat.postEphemeral");
+            return await PostAsync<PostEphemeralResponse>(uri, message);
         }
 
         public PostMessageResponse PostMessage(PostMessage message)
