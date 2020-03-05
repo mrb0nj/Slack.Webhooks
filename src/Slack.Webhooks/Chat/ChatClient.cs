@@ -23,13 +23,13 @@ namespace Slack.Webhooks.Chat
             return PostAsync<DeleteResponse>(uri, request);
         }
 
-        public PermalinkResponse Permalink(PermalinkRequest request)
+        public PermalinkResponse GetPermalink(PermalinkRequest request)
         {
             var uri = new Uri("https://slack.com/api/chat.getPermalink");
             return GetAsync<PermalinkResponse>(uri, request, configureAwait: false).Result;
         }
 
-        public Task<PermalinkResponse> PermalinkAsync(PermalinkRequest request)
+        public Task<PermalinkResponse> GetPermalinkAsync(PermalinkRequest request)
         {
             var uri = new Uri("https://slack.com/api/chat.getPermalink");
             return GetAsync<PermalinkResponse>(uri, request);
