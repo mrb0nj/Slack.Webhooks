@@ -14,6 +14,14 @@ System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
 ### Change Log
 
+#### v1.1.4
+
+- Add Block elements to Attachments
+
+#### v1.1.3
+
+- Fixes potential deadlock issues
+
 #### v1.1.2
 
 - Fix SlackMessage.Clone does not clone all properties
