@@ -116,5 +116,22 @@ namespace Slack.Webhooks
         /// The actions you provide will be rendered as message buttons or menus to users.
         /// </summary>
         public List<SlackAction> Actions { get; set; }
+
+        /// <summary>
+        /// Optional collection of <see cref="Block"/>
+        /// </summary>
+        /// <seealso cref="Actions" />
+        /// <seealso cref="Context" />
+        /// <seealso cref="Divider" />
+        /// <seealso cref="File" />
+        /// <seealso cref="Image" />
+        /// <seealso cref="Input" />
+        /// <seealso cref="Section" />
+        public List<Block> Blocks { get; set; }
+
+        public bool ShouldSerializeTimestamp()
+        {
+            return Timestamp != 0;
+        }
     }
 }
