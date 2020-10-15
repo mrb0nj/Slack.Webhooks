@@ -30,7 +30,8 @@ namespace Slack.Webhooks.Tests
                 new object[] { new Context {BlockId = "0004"}, "context", "0004" },
                 new object[] { new File {BlockId = "0005"}, "file", "0005" },
                 new object[] { new Actions {BlockId = "0006"}, "actions", "0006" },
-                new object[] { new Input {BlockId = "0007"}, "input", "0007" }
+                new object[] { new Input {BlockId = "0007"}, "input", "0007" },
+                new object[] { new Header {BlockId = "0008"}, "header", "0008"}
             };
         }
     }

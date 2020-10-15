@@ -66,7 +66,9 @@ namespace Slack.Webhooks
         [EnumMember(Value = "actions")]
         Actions = 7,
         [EnumMember(Value = "input")]
-        Input = 8
+        Input = 8,
+        [EnumMember(Value = "header")]
+        Header = 9
     }
 
     [JsonConverter(typeof(StringEnumConverter))]
