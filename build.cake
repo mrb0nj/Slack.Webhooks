@@ -109,7 +109,8 @@ Task("DeployGPR")
                               };
       NuGetAddSource("GPR", "https://nuget.pkg.github.com/mrb0nj/index.json", settings);
       NuGetPush($"artifacts/Slack.Webhooks.{gitVersion.NuGetVersionV2}.nupkg", new NuGetPushSettings {
-         Source = "GPR"
+         Source = "GPR",
+         SkipDuplicate = true
       });
    }
    else
