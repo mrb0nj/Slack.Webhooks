@@ -44,7 +44,7 @@ in place of `Task<IRestResponse>` which was tied directly to RestSharp.
 
 ## Outgoing Webhooks
 
-[Blog Post](http://nerdfury.me/2015/04/07/slack-outgoing-webhooks/)
+[Blog Post](https://mrb0nj.dev/2015/04/07/slack-outgoing-webhooks/)
 
 ## Incoming Webhooks
 
