@@ -60,6 +60,14 @@ namespace Slack.Webhooks.Elements
             Text = text;
         }
 
+        /// <summary>
+        /// Converts a string to a <see cref="TextObject"/> using the default <see cref="TextType.PlainText"/> type.
+        /// </summary>
+        public static implicit operator TextObject(string text)
+        {
+            return new TextObject(text);
+        }
+
         public bool ShouldSerializeEmoji()
         {
             return Type == TextType.PlainText;

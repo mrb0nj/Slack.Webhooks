@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using Slack.Webhooks.Interfaces;
 
 namespace Slack.Webhooks.Elements
@@ -31,6 +32,7 @@ namespace Slack.Webhooks.Elements
         /// <summary>
         /// Indicates whether the input will be a single line (false) or a larger textarea (true). Defaults to false.
         /// </summary>
+        [JsonProperty("multiline")]
         public bool MultiLine { get; set; }
         /// <summary>
         /// The minimum length of input that the user must provide. If the user provides less, they will receive an error. Maximum value is 3000.

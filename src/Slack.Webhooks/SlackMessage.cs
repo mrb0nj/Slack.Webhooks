@@ -67,6 +67,14 @@ namespace Slack.Webhooks
         /// </summary>
         public bool LinkNames { get; set; }
         /// <summary>
+        /// Enables or disables unfurling of primarily text-based content.
+        /// </summary>
+        public bool? UnfurlLinks { get; set; }
+        /// <summary>
+        /// Enables or disables unfurling of media content.
+        /// </summary>
+        public bool? UnfurlMedia { get; set; }
+        /// <summary>
         /// Set the message <see cref="ParseMode"/>
         /// </summary>
         public ParseMode Parse { get; set; }
@@ -106,6 +114,8 @@ namespace Slack.Webhooks
                 IconEmoji = IconEmoji,
                 IconUrl = IconUrl,
                 LinkNames = LinkNames,
+                UnfurlLinks = UnfurlLinks,
+                UnfurlMedia = UnfurlMedia,
                 Markdown = Markdown,
                 Parse = Parse,
                 ReplaceOriginal = ReplaceOriginal,

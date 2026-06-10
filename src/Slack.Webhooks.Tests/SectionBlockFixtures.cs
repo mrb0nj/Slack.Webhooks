@@ -24,6 +24,21 @@ namespace Slack.Webhooks.Tests
         }
 
         [Fact]
+        public void ShouldSerializeTextFromString()
+        {
+            // arrange
+            TextObject textObject = "This is text";
+            var section = new Section { Text = "This is text" };
+
+            // act
+            var textPayload = SlackClient.SerializeObject(textObject);
+            var payload = SlackClient.SerializeObject(section);
+
+            // assert
+            payload.Should().Contain($"\"text\":{textPayload}");
+        }
+
+        [Fact]
         public void ShouldSerializeFields()
         {
             // arrange

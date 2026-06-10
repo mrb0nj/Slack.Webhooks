@@ -1,4 +1,4 @@
-# Slack.Webhooks ![Continuous Stuff](https://github.com/mrb0nj/Slack.Webhooks/workflows/Continuous%20Stuff/badge.svg?branch=master) [![NuGet Version](http://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Slack.Webhooks/)
+# Slack.Webhooks [![Build and Release](https://github.com/mrb0nj/Slack.Webhooks/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/mrb0nj/Slack.Webhooks/actions/workflows/main.yml) [![GitHub Release](https://img.shields.io/github/v/release/mrb0nj/Slack.Webhooks?include_prereleases&label=github%20release)](https://github.com/mrb0nj/Slack.Webhooks/releases) [![NuGet Version](https://img.shields.io/nuget/v/Slack.Webhooks.svg?style=flat)](https://www.nuget.org/packages/Slack.Webhooks/)
 
 Even simpler integration with Slack's Incoming/Outgoing webhooks API for .net
 
@@ -13,6 +13,26 @@ System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 ```
 
 ### Change Log
+
+#### v1.1.7-preview.1
+
+- Fix `PlainTextInput.MultiLine` serialization to emit Slack's `multiline` property.
+- Add `SlackMessage.UnfurlLinks` and `SlackMessage.UnfurlMedia` options.
+- Add implicit conversion from `string` to `TextObject` for simpler Block Kit composition.
+- Document Slack mention syntax in message text.
+- Harden the release workflow by pinning GitHub Actions, avoiding persisted checkout credentials, and ensuring release tags point at commits contained in `master`.
+
+#### v1.1.6
+
+- Target .NET Standard 2.0. .NET Framework 4.5 and .NET Standard 1.3 users should use version 1.1.5 or earlier.
+- Modernize package metadata and NuGet publishing.
+- Replace the legacy Cake/GitVersion/NuGet.exe release process with direct `dotnet` build, test, pack, and NuGet Trusted Publishing.
+
+#### v1.1.5
+
+- Add Header block support for Slack Block Kit messages.
+- Remove legacy ReSharper build tasks.
+- Skip GitHub Packages publishing when the package has already been published.
 
 #### v1.1.4
 
@@ -52,7 +72,7 @@ Requirements:
 
 1. You must first enable the Webhooks integration for your Slack Account to get the Token. You can enable it here: https://slack.com/services/new/incoming-webhook
 2. Slack.Webhooks depends on JSON.net
-3. Compatible with .NET Standard 2.0. If you need .NET Framework 4.5 or older .NET Standard support, use version 1.1.5 or earlier.
+3. Compatible with .NET Standard 2.0. Version 1.1.5 targets .NET Framework 4.5 and .NET Standard 1.3.
 
 Download:
 
@@ -62,7 +82,7 @@ Package is hosted on [Nuget](https://www.nuget.org/packages/Slack.Webhooks/) and
 PM> Install-Package Slack.Webhooks
 ```
 
-For older .NET framework support:
+For .NET Framework 3.5 or 4.0 support, use version 0.1.8:
 
 ```
 PM> Install-Package Slack.Webhooks -Version 0.1.8
@@ -93,6 +113,12 @@ slackMessage.Mrkdwn = false;
 ```
 
 More info on message formatting can be found in the [Docs](https://api.slack.com/docs/formatting)
+
+Slack user, broadcast, and channel mentions can be included using Slack's standard mention syntax:
+
+```csharp
+slackMessage.Text = "<@U12345678> <!here> <!channel>";
+```
 
 Attachments can be added to a message:
 

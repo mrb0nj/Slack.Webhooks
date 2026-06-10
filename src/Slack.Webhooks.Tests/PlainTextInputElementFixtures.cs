@@ -70,7 +70,7 @@ namespace Slack.Webhooks.Tests
             var payload = SlackClient.SerializeObject(input);
 
             // assert
-            payload.Should().Contain("\"multi_line\":true");
+            payload.Should().Contain("\"multiline\":true");
         }
 
         [Fact]

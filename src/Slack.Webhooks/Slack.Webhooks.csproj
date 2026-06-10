@@ -13,7 +13,7 @@
         <PackageIcon>slack.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Slack;Webhooks</PackageTags>
-        <PackageReleaseNotes>Targets .NET Standard 2.0, updates Newtonsoft.Json, and keeps compatibility for sending Slack webhook messages with attachments and blocks.</PackageReleaseNotes>
+        <PackageReleaseNotes>Adds Slack webhook unfurl options, fixes plain-text input multiline serialization, adds implicit string-to-TextObject conversion, and keeps modern NuGet package metadata.</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
