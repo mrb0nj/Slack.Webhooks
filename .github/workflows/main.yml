@@ -14,16 +14,16 @@ jobs:
     runs-on: windows-latest
     name: Dotnet build
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v5
       - run: |
           git fetch --prune --unshallow
       - run: |
           git branch master origin/master
         if: github.event_name != 'push' || (github.event_name == 'push' && github.ref != 'refs/heads/master')
       - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "2.2.103"
+          dotnet-version: 10.*
       - name: Build
         run: .\build.ps1
         shell: pwsh
@@ -32,7 +32,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NUGET_TOKEN: ${{ secrets.NugetKey }}
       - name: Add artifacts
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: ${{ steps.build.outputs.nupkg_name }}
           path: ${{ steps.build.outputs.nupkg }}

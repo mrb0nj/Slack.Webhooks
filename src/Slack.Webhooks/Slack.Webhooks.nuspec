@@ -33,30 +33,15 @@
       ]]>
     </releaseNotes>
     <dependencies>
-      <group targetFramework=".NETFramework4.5">
-        <dependency id="Newtonsoft.Json" version="10.0.3" exclude="Build,Analyzers" />
-      </group>
-      <group targetFramework=".NETStandard1.3">
-        <dependency id="NETStandard.Library" version="1.6.1" exclude="Build,Analyzers" />
-        <dependency id="Newtonsoft.Json" version="10.0.3" exclude="Build,Analyzers" />
+      <group targetFramework=".NETStandard2.0">
+        <dependency id="NETStandard.Library" version="2.0.0" exclude="Build,Analyzers" />
+        <dependency id="Newtonsoft.Json" version="13.0.4" exclude="Build,Analyzers" />
       </group>
     </dependencies>
-    <frameworkAssemblies>
-      <frameworkAssembly assemblyName="Microsoft.CSharp" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System.Data.DataSetExtensions" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System.Data" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System.Net" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System.Net.Http" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System.Runtime.Serialization" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System.Xml" targetFramework=".NETFramework4.5" />
-      <frameworkAssembly assemblyName="System.Xml.Linq" targetFramework=".NETFramework4.5" />
-    </frameworkAssemblies>
   </metadata>
   
   <files>
-    <file src="bin\Release\net45\Slack.Webhooks.dll" target="lib\net45\Slack.Webhooks.dll" />
-    <file src="bin\Release\netstandard1.3\Slack.Webhooks.dll" target="lib\netstandard1.3\Slack.Webhooks.dll" />
+    <file src="bin\Release\netstandard2.0\Slack.Webhooks.dll" target="lib\netstandard2.0\Slack.Webhooks.dll" />
     <file src="..\..\slack.png" target="images\" />
   </files>
 </package>
