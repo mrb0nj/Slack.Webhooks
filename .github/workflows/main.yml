@@ -19,10 +19,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        with:
+          persist-credentials: false
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2
         with:
           dotnet-version: 10.x
 
@@ -54,10 +56,19 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify tag is on master
+        shell: bash
+        run: |
+          git fetch origin master:refs/remotes/origin/master
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/master
 
       - name: Setup .NET
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@9a946fdbd5fb07b82b2f5a4466058b876ab72bb2
         with:
           dotnet-version: 10.x
 
@@ -79,7 +90,7 @@ jobs:
           -p:ContinuousIntegrationBuild=true
 
       - name: NuGet login
-        uses: NuGet/login@v1
+        uses: NuGet/login@ebc737b6fc418a6ca0073cf116ec8dc156d8b81e
         id: login
         with:
           user: mrb0nj

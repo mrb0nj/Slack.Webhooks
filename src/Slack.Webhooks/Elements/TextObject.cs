@@ -60,6 +60,11 @@ namespace Slack.Webhooks.Elements
             Text = text;
         }
 
+        public static implicit operator TextObject(string text)
+        {
+            return new TextObject(text);
+        }
+
         public bool ShouldSerializeEmoji()
         {
             return Type == TextType.PlainText;

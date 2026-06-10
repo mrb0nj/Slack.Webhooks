@@ -26,9 +26,44 @@ namespace Slack.Webhooks.Tests
             Assert.Equal(message.IconUrl, clonedMessage.IconUrl);
             Assert.Equal(message.Markdown, clonedMessage.Markdown);
             Assert.Equal(message.LinkNames, clonedMessage.LinkNames);
+            Assert.Equal(message.UnfurlLinks, clonedMessage.UnfurlLinks);
+            Assert.Equal(message.UnfurlMedia, clonedMessage.UnfurlMedia);
             Assert.Equal(message.Parse, clonedMessage.Parse);
             Assert.Equal(message.Attachments, clonedMessage.Attachments);
             Assert.Equal(message.Blocks, clonedMessage.Blocks);
+        }
+
+        [Fact]
+        public void ShouldNotSerializeUnfurlOptionsWhenUnset()
+        {
+            // arrange
+            var message = new SlackMessage { Text = "Test message" };
+
+            // act
+            var payload = SlackClient.SerializeObject(message);
+
+            // assert
+            Assert.DoesNotContain("\"unfurl_links\":", payload);
+            Assert.DoesNotContain("\"unfurl_media\":", payload);
+        }
+
+        [Fact]
+        public void ShouldSerializeUnfurlOptionsWhenSet()
+        {
+            // arrange
+            var message = new SlackMessage
+            {
+                Text = "Test message",
+                UnfurlLinks = true,
+                UnfurlMedia = false
+            };
+
+            // act
+            var payload = SlackClient.SerializeObject(message);
+
+            // assert
+            Assert.Contains("\"unfurl_links\":true", payload);
+            Assert.Contains("\"unfurl_media\":false", payload);
         }
 
         private static SlackMessage GetSlackMessage()
@@ -45,6 +80,8 @@ namespace Slack.Webhooks.Tests
                 IconUrl = new Uri("http://test.com/icon.jpg"),
                 Markdown = true,
                 LinkNames = true,
+                UnfurlLinks = true,
+                UnfurlMedia = false,
                 Parse = ParseMode.Full,
                 ThreadId = $"Test {nameof(SlackMessage.ThreadId)}",
                 Attachments = new List<SlackAttachment>{ new SlackAttachment() },
