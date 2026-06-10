@@ -13,7 +13,7 @@
         <PackageIcon>slack.png</PackageIcon>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Slack;Webhooks</PackageTags>
-        <PackageReleaseNotes>Adds Slack webhook unfurl options, fixes plain-text input multiline serialization, and keeps modern NuGet package metadata.</PackageReleaseNotes>
+        <PackageReleaseNotes>Adds Slack webhook unfurl options, fixes plain-text input multiline serialization, adds implicit string-to-TextObject conversion, and keeps modern NuGet package metadata.</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
