@@ -1,38 +1,92 @@
-name: Continuous Stuff
+name: Build and Release
+
 on:
   push:
     branches:
-      - feature/*
-      - hotfix/*
       - master
     tags:
       - v*
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
-    runs-on: windows-latest
-    name: Dotnet build
+    name: Build and test
+    runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v5
-      - run: |
-          git fetch --prune --unshallow
-      - run: |
-          git branch master origin/master
-        if: github.event_name != 'push' || (github.event_name == 'push' && github.ref != 'refs/heads/master')
-      - name: Setup dotnet
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 10.*
+          dotnet-version: 10.x
+
+      - name: Restore
+        run: dotnet restore src/Slack.Webhooks.sln
+
       - name: Build
-        run: .\build.ps1
-        shell: pwsh
-        id: build
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NUGET_TOKEN: ${{ secrets.NugetKey }}
-      - name: Add artifacts
-        uses: actions/upload-artifact@v4
+        run: dotnet build src/Slack.Webhooks.sln --configuration Release --no-restore
+
+      - name: Test
+        run: >
+          dotnet test src/Slack.Webhooks.Tests/Slack.Webhooks.Tests.csproj
+          --configuration Release
+          --framework net10.0
+          --no-build
+          /p:CollectCoverage=true
+          /p:CoverletOutputFormat=opencover
+          /p:CoverletOutput=../../artifacts/coverlet-output
+
+  publish:
+    name: Publish to NuGet
+    runs-on: ubuntu-latest
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    environment: release
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
         with:
-          name: ${{ steps.build.outputs.nupkg_name }}
-          path: ${{ steps.build.outputs.nupkg }}
+          dotnet-version: 10.x
+
+      - name: Set package version
+        id: version
+        shell: bash
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Restore
+        run: dotnet restore src/Slack.Webhooks/Slack.Webhooks.csproj
+
+      - name: Pack
+        run: >
+          dotnet pack src/Slack.Webhooks/Slack.Webhooks.csproj
+          --configuration Release
+          --no-restore
+          --output artifacts
+          -p:PackageVersion=${{ steps.version.outputs.version }}
+          -p:ContinuousIntegrationBuild=true
+
+      - name: NuGet login
+        uses: NuGet/login@v1
+        id: login
+        with:
+          user: mrb0nj
+
+      - name: NuGet push
+        run: >
+          dotnet nuget push "artifacts/*.nupkg"
+          --api-key "${{ steps.login.outputs.NUGET_API_KEY }}"
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate

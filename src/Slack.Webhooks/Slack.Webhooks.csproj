@@ -2,14 +2,27 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <Deterministic>False</Deterministic>
+        <Deterministic>True</Deterministic>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
         <RepositoryUrl>https://github.com/mrb0nj/Slack.Webhooks.git</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageId>Slack.Webhooks</PackageId>
+        <Authors>mrb0nj and contributors</Authors>
+        <Description>A lightweight .NET client for sending messages to Slack incoming webhooks, including support for attachments and Block Kit message blocks.</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageIcon>slack.png</PackageIcon>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageTags>Slack;Webhooks</PackageTags>
+        <PackageReleaseNotes>Targets .NET Standard 2.0, updates Newtonsoft.Json, and keeps compatibility for sending Slack webhook messages with attachments and blocks.</PackageReleaseNotes>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="Newtonsoft.Json" Version="13.0.4"/>
     </ItemGroup>
 
- 
+    <ItemGroup>
+        <None Include="..\..\README.md" Pack="true" PackagePath=""/>
+        <None Include="..\..\slack.png" Pack="true" PackagePath=""/>
+    </ItemGroup>
+
 </Project>

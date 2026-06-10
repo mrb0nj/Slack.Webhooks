@@ -52,7 +52,7 @@ Requirements:
 
 1. You must first enable the Webhooks integration for your Slack Account to get the Token. You can enable it here: https://slack.com/services/new/incoming-webhook
 2. Slack.Webhooks depends on JSON.net
-3. Compatible with .NET 4.5+ and .NET Core. If you need .NET 3.5/4 you can use an older release, but this may be out of date.
+3. Compatible with .NET Standard 2.0. If you need .NET Framework 4.5 or older .NET Standard support, use version 1.1.5 or earlier.
 
 Download:
 
